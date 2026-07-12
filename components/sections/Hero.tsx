@@ -11,7 +11,7 @@ export function Hero() {
       <div className="absolute inset-0">
         <Image
           src="/images/placeholders/hero-commercial-construction.svg"
-          alt="Placeholder: full-height commercial construction site photo for hero background"
+          alt="full-height commercial construction site photo for hero background"
           fill
           priority
           className="object-cover"

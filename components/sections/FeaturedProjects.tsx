@@ -17,7 +17,7 @@ export function FeaturedProjects() {
             id="projects-heading"
             eyebrow="Featured Projects"
             title="Commercial Work Across Oklahoma"
-            description="A selection of project types we deliver for contractors, developers, and public entities. Replace placeholder images with H&H project photography."
+            description="A selection of project types we deliver for contractors, developers, and public entities across Oklahoma."
           />
           <Button href="#contact" variant="outline-dark" className="shrink-0 self-start lg:self-auto">
             Start Your Project

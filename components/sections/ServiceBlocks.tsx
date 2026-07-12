@@ -62,7 +62,7 @@ export function ServiceBlocks() {
                   href={service.href}
                   className="mt-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
                 >
-                  Discuss This Service
+                  Learn More About {service.shortTitle}
                   <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>

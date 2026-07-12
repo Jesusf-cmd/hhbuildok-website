@@ -61,7 +61,7 @@ export function Header() {
                 </li>
               ))}
             </ul>
-            <Button href="#contact" variant="primary" className="px-5 py-2.5">
+            <Button href="/#contact" variant="primary" className="px-5 py-2.5">
               Request a Bid
             </Button>
           </div>
@@ -122,7 +122,7 @@ export function Header() {
               ))}
               <li className="pt-2">
                 <Link
-                  href="#contact"
+                  href="/#contact"
                   className="inline-flex w-full items-center justify-center bg-accent px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-surface transition-colors hover:bg-accent-hover"
                   onClick={() => setIsMenuOpen(false)}
                 >

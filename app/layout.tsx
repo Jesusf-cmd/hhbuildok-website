@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
-import { nap, siteConfig } from "@/lib/site-data";
+import { nap, siteConfig, services, serviceAreaCities } from "@/lib/site-data";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   description:
     "H&H Construction delivers commercial concrete construction, asphalt paving, and metal building solutions across Oklahoma for contractors, developers, and municipalities.",
   metadataBase: new URL(siteConfig.url),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "H&H Construction | Building Oklahoma's Commercial Infrastructure",
     description:
@@ -32,6 +35,12 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "H&H Construction | Building Oklahoma's Commercial Infrastructure",
+    description:
+      "Commercial concrete, asphalt paving, and metal buildings & roofing across Oklahoma.",
   },
   robots: {
     index: true,
@@ -46,9 +55,10 @@ export default function RootLayout({
 }>) {
   const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "GeneralContractor",
     name: nap.name,
     url: siteConfig.url,
+    image: `${siteConfig.url}/images/hh-construction-logo.png`,
     telephone: siteConfig.phone,
     email: siteConfig.email,
     address: {
@@ -59,9 +69,25 @@ export default function RootLayout({
       postalCode: siteConfig.address.zip,
       addressCountry: "US",
     },
-    areaServed: {
-      "@type": "State",
-      name: "Oklahoma",
+    areaServed: [
+      { "@type": "State", name: "Oklahoma" },
+      ...serviceAreaCities.map((city) => ({
+        "@type": "City",
+        name: city,
+      })),
+    ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Services",
+      itemListElement: services.map((service) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.title,
+          description: service.description,
+          url: `${siteConfig.url}${service.href}`,
+        },
+      })),
     },
   };
 

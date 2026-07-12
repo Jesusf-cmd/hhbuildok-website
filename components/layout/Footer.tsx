@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { navLinks, nap, siteConfig } from "@/lib/site-data";
+import { navLinks, nap, siteConfig, services, priorityCities } from "@/lib/site-data";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 
@@ -9,8 +9,8 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-surface-muted">
       <Container className="py-16">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-          <div className="lg:col-span-2">
+        <div className="grid gap-12 md:grid-cols-3 lg:grid-cols-6">
+          <div className="md:col-span-3 lg:col-span-2">
             <Logo />
             <p className="mt-4 max-w-md text-sm leading-relaxed text-text-muted">
               Commercial concrete construction, asphalt paving, and metal
@@ -33,6 +33,50 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-charcoal">
+              Services
+            </h3>
+            <ul className="flex flex-col gap-3">
+              {services.map((service) => (
+                <li key={service.id}>
+                  <Link
+                    href={service.href}
+                    className="text-sm text-text-muted transition-colors hover:text-charcoal"
+                  >
+                    {service.shortTitle}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-charcoal">
+              Service Area
+            </h3>
+            <ul className="flex flex-col gap-3">
+              {priorityCities.map((city) => (
+                <li key={city.slug}>
+                  <Link
+                    href={`/service-area/${city.slug}`}
+                    className="text-sm text-text-muted transition-colors hover:text-charcoal"
+                  >
+                    {city.name}, OK
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="/service-area"
+                  className="text-sm text-text-muted transition-colors hover:text-charcoal"
+                >
+                  View All Areas
+                </Link>
+              </li>
             </ul>
           </div>
 

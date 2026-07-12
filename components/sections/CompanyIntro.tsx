@@ -14,7 +14,7 @@ export function CompanyIntro() {
           <div className="relative aspect-[4/3] w-full overflow-hidden border border-border">
             <Image
               src="/images/placeholders/company-intro-team-site.svg"
-              alt="Placeholder: H&H Construction team and commercial job site photo"
+              alt="H&H Construction team and commercial job site photo"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"

@@ -1,10 +1,30 @@
 export const siteConfig = {
   name: "H&H Construction",
   domain: "hhbuildok.com",
-  phone: "(405) 000-0000",
-  email: "bid@hhbuildok.com",
-  address: "Oklahoma",
-};
+  url: "https://hhbuildok.com",
+  phone: "405-476-5476",
+  phoneTel: "4054765476",
+  email: "info@hhbuildok.com",
+  address: {
+    street: "770 W Rock Creek",
+    suite: "#115",
+    city: "Norman",
+    state: "OK",
+    zip: "73069",
+  },
+} as const;
+
+export const nap = {
+  name: siteConfig.name,
+  phone: siteConfig.phone,
+  email: siteConfig.email,
+  addressLine1: `${siteConfig.address.street} ${siteConfig.address.suite}`,
+  addressLine2: `${siteConfig.address.city}, ${siteConfig.address.state} ${siteConfig.address.zip}`,
+  fullAddress: `${siteConfig.address.street} ${siteConfig.address.suite}, ${siteConfig.address.city}, ${siteConfig.address.state} ${siteConfig.address.zip}`,
+  mapsQuery: encodeURIComponent(
+    `${siteConfig.address.street} ${siteConfig.address.suite}, ${siteConfig.address.city}, ${siteConfig.address.state} ${siteConfig.address.zip}`,
+  ),
+} as const;
 
 export const navLinks = [
   { label: "Services", href: "#services" },

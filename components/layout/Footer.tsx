@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { navLinks, siteConfig } from "@/lib/site-data";
+import { navLinks, nap, siteConfig } from "@/lib/site-data";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 
@@ -40,25 +40,37 @@ export function Footer() {
             <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-charcoal">
               Contact
             </h3>
-            <ul className="flex flex-col gap-3 text-sm text-text-muted">
-              <li>
+            <address className="flex flex-col gap-3 text-sm not-italic text-text-muted">
+              <div>
+                <p className="font-medium text-charcoal">{nap.name}</p>
                 <a
-                  href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
+                  href={`https://www.google.com/maps/search/?api=1&query=${nap.mapsQuery}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-1 block transition-colors hover:text-charcoal"
+                >
+                  {nap.addressLine1}
+                  <br />
+                  {nap.addressLine2}
+                </a>
+              </div>
+              <p>
+                <a
+                  href={`tel:${siteConfig.phoneTel}`}
                   className="transition-colors hover:text-charcoal"
                 >
-                  {siteConfig.phone}
+                  {nap.phone}
                 </a>
-              </li>
-              <li>
+              </p>
+              <p>
                 <a
                   href={`mailto:${siteConfig.email}`}
                   className="transition-colors hover:text-charcoal"
                 >
-                  {siteConfig.email}
+                  {nap.email}
                 </a>
-              </li>
-              <li>{siteConfig.address}</li>
-            </ul>
+              </p>
+            </address>
           </div>
         </div>
 
@@ -68,7 +80,7 @@ export function Footer() {
           </p>
           <p className="text-sm text-text-muted">
             <a
-              href={`https://${siteConfig.domain}`}
+              href={siteConfig.url}
               className="transition-colors hover:text-charcoal"
             >
               {siteConfig.domain}

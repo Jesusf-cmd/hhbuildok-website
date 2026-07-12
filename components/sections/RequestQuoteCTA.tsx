@@ -1,4 +1,4 @@
-import { siteConfig } from "@/lib/site-data";
+import { nap, siteConfig } from "@/lib/site-data";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 
@@ -31,15 +31,43 @@ export function RequestQuoteCTA() {
             project. Our team will review your scope and follow up to discuss
             next steps.
           </p>
+
+          <address className="mx-auto mt-8 max-w-md text-sm not-italic leading-relaxed text-surface/90">
+            <p className="font-semibold uppercase tracking-wider text-surface">
+              {nap.name}
+            </p>
+            <p className="mt-2">
+              {nap.addressLine1}
+              <br />
+              {nap.addressLine2}
+            </p>
+            <p className="mt-2">
+              <a
+                href={`tel:${siteConfig.phoneTel}`}
+                className="transition-colors hover:text-surface"
+              >
+                {nap.phone}
+              </a>
+            </p>
+            <p>
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="transition-colors hover:text-surface"
+              >
+                {nap.email}
+              </a>
+            </p>
+          </address>
+
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button href={`mailto:${siteConfig.email}`} variant="secondary">
               Request a Bid
             </Button>
             <a
-              href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
+              href={`tel:${siteConfig.phoneTel}`}
               className="inline-flex items-center justify-center border border-surface/60 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-surface transition-colors hover:border-surface hover:bg-surface/10"
             >
-              Call {siteConfig.phone}
+              Call {nap.phone}
             </a>
           </div>
         </div>

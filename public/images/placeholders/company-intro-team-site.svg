@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="Placeholder: company intro team and job site photo">
+  <rect width="1200" height="900" fill="#d8d5ce"/>
+  <rect x="40" y="40" width="1120" height="820" fill="#2a2a2a"/>
+  <text x="600" y="420" text-anchor="middle" fill="#f2f0eb" font-family="Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="3">PLACEHOLDER IMAGE</text>
+  <text x="600" y="470" text-anchor="middle" fill="#a8a5a0" font-family="Arial, sans-serif" font-size="20">company-intro-team-site</text>
+  <text x="600" y="510" text-anchor="middle" fill="#a8a5a0" font-family="Arial, sans-serif" font-size="16">Replace with H&amp;H team or job site photo</text>
+</svg>

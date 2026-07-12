@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Placeholder: commercial asphalt paving photo">
+  <rect width="1200" height="800" fill="#2a2a2a"/>
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#1c1c1c" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <rect x="0" y="0" width="1200" height="6" fill="#9b1c1c"/>
+  <text x="600" y="370" text-anchor="middle" fill="#f2f0eb" font-family="Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="3">PLACEHOLDER IMAGE</text>
+  <text x="600" y="420" text-anchor="middle" fill="#a8a5a0" font-family="Arial, sans-serif" font-size="20">service-asphalt-paving</text>
+  <text x="600" y="460" text-anchor="middle" fill="#a8a5a0" font-family="Arial, sans-serif" font-size="16">Replace with commercial asphalt paving project photo</text>
+</svg>

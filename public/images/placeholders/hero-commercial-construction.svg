@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Placeholder: hero commercial construction photo">
+  <rect width="1920" height="1080" fill="#1c1c1c"/>
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  <rect x="0" y="0" width="8" height="1080" fill="#9b1c1c"/>
+  <text x="960" y="500" text-anchor="middle" fill="#f2f0eb" font-family="Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="4">PLACEHOLDER IMAGE</text>
+  <text x="960" y="560" text-anchor="middle" fill="#a8a5a0" font-family="Arial, sans-serif" font-size="24" letter-spacing="2">hero-commercial-construction</text>
+  <text x="960" y="610" text-anchor="middle" fill="#a8a5a0" font-family="Arial, sans-serif" font-size="18">Replace with full-height commercial construction site photo</text>
+</svg>

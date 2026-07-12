@@ -28,13 +28,8 @@ export function Header() {
     };
   }, [isMenuOpen]);
 
-  const onHero = !isScrolled && !isMenuOpen;
-  const linkColor = onHero
-    ? "text-surface/90 hover:text-surface"
-    : "text-charcoal/80 hover:text-charcoal";
-  const menuButtonColor = onHero
-    ? "border-surface/40 text-surface"
-    : "border-charcoal/20 text-charcoal";
+  const linkColor = "text-charcoal/80 hover:text-charcoal";
+  const menuButtonColor = "border-charcoal/20 text-charcoal";
 
   return (
     <header

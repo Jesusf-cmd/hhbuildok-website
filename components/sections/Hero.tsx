@@ -10,14 +10,14 @@ export function Hero() {
     >
       <div className="absolute inset-0">
         <Image
-          src="/images/placeholders/hero-commercial-construction.svg"
-          alt="full-height commercial construction site photo for hero background"
+          src="/images/hero-rebar-construction.jpg"
+          alt="Rebar reinforcement cage being tied at an H&H Construction commercial job site"
           fill
           priority
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/50 to-charcoal/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-off-white/95 via-off-white/70 to-off-white/25" />
       </div>
 
       <Container className="relative z-10 pb-20 pt-32">
@@ -27,11 +27,11 @@ export function Hero() {
           </p>
           <h1
             id="hero-heading"
-            className="animate-fade-up font-heading text-4xl font-bold uppercase leading-[1.05] text-surface sm:text-5xl md:text-6xl lg:text-7xl"
+            className="animate-fade-up font-heading text-4xl font-bold uppercase leading-[1.05] text-charcoal sm:text-5xl md:text-6xl lg:text-7xl"
           >
             Building Oklahoma&apos;s Commercial Infrastructure
           </h1>
-          <p className="animate-fade-up animate-delay-100 mt-6 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg md:text-xl">
+          <p className="animate-fade-up animate-delay-100 mt-6 max-w-2xl text-base leading-relaxed text-charcoal/80 sm:text-lg md:text-xl">
             H&amp;H Construction delivers commercial concrete, asphalt paving,
             metal buildings, and roofing for general contractors, developers,
             municipalities, and property owners across Oklahoma.
@@ -40,7 +40,7 @@ export function Hero() {
             <Button href="#contact" variant="primary">
               Request a Bid
             </Button>
-            <Button href="#projects" variant="outline">
+            <Button href="#projects" variant="outline-dark">
               View Projects
             </Button>
           </div>

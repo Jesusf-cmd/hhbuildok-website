@@ -47,7 +47,7 @@ export const services = [
       "H&H Construction delivers structural and flatwork concrete for commercial foundations, slabs, sidewalks, curbs, and retaining walls across Oklahoma. Request a bid.",
     heroDescription:
       "H&H Construction provides structural and flatwork concrete for commercial, industrial, and municipal projects throughout Oklahoma — built to spec, coordinated to your schedule.",
-    image: "/images/placeholders/service-concrete-construction.svg",
+    image: "/images/stock/service-concrete-construction.jpg",
     imageAlt: "commercial concrete construction project photo",
     href: "/services/concrete-construction",
     scopeItems: [
@@ -88,7 +88,7 @@ export const services = [
       "H&H Construction provides commercial asphalt paving, overlays, patching, and parking lot construction for developments, industrial yards, and municipalities across Oklahoma.",
     heroDescription:
       "H&H Construction delivers new paving, overlays, patching, and parking lot construction for commercial developments, industrial yards, and municipal roadways across Oklahoma.",
-    image: "/images/placeholders/service-asphalt-paving.svg",
+    image: "/images/stock/service-asphalt-paving.jpg",
     imageAlt: "commercial asphalt paving project photo",
     href: "/services/asphalt-paving",
     scopeItems: [
@@ -129,7 +129,7 @@ export const services = [
       "H&H Construction erects pre-engineered metal buildings and installs metal roofing systems for warehouses, industrial facilities, and commercial structures across Oklahoma.",
     heroDescription:
       "H&H Construction erects pre-engineered metal buildings and installs metal roofing systems for warehouses, industrial facilities, and commercial structures across Oklahoma.",
-    image: "/images/placeholders/service-metal-buildings-roofing.svg",
+    image: "/images/stock/service-metal-buildings-roofing.jpg",
     imageAlt: "metal building and roofing project photo",
     href: "/services/metal-buildings-roofing",
     scopeItems: [
@@ -164,28 +164,28 @@ export const featuredProjects = [
     id: "commercial-foundation",
     title: "Commercial Foundation & Flatwork",
     category: "Concrete",
-    image: "/images/placeholders/project-commercial-foundation.svg",
+    image: "/images/stock/project-commercial-foundation.jpg",
     imageAlt: "commercial foundation and flatwork project photo",
   },
   {
     id: "industrial-paving",
     title: "Industrial Yard Paving",
     category: "Asphalt",
-    image: "/images/placeholders/project-industrial-paving.svg",
+    image: "/images/stock/project-industrial-paving.jpg",
     imageAlt: "industrial yard paving project photo",
   },
   {
     id: "municipal-building",
     title: "Municipal Metal Building",
     category: "Metal Buildings",
-    image: "/images/placeholders/project-municipal-building.svg",
+    image: "/images/stock/project-municipal-building.jpg",
     imageAlt: "municipal metal building project photo",
   },
   {
     id: "school-parking",
     title: "School District Parking Lot",
     category: "Asphalt",
-    image: "/images/placeholders/project-school-parking.svg",
+    image: "/images/stock/project-school-parking.jpg",
     imageAlt: "school district parking lot project photo",
   },
 ] as const;

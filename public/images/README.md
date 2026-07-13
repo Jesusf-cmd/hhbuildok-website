@@ -1,49 +1,38 @@
-# H&H Construction — Image Placeholders
-
-Replace these placeholder files with actual H&H project photography. Keep the same filenames (or update paths in `lib/site-data.ts`).
+# H&H Construction — Site Images
 
 ## Logo
 
 | File | Usage |
 |------|-------|
-| `hh-construction-logo.png` | Official H&H Construction logo (sourced from hhbuildok.com) |
+| `hh-construction-logo.png` | Official H&H Construction logo |
 
 ## Hero
 
-| File | Usage | Suggested replacement |
-|------|-------|----------------------|
-| `placeholders/hero-commercial-construction.svg` | Full-height hero background | Wide commercial job site, concrete pour, or aerial development photo |
+| File | Usage |
+|------|-------|
+| `hero-rebar-construction.jpg` | Full-height hero background (H&H job site photo) |
 
-## Services
+## Stock photos (temporary)
 
-| File | Usage | Suggested replacement |
-|------|-------|----------------------|
-| `placeholders/service-concrete-construction.svg` | Concrete service block | Foundation, flatwork, or structural concrete project |
-| `placeholders/service-asphalt-paving.svg` | Asphalt service block | Parking lot paving or roadway project |
-| `placeholders/service-metal-buildings-roofing.svg` | Metal buildings service block | Pre-engineered metal building or roofing installation |
+High-quality stock images in `stock/` are used until H&H project photography is available.
+See `stock/ATTRIBUTION.md` for sources. To replace one, either:
 
-## Company
+1. **Drop in your photo** with the same filename in `stock/`, or
+2. **Update the path** in `lib/site-data.ts` or the relevant component.
 
-| File | Usage | Suggested replacement |
-|------|-------|----------------------|
-| `placeholders/company-intro-team-site.svg` | About section | Crew on site or leadership at a commercial project |
+| File | Usage | Suggested H&H replacement |
+|------|-------|------------------------|
+| `stock/service-concrete-construction.jpg` | Concrete service block | Foundation, flatwork, or structural concrete project |
+| `stock/service-asphalt-paving.jpg` | Asphalt service block | Parking lot paving or roadway project |
+| `stock/service-metal-buildings-roofing.jpg` | Metal buildings service block | Pre-engineered metal building or roofing installation |
+| `stock/company-intro-team-site.jpg` | About section | Crew on site or leadership at a commercial project |
+| `stock/project-commercial-foundation.jpg` | Featured project card | Commercial foundation / flatwork project |
+| `stock/project-industrial-paving.jpg` | Featured project card | Industrial yard paving project |
+| `stock/project-municipal-building.jpg` | Featured project card | Municipal metal building project |
+| `stock/project-school-parking.jpg` | Featured project card | School district parking lot project |
+| `stock/oklahoma-service-area.jpg` | Service area section | Oklahoma map graphic or regional aerial photo |
 
-## Projects
-
-| File | Usage | Suggested replacement |
-|------|-------|----------------------|
-| `placeholders/project-commercial-foundation.svg` | Featured project card | Commercial foundation / flatwork project |
-| `placeholders/project-industrial-paving.svg` | Featured project card | Industrial yard paving project |
-| `placeholders/project-municipal-building.svg` | Featured project card | Municipal metal building project |
-| `placeholders/project-school-parking.svg` | Featured project card | School district parking lot project |
-
-## Service Area
-
-| File | Usage | Suggested replacement |
-|------|-------|----------------------|
-| `placeholders/oklahoma-service-area.svg` | Service area section | Oklahoma map graphic or regional aerial photo |
-
-## Recommended specs for replacements
+## Recommended specs for H&H replacements
 
 - **Hero:** 1920×1080 minimum (landscape)
 - **Service blocks:** 1200×800 minimum (landscape)
@@ -51,3 +40,7 @@ Replace these placeholder files with actual H&H project photography. Keep the sa
 - **Company intro:** 1200×900 minimum (4:3)
 - **Service area:** 1000×1000 minimum (square)
 - Format: `.jpg` or `.webp` preferred for photos
+
+## Legacy placeholders
+
+The `placeholders/` folder contains the original SVG placeholders and is no longer referenced by the site.

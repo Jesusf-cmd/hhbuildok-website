@@ -58,7 +58,7 @@ export function ServiceArea() {
 
           <div className="relative aspect-square w-full overflow-hidden border border-border">
             <Image
-              src="/images/placeholders/oklahoma-service-area.svg"
+              src="/images/stock/oklahoma-service-area.jpg"
               alt="map or aerial photo showing Oklahoma service area"
               fill
               className="object-cover"

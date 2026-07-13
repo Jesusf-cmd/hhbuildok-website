@@ -13,7 +13,7 @@ export function CompanyIntro() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="relative aspect-[4/3] w-full overflow-hidden border border-border">
             <Image
-              src="/images/placeholders/company-intro-team-site.svg"
+              src="/images/stock/company-intro-team-site.jpg"
               alt="H&H Construction team and commercial job site photo"
               fill
               className="object-cover"

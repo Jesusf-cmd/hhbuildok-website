@@ -52,7 +52,7 @@ export default function ServiceAreaPage() {
                 className="group relative flex aspect-[16/9] flex-col justify-end overflow-hidden border border-border bg-charcoal p-6 sm:p-8"
               >
                 <Image
-                  src="/images/placeholders/oklahoma-service-area.svg"
+                  src="/images/stock/oklahoma-service-area.jpg"
                   alt=""
                   fill
                   aria-hidden="true"

@@ -9,10 +9,10 @@ Licensed for free use via [Unsplash](https://unsplash.com/license) and [Pexels](
 | `service-asphalt-paving.jpg` | Crew paving asphalt at commercial site | [Pexels](https://www.pexels.com/photo/men-putting-asphalt-on-the-road-4575147/) |
 | `service-metal-buildings-roofing.jpg` | Industrial warehouse / metal building interior | [Pexels](https://www.pexels.com/photo/empty-warehouse-236698/) |
 | `company-intro-team-site.jpg` | Construction crew on commercial job site | [Unsplash](https://unsplash.com/photos/man-wearing-yellow-hard-hat-and-orange-vest-1504307651254) |
-| `project-commercial-foundation.jpg` | Commercial construction aerial | [Unsplash](https://unsplash.com/photos/aerial-view-of-construction-site-1589939705384) |
-| `project-industrial-paving.jpg` | Aerial industrial building and parking lot | [Unsplash](https://unsplash.com/photos/aerial-view-of-a-long-industrial-building-and-parking-lot-1758304481447) |
-| `project-municipal-building.jpg` | Commercial / public infrastructure skyline | [Unsplash](https://unsplash.com/photos/low-angle-photo-of-city-high-rise-buildings-1486406146926) |
-| `project-school-parking.jpg` | Aerial parking lot and building | [Unsplash](https://unsplash.com/photos/an-aerial-view-of-a-parking-lot-and-a-building-1731451162450) |
+| `project-commercial-foundation.jpg` | Commercial foundation slab with rebar grid | [Unsplash](https://unsplash.com/photos/construction-site-during-daytime-1541888946425) |
+| `project-industrial-paving.jpg` | Crew paving asphalt at industrial warehouse | [Pexels](https://www.pexels.com/photo/men-putting-asphalt-on-the-road-4575147/) |
+| `project-municipal-building.jpg` | Aerial metal warehouse and steel storage yard | [Pexels](https://www.pexels.com/photo/aerial-view-of-industrial-storage-facility-33369529/) |
+| `project-school-parking.jpg` | Aerial school bus parking lot | [Pexels](https://www.pexels.com/photo/top-view-of-yellow-trucks-in-the-parking-lot-9599929/) |
 | `oklahoma-service-area.jpg` | Open highway through regional landscape | [Unsplash](https://unsplash.com/photos/road-between-trees-1469854523086) |
 
 ## Replacing with your own photos

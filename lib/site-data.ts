@@ -165,28 +165,28 @@ export const featuredProjects = [
     title: "Commercial Foundation & Flatwork",
     category: "Concrete",
     image: "/images/stock/project-commercial-foundation.jpg",
-    imageAlt: "commercial foundation and flatwork project photo",
+    imageAlt: "workers inspecting commercial concrete foundation and rebar flatwork",
   },
   {
     id: "industrial-paving",
     title: "Industrial Yard Paving",
     category: "Asphalt",
     image: "/images/stock/project-industrial-paving.jpg",
-    imageAlt: "industrial yard paving project photo",
+    imageAlt: "crew paving asphalt at an industrial yard with semi-trailers",
   },
   {
     id: "municipal-building",
     title: "Municipal Metal Building",
     category: "Metal Buildings",
     image: "/images/stock/project-municipal-building.jpg",
-    imageAlt: "municipal metal building project photo",
+    imageAlt: "aerial view of a metal warehouse and industrial storage facility",
   },
   {
     id: "school-parking",
     title: "School District Parking Lot",
     category: "Asphalt",
     image: "/images/stock/project-school-parking.jpg",
-    imageAlt: "school district parking lot project photo",
+    imageAlt: "aerial view of a school district bus parking lot",
   },
 ] as const;
 

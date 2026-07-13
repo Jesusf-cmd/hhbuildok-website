@@ -1,6 +1,6 @@
 import { nap, siteConfig } from "@/lib/site-data";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { ContactForm } from "@/components/ContactForm";
 
 export function RequestQuoteCTA() {
   return (
@@ -58,18 +58,10 @@ export function RequestQuoteCTA() {
               </a>
             </p>
           </address>
+        </div>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button href={`mailto:${siteConfig.email}`} variant="secondary">
-              Request a Bid
-            </Button>
-            <a
-              href={`tel:${siteConfig.phoneTel}`}
-              className="inline-flex items-center justify-center border border-surface/60 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-surface transition-colors hover:border-surface hover:bg-surface/10"
-            >
-              Call {nap.phone}
-            </a>
-          </div>
+        <div className="mx-auto mt-10 max-w-2xl">
+          <ContactForm />
         </div>
       </Container>
     </section>

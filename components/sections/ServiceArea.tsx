@@ -3,6 +3,7 @@ import Link from "next/link";
 import { serviceAreaCities, priorityCities } from "@/lib/site-data";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function ServiceArea() {
   return (
@@ -13,7 +14,7 @@ export function ServiceArea() {
     >
       <Container className="py-20 lg:py-28">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
+          <Reveal>
             <SectionHeading
               id="service-area-heading"
               eyebrow="Service Area"
@@ -36,7 +37,7 @@ export function ServiceArea() {
                     {priorityCity ? (
                       <Link
                         href={`/service-area/${priorityCity.slug}`}
-                        className="transition-colors hover:text-charcoal"
+                        className="underline-offset-2 transition-colors hover:text-accent hover:underline focus-visible:text-accent focus-visible:underline"
                       >
                         {city}
                       </Link>
@@ -49,14 +50,17 @@ export function ServiceArea() {
             </ul>
             <p className="mt-8 text-sm text-text-muted">
               Don&apos;t see your location listed?{" "}
-              <Link href="/service-area" className="font-medium text-charcoal underline underline-offset-2 hover:text-accent">
+              <Link
+                href="/service-area"
+                className="font-medium text-charcoal underline underline-offset-2 transition-colors hover:text-accent"
+              >
                 View our full service area
               </Link>{" "}
               — we evaluate projects across the state.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="relative aspect-square w-full overflow-hidden border border-border">
+          <Reveal delay={120} className="relative aspect-square w-full overflow-hidden border border-border">
             <Image
               src="/images/stock/oklahoma-service-area.jpg"
               alt="map or aerial photo showing Oklahoma service area"
@@ -64,7 +68,7 @@ export function ServiceArea() {
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

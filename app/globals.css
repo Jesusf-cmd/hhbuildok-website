@@ -11,6 +11,7 @@
   --color-accent: #9b1c1c;
   --color-accent-hover: #7a1616;
   --color-text-muted: #6b6760;
+  --color-ink: #0f1113;
   --background: var(--color-off-white);
   --foreground: var(--color-charcoal);
 }
@@ -28,8 +29,10 @@
   --color-accent: #9b1c1c;
   --color-accent-hover: #7a1616;
   --color-text-muted: #6b6760;
+  --color-ink: #0f1113;
   --font-sans: var(--font-inter);
-  --font-heading: var(--font-oswald);
+  --font-heading: var(--font-archivo);
+  --font-display: var(--font-archivo);
 }
 
 html {
@@ -48,10 +51,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-oswald), system-ui, sans-serif;
+  font-family: var(--font-archivo), system-ui, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 
 ::selection {
@@ -84,6 +87,15 @@ h6 {
   }
 }
 
+@keyframes ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
 .animate-fade-up {
   animation: fade-up 0.7s ease-out both;
 }
@@ -104,15 +116,69 @@ h6 {
   animation-delay: 300ms;
 }
 
+.hero-ken-burns {
+  animation: ken-burns 18s ease-out forwards;
+  will-change: transform;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 500ms ease-out,
+    transform 500ms ease-out;
+}
+
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-interactive {
+  transition:
+    box-shadow 400ms ease,
+    border-color 400ms ease,
+    transform 400ms ease;
+}
+
+.card-interactive:hover,
+.card-interactive:focus-within {
+  box-shadow:
+    0 12px 32px rgb(15 17 19 / 10%),
+    0 2px 8px rgb(15 17 19 / 6%);
+  border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
+}
+
+.card-interactive .card-interactive-image {
+  transition: transform 400ms ease;
+}
+
+.card-interactive:hover .card-interactive-image,
+.card-interactive:focus-within .card-interactive-image {
+  transform: scale(1.05);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
   .animate-fade-up,
-  .animate-fade-in {
+  .animate-fade-in,
+  .hero-ken-burns {
     animation: none;
     opacity: 1;
+    transform: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .card-interactive .card-interactive-image {
+    transition: none;
     transform: none;
   }
 }

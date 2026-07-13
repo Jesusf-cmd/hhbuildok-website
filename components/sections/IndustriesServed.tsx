@@ -1,6 +1,7 @@
 import { industries } from "@/lib/site-data";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function IndustriesServed() {
   return (
@@ -10,27 +11,31 @@ export function IndustriesServed() {
       className="bg-off-white-muted"
     >
       <Container className="py-20 lg:py-28">
-        <SectionHeading
-          id="industries-heading"
-          eyebrow="Industries Served"
-          title="Who We Work With"
-          description="H&H Construction supports the teams responsible for building and maintaining Oklahoma's commercial and public infrastructure."
-          align="center"
-        />
+        <Reveal>
+          <SectionHeading
+            id="industries-heading"
+            eyebrow="Industries Served"
+            title="Who We Work With"
+            description="H&H Construction supports the teams responsible for building and maintaining Oklahoma's commercial and public infrastructure."
+            align="center"
+          />
+        </Reveal>
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {industries.map((industry) => (
-            <article
+          {industries.map((industry, index) => (
+            <Reveal
               key={industry.title}
-              className="border border-border bg-surface p-8 transition-shadow duration-300 hover:shadow-md sm:p-10"
+              as="article"
+              delay={index * 80}
+              className="card-interactive relative border border-border bg-surface p-8 before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-accent before:opacity-0 before:transition-opacity before:duration-400 hover:before:opacity-100 focus-within:before:opacity-100 sm:p-10"
             >
-              <h3 className="font-heading text-lg font-bold uppercase text-charcoal sm:text-xl">
+              <h3 className="font-display text-lg font-bold uppercase tracking-tight text-charcoal sm:text-xl">
                 {industry.title}
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-text-muted">
                 {industry.description}
               </p>
-            </article>
+            </Reveal>
           ))}
         </div>
       </Container>

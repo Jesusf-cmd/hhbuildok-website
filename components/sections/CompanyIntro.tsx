@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function CompanyIntro() {
   return (
@@ -11,7 +12,7 @@ export function CompanyIntro() {
     >
       <Container className="py-20 lg:py-28">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="relative aspect-[4/3] w-full overflow-hidden border border-border">
+          <Reveal className="relative aspect-[4/3] w-full overflow-hidden border border-border">
             <Image
               src="/images/stock/company-intro-team-site.jpg"
               alt="H&H Construction team and commercial job site photo"
@@ -19,9 +20,9 @@ export function CompanyIntro() {
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
-          </div>
+          </Reveal>
 
-          <div>
+          <Reveal delay={100}>
             <SectionHeading
               id="about-heading"
               eyebrow="About H&H Construction"
@@ -42,7 +43,7 @@ export function CompanyIntro() {
                 field leadership to get it done.
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

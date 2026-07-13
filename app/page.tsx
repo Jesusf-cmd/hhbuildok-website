@@ -7,6 +7,7 @@ import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { IndustriesServed } from "@/components/sections/IndustriesServed";
 import { ServiceArea } from "@/components/sections/ServiceArea";
 import { RequestQuoteCTA } from "@/components/sections/RequestQuoteCTA";
+import { StatsBand } from "@/components/sections/StatsBand";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <Hero />
         <ServiceBlocks />
         <CompanyIntro />
+        <StatsBand />
         <FeaturedProjects />
         <IndustriesServed />
         <ServiceArea />

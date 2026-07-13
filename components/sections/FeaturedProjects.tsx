@@ -3,6 +3,7 @@ import { featuredProjects } from "@/lib/site-data";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function FeaturedProjects() {
   return (
@@ -12,7 +13,7 @@ export function FeaturedProjects() {
       className="bg-surface"
     >
       <Container className="py-20 lg:py-28">
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+        <Reveal className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             id="projects-heading"
             eyebrow="Featured Projects"
@@ -22,31 +23,33 @@ export function FeaturedProjects() {
           <Button href="#contact" variant="outline-dark" className="shrink-0 self-start lg:self-auto">
             Start Your Project
           </Button>
-        </div>
+        </Reveal>
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2">
-          {featuredProjects.map((project) => (
-            <article
+          {featuredProjects.map((project, index) => (
+            <Reveal
               key={project.id}
-              className="group relative aspect-[4/3] overflow-hidden border border-border bg-surface-muted"
+              as="article"
+              delay={index * 80}
+              className="card-interactive group relative aspect-[4/3] overflow-hidden border border-border bg-surface-muted"
             >
               <Image
                 src={project.image}
                 alt={project.imageAlt}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="card-interactive-image object-cover"
                 sizes="(max-width: 640px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/30 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/30 to-transparent transition-opacity duration-400 group-hover:from-charcoal/85 group-focus-within:from-charcoal/85" />
+              <div className="absolute inset-x-0 bottom-0 border-t-2 border-transparent p-6 transition-colors duration-400 group-hover:border-accent group-focus-within:border-accent sm:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">
                   {project.category}
                 </p>
-                <h3 className="mt-2 font-heading text-xl font-bold uppercase text-surface sm:text-2xl">
+                <h3 className="mt-2 font-display text-xl font-bold uppercase tracking-tight text-surface sm:text-2xl">
                   {project.title}
                 </h3>
               </div>
-            </article>
+            </Reveal>
           ))}
         </div>
       </Container>

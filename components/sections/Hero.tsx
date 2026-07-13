@@ -1,6 +1,7 @@
-import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { HeroImage } from "@/components/sections/HeroImage";
 
 export function Hero() {
   return (
@@ -8,26 +9,20 @@ export function Hero() {
       aria-labelledby="hero-heading"
       className="relative flex min-h-screen items-end"
     >
-      <div className="absolute inset-0">
-        <Image
-          src="/images/hero-rebar-construction.jpg"
-          alt="Rebar reinforcement cage being tied at an H&H Construction commercial job site"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-off-white/95 via-off-white/70 to-off-white/25" />
-      </div>
+      <HeroImage
+        src="/images/hero-rebar-construction.jpg"
+        alt="Rebar reinforcement cage being tied at an H&H Construction commercial job site"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-off-white/95 via-off-white/70 to-off-white/25" />
 
       <Container className="relative z-10 pb-20 pt-32">
         <div className="max-w-4xl">
-          <p className="animate-fade-in mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-accent">
+          <Eyebrow className="animate-fade-in mb-4 tracking-[0.3em]">
             Commercial &amp; Industrial Construction
-          </p>
+          </Eyebrow>
           <h1
             id="hero-heading"
-            className="animate-fade-up font-heading text-4xl font-bold uppercase leading-[1.05] text-charcoal sm:text-5xl md:text-6xl lg:text-7xl"
+            className="animate-fade-up font-display text-4xl font-extrabold uppercase leading-[1.02] tracking-tight text-charcoal sm:text-5xl md:text-6xl lg:text-7xl"
           >
             Building Oklahoma&apos;s Commercial Infrastructure
           </h1>

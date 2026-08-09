@@ -135,6 +135,21 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
       <section className="bg-surface">
         <Container className="py-16 lg:py-20">
+          <div className="max-w-3xl">
+            {service.detail.overview.map((paragraph) => (
+              <p
+                key={paragraph}
+                className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-0 sm:text-lg"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-off-white-muted">
+        <Container className="py-16 lg:py-20">
           <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
             What This Service Includes
           </h2>
@@ -154,7 +169,59 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         </Container>
       </section>
 
+      <section className="bg-surface">
+        <Container className="py-16 lg:py-20">
+          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+            What Determines the Outcome
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
+            Most of what decides whether this work lasts is settled before the
+            first truck arrives on site.
+          </p>
+          <div className="mt-10 grid gap-8 lg:grid-cols-2">
+            {service.detail.considerations.map((item) => (
+              <div key={item.title} className="border-l-2 border-accent pl-6">
+                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       <section className="bg-off-white-muted">
+        <Container className="py-16 lg:py-20">
+          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+            How a Project Runs
+          </h2>
+          <ol className="mt-10 flex flex-col gap-8">
+            {service.detail.process.map((step, index) => (
+              <li key={step.title} className="flex gap-6">
+                <span
+                  aria-hidden="true"
+                  className="font-heading text-2xl font-bold text-accent"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted">
+                    {step.body}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </section>
+
+      <section className="bg-surface">
         <Container className="py-16 lg:py-20">
           <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
             Frequently Asked Questions

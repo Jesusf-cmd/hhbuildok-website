@@ -66,6 +66,60 @@ export const services = [
       "Parking lot and site concrete infrastructure",
       "Concrete repair and replacement",
     ],
+    detail: {
+      overview: [
+        "Commercial concrete is judged on things that become invisible the moment the pour is finished: how well the subgrade was prepared, whether the reinforcement ended up where the drawings put it, and whether the slab was jointed and cured to survive Oklahoma's temperature swings. Two slabs that look identical on day one can be a decade apart in service life because of decisions made before any concrete arrived on site.",
+        "H&H Construction places structural and flatwork concrete for commercial buildings, industrial facilities, and public infrastructure across Oklahoma — foundations and footings, slab-on-grade, sidewalks, curbs and gutters, retaining walls, and the site concrete that ties a development together.",
+      ],
+      considerations: [
+        {
+          title: "Subgrade and base preparation",
+          body: "Most flatwork failures trace back to what is underneath. Soft spots, uncompacted fill, and poor drainage let a slab deflect and crack regardless of the concrete's strength. Proof-rolling, moisture conditioning, and a compacted granular base cost a fraction of what removing and replacing a failed slab costs later.",
+        },
+        {
+          title: "Mix design and durability",
+          body: "Compressive strength is only part of a spec. Air entrainment drives freeze-thaw durability, which matters in a state that can swing thirty degrees in a day. Water-cement ratio governs long-term permeability and surface wear, and aggregate size interacts with slab thickness and reinforcement spacing. The mix should match the exposure the surface will actually see.",
+        },
+        {
+          title: "Reinforcement placement",
+          body: "Rebar and welded wire only work where they are positioned correctly. Steel that ends up sitting on the subgrade instead of at mid-depth contributes almost nothing to crack control. Chairs, supports, and lap lengths get verified before placement, because there is no correcting it afterward.",
+        },
+        {
+          title: "Jointing and crack control",
+          body: "Concrete cracks. The design question is where. Control joints, construction joints, and isolation joints direct cracking into planned locations and let slabs move against foundations and columns without spalling. Joint spacing follows slab thickness, and the timing of the saw cut matters as much as the layout.",
+        },
+        {
+          title: "Curing and weather",
+          body: "Strength comes from hydration, not from drying out. Hot, dry, windy days pull moisture from the surface and cause plastic shrinkage cracking and dusting, while cold weather slows the set and risks freezing before the concrete gains strength. Placement timing, curing compounds, and protection all change with the forecast.",
+        },
+        {
+          title: "ADA compliance on pedestrian surfaces",
+          body: "Sidewalks, ramps, and accessible routes are governed by tolerances rather than preferences: running slope, cross slope, landing dimensions, and detectable warnings all have limits. On public and institutional work these are inspected, and a ramp that misses cross slope by a fraction has to come out and be replaced.",
+        },
+      ],
+      process: [
+        {
+          title: "Review and coordination",
+          body: "We start from your plans, specs, and schedule to confirm quantities, joint layout, finish requirements, and where our scope hands off to other trades.",
+        },
+        {
+          title: "Site preparation",
+          body: "Excavation, grading, and base compaction to the elevations the drawings call for, with drainage established before forming begins.",
+        },
+        {
+          title: "Forming and reinforcement",
+          body: "Forms set to line and grade, reinforcement placed and supported per the drawings, and embeds or sleeves coordinated with the mechanical and electrical scopes.",
+        },
+        {
+          title: "Placement and finishing",
+          body: "Concrete placed, consolidated, and finished to the specified texture — broom, float, or hard trowel — with joints cut on schedule.",
+        },
+        {
+          title: "Curing and turnover",
+          body: "Curing protection applied and maintained, forms stripped once strength allows, and the area cleaned up so the next trade can work.",
+        },
+      ],
+    },
     faqs: [
       {
         question: "What types of concrete projects does H&H Construction handle?",
@@ -108,6 +162,60 @@ export const services = [
       "Municipal roadway paving",
       "Industrial yard and heavy-duty paving",
     ],
+    detail: {
+      overview: [
+        "Asphalt pavement is a structure, not a surface. What holds up under loaded trucks is the subgrade, base, and asphalt section working together, which is why two lots that look the same can be years apart in service life. Water is the other half of the story: pavement that does not drain fails from the bottom up no matter how good the mat looks on the day it was placed.",
+        "H&H Construction builds and rehabilitates commercial and industrial asphalt across Oklahoma — new paving, overlays and resurfacing, patching, parking lot construction, and municipal roadways for contractors, developers, municipalities, school districts, and property owners.",
+      ],
+      considerations: [
+        {
+          title: "Subgrade and base",
+          body: "The asphalt section is designed around what sits under it. Weak or saturated subgrade needs stabilization or additional base before paving, because no achievable mat thickness compensates for a base that moves. Skipping this step is the most common reason new pavement alligators within a few seasons.",
+        },
+        {
+          title: "Traffic loading",
+          body: "A passenger-car lot and a truck route are different structures. One loaded semi does more damage than thousands of cars, so drive aisles, dock approaches, and dumpster pads need thicker sections or concrete, while stall areas can be lighter. Designing the entire lot to the heaviest load wastes money; designing it to the lightest guarantees failure.",
+        },
+        {
+          title: "Drainage and grading",
+          body: "Standing water is what kills asphalt. Positive slope to inlets, adequate cross slope, and correct tie-ins at curbs and gutters keep water off the surface and out of the section. Birdbaths and flat spots hold water, which softens the base and accelerates raveling and potholes.",
+        },
+        {
+          title: "Compaction",
+          body: "Density achieved while the mat is still hot determines durability. Asphalt compacted below target density holds interconnected voids that admit water and oxidize early. This is time-and-temperature sensitive work, which is why rolling patterns and planning the paving window matter more than they appear to from outside the trade.",
+        },
+        {
+          title: "Overlay versus full-depth repair",
+          body: "An overlay is the right answer when the base is sound and the distress is confined to the surface. When cracking is load-related or the base has failed, an overlay reflects the same cracks through within a season or two. Milling, full-depth patching, or reclamation costs more up front and considerably less over a decade.",
+        },
+        {
+          title: "Striping, accessibility, and sealing",
+          body: "Layout determines both usable stall count and accessible-space compliance, including van-accessible widths and access aisles. Crack sealing and seal coat extend life when they are applied on a maintenance interval, but neither one repairs a structural problem underneath.",
+        },
+      ],
+      process: [
+        {
+          title: "Evaluation and scope",
+          body: "We look at existing conditions, drainage, and how the pavement is actually used to recommend repair, overlay, or reconstruction — and to tell you which distress is cosmetic and which is structural.",
+        },
+        {
+          title: "Removal and preparation",
+          body: "Milling or full-depth removal where required, subgrade repair, then base placement and compaction to the designed section.",
+        },
+        {
+          title: "Paving",
+          body: "Base and surface courses placed and compacted at temperature, with joints and tie-ins built to shed water rather than trap it.",
+        },
+        {
+          title: "Striping and finishing",
+          body: "Layout, striping, accessible spaces, signage, and any bollards or wheel stops the plan calls for.",
+        },
+        {
+          title: "Phasing around operations",
+          body: "On occupied properties we sequence the work in sections so parking, deliveries, and emergency access stay available throughout.",
+        },
+      ],
+    },
     faqs: [
       {
         question: "What asphalt services does H&H Construction offer?",
@@ -149,6 +257,60 @@ export const services = [
       "Metal building shells for developers",
       "Roofing repair and replacement",
     ],
+    detail: {
+      overview: [
+        "A pre-engineered metal building goes up quickly, but only when the work preceding it is right. The foundation and anchor bolt layout have to match the manufacturer's drawings within tight tolerance, and the steel has to arrive in the sequence the erection plan needs. Errors discovered at erection are expensive, because the crane and the crew are already standing there.",
+        "H&H Construction erects pre-engineered metal buildings and installs commercial metal roofing across Oklahoma — warehouses, industrial facilities, municipal buildings, developer shells, and roof replacements on existing structures.",
+      ],
+      considerations: [
+        {
+          title: "Foundation and anchor bolt coordination",
+          body: "Anchor bolt placement is the highest-risk interface in a metal building. The pattern, projection, and elevation come from the manufacturer's drawings, and tolerances are measured in fractions of an inch. This requires the concrete and steel scopes to be coordinated before the pour, which is considerably easier when one contractor holds both.",
+        },
+        {
+          title: "Design loads for Oklahoma",
+          body: "Wind governs much of this state, and the building's design loads should reflect the actual site — exposure category, risk category for the occupancy, and any collateral load for equipment hung from the frame. Adding rooftop units or sprinkler mains later is far cheaper if the frame accounted for them at order time.",
+        },
+        {
+          title: "Roof system selection",
+          body: "Standing seam and through-fastened panels solve different problems. Standing seam allows thermal movement and puts no fasteners through the water plane, which suits low slopes and long panel runs. Through-fastened costs less and performs well on walls and steeper roofs. This choice drives long-term leak risk more than any other decision on the building.",
+        },
+        {
+          title: "Insulation and condensation",
+          body: "Metal buildings sweat when warm interior air meets cold panel surfaces. The insulation approach, vapor retarders, and ventilation need to be settled with the building's use in mind — a heated warehouse, an unconditioned equipment barn, and a facility with wash-down all require different answers.",
+        },
+        {
+          title: "Erection sequence and site access",
+          body: "Frames are erected in an order dictated by bracing and stability, and the crane needs room to work. Site access, laydown area for steel, and delivery timing determine how quickly a building closes in — and a shell that dries in sooner lets the interior trades start sooner.",
+        },
+        {
+          title: "Openings and trim details",
+          body: "Leaks happen at penetrations, not in the middle of panels. Doors, windows, louvers, curbs, and roof penetrations need the manufacturer's trim and flashing details followed closely, and any field modification to a panel or purlin should be reviewed rather than improvised.",
+        },
+      ],
+      process: [
+        {
+          title: "Drawing review",
+          body: "We review the manufacturer's drawings against the site and foundation plans to catch anchor bolt, elevation, and clearance conflicts before concrete or steel is committed.",
+        },
+        {
+          title: "Foundation and anchor bolts",
+          body: "Footings, piers, and slab placed with anchor bolts set and verified against the template before the pour.",
+        },
+        {
+          title: "Steel erection",
+          body: "Primary frames, secondary members, and bracing erected in sequence, then plumbed and aligned before any sheeting goes on.",
+        },
+        {
+          title: "Sheeting and roofing",
+          body: "Wall panels and the roof system installed with the specified trim, closures, and flashings at every opening and penetration.",
+        },
+        {
+          title: "Closeout",
+          body: "Doors, hardware, and accessories installed, penetrations sealed, and the building turned over ready for interior work.",
+        },
+      ],
+    },
     faqs: [
       {
         question: "Do you erect pre-engineered metal buildings from any manufacturer?",

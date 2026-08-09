@@ -29,12 +29,12 @@ export function SectionHeading({
   return (
     <div className={`max-w-3xl ${alignClass}`}>
       {eyebrow ? <Eyebrow theme={theme}>{eyebrow}</Eyebrow> : null}
-      <h2
+      <Heading
         id={id}
         className={`font-display text-3xl font-bold uppercase leading-[1.08] tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.05] ${titleColor}`}
       >
         {title}
-      </h2>
+      </Heading>
       {description && (
         <p
           className={`mt-5 max-w-2xl text-base leading-relaxed sm:text-lg ${descriptionColor} ${descriptionClass}`}

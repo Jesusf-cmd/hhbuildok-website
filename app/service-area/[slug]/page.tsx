@@ -103,13 +103,43 @@ export default async function CityPage({ params }: CityPageProps) {
 
       <section className="bg-surface">
         <Container className="py-16 lg:py-20">
-          <div className="max-w-3xl text-base leading-relaxed text-charcoal/80">
-            <p>{city.intro}</p>
+          <div className="max-w-3xl">
+            <p className="text-base leading-relaxed text-charcoal/80 sm:text-lg">
+              {city.intro}
+            </p>
+            {city.localContext.map((paragraph) => (
+              <p
+                key={paragraph}
+                className="mt-6 text-base leading-relaxed text-charcoal/80"
+              >
+                {paragraph}
+              </p>
+            ))}
           </div>
         </Container>
       </section>
 
       <section className="bg-off-white-muted">
+        <Container className="py-16 lg:py-20">
+          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+            What Shapes {city.name} Projects
+          </h2>
+          <div className="mt-10 grid gap-8 lg:grid-cols-2">
+            {city.marketNotes.map((note) => (
+              <div key={note.title} className="border-l-2 border-accent pl-6">
+                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+                  {note.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                  {note.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-surface">
         <Container className="py-16 lg:py-20">
           <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
             Services Available in {city.name}
@@ -137,7 +167,7 @@ export default async function CityPage({ params }: CityPageProps) {
         </Container>
       </section>
 
-      <section className="bg-surface">
+      <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">
           <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
             Nearby Areas We Serve

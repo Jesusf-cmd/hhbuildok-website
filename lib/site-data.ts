@@ -479,6 +479,28 @@ export const priorityCities = [
       "H&H Construction supports commercial and public construction projects throughout the Oklahoma City metro — concrete, asphalt paving, and metal buildings for contractors, developers, and municipalities.",
     intro:
       "As Oklahoma's capital and largest commercial market, Oklahoma City sees continuous commercial development, industrial growth, and public infrastructure work. H&H Construction, based nearby in Norman, provides the concrete, paving, and metal building services that keep those projects moving.",
+    localContext: [
+      "Oklahoma City is the state capital and the largest commercial construction market in Oklahoma, the point where I-35, I-40, and I-44 converge. Industrial and warehouse development along the I-40 and I-240 corridors, ongoing retail and medical construction, and a sustained public capital program keep a steady volume of concrete, paving, and metal building work moving across the metro.",
+      "MAPS 4, the penny sales tax program Oklahoma City voters approved in December 2019, is projected to raise roughly $1.1 billion across 16 projects and runs through 2028. Two line items bear directly on this trade: $96.5 million for sidewalks, bike lanes, trails, and streetlights, and $97 million for transit, which includes bus stop improvements. Parks, youth centers, and the fairgrounds coliseum add further site work and paving scope on top of that.",
+    ],
+    marketNotes: [
+      {
+        title: "Heavy truck corridors",
+        body: "Industrial sites near I-40, I-240, and the airport carry loaded trailer traffic that destroys pavement designed for passenger cars. Drive aisles, dock approaches, and dumpster pads on these properties need thicker sections or concrete, while stall areas can be built lighter.",
+      },
+      {
+        title: "Public capital work is inspected",
+        body: "MAPS 4 sidewalk, trail, and transit money flows into work that gets checked for ADA compliance. Running slope, cross slope, landing dimensions, and detectable warnings are measured rather than estimated, and a ramp outside tolerance comes out and gets replaced.",
+      },
+      {
+        title: "Multiple jurisdictions",
+        body: "Projects in the metro often cross into Edmond, Moore, Midwest City, or Del City as they move outward, and permitting and inspection expectations are not identical across those municipalities.",
+      },
+      {
+        title: "Secure and restricted sites",
+        body: "Facilities near Tinker Air Force Base and Will Rogers World Airport can carry access, badging, and scheduling requirements that a standard commercial site does not. Those constraints belong in the schedule from the start, not discovered at mobilization.",
+      },
+    ],
     nearbyAreas: ["Edmond", "Moore", "Midwest City", "Del City", "Norman", "Yukon", "Mustang"],
   },
   {
@@ -492,6 +514,67 @@ export const priorityCities = [
       "H&H Construction supports commercial and public construction projects in Edmond, OK — concrete, asphalt paving, and metal buildings for contractors, developers, and municipalities.",
     intro:
       "Edmond's continued commercial, retail, and municipal development creates steady demand for dependable site work and building packages. H&H Construction works with general contractors, developers, and the City of Edmond on the concrete, paving, and metal building scopes those projects require.",
+    localContext: [
+      "Edmond sits at the north edge of the Oklahoma City metro in Oklahoma County, with a commercial base driven by sustained residential growth, the University of Central Oklahoma, and one of the larger school districts in the state. Growth of that kind produces a steady stream of retail centers, medical offices, church and school expansion, and the parking and site work each of those requires.",
+      "Access is mostly from I-35 on the east side and the Broadway Extension corridor on the west, both carrying heavy commuter volume. Lane closures and construction entrances on those routes need planning, and work at an occupied retail or medical property has to keep the site usable while it proceeds.",
+    ],
+    marketNotes: [
+      {
+        title: "Growth-driven site development",
+        body: "New retail, office, and medical construction means ground-up work: building pads, parking lots, drives and approaches, sidewalks, and accessible routes delivered against a developer's schedule.",
+      },
+      {
+        title: "Academic calendars govern institutional work",
+        body: "Projects for Edmond Public Schools or the University of Central Oklahoma generally have to be completed inside a summer window, with campus access maintained the entire time. The calendar sets the schedule, not the contractor.",
+      },
+      {
+        title: "Occupied-property phasing",
+        body: "Much of the paving and concrete work here is rehabilitation at properties that cannot close. Phasing section by section keeps tenants, patients, and congregations parked while the work moves across the site.",
+      },
+      {
+        title: "Commuter corridor constraints",
+        body: "Sites along I-35 and the Broadway Extension carry heavy peak-hour traffic. Deliveries and closures get planned around those windows to keep the work moving and the public safe.",
+      },
+    ],
     nearbyAreas: ["Oklahoma City", "Norman", "Midwest City", "Yukon"],
+  },
+  {
+    slug: "norman",
+    name: "Norman",
+    metaTitle: "Commercial Concrete, Asphalt & Metal Buildings in Norman, OK",
+    h1: "Norman Commercial Concrete, Paving & Metal Buildings",
+    metaDescription:
+      "H&H Construction is based in Norman, OK, providing commercial concrete, asphalt paving, and metal buildings for contractors, developers, and Cleveland County public agencies.",
+    heroDescription:
+      "H&H Construction is headquartered in Norman, so our crews and equipment start the day in the city where your project is — commercial concrete, asphalt paving, and metal buildings across Cleveland County.",
+    intro:
+      "Norman is Oklahoma's third most populous city and the county seat of Cleveland County, with roughly 132,000 residents and a commercial base anchored by the University of Oklahoma and the National Weather Center. It is also where H&H Construction is based, which means Norman projects carry the shortest mobilization of anywhere we work.",
+    localContext: [
+      "Being headquartered here changes the practical economics of a Norman project. Mobilization is short, someone can be on site the same morning a question comes up, and punch items do not require scheduling a trip in from another metro. On phased work at an occupied property, that responsiveness usually matters more than the difference between two bids.",
+      "Commercial work in Norman splits between the university corridor, the retail and medical development along the I-35 frontage, and steady public infrastructure through the City of Norman and Cleveland County. Norman Public Schools operates campuses across the city, and campus work has to fit the academic calendar rather than the other way around.",
+    ],
+    marketNotes: [
+      {
+        title: "Shortest mobilization we have",
+        body: "Our office and equipment are here in Norman. Crews are not driving in from another county, which shortens response time on punch work, weather delays, and change directives.",
+      },
+      {
+        title: "I-35 and Highway 9 access",
+        body: "Most commercial sites in Norman are reached from the I-35 frontage or State Highway 9. Haul routes and delivery timing are straightforward, which helps keep concrete inside its placement window and asphalt above minimum temperature.",
+      },
+      {
+        title: "Cleveland County public work",
+        body: "The City of Norman and Cleveland County let sidewalk, curb, ADA ramp, and facility work that requires documented compliance and coordination around public access. These projects are inspected against the standard, not against intent.",
+      },
+      {
+        title: "University-adjacent scheduling",
+        body: "Work near the University of Oklahoma runs on a different rhythm. Event schedules, football weekends, and student move-in all constrain when a lot can be closed, and phasing around those dates avoids the surprise that shuts a site down for three days.",
+      },
+      {
+        title: "Central Oklahoma soils and freeze-thaw",
+        body: "Expansive clay soils and hard freeze-thaw cycling drive base preparation and jointing decisions on both concrete and asphalt in this part of the state. A section detailed for a milder climate will not hold up through a Norman winter.",
+      },
+    ],
+    nearbyAreas: ["Moore", "Oklahoma City", "Noble", "Del City", "Midwest City"],
   },
 ] as const;

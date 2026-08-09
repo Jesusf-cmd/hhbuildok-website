@@ -1,12 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig, services, priorityCities } from "@/lib/site-data";
-import { isProductionSite } from "@/lib/site-env";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  if (!isProductionSite) {
-    return [];
-  }
-
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [

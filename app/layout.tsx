@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo, Inter } from "next/font/google";
 import { nap, siteConfig, services, serviceAreaCities } from "@/lib/site-data";
+import { isProductionSite } from "@/lib/site-env";
 import "./globals.css";
 
 const inter = Inter({
@@ -42,10 +43,9 @@ export const metadata: Metadata = {
     description:
       "Commercial concrete, asphalt paving, and metal buildings & roofing across Oklahoma.",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: isProductionSite
+    ? { index: true, follow: true }
+    : { index: false, follow: false },
 };
 
 export default function RootLayout({

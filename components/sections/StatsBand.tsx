@@ -5,7 +5,7 @@ import { Reveal } from "@/components/motion/Reveal";
 
 // TODO: confirm actual stats with H&H team
 const stats = [
-  { type: "counter" as const, value: 15, suffix: "+", label: "Years in Business" },
+  { type: "counter" as const, value: 15, suffix: "+", label: "Years of Experience" },
   { type: "counter" as const, value: 150, suffix: "+", label: "Projects Completed" },
   { type: "text" as const, primary: "Statewide", label: "Oklahoma" },
   { type: "counter" as const, value: 100, suffix: "%", label: "Licensed & Insured" },

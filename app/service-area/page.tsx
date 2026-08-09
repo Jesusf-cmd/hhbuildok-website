@@ -32,6 +32,7 @@ export default function ServiceAreaPage() {
       <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">
           <SectionHeading
+            as="h1"
             eyebrow="Service Area"
             title="Serving Commercial Construction Across Oklahoma"
             description="H&H Construction provides commercial concrete, asphalt paving, and metal building services throughout Oklahoma. Don't see your city listed? Reach out — we evaluate projects across the state."

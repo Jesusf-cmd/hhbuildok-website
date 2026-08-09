@@ -7,6 +7,8 @@ type SectionHeadingProps = {
   align?: "left" | "center";
   theme?: "light" | "dark";
   id?: string;
+  /** Index pages use this as their page heading; sections keep the h2 default. */
+  as?: "h1" | "h2";
 };
 
 export function SectionHeading({
@@ -16,6 +18,7 @@ export function SectionHeading({
   align = "left",
   theme = "light",
   id,
+  as: Heading = "h2",
 }: SectionHeadingProps) {
   const alignClass = align === "center" ? "text-center mx-auto" : "text-left";
   const descriptionClass = align === "center" ? "mx-auto" : "";

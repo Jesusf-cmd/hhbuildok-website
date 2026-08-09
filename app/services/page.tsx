@@ -25,6 +25,7 @@ export default function ServicesPage() {
       <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">
           <SectionHeading
+            as="h1"
             eyebrow="What We Do"
             title="Commercial Construction Services"
             description="H&H Construction provides the concrete, paving, and metal building work that commercial, industrial, and municipal projects across Oklahoma depend on."

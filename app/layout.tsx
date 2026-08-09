@@ -93,6 +93,18 @@ export default function RootLayout({
     },
   };
 
+  // GeneralContractor is already an Organization subtype, so it carries the
+  // organization identity. This only adds the site node and points it back.
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteConfig.url}/#website`,
+    url: siteConfig.url,
+    name: siteConfig.name,
+    publisher: { "@id": `${siteConfig.url}/#organization` },
+    inLanguage: "en-US",
+  };
+
   return (
     <html
       lang="en"
@@ -103,6 +115,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
           }}
         />
         <a

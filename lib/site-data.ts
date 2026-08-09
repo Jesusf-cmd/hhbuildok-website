@@ -16,6 +16,11 @@ export const siteConfig = {
   },
 } as const;
 
+// Bump when page content meaningfully changes. Stamping sitemap entries with a
+// fresh Date on every build makes every URL claim it just changed, which search
+// engines learn to distrust.
+export const contentLastUpdated = "2026-08-09";
+
 export const nap = {
   name: siteConfig.name,
   phone: siteConfig.phone,
@@ -45,6 +50,7 @@ export const services = [
     description:
       "Structural and flatwork concrete for commercial foundations, slabs, sidewalks, curbs, retaining walls, and site infrastructure built to spec and schedule.",
     metaTitle: "Commercial Concrete Construction in Oklahoma",
+    h1: "Structural & Flatwork Concrete for Commercial Projects",
     metaDescription:
       "H&H Construction delivers structural and flatwork concrete for commercial foundations, slabs, sidewalks, curbs, and retaining walls across Oklahoma. Request a bid.",
     heroDescription:
@@ -86,6 +92,7 @@ export const services = [
     description:
       "New paving, overlays, patching, and parking lot construction for commercial developments, industrial yards, and municipal roadways across Oklahoma.",
     metaTitle: "Commercial Asphalt Paving in Oklahoma",
+    h1: "Asphalt Paving, Overlays & Parking Lot Construction",
     metaDescription:
       "H&H Construction provides commercial asphalt paving, overlays, patching, and parking lot construction for developments, industrial yards, and municipalities across Oklahoma.",
     heroDescription:
@@ -127,6 +134,7 @@ export const services = [
     description:
       "Pre-engineered metal building erection and metal roofing systems for warehouses, industrial facilities, and commercial structures.",
     metaTitle: "Metal Buildings & Roofing in Oklahoma",
+    h1: "Pre-Engineered Metal Buildings & Metal Roofing Systems",
     metaDescription:
       "H&H Construction erects pre-engineered metal buildings and installs metal roofing systems for warehouses, industrial facilities, and commercial structures across Oklahoma.",
     heroDescription:
@@ -248,6 +256,7 @@ export const priorityCities = [
     slug: "oklahoma-city",
     name: "Oklahoma City",
     metaTitle: "Commercial Concrete, Asphalt & Metal Buildings in Oklahoma City, OK",
+    h1: "Oklahoma City Commercial Concrete, Paving & Metal Buildings",
     metaDescription:
       "H&H Construction provides commercial concrete construction, asphalt paving, and metal buildings for contractors, developers, and municipalities in Oklahoma City, OK.",
     heroDescription:
@@ -260,6 +269,7 @@ export const priorityCities = [
     slug: "edmond",
     name: "Edmond",
     metaTitle: "Commercial Concrete, Asphalt & Metal Buildings in Edmond, OK",
+    h1: "Edmond Commercial Concrete, Paving & Metal Buildings",
     metaDescription:
       "H&H Construction provides commercial concrete construction, asphalt paving, and metal buildings for contractors, developers, and municipalities in Edmond, OK.",
     heroDescription:

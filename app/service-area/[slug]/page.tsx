@@ -88,7 +88,7 @@ export default async function CityPage({ params }: CityPageProps) {
             Service Area
           </p>
           <h1 className="max-w-3xl font-heading text-3xl font-bold uppercase leading-tight text-charcoal sm:text-4xl lg:text-5xl">
-            {city.metaTitle}
+            {city.h1}
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-text-muted sm:text-lg">
             {city.heroDescription}

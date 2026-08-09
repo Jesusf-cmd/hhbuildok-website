@@ -108,7 +108,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 Services
               </p>
               <h1 className="font-heading text-3xl font-bold uppercase leading-tight text-charcoal sm:text-4xl lg:text-5xl">
-                {service.metaTitle}
+                {service.h1}
               </h1>
               <p className="mt-6 max-w-xl text-base leading-relaxed text-text-muted sm:text-lg">
                 {service.heroDescription}

@@ -81,7 +81,7 @@ export default function ServicesPage() {
             scope and our team will follow up to discuss next steps.
           </p>
           <div className="mt-8">
-            <Button href="/#contact" variant="secondary">
+            <Button href="/contact" variant="secondary">
               Request a Bid
             </Button>
           </div>

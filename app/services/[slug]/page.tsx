@@ -114,7 +114,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 {service.heroDescription}
               </p>
               <div className="mt-8">
-                <Button href="/#contact" variant="primary">
+                <Button href="/contact" variant="primary">
                   Request a Bid
                 </Button>
               </div>
@@ -184,7 +184,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             review the details and follow up to discuss next steps.
           </p>
           <div className="mt-8">
-            <Button href="/#contact" variant="secondary">
+            <Button href="/contact" variant="secondary">
               Request a Bid
             </Button>
           </div>

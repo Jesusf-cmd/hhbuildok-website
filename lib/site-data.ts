@@ -36,9 +36,9 @@ export const nap = {
 export const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Projects", href: "/#projects" },
-  { label: "Industries", href: "/#industries" },
+  { label: "Industries", href: "/industries" },
   { label: "Service Area", href: "/service-area" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const services = [
@@ -202,34 +202,88 @@ export const featuredProjects = [
 
 export const industries = [
   {
+    slug: "general-contractors",
     title: "General Contractors",
     description:
       "Reliable site work and structural packages that integrate with your project schedule and subcontractor coordination.",
+    needs: [
+      "Site concrete and flatwork packages that hold the schedule",
+      "Paving sequenced around other trades",
+      "Metal building erection from engineered plans",
+      "One subcontractor across all three scopes",
+    ],
+    howWeHelp:
+      "Self-performing concrete, asphalt, and metal building work means one subcontractor to schedule and one point of contact when sequencing changes. We work from your plans and specs, coordinate around the other trades on site, and flag conditions that affect the schedule before they become delays.",
   },
   {
+    slug: "developers",
     title: "Developers",
     description:
       "Ground-up site development support from paving and concrete to metal building shells for commercial properties.",
+    needs: [
+      "Building pads and structural foundations",
+      "Parking lots, drives, and approaches",
+      "Metal building shells ready for tenant fit-out",
+      "Sidewalks, curbs, and ADA-compliant access routes",
+    ],
+    howWeHelp:
+      "From building pad through final paving and striping, we deliver the site work that turns raw ground into a usable commercial property. Bundling concrete, paving, and the building shell into one scope cuts the number of contracts to administer and the number of handoffs where schedules tend to slip.",
   },
   {
+    slug: "municipalities",
     title: "Municipalities",
     description:
       "Public infrastructure improvements including roadways, sidewalks, and facility construction delivered with clear communication.",
+    needs: [
+      "Roadway paving, overlays, and patching",
+      "Sidewalk, curb, and gutter replacement",
+      "ADA ramp upgrades and pedestrian access",
+      "Maintenance buildings and public facility structures",
+    ],
+    howWeHelp:
+      "Public work happens in public. Lane closures, detours, and access to homes and businesses all have to be managed while the work proceeds. We phase the work around traffic and access rather than treating them as an afterthought, and coordinate closures with your staff ahead of time.",
   },
   {
+    slug: "school-districts",
     title: "School Districts",
     description:
       "Parking lots, sidewalks, and building improvements designed to minimize disruption to campus operations.",
+    needs: [
+      "Parking lot and bus loop construction or rehabilitation",
+      "Sidewalks, walkways, and ADA access upgrades",
+      "Work scheduled inside the summer window",
+      "Athletic and maintenance facility structures",
+    ],
+    howWeHelp:
+      "Campus work lives or dies on the calendar. Most district projects have to finish between the last day of one school year and the first day of the next, which means mobilizing quickly and sequencing so bus loops and staff parking stay usable throughout. We plan the work around the academic calendar rather than the other way around.",
   },
   {
+    slug: "commercial-property-owners",
     title: "Commercial Property Owners",
     description:
       "Parking lot rehabilitation, concrete repairs, and building envelope work to protect and improve your asset.",
+    needs: [
+      "Parking lot overlays, patching, and restriping",
+      "Concrete repair for walkways, curbs, and dock aprons",
+      "Metal roofing repair and replacement",
+      "Phased work that keeps tenants operating",
+    ],
+    howWeHelp:
+      "Deferred pavement and concrete repair only gets more expensive, but tenants still have to park and receive deliveries while the work happens. We phase repairs section by section so the property keeps functioning, and we will tell you where an overlay will hold versus where the base has failed and full replacement is the cheaper answer over time.",
   },
   {
+    slug: "industrial-facilities",
     title: "Industrial Facilities",
     description:
       "Heavy-duty paving, concrete flatwork, and metal building solutions built for demanding operational environments.",
+    needs: [
+      "Heavy-duty paving for truck and equipment traffic",
+      "Thickened slabs and dock aprons",
+      "Yard expansion and laydown areas",
+      "Pre-engineered buildings for storage and operations",
+    ],
+    howWeHelp:
+      "Industrial surfaces fail differently than retail ones. Loaded trailers, tracked equipment, and constant turning stress break pavement that would last decades in an office parking lot. We build sections for the loads the site actually sees, and schedule around shifts and shipping windows so operations keep moving.",
   },
 ] as const;
 

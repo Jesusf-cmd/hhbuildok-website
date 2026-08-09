@@ -97,7 +97,7 @@ export default function ProjectsPage() {
                 project references relevant to your scope and delivery method.
               </p>
               <div className="mt-6">
-                <Button href="/#contact" variant="primary">
+                <Button href="/contact" variant="primary">
                   Request References
                 </Button>
               </div>
@@ -116,7 +116,7 @@ export default function ProjectsPage() {
             follow up to discuss next steps.
           </p>
           <div className="mt-8">
-            <Button href="/#contact" variant="secondary">
+            <Button href="/contact" variant="secondary">
               Request a Bid
             </Button>
           </div>

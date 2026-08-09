@@ -159,7 +159,7 @@ export default function CertificationsPage() {
                 will send what your process requires.
               </p>
               <div className="mt-6">
-                <Button href="/#contact" variant="primary">
+                <Button href="/contact" variant="primary">
                   Request Documentation
                 </Button>
               </div>
@@ -178,7 +178,7 @@ export default function CertificationsPage() {
             documentation your process calls for.
           </p>
           <div className="mt-8">
-            <Button href="/#contact" variant="secondary">
+            <Button href="/contact" variant="secondary">
               Contact Us
             </Button>
           </div>

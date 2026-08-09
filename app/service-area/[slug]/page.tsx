@@ -94,7 +94,7 @@ export default async function CityPage({ params }: CityPageProps) {
             {city.heroDescription}
           </p>
           <div className="mt-8">
-            <Button href="/#contact" variant="primary">
+            <Button href="/contact" variant="primary">
               Request a Bid
             </Button>
           </div>
@@ -169,7 +169,7 @@ export default async function CityPage({ params }: CityPageProps) {
             area.
           </p>
           <div className="mt-8">
-            <Button href="/#contact" variant="secondary">
+            <Button href="/contact" variant="secondary">
               Request a Bid
             </Button>
           </div>

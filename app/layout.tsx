@@ -56,10 +56,12 @@ export default function RootLayout({
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "GeneralContractor",
+    "@id": `${siteConfig.url}/#organization`,
     name: nap.name,
     url: siteConfig.url,
     image: `${siteConfig.url}/images/hh-construction-logo.png`,
-    telephone: siteConfig.phone,
+    logo: `${siteConfig.url}/images/hh-construction-logo.png`,
+    telephone: siteConfig.phoneE164,
     email: siteConfig.email,
     address: {
       "@type": "PostalAddress",

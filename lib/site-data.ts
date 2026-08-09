@@ -4,6 +4,8 @@ export const siteConfig = {
   url: "https://hhbuildok.com",
   phone: "405-476-5476",
   phoneTel: "4054765476",
+  // E.164 for structured data; search engines match this against directory listings.
+  phoneE164: "+14054765476",
   email: "info@hhbuildok.com",
   address: {
     street: "770 W Rock Creek",

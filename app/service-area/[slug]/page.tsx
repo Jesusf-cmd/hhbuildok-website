@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { priorityCities, services, siteConfig, nap } from "@/lib/site-data";
+import { cityServiceHref } from "@/lib/city-service-data";
 
 type CityPageProps = {
   params: Promise<{ slug: string }>;
@@ -148,7 +149,7 @@ export default async function CityPage({ params }: CityPageProps) {
             {services.map((service) => (
               <Link
                 key={service.id}
-                href={service.href}
+                href={cityServiceHref(city.slug, service.slug)}
                 className="group border border-border bg-surface p-6 transition-shadow hover:shadow-md sm:p-8"
               >
                 <h3 className="font-heading text-lg font-bold uppercase text-charcoal sm:text-xl">
@@ -158,7 +159,7 @@ export default async function CityPage({ params }: CityPageProps) {
                   {service.description}
                 </p>
                 <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors group-hover:text-accent">
-                  Learn More
+                  {service.shortTitle} in {city.name}
                   <span aria-hidden="true">&rarr;</span>
                 </span>
               </Link>

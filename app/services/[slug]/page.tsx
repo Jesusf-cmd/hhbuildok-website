@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { services, siteConfig, serviceAreaCities } from "@/lib/site-data";
+import {
+  priorityCities,
+  services,
+  siteConfig,
+  serviceAreaCities,
+} from "@/lib/site-data";
+import {
+  cityServiceHref,
+  getCityServicesForService,
+} from "@/lib/city-service-data";
 
 type ServicePageProps = {
   params: Promise<{ slug: string }>;
@@ -218,6 +228,61 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               </li>
             ))}
           </ol>
+        </Container>
+      </section>
+
+      <section className="bg-surface">
+        <Container className="py-16 lg:py-20">
+          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+            How to Decide
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
+            Bookmarkable calls for the choices that usually decide cost and
+            service life before a bid is even written.
+          </p>
+          <div className="mt-10 grid gap-8 lg:grid-cols-3">
+            {service.rubrics.map((item) => (
+              <div key={item.title} className="border-l-2 border-accent pl-6">
+                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-off-white-muted">
+        <Container className="py-16 lg:py-20">
+          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+            Available in Featured Cities
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
+            City-specific pages cover local market conditions, access, and how
+            this trade usually shows up in each place.
+          </p>
+          <ul className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-6">
+            {getCityServicesForService(service.slug).map((entry) => {
+              const city = priorityCities.find(
+                (item) => item.slug === entry.citySlug,
+              );
+              if (!city) return null;
+              return (
+                <li key={entry.citySlug}>
+                  <Link
+                    href={cityServiceHref(entry.citySlug, service.slug)}
+                    className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                  >
+                    {service.shortTitle} in {city.name}
+                    <span aria-hidden="true">&rarr;</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </Container>
       </section>
 

@@ -5,6 +5,7 @@ import {
   priorityCities,
   contentLastUpdated,
 } from "@/lib/site-data";
+import { cityServicePages, cityServiceHref } from "@/lib/city-service-data";
 import { caseStudies, hasCaseStudies } from "@/lib/projects-data";
 import { hasPublishableCredentials } from "@/lib/credentials-data";
 
@@ -58,6 +59,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const cityServiceRoutes: MetadataRoute.Sitemap = cityServicePages.map(
+    (entry) => ({
+      url: `${siteConfig.url}${cityServiceHref(entry.citySlug, entry.serviceSlug)}`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    }),
+  );
+
   // These routes exist so they can be reviewed on staging, but an empty
   // projects or credentials page is a thin page and is not worth submitting.
   const projectsIndex: MetadataRoute.Sitemap = hasCaseStudies
@@ -93,6 +103,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticRoutes,
     ...serviceRoutes,
     ...cityRoutes,
+    ...cityServiceRoutes,
     ...projectsIndex,
     ...projectRoutes,
     ...certificationsRoute,

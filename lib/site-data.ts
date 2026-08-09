@@ -120,6 +120,20 @@ export const services = [
         },
       ],
     },
+    rubrics: [
+      {
+        title: "Structural foundation versus slab-on-grade",
+        body: "Foundations and footings carry building loads into the soil and are detailed by the structural engineer — sizes, reinforcement, and elevations are not interchangeable with flatwork. Slab-on-grade is a wearing and working surface that still needs the right base, jointing, and thickness for its use. Buying both as one package is fine; treating them as the same pour is not.",
+      },
+      {
+        title: "When flatwork fails from the base, not the mix",
+        body: "Cracks that map soft spots, settlement at joints, and slabs that rock under load usually mean the subgrade or base moved. A richer mix will not fix that. Proof-roll, moisture-condition, and compact — or remove and replace failed base — before spending money on a thicker pour that will deflect the same way.",
+      },
+      {
+        title: "When the high-load zones should be concrete, not asphalt",
+        body: "Dumpster pads, dock approaches, and drive aisles that see loaded trucks often outlast the rest of a lot when they are concrete. Designing the whole site as light asphalt and hoping the truck zones survive is how owners pay for the same area twice. Split the section by actual traffic, not by what is cheapest on day one.",
+      },
+    ],
     faqs: [
       {
         question: "What types of concrete projects does H&H Construction handle?",
@@ -216,6 +230,20 @@ export const services = [
         },
       ],
     },
+    rubrics: [
+      {
+        title: "Overlay versus full-depth repair",
+        body: "Choose an overlay when the base is sound and distress is mostly surface oxidation, minor cracking, or loss of texture. Choose full-depth repair or reconstruction when alligator cracking is load-related, the pavement pumps water, or cores and proof-rolls show the base has failed. An overlay over a moving base reflects the same cracks through within a season or two.",
+      },
+      {
+        title: "When truck aisles need concrete instead of asphalt",
+        body: "If the heaviest traffic is concentrated — dock approaches, dumpster pads, turning radii for loaded semis — concrete in those zones and asphalt in stall areas is often the durable answer. Building the entire lot to truck standards wastes money; building none of it to truck standards guarantees early failure in the aisles.",
+      },
+      {
+        title: "Patch now versus rebuild the section",
+        body: "Isolated potholes over sound base are patch candidates. Widespread alligatoring, raveling across travel lanes, or drainage that ponds in the same birdbaths after every rain means the section or the grade is wrong. Patching those conditions is maintenance theater — it looks fixed until the next season.",
+      },
+    ],
     faqs: [
       {
         question: "What asphalt services does H&H Construction offer?",
@@ -311,6 +339,20 @@ export const services = [
         },
       ],
     },
+    rubrics: [
+      {
+        title: "Foundation and anchor-bolt coordination",
+        body: "Release the building for fabrication only after foundation and manufacturer drawings have been checked against each other for bolt pattern, projection, and elevation. Pouring concrete from a generic foundation plan while the steel is detailed separately is how crane days get spent measuring errors that should have been caught on paper.",
+      },
+      {
+        title: "Standing seam versus through-fastened roofing",
+        body: "Standing seam suits low slopes and long panel runs because it allows thermal movement and keeps fasteners out of the water plane. Through-fastened costs less and works well on walls and steeper roofs. Pick based on slope, building length, and leak risk — not only on material price — because this choice drives long-term performance more than almost any other building decision.",
+      },
+      {
+        title: "Design loads and collateral equipment before you order",
+        body: "Oklahoma wind loads, exposure category, and risk category for the occupancy belong in the order. So does collateral load for rooftop units, sprinkler mains, or future equipment. Adding weight the frame never accounted for is far more expensive after the building is standing than sizing it correctly the first time.",
+      },
+    ],
     faqs: [
       {
         question: "Do you erect pre-engineered metal buildings from any manufacturer?",

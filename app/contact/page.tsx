@@ -4,7 +4,9 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ContactForm } from "@/components/ContactForm";
-import { nap, siteConfig, serviceAreaCities } from "@/lib/site-data";
+import { nap, serviceAreaCities } from "@/lib/site-data";
+import { PhoneLink } from "@/components/ui/PhoneLink";
+import { EmailLink } from "@/components/ui/EmailLink";
 
 export const metadata: Metadata = {
   title: "Contact H&H Construction",
@@ -57,20 +59,16 @@ export default function ContactPage() {
                   {nap.addressLine2}
                 </p>
                 <p className="mt-4">
-                  <a
-                    href={`tel:${siteConfig.phoneTel}`}
-                    className="font-semibold text-charcoal transition-colors hover:text-accent"
-                  >
-                    {nap.phone}
-                  </a>
+                  <PhoneLink
+                    showIcon
+                    className="inline-flex items-center gap-2 font-semibold text-charcoal transition-colors hover:text-accent"
+                  />
                 </p>
-                <p className="mt-1">
-                  <a
-                    href={`mailto:${siteConfig.email}`}
-                    className="text-charcoal transition-colors hover:text-accent"
-                  >
-                    {nap.email}
-                  </a>
+                <p className="mt-2">
+                  <EmailLink
+                    showIcon
+                    className="inline-flex items-center gap-2 text-charcoal transition-colors hover:text-accent"
+                  />
                 </p>
               </address>
 

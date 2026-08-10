@@ -2,12 +2,14 @@ import Link from "next/link";
 import { navLinks, nap, siteConfig, services, priorityCities } from "@/lib/site-data";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
+import { PhoneLink } from "@/components/ui/PhoneLink";
+import { EmailLink } from "@/components/ui/EmailLink";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-surface-muted">
+    <footer className="border-t border-border bg-surface-muted pb-20 lg:pb-0">
       <Container className="py-16">
         <div className="grid gap-12 md:grid-cols-3 lg:grid-cols-6">
           <div className="md:col-span-3 lg:col-span-2">
@@ -99,20 +101,10 @@ export function Footer() {
                 </a>
               </div>
               <p>
-                <a
-                  href={`tel:${siteConfig.phoneTel}`}
-                  className="transition-colors hover:text-charcoal"
-                >
-                  {nap.phone}
-                </a>
+                <PhoneLink className="transition-colors hover:text-charcoal" />
               </p>
               <p>
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="transition-colors hover:text-charcoal"
-                >
-                  {nap.email}
-                </a>
+                <EmailLink className="transition-colors hover:text-charcoal" />
               </p>
             </address>
           </div>

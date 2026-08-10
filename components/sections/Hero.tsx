@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { PhoneLink } from "@/components/ui/PhoneLink";
 import { HeroImage } from "@/components/sections/HeroImage";
+import { siteConfig } from "@/lib/site-data";
 
 export function Hero() {
   return (
@@ -31,10 +33,13 @@ export function Hero() {
             metal buildings, and roofing for general contractors, developers,
             municipalities, and property owners across Oklahoma.
           </p>
-          <div className="animate-fade-up animate-delay-200 mt-10 flex flex-col gap-4 sm:flex-row">
-            <Button href="#contact" variant="primary">
+          <div className="animate-fade-up animate-delay-200 mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+            <Button href="/contact" variant="primary">
               Request a Bid
             </Button>
+            <PhoneLink className="inline-flex items-center justify-center border border-charcoal/25 bg-transparent px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors duration-200 hover:border-charcoal hover:bg-charcoal/5">
+              Call {siteConfig.phone}
+            </PhoneLink>
             <Button href="#projects" variant="outline-dark">
               View Projects
             </Button>

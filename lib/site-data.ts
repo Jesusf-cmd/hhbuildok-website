@@ -4,7 +4,7 @@ export const siteConfig = {
   url: "https://hhbuildok.com",
   phone: "405-476-5476",
   phoneTel: "4054765476",
-  // E.164 for structured data; search engines match this against directory listings.
+  // E.164 for structured data and tel: links; mobile dialers match this best.
   phoneE164: "+14054765476",
   email: "info@hhbuildok.com",
   address: {
@@ -15,6 +15,15 @@ export const siteConfig = {
     zip: "73069",
   },
 } as const;
+
+/** Prefer E.164 so iOS/Android dialers open cleanly from every tel: link. */
+export const phoneHref = `tel:${siteConfig.phoneE164}` as const;
+
+/** Prefills a bid-oriented subject so email clients open ready to send. */
+export const emailHref =
+  `mailto:${siteConfig.email}?subject=${encodeURIComponent(
+    "Bid request — H&H Construction",
+  )}` as const;
 
 // Bump when page content meaningfully changes. Stamping sitemap entries with a
 // fresh Date on every build makes every URL claim it just changed, which search

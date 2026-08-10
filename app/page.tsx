@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MobileContactBar } from "@/components/layout/MobileContactBar";
 import { Hero } from "@/components/sections/Hero";
 import { ServiceBlocks } from "@/components/sections/ServiceBlocks";
 import { CompanyIntro } from "@/components/sections/CompanyIntro";
@@ -13,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main id="main-content">
+      <main id="main-content" className="pb-20 lg:pb-0">
         <Hero />
         <ServiceBlocks />
         <CompanyIntro />
@@ -24,6 +25,7 @@ export default function Home() {
         <RequestQuoteCTA />
       </main>
       <Footer />
+      <MobileContactBar />
     </>
   );
 }

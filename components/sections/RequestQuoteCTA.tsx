@@ -1,6 +1,8 @@
-import { nap, siteConfig } from "@/lib/site-data";
+import { nap } from "@/lib/site-data";
 import { Container } from "@/components/ui/Container";
 import { ContactForm } from "@/components/ContactForm";
+import { PhoneLink } from "@/components/ui/PhoneLink";
+import { EmailLink } from "@/components/ui/EmailLink";
 
 export function RequestQuoteCTA() {
   return (
@@ -42,20 +44,10 @@ export function RequestQuoteCTA() {
               {nap.addressLine2}
             </p>
             <p className="mt-2">
-              <a
-                href={`tel:${siteConfig.phoneTel}`}
-                className="transition-colors hover:text-surface"
-              >
-                {nap.phone}
-              </a>
+              <PhoneLink className="underline-offset-2 transition-colors hover:text-surface hover:underline" />
             </p>
             <p>
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="transition-colors hover:text-surface"
-              >
-                {nap.email}
-              </a>
+              <EmailLink className="underline-offset-2 transition-colors hover:text-surface hover:underline" />
             </p>
           </address>
         </div>

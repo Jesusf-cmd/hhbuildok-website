@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState, type FormEvent } from "react";
-import { nap, siteConfig } from "@/lib/site-data";
+import { nap } from "@/lib/site-data";
 import {
   PROJECT_TYPES,
   REFERRAL_SOURCES,
@@ -11,6 +11,8 @@ import {
   type ContactFormField,
   type ContactFormValues,
 } from "@/lib/contact-form";
+import { PhoneLink } from "@/components/ui/PhoneLink";
+import { EmailLink } from "@/components/ui/EmailLink";
 
 const inputClassName =
   "w-full border border-border bg-surface px-4 py-3 text-sm text-charcoal placeholder:text-text-muted transition-colors focus:border-accent focus:outline-none";
@@ -141,12 +143,7 @@ export function ContactForm() {
         </p>
         <p className="mt-4 text-sm leading-relaxed text-text-muted">
           Need to talk sooner? Call{" "}
-          <a
-            href={`tel:${siteConfig.phoneTel}`}
-            className="font-semibold text-charcoal transition-colors hover:text-accent"
-          >
-            {nap.phone}
-          </a>
+          <PhoneLink className="font-semibold text-charcoal transition-colors hover:text-accent" />
           .
         </p>
       </div>
@@ -372,19 +369,9 @@ export function ContactForm() {
           <p>{submitError}</p>
           <p className="mt-2 text-text-muted">
             Having trouble? Call us directly at{" "}
-            <a
-              href={`tel:${siteConfig.phoneTel}`}
-              className="font-semibold text-charcoal transition-colors hover:text-accent"
-            >
-              {nap.phone}
-            </a>{" "}
+            <PhoneLink className="font-semibold text-charcoal transition-colors hover:text-accent" />{" "}
             or email{" "}
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="font-semibold text-charcoal transition-colors hover:text-accent"
-            >
-              {siteConfig.email}
-            </a>
+            <EmailLink className="font-semibold text-charcoal transition-colors hover:text-accent" />
             .
           </p>
         </div>
@@ -398,12 +385,9 @@ export function ContactForm() {
         >
           {status === "submitting" ? "Sending..." : "Submit Bid Request"}
         </button>
-        <a
-          href={`tel:${siteConfig.phoneTel}`}
-          className="inline-flex items-center justify-center border border-charcoal/25 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:border-charcoal hover:bg-charcoal/5"
-        >
+        <PhoneLink className="inline-flex items-center justify-center border border-charcoal/25 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:border-charcoal hover:bg-charcoal/5">
           Call {nap.phone}
-        </a>
+        </PhoneLink>
       </div>
     </form>
   );

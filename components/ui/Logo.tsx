@@ -11,16 +11,16 @@ export function Logo({ className = "", priority = false }: LogoProps) {
   return (
     <Link
       href="/"
-      className={`inline-flex shrink-0 items-center ${className}`}
+      className={`group inline-flex shrink-0 items-center ${className}`}
       aria-label={`${siteConfig.name} home`}
     >
       <Image
         src="/images/hh-construction-logo.png"
         alt="H&H Construction logo"
-        width={160}
-        height={112}
+        width={487}
+        height={633}
         priority={priority}
-        className="h-12 w-auto sm:h-14"
+        className="logo-mark h-12 w-auto sm:h-14"
       />
     </Link>
   );

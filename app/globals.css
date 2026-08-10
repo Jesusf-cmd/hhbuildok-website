@@ -67,6 +67,36 @@ h6 {
   outline-offset: 3px;
 }
 
+/* Logo: slight perspective + layered drop-shadow so the mark lifts off the header */
+.logo-mark {
+  transform: perspective(480px) rotateX(7deg);
+  transform-origin: 50% 80%;
+  filter:
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.55))
+    drop-shadow(0 2px 2px rgba(15, 17, 19, 0.18))
+    drop-shadow(0 8px 14px rgba(15, 17, 19, 0.16));
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
+  will-change: transform;
+}
+
+.group:hover .logo-mark {
+  transform: perspective(480px) rotateX(2deg) translateY(-2px) scale(1.03);
+  filter:
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.65))
+    drop-shadow(0 4px 6px rgba(15, 17, 19, 0.2))
+    drop-shadow(0 14px 24px rgba(15, 17, 19, 0.18));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-mark,
+  .group:hover .logo-mark {
+    transition: none;
+    transform: none;
+  }
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;

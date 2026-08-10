@@ -400,6 +400,393 @@ export const cityServicePages: CityServiceEntry[] = [
       },
     ],
   },
+
+  // ── Moore × Concrete ──────────────────────────────────────────────────
+  {
+    citySlug: "moore",
+    serviceSlug: "concrete-construction",
+    h1: "Commercial Concrete Construction in Moore",
+    metaTitle: "Commercial Concrete in Moore, OK",
+    metaDescription:
+      "H&H Construction places commercial concrete foundations, slabs, sidewalks, and site flatwork for Moore, OK — short mobilization from our Norman headquarters on the I-35 corridor.",
+    heroDescription:
+      "Foundations, slabs, sidewalks, curbs, and site concrete for Moore commercial, school, and retail projects — from crews based one city south in Norman.",
+    localAngle: [
+      "Moore sits on I-35 between Norman and Oklahoma City, which makes it one of the shortest concrete mobilizations H&H runs. Haul routes are short, punch items do not wait on a cross-metro drive, and pour windows are easier to protect when the plant and the crew are already working the south corridor.",
+      "Commercial concrete here is driven by interstate-frontage retail and medical pads, Moore Public Schools campus work, and municipal sidewalk and curb packages. School and institutional flatwork still has to land inside summer windows, with campus access maintained the entire time — the calendar sets the pour schedule, not the other way around.",
+      "Central Oklahoma clay and freeze-thaw cycling do not care that Moore is a suburb. Soft subgrade, poor base, and light jointing show up as mapped cracks within a couple of seasons. Proof-rolling and moisture conditioning before forming are what keep a Moore slab from becoming a callback.",
+    ],
+    applications: [
+      "Building pads and slabs for Moore retail and medical sites along I-35",
+      "School campus sidewalks, curb, and site concrete inside summer break windows",
+      "Municipal sidewalks, curb ramps, and ADA routes",
+      "Dumpster pads and heavy-use site concrete at commercial properties",
+      "Concrete repair and replacement on aging Moore lots and walks",
+    ],
+    bundlePitch:
+      "Moore growth sites rarely stop at a pour. The pad needs a lot next, and many commercial packages include a metal building or shell. Because we are based in Norman, H&H can place the concrete, pave the lot, and erect the building with one short south-metro mobilization instead of three separate crew stacks arguing over grade.",
+    faqs: [
+      {
+        question: "How close is H&H Construction to Moore projects?",
+        answer:
+          "We are headquartered in Norman, one city south on I-35. Moore jobs get short mobilization, fast punch response, and crews that already work the south metro corridor regularly.",
+      },
+      {
+        question: "Can you complete Moore school concrete during summer break?",
+        answer:
+          "Yes. Campus concrete is commonly scheduled inside academic break windows, with access maintained for staff and summer programs throughout placement and curing.",
+      },
+      {
+        question: "Do you handle City of Moore public concrete work?",
+        answer:
+          "Yes. We place sidewalks, curb ramps, and facility flatwork that must meet inspected municipal and ADA standards.",
+      },
+    ],
+  },
+
+  // ── Moore × Asphalt ───────────────────────────────────────────────────
+  {
+    citySlug: "moore",
+    serviceSlug: "asphalt-paving",
+    h1: "Commercial Asphalt Paving in Moore",
+    metaTitle: "Commercial Asphalt Paving in Moore, OK",
+    metaDescription:
+      "H&H Construction builds and rehabilitates Moore parking lots and commercial paving for retail, school, and municipal sites along the I-35 corridor.",
+    heroDescription:
+      "Parking lot construction, overlays, and patching for Moore retail, school, and commercial properties — phased so businesses and campuses keep operating.",
+    localAngle: [
+      "Moore paving is mostly corridor retail, school lots, and occupied commercial rehabilitation — not empty industrial freeways. New pads along I-35 need lots built correctly the first time; existing centers need overlays or full-depth repair without shutting the property down. Treating those as the same job is how schedules and budgets break.",
+      "School-district work runs on the academic calendar. A bus loop or staff lot that has to be ready before fall cannot absorb a late discovery that the base has failed. Evaluating overlay versus full-depth repair up front is what keeps a summer window real.",
+      "Short haul distance from Norman helps keep asphalt above minimum temperature when it hits the grade — a practical advantage on south-metro work where plant-to-site time still decides whether the mat densifies or oxidizes early.",
+    ],
+    applications: [
+      "New parking lots for Moore retail and medical developments along I-35",
+      "Phased overlays at occupied shopping centers",
+      "School parking lot and bus-loop rehabilitation inside break windows",
+      "Full-depth repair where base failure makes an overlay the wrong answer",
+      "Municipal facility paving and approach work",
+    ],
+    bundlePitch:
+      "A Moore commercial lot usually shares the site with concrete pads and sometimes a metal building. H&H self-performs asphalt, concrete, and metal buildings from Norman, so the aisle, the dumpster pad, and the shell elevations are one coordinated package — which is how south-metro developer and district schedules actually get met.",
+    faqs: [
+      {
+        question: "Can you resurface a Moore parking lot without closing the business?",
+        answer:
+          "In most cases, yes. We phase milling and paving section by section so tenants and customers keep usable parking while the work moves across the site.",
+      },
+      {
+        question: "Do you pave for Moore Public Schools?",
+        answer:
+          "Yes. School paving is scheduled around academic calendars, with overlay-versus-reconstruction decisions made early enough that the break window remains achievable.",
+      },
+      {
+        question: "Why does local mobilization matter for Moore asphalt work?",
+        answer:
+          "Asphalt has to be placed and compacted while hot. Short haul routes from our Norman base help keep the mat inside the temperature window and make weather-delay recovery faster.",
+      },
+    ],
+  },
+
+  // ── Moore × Metal ─────────────────────────────────────────────────────
+  {
+    citySlug: "moore",
+    serviceSlug: "metal-buildings-roofing",
+    h1: "Metal Buildings & Roofing in Moore",
+    metaTitle: "Metal Buildings & Roofing in Moore, OK",
+    metaDescription:
+      "H&H Construction erects pre-engineered metal buildings and installs metal roofing for Moore commercial, school-support, and light industrial projects.",
+    heroDescription:
+      "Pre-engineered metal buildings and commercial metal roofing for Moore shops, commercial shells, and institutional support buildings — coordinated from nearby Norman.",
+    localAngle: [
+      "Moore's I-35 growth creates demand for metal building shells behind retail, contractor shops, storage buildings, and school or church support structures. These packages only stay on schedule when the foundation and anchor bolts match the manufacturer drawings before the crane day.",
+      "Being one city north of our Norman headquarters means steel laydown, foundation verification, and punch response do not wait on a long metro mobilization. That matters when an occupied retail or campus neighbor will not tolerate an unplanned second crane day.",
+      "Wind and collateral loads still govern central Oklahoma design, and expansive clay still governs the foundation. Ordering the building without settling rooftop equipment loads — or pouring concrete from a generic foundation plan — is how Moore metal building schedules die at erection.",
+    ],
+    applications: [
+      "Contractor shops and storage buildings in Moore",
+      "Commercial support shells along the I-35 corridor",
+      "Church and school support metal buildings on occupied campuses",
+      "Light industrial and warehouse shells",
+      "Metal roofing repair and replacement on existing commercial structures",
+    ],
+    bundlePitch:
+      "Moore metal building projects almost always share a site with concrete and paving. H&H holds the foundation, the lot, and the erection from Norman — so anchor bolts, dock pads, and truck aisles share one set of elevations and one short south-metro schedule.",
+    faqs: [
+      {
+        question: "Do you erect metal buildings for Moore commercial and shop projects?",
+        answer:
+          "Yes. We erect pre-engineered metal buildings for commercial shells, contractor shops, storage, and institutional support buildings in Moore, working from the engineered manufacturer drawings.",
+      },
+      {
+        question: "Can you pour the foundation and erect the building in Moore?",
+        answer:
+          "Yes. Anchor bolt placement is the highest-risk interface on a pre-engineered building. Holding concrete and erection under one contract is how that interface stays within tolerance.",
+      },
+      {
+        question: "Do you install metal roofing in Moore as well?",
+        answer:
+          "Yes. We install and replace commercial metal roofing systems in addition to new building erection.",
+      },
+    ],
+  },
+
+  // ── Yukon × Concrete ──────────────────────────────────────────────────
+  {
+    citySlug: "yukon",
+    serviceSlug: "concrete-construction",
+    h1: "Commercial Concrete Construction in Yukon",
+    metaTitle: "Commercial Concrete in Yukon, OK",
+    metaDescription:
+      "H&H Construction places commercial concrete foundations, slabs, sidewalks, and site flatwork for Yukon, OK — including I-40 and Garth Brooks corridor development.",
+    heroDescription:
+      "Foundations, slabs, sidewalks, curbs, and site concrete for Yukon retail, medical, and mixed-use growth along the I-40 corridor.",
+    localAngle: [
+      "Yukon's concrete demand follows the I-40 and Garth Brooks Boulevard trade area — one of the stronger west-metro retail corridors — plus continuing pad development along Czech Hall Road and other growth streets. That work is mostly ground-up: building pads, sidewalks, accessible routes, and site flatwork delivered against developer calendars.",
+      "Canadian County growth also brings medical offices, hospitality, and school-district packages that cannot slip casually. Institutional flatwork still has to finish inside break windows; retail pads still have to be ready when the tenant's opening date hits. Schedule honesty on the pour matters as much as the mix.",
+      "From Norman, Yukon is a west-metro mobilization. Concrete still has a placement window, so plant timing and haul planning are part of the job — not an afterthought once the trucks are already in traffic on I-40.",
+    ],
+    applications: [
+      "Building pads for Yukon retail and restaurant sites near I-40 and Garth Brooks Boulevard",
+      "Medical office and mixed-use site concrete packages",
+      "School and church sidewalks, curb, and accessible routes",
+      "Sidewalks and ADA ramps for commercial site plans",
+      "Concrete repair at existing Yukon commercial properties",
+    ],
+    bundlePitch:
+      "Yukon growth pads rarely need concrete alone. The same civil package usually includes paving and often a metal building or shell. H&H self-performs all three, so the pad, the lot, and the building elevations are bid and sequenced together instead of becoming three west-metro handoffs.",
+    faqs: [
+      {
+        question: "Do you pour foundations for new Yukon commercial developments?",
+        answer:
+          "Yes. We place building pads, foundations, slabs, and site flatwork for retail, medical, restaurant, and mixed-use projects tied to Yukon's I-40 growth corridor.",
+      },
+      {
+        question: "Can you handle Yukon school or church concrete on a fixed calendar?",
+        answer:
+          "Yes. Institutional concrete is scheduled around academic and occupancy calendars, with access maintained while the work proceeds.",
+      },
+      {
+        question: "How do you manage concrete deliveries to Yukon from Norman?",
+        answer:
+          "We plan plant timing and haul routes around the placement window so the mix arrives ready to place, accounting for west-metro traffic on I-40 and the turnpike approaches.",
+      },
+    ],
+  },
+
+  // ── Yukon × Asphalt ───────────────────────────────────────────────────
+  {
+    citySlug: "yukon",
+    serviceSlug: "asphalt-paving",
+    h1: "Commercial Asphalt Paving in Yukon",
+    metaTitle: "Commercial Asphalt Paving in Yukon, OK",
+    metaDescription:
+      "H&H Construction builds and rehabilitates Yukon parking lots and commercial paving for retail, medical, and growth sites along I-40 and Garth Brooks Boulevard.",
+    heroDescription:
+      "Parking lot construction, overlays, and patching for Yukon's high-traffic retail corridor and west-metro commercial growth — built for volume and phased for occupied sites.",
+    localAngle: [
+      "Yukon parking lots take real traffic. The I-40 and Garth Brooks trade area sees heavy daily volume through national retail and restaurants, which means drainage, section thickness, and striping layout are not cosmetic details — they decide whether the lot lasts or alligators in the drive aisles.",
+      "New mixed-use and commercial growth adds ground-up lots that have to open with the buildings. Existing centers need overlays or full-depth repair without closing stores. The wrong call between those two options is how owners pay for the same square footage twice.",
+      "West-metro haul distance still matters for asphalt temperature. We plan plant-to-site timing so the mat hits the grade hot enough to compact to density — the difference between a durable lot and one that raveling starts early.",
+    ],
+    applications: [
+      "New parking lots for Yukon retail and restaurant developments",
+      "High-traffic overlays at occupied shopping centers",
+      "Medical office and mixed-use paving packages",
+      "School parking lot rehabilitation inside academic windows",
+      "Full-depth repair where base failure has already started",
+    ],
+    bundlePitch:
+      "Yukon commercial sites usually need the lot, the concrete pads, and sometimes a metal building finished on one calendar. H&H holds asphalt, concrete, and metal buildings so west-metro growth packages do not fragment into three subcontractors and three punch lists.",
+    faqs: [
+      {
+        question: "Can you pave a busy Yukon retail lot without shutting it down?",
+        answer:
+          "Usually yes. We phase work in sections so stores keep customer parking and deliveries while milling and paving move across the site.",
+      },
+      {
+        question: "Do Yukon's high traffic counts change how you design a parking lot?",
+        answer:
+          "They should. Drive aisles and approaches that see constant volume need honest section design and drainage. Building a high-traffic corridor lot like a quiet office park is how early failure starts.",
+      },
+      {
+        question: "Do you build new lots for Yukon ground-up developments?",
+        answer:
+          "Yes. We construct parking lots, drives, and striping packages for retail, medical, and mixed-use projects along the I-40 growth corridor.",
+      },
+    ],
+  },
+
+  // ── Yukon × Metal ─────────────────────────────────────────────────────
+  {
+    citySlug: "yukon",
+    serviceSlug: "metal-buildings-roofing",
+    h1: "Metal Buildings & Roofing in Yukon",
+    metaTitle: "Metal Buildings & Roofing in Yukon, OK",
+    metaDescription:
+      "H&H Construction erects pre-engineered metal buildings and installs metal roofing for Yukon commercial, medical-support, and light industrial projects.",
+    heroDescription:
+      "Pre-engineered metal buildings and commercial metal roofing for Yukon retail-support, shop, medical, and growth-corridor shells along I-40.",
+    localAngle: [
+      "Yukon's commercial growth creates steady demand for metal building shells — storage and shop space behind retail, medical-support buildings, light industrial structures, and developer shells that need to dry in fast for tenant improvement. The schedule only works when foundation and steel are coordinated before fabrication ships.",
+      "Mixed-use and hospitality-adjacent development along corridors like Yukon Parkway and I-40 adds packages where the building, the lot, and the site concrete share one opening date. Splitting those trades across three subcontractors is how a west-metro shell misses its tenant date.",
+      "Oklahoma wind loads and collateral equipment still belong in the order. Adding rooftop units after the frame is standing is far more expensive than sizing the building correctly when it is released for fabrication.",
+    ],
+    applications: [
+      "Retail-support and shop buildings behind Yukon commercial centers",
+      "Medical and mixed-use support metal buildings",
+      "Light industrial and contractor shop shells",
+      "Developer metal building shells ready for tenant improvement",
+      "Metal roofing replacement on existing Yukon commercial structures",
+    ],
+    bundlePitch:
+      "Yukon metal building projects almost always share a site with concrete and paving. H&H self-performs the foundation, the lot, and the erection so anchor bolts, grades, and truck access are one package — the practical way to keep a west-metro growth site on a single calendar.",
+    faqs: [
+      {
+        question: "Do you erect metal buildings for Yukon commercial developments?",
+        answer:
+          "Yes. We erect pre-engineered metal buildings for commercial shells, shops, medical-support, and light industrial use in Yukon, working from the engineered manufacturer drawings.",
+      },
+      {
+        question: "Can one contractor handle the foundation and the metal building in Yukon?",
+        answer:
+          "Yes — and that is usually the right buy. Anchor bolt placement has to match the steel drawings within tight tolerance, which is considerably easier when one contractor holds both scopes.",
+      },
+      {
+        question: "Do you install metal roofing in Yukon?",
+        answer:
+          "Yes. We install and replace commercial metal roofing systems in addition to new pre-engineered building erection.",
+      },
+    ],
+  },
+
+  // ── Midwest City × Concrete ───────────────────────────────────────────
+  {
+    citySlug: "midwest-city",
+    serviceSlug: "concrete-construction",
+    h1: "Commercial Concrete Construction in Midwest City",
+    metaTitle: "Commercial Concrete in Midwest City, OK",
+    metaDescription:
+      "H&H Construction places commercial concrete for Midwest City, OK — including retail, industrial, and defense-adjacent sites near Tinker Air Force Base and I-40.",
+    heroDescription:
+      "Foundations, slabs, sidewalks, and site concrete for Midwest City retail, industrial, and Tinker-adjacent projects along the I-40 corridor.",
+    localAngle: [
+      "Midwest City concrete work sits next to Tinker Air Force Base — Oklahoma's largest single-site employer — and the retail and hospitality corridors that serve it. SE 29th Street, Douglas Boulevard, and I-40 frontage keep a steady cycle of commercial pads, sidewalks, and flatwork tied to traffic that does not slow down for a pour.",
+      "Defense-adjacent and industrial sites can add access, badging, or delivery constraints a normal retail pad does not have. Those belong in the schedule before forming starts. Rose State College and school work add the familiar academic-calendar constraint on top of private commercial demand.",
+      "Industrial and aerospace-support facilities near the base often need thicker slabs, dock approaches, and dumpster pads built for truck and equipment loads — not passenger-car parking standards stretched to cover a yard.",
+    ],
+    applications: [
+      "Retail and hospitality pads along I-40 and SE 29th Street corridors",
+      "Industrial and aerospace-support slabs and dock approaches near Tinker",
+      "Sidewalks, curb ramps, and ADA routes for commercial and public sites",
+      "School and Rose State College campus flatwork inside academic windows",
+      "Concrete repair at high-traffic Midwest City commercial properties",
+    ],
+    bundlePitch:
+      "Midwest City sites near Tinker and I-40 often need concrete, heavy-duty paving, and a metal building shell in the same package. H&H self-performs all three, which keeps dock pads, truck aisles, and building elevations coordinated — and keeps access constraints in one schedule instead of three.",
+    faqs: [
+      {
+        question: "Do you work on projects near Tinker Air Force Base?",
+        answer:
+          "Yes. We place commercial and industrial concrete for Midwest City sites that serve or sit near Tinker, and we plan for access or delivery constraints when the site requires them.",
+      },
+      {
+        question: "Can you pour heavy-duty slabs for industrial yards in Midwest City?",
+        answer:
+          "Yes. We place thickened slabs, dock approaches, and dumpster pads sized for truck and equipment traffic, not light retail parking loads.",
+      },
+      {
+        question: "Do you handle Midwest City retail and restaurant concrete work?",
+        answer:
+          "Yes. We place building pads, sidewalks, and site flatwork for retail and hospitality projects along the I-40 and SE 29th corridors.",
+      },
+    ],
+  },
+
+  // ── Midwest City × Asphalt ────────────────────────────────────────────
+  {
+    citySlug: "midwest-city",
+    serviceSlug: "asphalt-paving",
+    h1: "Commercial Asphalt Paving in Midwest City",
+    metaTitle: "Commercial Asphalt Paving in Midwest City, OK",
+    metaDescription:
+      "H&H Construction builds and rehabilitates Midwest City parking lots and industrial paving for retail, hospitality, and Tinker-adjacent sites along I-40.",
+    heroDescription:
+      "Parking lot construction, overlays, and heavy-duty paving for Midwest City retail, industrial, and defense-adjacent properties that see real daily traffic.",
+    localAngle: [
+      "Midwest City lots take Tinker-driven volume. Retail, hospitality, and service properties along I-40 and the SE 29th / Douglas gateway corridors see daytime traffic that punishes weak sections and poor drainage. Designing those lots like quiet office parks is how early alligatoring starts in the aisles.",
+      "Industrial and aerospace-support yards near the base need a different answer again: thicker sections or concrete in truck zones, honest evaluation of overlay versus full-depth repair, and phasing that respects shift and shipping windows.",
+      "Occupied retail cannot close for a full rebuild. The useful skill here is sequencing a high-traffic lot section by section so customers and deliveries keep moving while failed areas come out and new pavement goes down hot and compacted.",
+    ],
+    applications: [
+      "High-traffic retail and hospitality parking lots along I-40",
+      "Industrial yard and dock-approach paving near Tinker-adjacent sites",
+      "Phased overlays at occupied Midwest City shopping centers",
+      "School and campus lot rehabilitation inside academic windows",
+      "Full-depth repair where base failure has already taken the lot",
+    ],
+    bundlePitch:
+      "On Midwest City industrial and corridor sites, asphalt rarely stands alone. Dock pads often need concrete; many support facilities include a metal building. One contractor across paving, concrete, and the building means access constraints, truck aisles, and shell elevations share one plan — critical when the site sits near Tinker.",
+    faqs: [
+      {
+        question: "Do you pave industrial yards near Tinker in Midwest City?",
+        answer:
+          "Yes. We build heavier sections for drive aisles, dock approaches, and yards that see truck and equipment traffic, and we will tell you when concrete is the better answer in the highest-load zones.",
+      },
+      {
+        question: "Can you resurface a busy Midwest City retail lot without closing stores?",
+        answer:
+          "Usually yes. We phase milling and paving so customer parking and deliveries stay available while the work moves across the property.",
+      },
+      {
+        question: "Do secure or restricted sites change paving schedules in Midwest City?",
+        answer:
+          "They can. Projects near Tinker may require delivery windows or access planning that belong in the schedule before mobilization, not after the mill crew arrives.",
+      },
+    ],
+  },
+
+  // ── Midwest City × Metal ──────────────────────────────────────────────
+  {
+    citySlug: "midwest-city",
+    serviceSlug: "metal-buildings-roofing",
+    h1: "Metal Buildings & Roofing in Midwest City",
+    metaTitle: "Metal Buildings & Roofing in Midwest City, OK",
+    metaDescription:
+      "H&H Construction erects pre-engineered metal buildings and installs metal roofing for Midwest City industrial, aerospace-support, and commercial projects near Tinker and I-40.",
+    heroDescription:
+      "Pre-engineered metal buildings and commercial metal roofing for Midwest City industrial, aerospace-support, and commercial shells — including sites with Tinker-adjacent access constraints.",
+    localAngle: [
+      "Midwest City is one of the clearest metal building markets in the metro because of the aerospace and industrial cluster around Tinker Air Force Base, including the Tinker Business & Industrial Park area and related support facilities. Clear-span shops, storage, and industrial shells are everyday demand — not specialty one-offs.",
+      "Defense-adjacent sites can change erection logistics: delivery windows, badging, and laydown limits may constrain crane days. Those constraints have to be in the plan before the building is released for fabrication, or the foundation waits on steel that cannot enter the site when expected.",
+      "Retail and commercial shells along I-40 still need the same foundation-to-erection discipline as industrial work. Anchor bolts, wind loads, and collateral equipment do not get easier because the building sits next to a restaurant pad instead of a hangar-support shop.",
+    ],
+    applications: [
+      "Industrial and aerospace-support metal buildings near Tinker",
+      "Contractor shops and warehouse shells in Midwest City",
+      "Commercial support buildings along the I-40 retail corridor",
+      "Developer shells ready for tenant or agency build-out",
+      "Metal roofing repair and replacement on existing industrial structures",
+    ],
+    bundlePitch:
+      "Midwest City metal building packages often include heavy-duty paving and foundation concrete on sites that already have access rules. H&H self-performs concrete, asphalt, and metal buildings so the shell, the dock, and the yard are one coordinated scope — the difference between a building that opens on time and one that stalls at the gate.",
+    faqs: [
+      {
+        question: "Do you erect metal buildings for industrial sites near Tinker?",
+        answer:
+          "Yes. We erect pre-engineered metal buildings for industrial, aerospace-support, shop, and warehouse use in Midwest City, and we plan around site access requirements when the project needs them.",
+      },
+      {
+        question: "Can you handle foundation and erection together on a restricted site?",
+        answer:
+          "Yes. Holding concrete and steel under one contract is especially useful when delivery windows and access rules already constrain the schedule — fewer handoffs means fewer chances to miss a crane day.",
+      },
+      {
+        question: "Do you install metal roofing in Midwest City?",
+        answer:
+          "Yes. We install and replace commercial and industrial metal roofing systems in addition to new building erection.",
+      },
+    ],
+  },
 ];
 
 export function getCityService(citySlug: string, serviceSlug: string) {

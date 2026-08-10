@@ -619,4 +619,109 @@ export const priorityCities = [
     ],
     nearbyAreas: ["Moore", "Oklahoma City", "Noble", "Del City", "Midwest City"],
   },
+  {
+    slug: "moore",
+    name: "Moore",
+    metaTitle: "Commercial Concrete, Asphalt & Metal Buildings in Moore, OK",
+    h1: "Moore Commercial Concrete, Paving & Metal Buildings",
+    metaDescription:
+      "H&H Construction provides commercial concrete, asphalt paving, and metal buildings for Moore, OK — between Norman and Oklahoma City on the I-35 corridor.",
+    heroDescription:
+      "Commercial concrete, asphalt paving, and metal buildings for Moore projects on the I-35 corridor between Norman and Oklahoma City — short mobilization from our Norman headquarters.",
+    intro:
+      "Moore sits on I-35 between Norman and Oklahoma City, with commercial growth along the interstate frontage, a large public school district, and steady retail and medical development. From H&H's Norman office, Moore is one of the shortest mobilizations in the metro.",
+    localContext: [
+      "Most Moore commercial sites are reached from the I-35 corridor or the cross streets that feed it. That proximity to both Norman and south Oklahoma City keeps haul routes short for concrete and asphalt, which matters when a pour window or mat temperature is on the clock. It also means crews can answer punch items and weather delays without waiting on a long drive across the metro.",
+      "Moore Public Schools and the city's retail and medical growth produce the same calendar-driven work seen elsewhere in the south metro: summer windows for campus paving and flatwork, and occupied-property phasing for shopping centers that cannot close. Municipal sidewalk, curb, and facility work adds inspected public scope on top of private development.",
+    ],
+    marketNotes: [
+      {
+        title: "I-35 corridor access",
+        body: "Commercial pads and lots along the interstate need delivery and closure plans that respect peak traffic. Short haul distance from Norman helps keep concrete and asphalt inside their placement windows.",
+      },
+      {
+        title: "School-district calendars",
+        body: "Campus parking lots, bus loops, and sidewalk work generally have to finish inside a summer break, with access maintained for staff and summer programs the entire time.",
+      },
+      {
+        title: "Occupied retail phasing",
+        body: "Much of Moore's paving and concrete rehabilitation happens at properties that stay open. Section-by-section sequencing keeps tenants parked and deliveries moving.",
+      },
+      {
+        title: "South-metro soils and freeze-thaw",
+        body: "Expansive clay and hard freeze-thaw cycling still govern base prep and jointing. A section borrowed from a milder climate will not hold through a Moore winter.",
+      },
+    ],
+    nearbyAreas: ["Norman", "Oklahoma City", "Newcastle", "Midwest City", "Del City"],
+  },
+  {
+    slug: "yukon",
+    name: "Yukon",
+    metaTitle: "Commercial Concrete, Asphalt & Metal Buildings in Yukon, OK",
+    h1: "Yukon Commercial Concrete, Paving & Metal Buildings",
+    metaDescription:
+      "H&H Construction provides commercial concrete, asphalt paving, and metal buildings for Yukon, OK — including I-40 and Garth Brooks corridor commercial development.",
+    heroDescription:
+      "Commercial concrete, asphalt paving, and metal buildings for Yukon's I-40 growth corridor — retail, medical, and mixed-use site work across Canadian County's fast-growing west metro.",
+    intro:
+      "Yukon sits on I-40 west of Oklahoma City near the Kilpatrick Turnpike, with one of the stronger retail trade areas in the west metro around Garth Brooks Boulevard. Sustained commercial growth there keeps a steady pipeline of pads, parking lots, and building shells.",
+    localContext: [
+      "The I-40 and Garth Brooks Boulevard trade area carries heavy daily traffic and anchors much of Yukon's national retail and restaurant development. Czech Hall Road and other corridor sites continue to add retail and multifamily-adjacent commercial pads. That kind of growth means ground-up civil packages — building pads, drives, sidewalks, and lots — delivered against developer schedules.",
+      "Canadian County has been among the fastest-growing parts of the state, and Yukon's commercial work reflects that: medical offices, hotels and restaurants tied to new mixed-use plans, and school-district projects that still have to finish inside academic calendars. From Norman, Yukon is a west-metro mobilization across the Oklahoma City side — close enough for coordinated concrete, paving, and metal building packages.",
+    ],
+    marketNotes: [
+      {
+        title: "I-40 and Garth Brooks trade area",
+        body: "High-traffic retail and restaurant sites need lots, approaches, and accessible routes built to handle volume from day one, with drainage that keeps water off the pavement under constant use.",
+      },
+      {
+        title: "Growth pads and mixed-use civil work",
+        body: "New commercial and mixed-use development means coordinated pads, parking, sidewalks, and often a metal building or shell — scopes that benefit from one contractor across trades.",
+      },
+      {
+        title: "West-metro haul and timing",
+        body: "Deliveries cross the metro from our Norman base. Pour windows and asphalt temperature still govern the day, so mobilization and plant timing get planned rather than improvised.",
+      },
+      {
+        title: "School and institutional windows",
+        body: "Yukon school and church work typically has to land inside break calendars or around occupied-campus access, the same constraint that drives institutional sequencing elsewhere in the metro.",
+      },
+    ],
+    nearbyAreas: ["Oklahoma City", "Mustang", "Bethany", "Piedmont", "El Reno"],
+  },
+  {
+    slug: "midwest-city",
+    name: "Midwest City",
+    metaTitle: "Commercial Concrete, Asphalt & Metal Buildings in Midwest City, OK",
+    h1: "Midwest City Commercial Concrete, Paving & Metal Buildings",
+    metaDescription:
+      "H&H Construction provides commercial concrete, asphalt paving, and metal buildings for Midwest City, OK — including work near Tinker Air Force Base and the I-40 corridor.",
+    heroDescription:
+      "Commercial concrete, asphalt paving, and metal buildings for Midwest City retail, industrial, and defense-adjacent sites along I-40 and the corridors that serve Tinker Air Force Base.",
+    intro:
+      "Midwest City's commercial market is shaped by Tinker Air Force Base — Oklahoma's largest single-site employer — plus I-40 retail, Rose State College, and the aerospace and industrial cluster that grew up next to the base. That mix produces both everyday commercial site work and projects with access constraints a standard retail lot does not have.",
+    localContext: [
+      "Tinker drives daytime traffic through Midwest City's retail and service corridors, including SE 29th Street and Douglas Boulevard approaches that serve as gateways to Town Center Plaza and the base. Retail, hospitality, and medical sites along I-40 see volume that keeps parking lots and concrete flatwork in a constant cycle of construction and rehabilitation.",
+      "Defense-adjacent and industrial sites near the base — including the Tinker Business & Industrial Park cluster — can carry badging, delivery, or scheduling requirements that belong in the plan before mobilization. Rose State College adds institutional work that runs on academic calendars. From Norman, Midwest City is an east-metro run with clear interstate access via I-35 and I-40.",
+    ],
+    marketNotes: [
+      {
+        title: "Tinker-driven commercial volume",
+        body: "Retail, hospitality, and service properties near the base see heavy daily traffic. Lots and accessible routes have to be built and maintained for that use, not for occasional passenger-car loads.",
+      },
+      {
+        title: "Secure and restricted-site constraints",
+        body: "Projects near Tinker can require access planning, delivery windows, or badging that a standard commercial site does not. Those constraints need to be in the schedule before the first truck arrives.",
+      },
+      {
+        title: "I-40 retail and gateway corridors",
+        body: "Corridor retail and mixed commercial sites need drainage, striping, and phasing that keep stores open while paving or flatwork moves across the property.",
+      },
+      {
+        title: "Aerospace and industrial yards",
+        body: "Industrial and defense-support facilities need heavier pavement sections, dock approaches, and sometimes metal building shells sized for equipment and truck traffic rather than retail parking.",
+      },
+    ],
+    nearbyAreas: ["Oklahoma City", "Del City", "Moore", "Nicoma Park", "Choctaw"],
+  },
 ] as const;

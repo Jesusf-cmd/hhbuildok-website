@@ -11,6 +11,8 @@ Add these JPGs to this folder (exact filenames):
 | `curb-replacement-striping-chandler-oklahoma.jpg` | **Photo 3** — curb work and striping layout |
 | `finished-parking-lot-aerial-chandler-oklahoma.jpg` | **Photo 4** — finished aerial with traffic arrows |
 
+If uploading via GitHub mobile as `image0.png`–`image3.png`, rename in this order before commit.
+
 ## Specs
 
 - Format: JPG

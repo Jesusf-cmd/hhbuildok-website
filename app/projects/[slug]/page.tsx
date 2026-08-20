@@ -7,7 +7,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { caseStudies, getCaseStudy } from "@/lib/projects-data";
-import { services } from "@/lib/site-data";
+import { services, siteConfig } from "@/lib/site-data";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
@@ -37,6 +37,10 @@ export async function generateMetadata({
       title: study.metaTitle,
       description: study.metaDescription,
       url: `/projects/${study.slug}`,
+      type: "article",
+      images: study.images[0]
+        ? [{ url: study.images[0].src, alt: study.images[0].alt }]
+        : undefined,
     },
   };
 }
@@ -62,8 +66,53 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     { label: "Completed", value: completed },
   ].filter((fact) => fact.value);
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: study.h1,
+    name: study.title,
+    description: study.metaDescription,
+    datePublished: study.completedAt,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    mainEntityOfPage: `${siteConfig.url}/projects/${study.slug}`,
+    image: study.images.map((image) => `${siteConfig.url}${image.src}`),
+  };
+
+  const imageGallerySchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${study.title} project photos`,
+    itemListElement: study.images.map((image, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "ImageObject",
+        contentUrl: `${siteConfig.url}${image.src}`,
+        description: image.alt,
+        name: image.caption ?? image.alt,
+      },
+    })),
+  };
+
   return (
     <PageShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(imageGallerySchema) }}
+      />
       <Breadcrumbs
         items={[
           { label: "Projects", href: "/projects" },
@@ -156,15 +205,22 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               {study.images.map((image) => (
                 <figure
                   key={image.src}
-                  className="relative aspect-[4/3] w-full overflow-hidden border border-border"
+                  className="overflow-hidden border border-border bg-surface"
                 >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
+                  <div className="relative aspect-[4/3] w-full">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                  {image.caption ? (
+                    <figcaption className="border-t border-border px-4 py-3 text-sm leading-relaxed text-text-muted">
+                      {image.caption}
+                    </figcaption>
+                  ) : null}
                 </figure>
               ))}
             </div>

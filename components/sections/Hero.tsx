@@ -40,7 +40,7 @@ export function Hero() {
             <PhoneLink className="inline-flex items-center justify-center border border-charcoal/25 bg-transparent px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors duration-200 hover:border-charcoal hover:bg-charcoal/5">
               Call {siteConfig.phone}
             </PhoneLink>
-            <Button href="#projects" variant="outline-dark">
+            <Button href="/projects" variant="outline-dark">
               View Projects
             </Button>
           </div>

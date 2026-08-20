@@ -1,4 +1,5 @@
 import { services } from "@/lib/site-data";
+import { chandlerCountyCourthousePhotos } from "@/lib/chandler-county-courthouse-data";
 
 export type ServiceSlug = (typeof services)[number]["slug"];
 
@@ -13,6 +14,8 @@ export type CaseStudyImage = {
   src: string;
   /** Describe what is visible. This is the text image search reads. */
   alt: string;
+  /** Optional caption for the project photo gallery. */
+  caption?: string;
 };
 
 export type CaseStudy = {
@@ -36,6 +39,8 @@ export type CaseStudy = {
   approach: string;
   outcome: string;
   images: CaseStudyImage[];
+  /** Surface this project on the homepage and projects index. */
+  featured?: boolean;
   /** Only include with written permission to publish the quote. */
   testimonial?: {
     quote: string;
@@ -43,45 +48,51 @@ export type CaseStudy = {
   };
 };
 
-/**
- * Real projects only.
- *
- * This stays empty until H&H supplies actual project details, which is what
- * keeps the site from publishing an invented case study. Adding an entry builds
- * its page, lists it on /projects, and adds it to the sitemap automatically —
- * and once at least one entry exists, /projects stops being noindexed.
- *
- * Template for a new entry:
- *
- * {
- *   slug: "moore-school-district-parking-lot",
- *   title: "Moore School District Parking Lot",
- *   h1: "Rebuilding a 400-Stall School Parking Lot Between Semesters",
- *   metaTitle: "School Parking Lot Paving Case Study in Moore, OK",
- *   metaDescription:
- *     "How H&H Construction rebuilt a 400-stall school parking lot in Moore, Oklahoma inside a six-week summer window.",
- *   serviceSlug: "asphalt-paving",
- *   city: "Moore",
- *   clientType: "School district",
- *   completedAt: "2025-07-15",
- *   summary: "Two sentences a facilities director can skim and understand.",
- *   metrics: [
- *     { label: "Asphalt placed", value: "1,800 tons" },
- *     { label: "Stalls restriped", value: "400" },
- *     { label: "Duration", value: "6 weeks" },
- *   ],
- *   challenge: "What made the job hard — access, schedule, spec, or weather.",
- *   approach: "What H&H actually did about it, specifically.",
- *   outcome: "The measurable result, including whether it beat the deadline.",
- *   images: [
- *     { src: "/images/projects/moore-lot-01.jpg", alt: "Crew placing asphalt across a school parking lot" },
- *   ],
- * }
- */
-export const caseStudies: CaseStudy[] = [];
+export const caseStudies: CaseStudy[] = [
+  {
+    slug: "chandler-county-courthouse-parking-lot",
+    title: "Chandler County Courthouse Parking Lot",
+    h1: "Sealcoating, Overlay, and Restriping at the Chandler County Courthouse",
+    metaTitle:
+      "Chandler County Courthouse Parking Lot Paving Case Study | Chandler, OK",
+    metaDescription:
+      "H&H Construction sealcoated and restriped the Chandler County Courthouse parking lot, then overlaid failing pavement, patched distressed areas, replaced 120 LF of curb, and restriped for ADA compliance in Chandler, Oklahoma.",
+    serviceSlug: "asphalt-paving",
+    city: "Chandler",
+    clientType: "County government",
+    completedAt: "2025-10-15",
+    summary:
+      "Two-phase parking lot rehabilitation for Chandler County — a sealcoat and restriping package followed by an asphalt overlay, full-depth patching, 120 linear feet of curb replacement, and fresh stall layout including accessible spaces.",
+    featured: true,
+    metrics: [
+      { label: "Curb replaced", value: "120 LF" },
+      { label: "Phases", value: "2" },
+      { label: "Scope", value: "Seal, overlay, patch, stripe" },
+    ],
+    challenge:
+      "The courthouse parking lot serves daily county staff and visitors on a site that could not close for an extended reconstruction. Existing pavement showed surface oxidation, isolated base failures, and curb sections that had settled and cracked at the tie-in to the drives. Striping had faded to the point where stall layout and accessible spaces were hard to read from a vehicle.",
+    approach:
+      "H&H sequenced the work in two phases. Phase one focused on sealcoating the sound pavement sections and restriping stalls, drive aisles, and accessible spaces to current layout standards. Phase two targeted the areas that needed structural attention: milling and overlay where the section was still stable, full-depth patching where distress was load-related, and replacement of 120 linear feet of curb before a final seal and stripe tied the lot together.",
+    outcome:
+      "The lot returned to service between phases with usable parking throughout. Finished surfaces drain cleanly, curb lines are restored at the drives, and the restriped layout includes clearly marked accessible stalls. The aerial documentation shows the contrast between treated and untreated sections — useful for county facilities staff planning maintenance on the remaining lot area.",
+    images: chandlerCountyCourthousePhotos.map((photo) => ({
+      src: photo.src,
+      alt: photo.alt,
+      caption: photo.caption,
+    })),
+  },
+];
 
 export const hasCaseStudies = caseStudies.length > 0;
 
 export function getCaseStudy(slug: string) {
   return caseStudies.find((study) => study.slug === slug);
+}
+
+export function getFeaturedCaseStudies() {
+  return caseStudies.filter((study) => study.featured);
+}
+
+export function getPrimaryFeaturedCaseStudy() {
+  return getFeaturedCaseStudies()[0];
 }

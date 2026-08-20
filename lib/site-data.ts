@@ -1,3 +1,5 @@
+import { asphaltServiceHeroImage } from "@/lib/asphalt-gallery-data";
+
 export const siteConfig = {
   name: "H&H Construction",
   domain: "hhbuildok.com",
@@ -28,7 +30,7 @@ export const emailHref =
 // Bump when page content meaningfully changes. Stamping sitemap entries with a
 // fresh Date on every build makes every URL claim it just changed, which search
 // engines learn to distrust.
-export const contentLastUpdated = "2026-08-09";
+export const contentLastUpdated = "2026-08-20";
 
 export const nap = {
   name: siteConfig.name,
@@ -44,7 +46,7 @@ export const nap = {
 
 export const navLinks = [
   { label: "Services", href: "/services" },
-  { label: "Projects", href: "/#projects" },
+  { label: "Projects", href: "/projects" },
   { label: "Industries", href: "/industries" },
   { label: "Service Area", href: "/service-area" },
   { label: "Contact", href: "/contact" },
@@ -174,8 +176,8 @@ export const services = [
       "H&H Construction provides commercial asphalt paving, overlays, patching, and parking lot construction for developments, industrial yards, and municipalities across Oklahoma.",
     heroDescription:
       "H&H Construction delivers new paving, overlays, patching, and parking lot construction for commercial developments, industrial yards, and municipal roadways across Oklahoma.",
-    image: "/images/stock/service-asphalt-paving.jpg",
-    imageAlt: "commercial asphalt paving project photo",
+    image: asphaltServiceHeroImage.src,
+    imageAlt: asphaltServiceHeroImage.alt,
     href: "/services/asphalt-paving",
     scopeItems: [
       "New commercial and industrial paving",
@@ -391,25 +393,11 @@ export const featuredProjects = [
     imageAlt: "workers inspecting commercial concrete foundation and rebar flatwork",
   },
   {
-    id: "industrial-paving",
-    title: "Industrial Yard Paving",
-    category: "Asphalt",
-    image: "/images/stock/project-industrial-paving.jpg",
-    imageAlt: "crew paving asphalt at an industrial yard with semi-trailers",
-  },
-  {
     id: "municipal-building",
     title: "Municipal Metal Building",
     category: "Metal Buildings",
     image: "/images/stock/project-municipal-building.jpg",
     imageAlt: "aerial view of a metal warehouse and industrial storage facility",
-  },
-  {
-    id: "school-parking",
-    title: "School District Parking Lot",
-    category: "Asphalt",
-    image: "/images/stock/project-school-parking.jpg",
-    imageAlt: "aerial view of a school district bus parking lot",
   },
 ] as const;
 

@@ -1,11 +1,16 @@
 import Image from "next/image";
+import Link from "next/link";
 import { featuredProjects } from "@/lib/site-data";
+import { getPrimaryFeaturedCaseStudy } from "@/lib/projects-data";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 
 export function FeaturedProjects() {
+  const spotlight = getPrimaryFeaturedCaseStudy();
+  const heroImage = spotlight?.images[0];
+
   return (
     <section
       id="projects"
@@ -20,12 +25,54 @@ export function FeaturedProjects() {
             title="Commercial Work Across Oklahoma"
             description="A selection of project types we deliver for contractors, developers, and public entities across Oklahoma."
           />
-          <Button href="#contact" variant="outline-dark" className="shrink-0 self-start lg:self-auto">
-            Start Your Project
+          <Button
+            href={spotlight ? `/projects/${spotlight.slug}` : "/projects"}
+            variant="outline-dark"
+            className="shrink-0 self-start lg:self-auto"
+          >
+            {spotlight ? "Read the Case Study" : "View Projects"}
           </Button>
         </Reveal>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2">
+        {spotlight && heroImage ? (
+          <Reveal delay={40} className="mt-14">
+            <Link
+              href={`/projects/${spotlight.slug}`}
+              className="card-interactive group relative block overflow-hidden border-2 border-accent bg-surface-muted"
+            >
+              <div className="relative aspect-[21/9] w-full min-h-[16rem] sm:min-h-[20rem]">
+                <Image
+                  src={heroImage.src}
+                  alt={heroImage.alt}
+                  fill
+                  priority
+                  className="card-interactive-image object-cover"
+                  sizes="100vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-charcoal/10 transition-opacity duration-400 group-hover:from-charcoal/95 group-focus-visible:from-charcoal/95" />
+                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-12">
+                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">
+                    Featured Case Study &middot; {spotlight.city}, OK
+                  </p>
+                  <h3 className="mt-3 max-w-3xl font-display text-2xl font-bold uppercase tracking-tight text-surface sm:text-3xl lg:text-4xl">
+                    {spotlight.title}
+                  </h3>
+                  <p className="mt-4 max-w-2xl text-sm leading-relaxed text-surface/85 sm:text-base">
+                    {spotlight.summary}
+                  </p>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-surface underline-offset-4 group-hover:underline group-focus-visible:underline">
+                    View project photos and scope details
+                    <span aria-hidden="true" className="text-accent">
+                      &rarr;
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </Reveal>
+        ) : null}
+
+        <div className="mt-8 grid gap-5 sm:grid-cols-2">
           {featuredProjects.map((project, index) => (
             <Reveal
               key={project.id}

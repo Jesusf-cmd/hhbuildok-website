@@ -96,7 +96,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${siteConfig.url}/projects/${study.slug}`,
     lastModified: new Date(study.completedAt),
     changeFrequency: "yearly",
-    priority: 0.7,
+    priority: study.featured ? 0.85 : 0.7,
   }));
 
   return [

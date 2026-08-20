@@ -12,6 +12,11 @@
 |------|-------|
 | `hero-rebar-construction.jpg` | Full-height hero background (H&H job site photo) |
 
+## Asphalt project photos
+
+Real H&H asphalt job photography lives in `asphalt/`. See `asphalt/README.md`
+for required filenames and where each image is used on the site.
+
 ## Stock photos (temporary)
 
 High-quality stock images in `stock/` are used until H&H project photography is available.

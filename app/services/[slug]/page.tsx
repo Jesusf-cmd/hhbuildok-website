@@ -12,6 +12,8 @@ import {
   siteConfig,
   serviceAreaCities,
 } from "@/lib/site-data";
+import { asphaltGalleryImages } from "@/lib/asphalt-gallery-data";
+import { ProjectGallery } from "@/components/sections/ProjectGallery";
 import {
   cityServiceHref,
   getCityServicesForService,
@@ -92,6 +94,24 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     })),
   };
 
+  const imageGallerySchema =
+    slug === "asphalt-paving"
+      ? {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Commercial asphalt paving project photos",
+          itemListElement: asphaltGalleryImages.map((image, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            item: {
+              "@type": "ImageObject",
+              contentUrl: `${siteConfig.url}${image.src}`,
+              description: image.alt,
+            },
+          })),
+        }
+      : null;
+
   return (
     <PageShell>
       <script
@@ -102,6 +122,14 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+      {imageGallerySchema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(imageGallerySchema),
+          }}
+        />
+      ) : null}
 
       <Breadcrumbs
         items={[
@@ -157,6 +185,15 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           </div>
         </Container>
       </section>
+
+      {slug === "asphalt-paving" ? (
+        <ProjectGallery
+          id="project-photos"
+          heading="Recent Asphalt Projects"
+          description="Real commercial and industrial paving work across Oklahoma — milling, new paving, overlays, patching, and parking lot rehabilitation."
+          images={asphaltGalleryImages}
+        />
+      ) : null}
 
       <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">

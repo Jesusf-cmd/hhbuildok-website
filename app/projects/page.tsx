@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
-import { caseStudies, hasCaseStudies } from "@/lib/projects-data";
+import { caseStudies, getPrimaryFeaturedCaseStudy, hasCaseStudies } from "@/lib/projects-data";
 import { services } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -26,6 +26,11 @@ function serviceLabel(slug: string) {
 }
 
 export default function ProjectsPage() {
+  const spotlight = getPrimaryFeaturedCaseStudy();
+  const otherStudies = caseStudies.filter(
+    (study) => study.slug !== spotlight?.slug,
+  );
+
   return (
     <PageShell>
       <Breadcrumbs items={[{ label: "Projects", href: "/projects" }]} />
@@ -42,48 +47,92 @@ export default function ProjectsPage() {
       </section>
 
       {hasCaseStudies ? (
-        <section className="bg-surface">
-          <Container className="py-16 lg:py-20">
-            <div className="grid gap-8 md:grid-cols-2">
-              {caseStudies.map((study) => (
-                <article
-                  key={study.slug}
-                  className="flex flex-col border border-border bg-surface"
+        <>
+          {spotlight ? (
+            <section className="bg-surface">
+              <Container className="pb-8 pt-16 lg:pb-12 lg:pt-20">
+                <Link
+                  href={`/projects/${spotlight.slug}`}
+                  className="group grid overflow-hidden border-2 border-accent lg:grid-cols-2"
                 >
-                  {study.images[0] ? (
-                    <div className="relative aspect-[16/9] w-full">
+                  {spotlight.images[0] ? (
+                    <div className="relative aspect-[16/10] w-full lg:aspect-auto lg:min-h-[22rem]">
                       <Image
-                        src={study.images[0].src}
-                        alt={study.images[0].alt}
+                        src={spotlight.images[0].src}
+                        alt={spotlight.images[0].alt}
                         fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                        priority
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
                       />
                     </div>
                   ) : null}
-                  <div className="flex flex-1 flex-col p-6 sm:p-8">
+                  <div className="flex flex-col justify-center bg-charcoal p-8 sm:p-10 lg:p-12">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-                      {serviceLabel(study.serviceSlug)} &middot; {study.city}, OK
+                      Featured Case Study &middot; Asphalt &middot;{" "}
+                      {spotlight.city}, OK
                     </p>
-                    <h2 className="mt-3 font-heading text-xl font-bold uppercase text-charcoal sm:text-2xl">
-                      {study.title}
+                    <h2 className="mt-4 font-heading text-2xl font-bold uppercase text-surface sm:text-3xl">
+                      {spotlight.title}
                     </h2>
-                    <p className="mt-4 flex-1 text-sm leading-relaxed text-text-muted">
-                      {study.summary}
+                    <p className="mt-4 text-base leading-relaxed text-surface/85">
+                      {spotlight.summary}
                     </p>
-                    <Link
-                      href={`/projects/${study.slug}`}
-                      className="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                    >
-                      Read the Case Study
+                    <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-surface group-hover:text-accent">
+                      Read the full case study
                       <span aria-hidden="true">&rarr;</span>
-                    </Link>
+                    </span>
                   </div>
-                </article>
-              ))}
-            </div>
-          </Container>
-        </section>
+                </Link>
+              </Container>
+            </section>
+          ) : null}
+
+          {otherStudies.length > 0 ? (
+            <section className="bg-surface">
+              <Container className="py-16 lg:py-20">
+                <div className="grid gap-8 md:grid-cols-2">
+                  {otherStudies.map((study) => (
+                    <article
+                      key={study.slug}
+                      className="flex flex-col border border-border bg-surface"
+                    >
+                      {study.images[0] ? (
+                        <div className="relative aspect-[16/9] w-full">
+                          <Image
+                            src={study.images[0].src}
+                            alt={study.images[0].alt}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                          />
+                        </div>
+                      ) : null}
+                      <div className="flex flex-1 flex-col p-6 sm:p-8">
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                          {serviceLabel(study.serviceSlug)} &middot; {study.city}, OK
+                        </p>
+                        <h2 className="mt-3 font-heading text-xl font-bold uppercase text-charcoal sm:text-2xl">
+                          {study.title}
+                        </h2>
+                        <p className="mt-4 flex-1 text-sm leading-relaxed text-text-muted">
+                          {study.summary}
+                        </p>
+                        <Link
+                          href={`/projects/${study.slug}`}
+                          className="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                        >
+                          Read the Case Study
+                          <span aria-hidden="true">&rarr;</span>
+                        </Link>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </Container>
+            </section>
+          ) : null}
+        </>
       ) : (
         <section className="bg-surface">
           <Container className="py-16 lg:py-20">

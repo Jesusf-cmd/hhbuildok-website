@@ -49,7 +49,7 @@ export const nap = {
 
 export const navLinks = [
   { label: "Services", href: "/services" },
-  { label: "Projects", href: "/#projects" },
+  { label: "Projects", href: "/projects" },
   { label: "Industries", href: "/industries" },
   { label: "Service Area", href: "/service-area" },
   { label: "Contact", href: "/contact" },

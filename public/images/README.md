@@ -17,6 +17,12 @@
 Real H&H asphalt job photography lives in `asphalt/`. See `asphalt/README.md`
 for required filenames and where each image is used on the site.
 
+## Project case study photos
+
+Real job photos for published case studies live in `projects/<slug>/`.
+See each folder's README for required filenames. The Chandler County
+Courthouse case study is at `projects/chandler-county-courthouse/`.
+
 ## Stock photos (temporary)
 
 High-quality stock images in `stock/` are used until H&H project photography is available.

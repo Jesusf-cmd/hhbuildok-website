@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { CaseStudyPhotoGallery } from "@/components/sections/CaseStudyPhotoGallery";
 import { caseStudies, getCaseStudy } from "@/lib/projects-data";
 import { services, siteConfig } from "@/lib/site-data";
 
@@ -147,6 +147,8 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </Container>
       </section>
 
+      <CaseStudyPhotoGallery images={study.images} />
+
       {study.metrics.length > 0 ? (
         <section className="bg-charcoal">
           <Container className="py-12 lg:py-16">
@@ -195,41 +197,8 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </Container>
       </section>
 
-      {study.images.length > 0 ? (
-        <section className="bg-off-white-muted">
-          <Container className="py-16 lg:py-20">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-              Project Photos
-            </h2>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2">
-              {study.images.map((image) => (
-                <figure
-                  key={image.src}
-                  className="overflow-hidden border border-border bg-surface"
-                >
-                  <div className="relative aspect-[4/3] w-full">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
-                  {image.caption ? (
-                    <figcaption className="border-t border-border px-4 py-3 text-sm leading-relaxed text-text-muted">
-                      {image.caption}
-                    </figcaption>
-                  ) : null}
-                </figure>
-              ))}
-            </div>
-          </Container>
-        </section>
-      ) : null}
-
       {study.testimonial ? (
-        <section className="bg-surface">
+        <section className="bg-off-white-muted">
           <Container className="py-16 lg:py-20">
             <blockquote className="max-w-3xl border-l-4 border-accent pl-6">
               <p className="font-heading text-xl leading-relaxed text-charcoal sm:text-2xl">

@@ -26,7 +26,7 @@ export function FeaturedProjects() {
             description="A selection of project types we deliver for contractors, developers, and public entities across Oklahoma."
           />
           <Button
-            href={spotlight ? `/projects/${spotlight.slug}` : "/projects"}
+            href={spotlight ? `/projects/${spotlight.slug}#project-photos` : "/projects"}
             variant="outline-dark"
             className="shrink-0 self-start lg:self-auto"
           >
@@ -37,7 +37,7 @@ export function FeaturedProjects() {
         {spotlight && heroImage ? (
           <Reveal delay={40} className="mt-14">
             <Link
-              href={`/projects/${spotlight.slug}`}
+              href={`/projects/${spotlight.slug}#project-photos`}
               className="card-interactive group relative block overflow-hidden border-2 border-accent bg-surface-muted"
             >
               <div className="relative aspect-[21/9] w-full min-h-[16rem] sm:min-h-[20rem]">

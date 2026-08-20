@@ -1,7 +1,4 @@
-import {
-  asphaltFeaturedProjectImages,
-  asphaltServiceHeroImage,
-} from "@/lib/asphalt-gallery-data";
+import { asphaltServiceHeroImage } from "@/lib/asphalt-gallery-data";
 
 export const siteConfig = {
   name: "H&H Construction",
@@ -396,25 +393,11 @@ export const featuredProjects = [
     imageAlt: "workers inspecting commercial concrete foundation and rebar flatwork",
   },
   {
-    id: "industrial-paving",
-    title: "Industrial Yard Paving",
-    category: "Asphalt",
-    image: asphaltFeaturedProjectImages["industrial-paving"].src,
-    imageAlt: asphaltFeaturedProjectImages["industrial-paving"].alt,
-  },
-  {
     id: "municipal-building",
     title: "Municipal Metal Building",
     category: "Metal Buildings",
     image: "/images/stock/project-municipal-building.jpg",
     imageAlt: "aerial view of a metal warehouse and industrial storage facility",
-  },
-  {
-    id: "school-parking",
-    title: "School District Parking Lot",
-    category: "Asphalt",
-    image: asphaltFeaturedProjectImages["school-parking"].src,
-    imageAlt: asphaltFeaturedProjectImages["school-parking"].alt,
   },
 ] as const;
 

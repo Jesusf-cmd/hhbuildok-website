@@ -14,8 +14,10 @@
 
 ## Asphalt project photos
 
-Real H&H asphalt job photography lives in `asphalt/`. See `asphalt/README.md`
-for required filenames and where each image is used on the site.
+All asphalt imagery on the site uses the **Chandler County Courthouse** case
+study photos in `projects/chandler-county-courthouse/`. See that folder's
+README for required filenames. Stock asphalt images in `stock/` are no longer
+referenced.
 
 ## Project case study photos
 
@@ -34,13 +36,13 @@ See `stock/ATTRIBUTION.md` for sources. To replace one, either:
 | File | Usage | Suggested H&H replacement |
 |------|-------|------------------------|
 | `stock/service-concrete-construction.jpg` | Concrete service block | Foundation, flatwork, or structural concrete project |
-| `stock/service-asphalt-paving.jpg` | Asphalt service block | Parking lot paving or roadway project |
+| ~~`stock/service-asphalt-paving.jpg`~~ | *(retired — use courthouse project photos)* | — |
 | `stock/service-metal-buildings-roofing.jpg` | Metal buildings service block | Pre-engineered metal building or roofing installation |
 | `stock/company-intro-team-site.jpg` | About section | Crew on site or leadership at a commercial project |
 | `stock/project-commercial-foundation.jpg` | Featured project card | Commercial foundation / flatwork project |
-| `stock/project-industrial-paving.jpg` | Featured project card | Industrial yard paving project |
+| ~~`stock/project-industrial-paving.jpg`~~ | *(retired — use courthouse case study)* | — |
 | `stock/project-municipal-building.jpg` | Featured project card | Municipal metal building project |
-| `stock/project-school-parking.jpg` | Featured project card | School district parking lot project |
+| ~~`stock/project-school-parking.jpg`~~ | *(retired — use courthouse case study)* | — |
 | `stock/oklahoma-service-area.jpg` | Service area section | Oklahoma map graphic or regional aerial photo |
 
 ## Recommended specs for H&H replacements

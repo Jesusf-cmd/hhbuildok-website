@@ -292,107 +292,134 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     citySlug: "edmond",
     h1: "Commercial Asphalt Paving in Edmond, OK",
     metaTitle:
-      "Asphalt Paving Edmond OK | Commercial Parking Lot Contractor | H&H Construction",
+      "Asphalt Paving Edmond OK | Commercial Paving Contractor | H&H Construction",
     metaDescription:
-      "H&H Construction provides commercial asphalt paving, parking lot construction, overlays, and pavement maintenance in Edmond, OK for retail, medical, school, and university sites.",
+      "H&H Construction delivers commercial asphalt paving, parking lot construction, mill-and-overlay, and pavement maintenance in Edmond, OK. Serving developers, retail centers, and institutional facilities. Request a bid today.",
     heroLead:
-      "Commercial parking lot paving, mill-and-overlay resurfacing, and phased asphalt rehabilitation for Edmond retail, medical, school, and campus-adjacent properties.",
-    introHeading: "Commercial Parking Lots Built for Edmond Growth",
+      "Commercial parking lot paving, mill-and-overlay resurfacing, full-depth reconstruction, and pavement maintenance for Edmond retail centers, corporate campuses, healthcare facilities, and institutional sites — built for north-metro traffic volumes.",
+    introHeading:
+      "Commercial Asphalt Paving for One of Oklahoma's Fastest-Growing Cities",
     intro: [
-      "Edmond commercial asphalt work is mostly growth and rehabilitation — not empty industrial freeways. New retail and medical centers need parking lots built to the site plan the first time; existing shopping centers and campuses need overlays and full-depth repairs without closing the property.",
-      "H&H Construction delivers commercial asphalt paving across Edmond: new lot construction, mill-and-overlay, patching, striping, and pavement maintenance sequenced around tenants, patients, and school calendars.",
+      "Edmond has grown into the Oklahoma City metro's premier address for commercial development — a city of roughly 99,000 residents with one of the highest median household incomes in the state and a steady pipeline of retail, healthcare, and institutional construction. Growth plans like the East Edmond 15A proposal, which includes 120 acres of new commercial space alongside 4,500 homes, point to years of continued commercial asphalt demand across the city. H&H Construction provides the commercial asphalt paving — new hot-mix installation, commercial parking lot construction, mill-and-overlay resurfacing, full-depth reconstruction, and ongoing pavement maintenance — that keeps Edmond's developments performing at the standard the city is known for.",
+      "From high-turnover retail centers along US-77 and I-35 to institutional facilities near the University of Central Oklahoma, we deliver commercial asphalt paving built for Edmond's traffic volumes, expansive clay soils, and long-term durability expectations — not residential driveway standards stretched across a commercial lot.",
     ],
-    servicesHeading: "Commercial Asphalt Services in Edmond",
+    servicesHeading: "Our Commercial Asphalt Paving Services in Edmond",
     services: [
       {
-        title: "New Commercial Parking Lot Construction",
-        body: "Full-depth asphalt paving for Edmond retail, medical, and mixed-use pads with drainage, base prep, and ADA-ready layout.",
+        title: "New Commercial Asphalt Installation",
+        body: "Complete commercial paving packages for new retail buildouts, corporate campuses, medical office pads, and mixed-use developments — including excavation, grading, aggregate base preparation, and hot-mix finish paving coordinated with your general contractor's schedule.",
       },
       {
-        title: "Mill-and-Overlay & Resurfacing",
-        body: "Commercial resurfacing when the base is sound — common on aging Edmond shopping-center and office lots that need a new wearing course without a full rebuild.",
+        title: "Commercial Parking Lot Construction & Reconstruction",
+        body: "Ground-up commercial parking lot construction and full-depth reconstruction for aging pavement, engineered for proper drainage slope, ADA-compliant accessibility, durable drive aisles, and the daily traffic Edmond retail and office properties actually see.",
+      },
+      {
+        title: "Asphalt Overlays, Mill-and-Overlay & Resurfacing",
+        body: "Cost-effective commercial resurfacing for parking lots and private roads where the base remains structurally sound but the wearing surface has oxidized or worn down — common across Edmond's established commercial corridors. We will tell you when mill-and-overlay is the wrong answer because the base has already failed.",
       },
       {
         title: "Full-Depth Reconstruction",
-        body: "Structural rebuilds where alligatoring and base failure mean an overlay would only buy a short season of appearance.",
+        body: "Structural rebuilds where alligator cracking, pumping, or failed base mean an overlay would only buy a short season of appearance. Full-depth commercial reconstruction costs more up front and considerably less over a decade of Edmond traffic.",
       },
       {
-        title: "Campus & School Lot Paving",
-        body: "Commercial and institutional asphalt scheduled inside academic windows, with phased access for staff and programs.",
+        title: "Patching, Pothole Repair & Pavement Maintenance",
+        body: "Responsive full-depth patches for cracking, potholes, and localized pavement failure, plus crack sealing and sealcoat maintenance where the commercial section is still sound — addressed before distress becomes a liability, drainage problem, or tenant complaint.",
       },
       {
-        title: "Patching, Sealcoat & Striping",
-        body: "Targeted repairs, crack sealing, sealcoat maintenance, and fresh commercial striping that keeps lots compliant and presentable.",
+        title: "Striping, Layout & ADA Marking",
+        body: "Clean, code-compliant commercial lot striping and stall layout for new construction and refreshed lots, including ADA accessible spaces, van-accessible access aisles, directional arrows, and fire-lane markings.",
       },
     ],
-    climateHeading: "Edmond Site Conditions That Affect Asphalt Life",
+    climateHeading: "Built for Edmond's Soil and Weather Conditions",
     climate: [
-      "North-metro clay soils and freeze-thaw cycling still govern base preparation. A commercial parking lot poured on soft or poorly drained subgrade will map cracks early no matter how clean the finish mat looks.",
-      "Occupied Edmond properties cannot close for a full rebuild. Phasing section by section is part of the commercial paving scope — not an optional extra.",
+      "Like the rest of central Oklahoma, Edmond sits on expansive clay soils that shift with seasonal moisture changes, and the city sees the same freeze-thaw cycles and summer heat that stress commercial asphalt across the metro. A parking lot or private roadway that is not properly graded, drained, and compacted before paving will show cracking and rutting well ahead of schedule — no matter how good the hot-mix looks on day one.",
+      "We evaluate soil, drainage, and traffic loading on every Edmond commercial site before paving begins, which is what separates asphalt that lasts fifteen-plus years from asphalt that needs rework in three. Occupied retail and medical properties also get section-by-section phasing so commercial operations keep parking while failed areas come out.",
     ],
-    audiencesHeading: "Who Needs Commercial Asphalt in Edmond",
+    audiencesHeading: "Who We Serve with Commercial Asphalt in Edmond",
     audiences: [
       {
-        title: "Retail & Medical Developers",
-        body: "New commercial parking lots tied to clinic, office, and shopping-center growth across Edmond.",
+        title: "Developers & General Contractors",
+        body: "Commercial paving scopes integrated into your project schedule for ground-up retail, office, and mixed-use development — including the East Edmond growth corridor — with base prep and hot-mix timed to pad delivery and building turnover.",
       },
       {
-        title: "Property Managers",
-        body: "Overlays, striping, and maintenance plans that protect occupied assets without emptying the lot.",
+        title: "Retail & Commercial Property Owners",
+        body: "New commercial parking lot construction, mill-and-overlay, striping refreshes, and ongoing pavement maintenance plans for shopping centers, corporate offices, and standalone retail that cannot afford early aisle failure.",
       },
       {
-        title: "Schools & Institutions",
-        body: "Campus parking and drive paving coordinated with academic calendars and event schedules.",
+        title: "Healthcare & Institutional Facilities",
+        body: "Commercial asphalt scheduled around active operations for clinics, medical offices, and educational facilities near UCO — phased so patients, staff, and deliveries keep access throughout the work.",
       },
       {
-        title: "General Contractors",
-        body: "Commercial paving packages that land on the same schedule as site concrete and building turnover.",
+        title: "Multi-Family & HOA Private Roads",
+        body: "Private roadway paving, resurfacing, and repair for Edmond's multi-family and planned communities where commercial-grade asphalt sections and drainage still decide how long the pavement lasts.",
+      },
+      {
+        title: "Municipal & Public Projects",
+        body: "Roadway, parking, and public-facility asphalt paving delivered to City of Edmond and Oklahoma County specifications, including work that must stay open to the public during construction.",
       },
     ],
-    localPartnerHeading: "North-Metro Commercial Paving Partner",
+    localPartnerHeading:
+      "A Local Contractor Serving Edmond's Commercial Market",
     localPartner: [
-      "From our Norman headquarters, Edmond is a north-metro commercial paving mobilization we run regularly — short enough to protect hot-mix temperature and respond to weather delays.",
-      "We self-perform asphalt with concrete and metal building scopes when Edmond sites need more than a wearing course.",
+      "H&H Construction is headquartered in Norman and works throughout the Oklahoma City metro, including Edmond, on a daily basis. We understand the pace and standards of Edmond's commercial development — from permitting requirements to the expectation of high-quality finish work on visible retail and campus lots — and we scope every commercial asphalt project accordingly.",
+      "We coordinate directly with general contractors, developers, property managers, and municipal staff to keep commercial paving on schedule and within budget, starting with a full site evaluation of soil, drainage, existing pavement structure, and traffic loads before any bid is finalized.",
     ],
-    processHeading: "Edmond Commercial Paving Process",
+    processHeading: "Our Commercial Asphalt Paving Process",
     process: [
       {
-        title: "On-Site Evaluation",
-        body: "Pavement condition, drainage, and traffic patterns reviewed before overlay versus reconstruction is recommended.",
+        title: "Site Evaluation",
+        body: "We assess existing pavement condition, soil type, drainage flow, and expected commercial traffic — including whether drive aisles need a heavier section than stall areas — before providing a proposal.",
       },
       {
-        title: "Phased Proposal",
-        body: "Written commercial scope with section sequencing so Edmond businesses and campuses keep parking.",
+        title: "Detailed Proposal",
+        body: "A written commercial asphalt scope covering mill-and-overlay versus full-depth reconstruction, base preparation, hot-mix specifications, phasing, timeline, and cost, tailored to your specific Edmond site.",
       },
       {
-        title: "Prep & Hot-Mix Paving",
-        body: "Base work, milling where required, and compacted commercial asphalt placed in temperature.",
+        title: "Base Preparation",
+        body: "Proper excavation, grading, and compaction before paving begins — the step that determines whether Edmond clay lets a commercial lot reach fifteen years or starts reflecting cracks in three.",
       },
       {
-        title: "Striping & Handoff",
-        body: "ADA layout and a joint walkthrough before the lot returns to full commercial use.",
+        title: "Paving & Finishing",
+        body: "Hot-mix asphalt installed to the designed thickness and compacted while the mat is still hot, whether the application is a retail parking lot, corporate campus drive, medical facility, or private roadway.",
+      },
+      {
+        title: "Striping & Walkthrough",
+        body: "Code-compliant commercial striping, ADA verification, fire-lane marking, and a final walkthrough before the project closes out.",
       },
     ],
     faqs: [
       {
-        question: "Can you resurface an Edmond shopping center without closing it?",
+        question:
+          "How long does a commercial parking lot project take in Edmond?",
         answer:
-          "Yes. Most Edmond commercial overlays and reconstructions are phased so storefronts, medical offices, and deliveries keep operating.",
+          "Most commercial parking lot projects run one to two weeks from mobilization to finished striping, depending on lot size and whether the job requires full-depth reconstruction or mill-and-overlay resurfacing.",
       },
       {
-        question: "Do you build new commercial parking lots in Edmond?",
+        question:
+          "Why does base preparation matter so much for Edmond pavement?",
         answer:
-          "Yes — full-depth commercial asphalt paving including base preparation, drainage coordination, and ADA striping.",
+          "Edmond's clay soils shift with moisture, and a poorly compacted base is the number one reason commercial lots crack and rut early. Proper grading, drainage, and compaction are what get commercial asphalt to its full expected lifespan.",
       },
       {
-        question: "Do you handle school and campus asphalt in Edmond?",
+        question: "Can you work around an active retail center or business?",
         answer:
-          "Yes. Institutional lots are commonly scheduled inside academic break windows with access maintained throughout.",
+          "Yes. We regularly schedule commercial paving in phases, during off-hours, or around active operations to minimize disruption for retail centers, medical offices, and other occupied commercial properties.",
+      },
+      {
+        question:
+          "When is mill-and-overlay the wrong answer for an Edmond parking lot?",
+        answer:
+          "When cracking is load-related or the base has failed. An overlay over a moving base reflects the same cracks through within a season or two. We evaluate that on site before recommending resurfacing versus full-depth commercial reconstruction.",
+      },
+      {
+        question: "Do you handle both new commercial paving and repair work?",
+        answer:
+          "Yes. H&H Construction handles the full commercial asphalt range in Edmond — new parking lot construction, mill-and-overlay, full-depth reconstruction, patching, pavement maintenance, and ADA striping.",
       },
     ],
-    ctaHeading: "Request a Commercial Asphalt Bid in Edmond",
+    ctaHeading: "Request a Commercial Asphalt Paving Bid in Edmond",
     ctaBody:
-      "Planning commercial parking lot paving, mill-and-overlay, or asphalt repair in Edmond? Call 405-476-5476 or request a bid online from H&H Construction.",
+      "Whether you are breaking ground on new commercial space or need to rehabilitate an aging parking lot, H&H Construction is ready to scope your Edmond commercial paving project. Call 405-476-5476 or submit a bid request online. We proudly serve Edmond and the surrounding Oklahoma City metro, including Oklahoma City, Norman, Yukon, and beyond.",
   },
 
   {

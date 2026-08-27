@@ -12,6 +12,11 @@ export type GalleryImage = {
 /** Additional commercial/industrial asphalt job photos (SEO filenames). */
 export const commercialAsphaltProjectPhotos: GalleryImage[] = [
   {
+    src: "/images/asphalt/commercial-asphalt-parking-lot-aerial-striping-oklahoma.jpg",
+    alt: "Aerial view of a freshly paved and restriped commercial parking lot with directional arrows and accessible spaces",
+    caption: "Aerial view of a completed commercial parking lot",
+  },
+  {
     src: "/images/asphalt/asphalt-paver-dump-truck-commercial-lot-oklahoma.jpg",
     alt: "Crew operating an asphalt paver and dump truck laying hot mix across a commercial truck terminal lot",
     caption: "Hot-mix paving with paver and dump truck",

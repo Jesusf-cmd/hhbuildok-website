@@ -17,6 +17,7 @@ export type AsphaltCityProcessStep = {
 
 export type AsphaltCityPage = {
   citySlug: string;
+  cityName: string;
   h1: string;
   metaTitle: string;
   metaDescription: string;
@@ -46,6 +47,7 @@ export type AsphaltCityPage = {
 export const asphaltCityPages: AsphaltCityPage[] = [
   {
     citySlug: "norman",
+    cityName: "Norman",
     h1: "Commercial Asphalt Paving in Norman, OK",
     metaTitle:
       "Asphalt Paving Norman OK | Commercial Paving Contractor | H&H Construction",
@@ -179,6 +181,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
 
   {
     citySlug: "oklahoma-city",
+    cityName: "Oklahoma City",
     h1: "Commercial Asphalt Paving in Oklahoma City, OK",
     metaTitle:
       "Asphalt Paving Oklahoma City OK | Commercial Paving Contractor | H&H Construction",
@@ -315,6 +318,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
 
   {
     citySlug: "edmond",
+    cityName: "Edmond",
     h1: "Commercial Asphalt Paving in Edmond, OK",
     metaTitle:
       "Asphalt Paving Edmond OK | Commercial Paving Contractor | H&H Construction",
@@ -449,6 +453,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
 
   {
     citySlug: "moore",
+    cityName: "Moore",
     h1: "Commercial Asphalt Paving in Moore, OK",
     metaTitle:
       "Asphalt Paving Moore OK | Commercial Parking Lots | H&H Construction",
@@ -552,6 +557,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
 
   {
     citySlug: "yukon",
+    cityName: "Yukon",
     h1: "Commercial Asphalt Paving in Yukon, OK",
     metaTitle:
       "Asphalt Paving Yukon OK | Commercial Paving Contractor | H&H Construction",
@@ -684,6 +690,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
 
   {
     citySlug: "midwest-city",
+    cityName: "Midwest City",
     h1: "Commercial Asphalt Paving in Midwest City, OK",
     metaTitle:
       "Asphalt Paving Midwest City OK | Commercial & Industrial Paving | H&H Construction",
@@ -784,6 +791,140 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     ctaBody:
       "Have a commercial parking lot or industrial paving project in Midwest City? Call 405-476-5476 or request a bid online.",
   },
+
+  {
+    citySlug: "tulsa",
+    cityName: "Tulsa",
+    h1: "Commercial Asphalt Paving in Tulsa, OK",
+    metaTitle:
+      "Asphalt Paving Tulsa OK | Commercial Paving Contractor | H&H Construction",
+    metaDescription:
+      "H&H Construction delivers commercial asphalt paving, parking lot construction, mill-and-overlay, and pavement maintenance in Tulsa, OK. Serving industrial, commercial, and municipal projects. Request a bid today.",
+    heroLead:
+      "Commercial parking lot paving, heavy-duty industrial yard asphalt, mill-and-overlay resurfacing, full-depth reconstruction, and municipal paving for Tulsa warehouses, distribution centers, retail sites, and public facilities across the metro.",
+    introHeading:
+      "Commercial Asphalt Paving for Tulsa's Industrial and Commercial Growth",
+    intro: [
+      "Tulsa's industrial market is running historically tight — vacancy has hovered near 2.5%, close to an all-time low — while major investment continues to flow into the region, including a $3 billion data center campus underway north of the city. Construction and natural resources employment in Tulsa grew faster than any other sector in the metro over the past year, and the region logged over 800 development projects in a single recent year across residential, industrial, and commercial categories. That level of activity means a steady, high-volume demand for commercial asphalt paving, and H&H Construction provides the paving work that keeps Tulsa's industrial yards, distribution docks, and commercial parking lots operational.",
+      "From distribution facilities and heavy-duty industrial yards to commercial parking lots, private access roads, and municipal roadways, we scope every Tulsa commercial asphalt project around the region's truck traffic loads, clay soils, and construction timelines — not passenger-car lot standards stretched across a warehouse apron.",
+    ],
+    servicesHeading: "Our Commercial Asphalt Paving Services in Tulsa",
+    services: [
+      {
+        title: "New Commercial & Industrial Asphalt Installation",
+        body: "Full commercial paving packages for new industrial buildings, distribution facilities, logistics campuses, and commercial developments — excavation, grading, aggregate base preparation, and hot-mix finish paving coordinated as a single scope with section thickness matched to truck and equipment traffic.",
+      },
+      {
+        title: "Commercial Parking Lot Construction & Reconstruction",
+        body: "New commercial parking lot construction and full-depth reconstruction for aging or failed pavement, engineered for Tulsa's commercial and industrial traffic loads, drainage requirements, and ADA compliance.",
+      },
+      {
+        title: "Heavy-Duty Industrial Yard & Dock Approach Paving",
+        body: "Thicker commercial asphalt sections for trailer yards, loading docks, dumpster approaches, and equipment traffic — or an honest recommendation to use concrete in the highest-load zones so the rest of the facility pavement can stay asphalt.",
+      },
+      {
+        title: "Asphalt Overlays, Mill-and-Overlay & Resurfacing",
+        body: "Commercial mill-and-overlay and resurfacing for lots and access roads where the base remains sound but the wearing surface has oxidized or deteriorated — common across Tulsa's established industrial corridors. We will tell you when an overlay is the wrong answer because the base has already failed.",
+      },
+      {
+        title: "Patching, Pothole Repair & Pavement Maintenance",
+        body: "Responsive full-depth patches for cracking, potholes, and drainage-related pavement failure, plus crack sealing and sealcoat maintenance where the commercial section is still structurally sound — before distress disrupts facility operations or creates liability.",
+      },
+      {
+        title: "Striping, Layout & ADA Marking",
+        body: "ADA-compliant commercial striping, stall layout, van-accessible access aisles, directional markings, fire lanes, and truck-route striping for new construction and resurfaced Tulsa commercial lots.",
+      },
+    ],
+    climateHeading:
+      "Paving Built for Tulsa's Soil and Industrial Demands",
+    climate: [
+      "Northeastern Oklahoma's clay soils and seasonal freeze-thaw cycles put the same stress on Tulsa commercial asphalt that they do across the rest of the state — but Tulsa's industrial base adds another layer of demand: constant heavy truck traffic, tight operational schedules, and facilities that cannot afford unplanned downtime for pavement failure.",
+      "We build every base to handle both the region's soil conditions and the specific load requirements of industrial and distribution sites — dock approaches, trailer staging, and employee lots sized differently when needed — which is what keeps commercial asphalt performing under sustained heavy use instead of alligatoring in the first few seasons.",
+    ],
+    audiencesHeading: "Who We Serve with Commercial Asphalt in Tulsa",
+    audiences: [
+      {
+        title: "Industrial & Distribution Facilities",
+        body: "Heavy-duty commercial asphalt built for warehouses, distribution centers, logistics yards, and facilities handling constant truck and equipment traffic — including phased work so docks and staging areas stay operational.",
+      },
+      {
+        title: "General Contractors & Developers",
+        body: "Site work and commercial paving packages integrated with construction schedules for new industrial and commercial builds, including projects tied to the region's growing data center, warehouse, and logistics investment.",
+      },
+      {
+        title: "Commercial Property Owners",
+        body: "Parking lot construction, mill-and-overlay resurfacing, and preventive pavement maintenance for retail, office, and mixed-use properties across the Tulsa metro — sequenced so tenants and deliveries keep access.",
+      },
+      {
+        title: "Municipalities & Public Entities",
+        body: "Roadway, parking, and public-facility asphalt paving delivered to City of Tulsa and county specifications, including work that must stay open to the public during construction.",
+      },
+      {
+        title: "School Districts",
+        body: "Commercial parking lots, bus lanes, and campus paving scoped around academic calendars to minimize disruption.",
+      },
+    ],
+    localPartnerHeading: "A Statewide Contractor Ready for Tulsa's Pace",
+    localPartner: [
+      "H&H Construction works throughout Oklahoma on commercial concrete, asphalt paving, and metal building projects, and we scope Tulsa work with the same standard we apply statewide — proper site evaluation, engineered base preparation, hot-mix placement compacted in temperature, and a finished product built to hold up under real commercial and industrial use.",
+      "We coordinate directly with general contractors, developers, facility managers, and municipal staff, starting every bid with a full assessment of soil, drainage, existing pavement structure, and traffic conditions — including whether mill-and-overlay or full-depth reconstruction is the honest answer for your Tulsa site.",
+    ],
+    processHeading: "Our Commercial Asphalt Paving Process",
+    process: [
+      {
+        title: "Site Evaluation",
+        body: "We assess soil conditions, drainage, existing pavement, and expected load — especially heavy truck and equipment traffic for industrial and distribution sites — before recommending overlay or full-depth commercial reconstruction.",
+      },
+      {
+        title: "Detailed Proposal",
+        body: "A written commercial asphalt scope covering base preparation, hot-mix specifications, phasing around operations, timeline, and cost.",
+      },
+      {
+        title: "Base Preparation",
+        body: "Excavation, grading, and compaction engineered for the load the pavement will actually carry — critical for distribution yards and industrial facilities where passenger-car sections fail early.",
+      },
+      {
+        title: "Paving & Finishing",
+        body: "Hot-mix asphalt installed to a thickness and compaction standard matched to the application, from office parking lots to industrial yards and dock approaches.",
+      },
+      {
+        title: "Striping & Walkthrough",
+        body: "Code-compliant commercial striping, ADA verification, fire-lane and traffic marking, and a final walkthrough before closeout.",
+      },
+    ],
+    faqs: [
+      {
+        question: "How long does industrial asphalt paving take in Tulsa?",
+        answer:
+          "Timelines vary significantly by scope — a standard commercial parking lot may take one to two weeks from mobilization to finished striping, while larger industrial yards or distribution facility paving can take longer depending on square footage, mill depths, and base conditions. We provide a specific timeline with every proposal.",
+      },
+      {
+        question: "Can you schedule paving around active facility operations?",
+        answer:
+          "Yes. We routinely phase commercial and industrial paving or schedule around off-hours to avoid disrupting operations at active warehouses, distribution centers, and manufacturing facilities.",
+      },
+      {
+        question: "Does Tulsa's tight industrial market affect paving demand?",
+        answer:
+          "Yes. With industrial vacancy running near historic lows and significant new investment moving into the region, facilities coming online or expanding need commercial asphalt completed on tight, reliable timelines — which is what we scope every Tulsa bid around.",
+      },
+      {
+        question:
+          "When is mill-and-overlay the wrong answer for a Tulsa industrial lot?",
+        answer:
+          "When cracking is load-related or the base has failed under truck traffic. An overlay over a moving base reflects the same cracks through within a season or two. We evaluate that on site before recommending resurfacing versus full-depth commercial reconstruction.",
+      },
+      {
+        question:
+          "Do you build heavy-duty asphalt for Tulsa warehouse and dock traffic?",
+        answer:
+          "Yes. We design thicker commercial asphalt sections for trailer yards, dock approaches, and equipment traffic — and we will tell you when concrete is the better answer for the highest-load zones.",
+      },
+    ],
+    ctaHeading: "Request a Commercial Asphalt Paving Bid in Tulsa",
+    ctaBody:
+      "If you have a commercial or industrial paving project in Tulsa — parking lot construction, mill-and-overlay, industrial yard work, or full-depth reconstruction — H&H Construction is ready to review your scope and provide a competitive bid. Call 405-476-5476 or submit a bid request online. We serve Tulsa and the surrounding region as part of our statewide commercial paving work.",
+  },
 ];
 
 export function asphaltCityHref(citySlug: string) {
@@ -803,13 +944,18 @@ export function getAsphaltCityParams() {
 
 export function resolveAsphaltCityPage(citySlug: string) {
   const page = getAsphaltCityPage(citySlug);
-  const city = priorityCities.find((item) => item.slug === citySlug);
 
-  if (!page || !city) {
+  if (!page) {
     return null;
   }
 
-  return { page, city };
+  const priorityCity = priorityCities.find((item) => item.slug === citySlug);
+  const city = priorityCity ?? {
+    slug: page.citySlug,
+    name: page.cityName,
+  };
+
+  return { page, city, hasServiceAreaPage: Boolean(priorityCity) };
 }
 
 export function getAsphaltCityPeers(citySlug: string) {

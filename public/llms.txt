@@ -26,7 +26,8 @@ contract, which removes the coordination burden from the general contractor.
   [Edmond](https://hhbuildok.com/services/asphalt-paving/edmond),
   [Moore](https://hhbuildok.com/services/asphalt-paving/moore),
   [Yukon](https://hhbuildok.com/services/asphalt-paving/yukon),
-  [Midwest City](https://hhbuildok.com/services/asphalt-paving/midwest-city).
+  [Midwest City](https://hhbuildok.com/services/asphalt-paving/midwest-city),
+  [Tulsa](https://hhbuildok.com/services/asphalt-paving/tulsa).
 - [Metal Buildings & Roofing](https://hhbuildok.com/services/metal-buildings-roofing):
   Pre-engineered metal building erection, warehouse and industrial facility
   structures, commercial metal roofing systems, and building shells.

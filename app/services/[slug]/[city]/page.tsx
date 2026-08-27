@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { PhoneLink } from "@/components/ui/PhoneLink";
-import { siteConfig, services, priorityCities } from "@/lib/site-data";
+import { siteConfig, services } from "@/lib/site-data";
 import {
   asphaltCityHref,
   getAsphaltCityParams,
@@ -72,7 +72,7 @@ export default async function AsphaltCityPage({
     notFound();
   }
 
-  const { page, city } = resolved;
+  const { page, city, hasServiceAreaPage } = resolved;
   const path = asphaltCityHref(city.slug);
   const asphaltService = services.find((service) => service.slug === ASPHALT_SLUG);
   const peers = getAsphaltCityPeers(city.slug);
@@ -293,7 +293,9 @@ export default async function AsphaltCityPage({
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
               <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-                Other Services in {city.name}
+                {hasServiceAreaPage
+                  ? `Other Services in ${city.name}`
+                  : "Related Commercial Services"}
               </h2>
               <ul className="mt-8 flex flex-col gap-4">
                 {services
@@ -301,23 +303,31 @@ export default async function AsphaltCityPage({
                   .map((service) => (
                     <li key={service.slug}>
                       <Link
-                        href={cityServiceHref(city.slug, service.slug)}
+                        href={
+                          hasServiceAreaPage
+                            ? cityServiceHref(city.slug, service.slug)
+                            : service.href
+                        }
                         className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
                       >
-                        {service.title} in {city.name}
+                        {hasServiceAreaPage
+                          ? `${service.title} in ${city.name}`
+                          : service.title}
                         <span aria-hidden="true">&rarr;</span>
                       </Link>
                     </li>
                   ))}
-                <li>
-                  <Link
-                    href={`/service-area/${city.slug}`}
-                    className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                  >
-                    All {city.name} services
-                    <span aria-hidden="true">&rarr;</span>
-                  </Link>
-                </li>
+                {hasServiceAreaPage ? (
+                  <li>
+                    <Link
+                      href={`/service-area/${city.slug}`}
+                      className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                    >
+                      All {city.name} services
+                      <span aria-hidden="true">&rarr;</span>
+                    </Link>
+                  </li>
+                ) : null}
               </ul>
             </div>
             <div>
@@ -325,23 +335,17 @@ export default async function AsphaltCityPage({
                 Commercial Asphalt in Nearby Cities
               </h2>
               <ul className="mt-8 flex flex-col gap-4">
-                {peers.map((peer) => {
-                  const peerCity = priorityCities.find(
-                    (item) => item.slug === peer.citySlug,
-                  );
-                  if (!peerCity) return null;
-                  return (
-                    <li key={peer.citySlug}>
-                      <Link
-                        href={asphaltCityHref(peer.citySlug)}
-                        className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                      >
-                        Asphalt Paving in {peerCity.name}
-                        <span aria-hidden="true">&rarr;</span>
-                      </Link>
-                    </li>
-                  );
-                })}
+                {peers.map((peer) => (
+                  <li key={peer.citySlug}>
+                    <Link
+                      href={asphaltCityHref(peer.citySlug)}
+                      className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                    >
+                      Asphalt Paving in {peer.cityName}
+                      <span aria-hidden="true">&rarr;</span>
+                    </Link>
+                  </li>
+                ))}
                 <li>
                   <Link
                     href="/services/asphalt-paving"

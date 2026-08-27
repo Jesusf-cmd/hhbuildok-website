@@ -10,6 +10,7 @@ const asphaltCitySlugs = [
   "moore",
   "yukon",
   "midwest-city",
+  "tulsa",
 ] as const;
 
 const nextConfig: NextConfig = {

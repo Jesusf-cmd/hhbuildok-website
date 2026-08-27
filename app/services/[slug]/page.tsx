@@ -18,6 +18,7 @@ import {
   cityServiceHref,
   getCityServicesForService,
 } from "@/lib/city-service-data";
+import { asphaltCityPages, asphaltCityHref } from "@/lib/asphalt-city-pages";
 
 type ServicePageProps = {
   params: Promise<{ slug: string }>;
@@ -302,23 +303,35 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             this trade usually shows up in each place.
           </p>
           <ul className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-6">
-            {getCityServicesForService(service.slug).map((entry) => {
-              const city = priorityCities.find(
-                (item) => item.slug === entry.citySlug,
-              );
-              if (!city) return null;
-              return (
-                <li key={entry.citySlug}>
-                  <Link
-                    href={cityServiceHref(entry.citySlug, service.slug)}
-                    className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                  >
-                    {service.shortTitle} in {city.name}
-                    <span aria-hidden="true">&rarr;</span>
-                  </Link>
-                </li>
-              );
-            })}
+            {slug === "asphalt-paving"
+              ? asphaltCityPages.map((page) => (
+                  <li key={page.citySlug}>
+                    <Link
+                      href={asphaltCityHref(page.citySlug)}
+                      className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                    >
+                      {service.shortTitle} in {page.cityName}
+                      <span aria-hidden="true">&rarr;</span>
+                    </Link>
+                  </li>
+                ))
+              : getCityServicesForService(service.slug).map((entry) => {
+                  const city = priorityCities.find(
+                    (item) => item.slug === entry.citySlug,
+                  );
+                  if (!city) return null;
+                  return (
+                    <li key={entry.citySlug}>
+                      <Link
+                        href={cityServiceHref(entry.citySlug, service.slug)}
+                        className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                      >
+                        {service.shortTitle} in {city.name}
+                        <span aria-hidden="true">&rarr;</span>
+                      </Link>
+                    </li>
+                  );
+                })}
           </ul>
         </Container>
       </section>

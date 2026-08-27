@@ -66,8 +66,9 @@ export const services = [
       "H&H Construction delivers structural and flatwork concrete for commercial foundations, slabs, sidewalks, curbs, and retaining walls across Oklahoma. Request a bid.",
     heroDescription:
       "H&H Construction provides structural and flatwork concrete for commercial, industrial, and municipal projects throughout Oklahoma — built to spec, coordinated to your schedule.",
-    image: "/images/stock/service-concrete-construction.jpg",
-    imageAlt: "commercial concrete construction project photo",
+    image: "/images/concrete/commercial-concrete-foundation-rebar-installation-oklahoma.jpg",
+    imageAlt:
+      "H&H Construction crew tying rebar for a commercial concrete foundation in Oklahoma",
     href: "/services/concrete-construction",
     scopeItems: [
       "Structural foundations and footings",

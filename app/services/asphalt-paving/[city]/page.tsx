@@ -9,14 +9,14 @@ import { PhoneLink } from "@/components/ui/PhoneLink";
 import { siteConfig, services } from "@/lib/site-data";
 import {
   asphaltCityHref,
+  asphaltCityIndex,
   getAsphaltCityParams,
-  getAsphaltCityPeers,
-  resolveAsphaltCityPage,
-} from "@/lib/asphalt-city-pages";
+} from "@/lib/asphalt-city-index";
+import { resolveAsphaltCityPage } from "@/lib/asphalt-city-pages";
 import { cityServiceHref } from "@/lib/city-service-data";
 
 type AsphaltCityRouteProps = {
-  params: Promise<{ slug: string; city: string }>;
+  params: Promise<{ city: string }>;
 };
 
 const ASPHALT_SLUG = "asphalt-paving";
@@ -28,12 +28,7 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: AsphaltCityRouteProps): Promise<Metadata> {
-  const { slug, city: citySlug } = await params;
-
-  if (slug !== ASPHALT_SLUG) {
-    return {};
-  }
-
+  const { city: citySlug } = await params;
   const resolved = resolveAsphaltCityPage(citySlug);
 
   if (!resolved) {
@@ -60,12 +55,7 @@ export async function generateMetadata({
 export default async function AsphaltCityPage({
   params,
 }: AsphaltCityRouteProps) {
-  const { slug, city: citySlug } = await params;
-
-  if (slug !== ASPHALT_SLUG) {
-    notFound();
-  }
-
+  const { city: citySlug } = await params;
   const resolved = resolveAsphaltCityPage(citySlug);
 
   if (!resolved) {
@@ -75,7 +65,9 @@ export default async function AsphaltCityPage({
   const { page, city, hasServiceAreaPage } = resolved;
   const path = asphaltCityHref(city.slug);
   const asphaltService = services.find((service) => service.slug === ASPHALT_SLUG);
-  const peers = getAsphaltCityPeers(city.slug);
+  const peers = asphaltCityIndex.filter(
+    (entry) => entry.citySlug !== city.slug,
+  );
 
   const serviceSchema = {
     "@context": "https://schema.org",

@@ -1,4 +1,8 @@
 import { priorityCities, siteConfig } from "@/lib/site-data";
+import {
+  asphaltCityHref,
+  getAsphaltCityParams,
+} from "@/lib/asphalt-city-index";
 
 export type AsphaltCityServiceBlock = {
   title: string;
@@ -38,6 +42,8 @@ export type AsphaltCityPage = {
   ctaHeading: string;
   ctaBody: string;
 };
+
+export { asphaltCityHref, getAsphaltCityParams };
 
 /**
  * Commercial asphalt city landing pages at /services/asphalt-paving/[city].
@@ -927,19 +933,8 @@ export const asphaltCityPages: AsphaltCityPage[] = [
   },
 ];
 
-export function asphaltCityHref(citySlug: string) {
-  return `/services/asphalt-paving/${citySlug}`;
-}
-
 export function getAsphaltCityPage(citySlug: string) {
   return asphaltCityPages.find((page) => page.citySlug === citySlug);
-}
-
-export function getAsphaltCityParams() {
-  return asphaltCityPages.map((page) => ({
-    slug: "asphalt-paving" as const,
-    city: page.citySlug,
-  }));
 }
 
 export function resolveAsphaltCityPage(citySlug: string) {
@@ -956,8 +951,4 @@ export function resolveAsphaltCityPage(citySlug: string) {
   };
 
   return { page, city, hasServiceAreaPage: Boolean(priorityCity) };
-}
-
-export function getAsphaltCityPeers(citySlug: string) {
-  return asphaltCityPages.filter((page) => page.citySlug !== citySlug);
 }

@@ -6,7 +6,10 @@ import {
   contentLastUpdated,
 } from "@/lib/site-data";
 import { cityServicePages, cityServiceHref } from "@/lib/city-service-data";
-import { asphaltCityPages, asphaltCityHref } from "@/lib/asphalt-city-pages";
+import {
+  asphaltCityIndex,
+  asphaltCityHref,
+} from "@/lib/asphalt-city-index";
 import { caseStudies, hasCaseStudies } from "@/lib/projects-data";
 import { hasPublishableCredentials } from "@/lib/credentials-data";
 
@@ -69,7 +72,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }));
 
-  const asphaltCityRoutes: MetadataRoute.Sitemap = asphaltCityPages.map(
+  const asphaltCityRoutes: MetadataRoute.Sitemap = asphaltCityIndex.map(
     (page) => ({
       url: `${siteConfig.url}${asphaltCityHref(page.citySlug)}`,
       lastModified,

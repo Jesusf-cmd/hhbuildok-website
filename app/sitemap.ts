@@ -6,6 +6,7 @@ import {
   contentLastUpdated,
 } from "@/lib/site-data";
 import { cityServicePages, cityServiceHref } from "@/lib/city-service-data";
+import { asphaltCityPages, asphaltCityHref } from "@/lib/asphalt-city-pages";
 import { caseStudies, hasCaseStudies } from "@/lib/projects-data";
 import { hasPublishableCredentials } from "@/lib/credentials-data";
 
@@ -59,12 +60,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const cityServiceRoutes: MetadataRoute.Sitemap = cityServicePages.map(
-    (entry) => ({
+  const cityServiceRoutes: MetadataRoute.Sitemap = cityServicePages
+    .filter((entry) => entry.serviceSlug !== "asphalt-paving")
+    .map((entry) => ({
       url: `${siteConfig.url}${cityServiceHref(entry.citySlug, entry.serviceSlug)}`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.7,
+    }));
+
+  const asphaltCityRoutes: MetadataRoute.Sitemap = asphaltCityPages.map(
+    (page) => ({
+      url: `${siteConfig.url}${asphaltCityHref(page.citySlug)}`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
     }),
   );
 
@@ -104,6 +114,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...serviceRoutes,
     ...cityRoutes,
     ...cityServiceRoutes,
+    ...asphaltCityRoutes,
     ...projectsIndex,
     ...projectRoutes,
     ...certificationsRoute,

@@ -30,7 +30,7 @@ export const emailHref =
 // Bump when page content meaningfully changes. Stamping sitemap entries with a
 // fresh Date on every build makes every URL claim it just changed, which search
 // engines learn to distrust.
-export const contentLastUpdated = "2026-08-20";
+export const contentLastUpdated = "2026-08-27";
 
 export const nap = {
   name: siteConfig.name,

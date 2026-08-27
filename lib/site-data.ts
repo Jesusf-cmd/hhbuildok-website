@@ -8,7 +8,7 @@ export const siteConfig = {
   phoneTel: "4054765476",
   // E.164 for structured data and tel: links; mobile dialers match this best.
   phoneE164: "+14054765476",
-  email: "info@hhbuildok.com",
+  email: "logan@hhbuildok.com",
   address: {
     street: "770 W Rock Creek",
     suite: "#115",

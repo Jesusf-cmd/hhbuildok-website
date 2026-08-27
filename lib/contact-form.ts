@@ -1,3 +1,5 @@
+import { siteConfig } from "@/lib/site-data";
+
 export const PROJECT_TYPES = [
   { value: "concrete", label: "Concrete Construction" },
   { value: "asphalt", label: "Asphalt Paving" },
@@ -172,7 +174,7 @@ export function buildAutoReplyBody(name: string) {
     "If your project is urgent, call us directly at 405-476-5476.",
     "",
     "— H&H Construction",
-    "info@hhbuildok.com",
+    siteConfig.email,
     "770 W Rock Creek #115, Norman, OK 73069",
   ].join("\n");
 }

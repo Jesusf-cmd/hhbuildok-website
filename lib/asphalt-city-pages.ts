@@ -554,103 +554,132 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     citySlug: "yukon",
     h1: "Commercial Asphalt Paving in Yukon, OK",
     metaTitle:
-      "Asphalt Paving Yukon OK | Commercial Parking Lot Paving | H&H Construction",
+      "Asphalt Paving Yukon OK | Commercial Paving Contractor | H&H Construction",
     metaDescription:
-      "H&H Construction provides commercial asphalt paving and parking lot construction in Yukon, OK — overlays, heavy-traffic retail lots, and pavement maintenance along I-40 and Garth Brooks Boulevard.",
+      "H&H Construction provides commercial asphalt paving, parking lot construction, mill-and-overlay, and pavement maintenance in Yukon, OK. Serving developers, retail centers, and new commercial growth. Request a bid today.",
     heroLead:
-      "Commercial parking lot paving, mill-and-overlay, and high-traffic retail asphalt work for Yukon's I-40 and Garth Brooks Boulevard growth corridor.",
-    introHeading: "High-Traffic Commercial Asphalt for Yukon Retail",
+      "Commercial parking lot paving, mill-and-overlay resurfacing, full-depth reconstruction, and pavement maintenance for Yukon retail centers, growth-corridor pads, and commercial sites along I-40 and the Kilpatrick Turnpike.",
+    introHeading:
+      "Commercial Asphalt Paving for One of Oklahoma's Fastest-Growing Suburbs",
     intro: [
-      "Yukon parking lots take real traffic. The I-40 and Garth Brooks trade area sees heavy daily volume through national retail and restaurants, which means drainage, section thickness, and striping layout are not cosmetic details — they decide whether the commercial lot lasts or alligators in the drive aisles.",
-      "H&H Construction builds and rehabilitates commercial asphalt paving across Yukon: new lots, overlays, full-depth repair, and pavement maintenance for west-metro retail, medical, and growth sites.",
+      "Yukon is one of the fastest-growing cities in the Oklahoma City metro, with population climbing 16.8% since 2020 to reach nearly 27,600 residents. Positioned along I-40 and the Kilpatrick Turnpike — and anchored by high-traffic retail along corridors like Garth Brooks Boulevard — Yukon's growth is bringing new commercial development to a city that's rapidly outgrowing its small-town reputation. That growth means new commercial parking lots, new commercial roadways, and a steady need for paving contractors who can keep pace. H&H Construction provides the commercial asphalt paving — from new hot-mix installation and mill-and-overlay resurfacing to full-depth reconstruction and ongoing pavement maintenance — that supports Yukon's expansion.",
+      "Whether you're developing retail along the I-40 corridor or building out a new commercial site tied to Yukon's residential growth, we scope every project around the city's traffic patterns, clay soils, and long-term durability needs — not residential driveway standards stretched across a commercial lot.",
     ],
-    servicesHeading: "Commercial Asphalt Services in Yukon",
+    servicesHeading: "Our Commercial Asphalt Paving Services in Yukon",
     services: [
       {
-        title: "Retail Parking Lot Construction",
-        body: "Full-depth commercial asphalt designed for high daily turnover along Yukon's primary retail corridors.",
+        title: "New Commercial Asphalt Installation",
+        body: "Full commercial paving packages for new retail centers, office pads, and mixed-use developments — including excavation, grading, aggregate base preparation, and hot-mix finish paving coordinated with your general contractor's schedule.",
       },
       {
-        title: "Mill-and-Overlay & Full-Depth Repair",
-        body: "Resurfacing for worn commercial lots with sound base; reconstruction where heavy traffic has already broken the section.",
+        title: "Commercial Parking Lot Construction & Reconstruction",
+        body: "New commercial parking lot construction and full-depth reconstruction for aging or failed pavement, built for proper drainage, ADA accessibility, and the higher daily turnover Yukon retail corridors actually see.",
       },
       {
-        title: "Medical & Mixed-Use Lot Paving",
-        body: "Commercial paving for clinics and mixed-use pads that need clean access and durable drive lanes.",
+        title: "Asphalt Overlays, Mill-and-Overlay & Resurfacing",
+        body: "Commercial resurfacing for parking lots and private roads where the base is intact but the wearing surface has oxidized or deteriorated — extending pavement life without a full rebuild. We will tell you when mill-and-overlay is the wrong answer because the base has already failed.",
       },
       {
-        title: "Maintenance, Patching & Striping",
-        body: "Pothole repair, crack sealing, sealcoat, and commercial striping refreshes that keep busy Yukon lots presentable and safe.",
+        title: "Full-Depth Reconstruction",
+        body: "Structural rebuilds where alligator cracking, pumping, or failed base mean an overlay would only buy a short season of appearance under Yukon's growth-driven traffic increases.",
+      },
+      {
+        title: "Patching, Pothole Repair & Pavement Maintenance",
+        body: "Responsive full-depth patches for cracking, potholes, and localized damage, plus crack sealing and sealcoat maintenance where the commercial section is still sound — before distress becomes a larger liability or drainage issue.",
+      },
+      {
+        title: "Striping, Layout & ADA Marking",
+        body: "ADA-compliant commercial striping, stall layout, van-accessible access aisles, directional markings, and fire-lane designation for new construction and resurfaced Yukon lots.",
       },
     ],
-    climateHeading: "Why Yukon Lots Need More Than a Thin Overlay",
+    climateHeading: "Paving Built for Yukon's Soil and Climate",
     climate: [
-      "West-metro heat, clay influence, and constant retail traffic punish weak commercial sections. Birdbaths and soft base prep show up first in the aisles that every customer and delivery truck uses.",
-      "Occupied Yukon centers need phased commercial paving so restaurants and national retailers stay open while failed areas come out and new hot-mix goes down.",
+      "Yukon sits on the same clay-heavy soil found across central Oklahoma, which expands and contracts with seasonal moisture and puts real stress on commercial asphalt that isn't properly graded, drained, and compacted before paving. Combined with hot summers and winter freeze-thaw cycles, a poorly prepared base is the most common reason commercial lots crack and rut within a few years.",
+      "We build every base in Yukon to account for local soil behavior, drainage needs, and expected traffic loading before hot-mix goes down — which protects your commercial investment for the long term as corridor volume keeps climbing.",
     ],
-    audiencesHeading: "Who We Serve in Yukon",
+    audiencesHeading: "Who We Serve with Commercial Asphalt in Yukon",
     audiences: [
       {
-        title: "Retail Developers",
-        body: "New commercial parking lots timed to I-40 corridor openings and pad delivery.",
+        title: "Developers & General Contractors",
+        body: "Site work and commercial paving packages coordinated with your project timeline for new retail and commercial development along Yukon's I-40 and Kilpatrick growth corridors.",
       },
       {
-        title: "Property Managers",
-        body: "Overlays and maintenance on high-traffic Yukon shopping centers.",
+        title: "Retail & Commercial Property Owners",
+        body: "New commercial parking lot construction, mill-and-overlay, striping refreshes, and ongoing pavement maintenance for shopping centers and standalone commercial buildings that cannot afford early aisle failure.",
       },
       {
-        title: "Medical & Hospitality Owners",
-        body: "Phased asphalt work that protects patient and guest access.",
+        title: "HOAs & Residential Developments",
+        body: "Private roadway paving, resurfacing, and repair for the new residential communities driving Yukon's population growth — built with commercial-grade asphalt sections and drainage that still decide how long the pavement lasts.",
       },
       {
-        title: "General Contractors",
-        body: "Commercial paving coordinated with site concrete on Canadian County growth sites.",
+        title: "School Districts",
+        body: "Commercial parking lots, bus lanes, and campus paving scoped to minimize disruption to school schedules and finish inside academic calendar windows.",
+      },
+      {
+        title: "Municipal & Public Projects",
+        body: "Roadway, parking, and public-facility asphalt paving delivered to City of Yukon and Canadian County specifications.",
       },
     ],
-    localPartnerHeading: "West-Metro Commercial Paving from H&H",
+    localPartnerHeading: "A Metro Contractor Ready for Yukon's Growth",
     localPartner: [
-      "From Norman, Yukon is a west-metro commercial paving run we coordinate regularly across the Oklahoma City side — close enough for hot-mix quality and same-week punch response.",
-      "When Yukon packages include concrete pads or a metal building shell, H&H can keep those trades on one schedule.",
+      "H&H Construction is based in Norman and works throughout the Oklahoma City metro, including Yukon, as the city's commercial footprint continues to expand. We understand that growing cities like Yukon need commercial paving contractors who can move quickly and deliver consistent quality as new development comes online — that's exactly the kind of work we're built for.",
+      "We work directly with developers, general contractors, property owners, and municipal staff, starting every project with a full evaluation of soil, drainage, existing pavement structure, and traffic conditions before providing a detailed commercial asphalt bid.",
     ],
-    processHeading: "Yukon Commercial Paving Process",
+    processHeading: "Our Commercial Asphalt Paving Process",
     process: [
       {
-        title: "Traffic & Drainage Review",
-        body: "We size commercial sections for real Yukon retail volume and fix ponding before paving over it.",
+        title: "Site Evaluation",
+        body: "We assess soil type, drainage, existing pavement condition, and expected commercial traffic — including whether drive aisles need a heavier section than stall areas — before quoting a project.",
       },
       {
-        title: "Scope & Phasing",
-        body: "Written mill, base, and paving plan that keeps storefronts open.",
+        title: "Detailed Proposal",
+        body: "A written commercial asphalt scope covering mill-and-overlay versus full-depth reconstruction, base preparation, hot-mix specifications, timeline, and cost, specific to your Yukon site.",
       },
       {
-        title: "Hot-Mix Placement",
-        body: "Commercial asphalt compacted to density with joints built to shed water.",
+        title: "Base Preparation",
+        body: "Excavation, grading, and compaction done to spec — the step that determines how well commercial pavement holds up under Yukon's growth-driven traffic increases.",
       },
       {
-        title: "Stripe & Open",
-        body: "ADA stalls, fire lanes, and directional marking before full reopening.",
+        title: "Paving & Finishing",
+        body: "Hot-mix asphalt installed to the designed thickness and compacted while the mat is still hot, matched to the application — retail parking lot, private roadway, or campus drive.",
+      },
+      {
+        title: "Striping & Walkthrough",
+        body: "Code-compliant commercial striping, ADA verification, fire-lane marking, and a final walkthrough before the project is complete.",
       },
     ],
     faqs: [
       {
-        question: "Do you pave high-traffic retail lots in Yukon?",
+        question: "How long does a commercial paving project take in Yukon?",
         answer:
-          "Yes. Commercial parking lot paving along I-40 and Garth Brooks Boulevard is designed for daily retail volume, not residential driveway standards.",
+          "Most standard commercial parking lots take one to two weeks from mobilization to finished striping. New-construction commercial paving is typically scheduled to align with the broader project timeline. Full-depth reconstruction can take longer than mill-and-overlay when the base has failed.",
       },
       {
-        question: "Can you overlay a Yukon shopping center in phases?",
+        question:
+          "Is Yukon's rapid growth affecting how pavement should be built?",
         answer:
-          "Yes. Mill-and-overlay and reconstruction are commonly sequenced so tenants keep parking and deliveries.",
+          "Yes, in a practical sense — more traffic on newer roads and commercial lots means base preparation and material choice matter even more, since undersized or poorly prepared pavement will show wear faster under increasing use.",
       },
       {
-        question: "Do you include striping with commercial paving?",
+        question: "Do you work with HOAs on private road paving?",
         answer:
-          "Yes. New and resurfaced Yukon lots typically include ADA-compliant commercial striping and fire-lane marking.",
+          "Yes. We regularly handle private road paving, resurfacing, and repair for residential communities and HOAs across Yukon's growing neighborhoods, using commercial-grade asphalt sections and drainage details.",
+      },
+      {
+        question:
+          "When is mill-and-overlay the wrong answer for a Yukon parking lot?",
+        answer:
+          "When cracking is load-related or the base has failed. An overlay over a moving base reflects the same cracks through within a season or two. We evaluate that on site before recommending resurfacing versus full-depth commercial reconstruction.",
+      },
+      {
+        question: "Can you pave a Yukon retail center without closing it?",
+        answer:
+          "Usually yes. We phase commercial mill-and-overlay and reconstruction section by section so storefronts, restaurants, and deliveries keep operating.",
       },
     ],
-    ctaHeading: "Request a Commercial Asphalt Bid in Yukon",
+    ctaHeading: "Request a Commercial Asphalt Paving Bid in Yukon",
     ctaBody:
-      "Planning commercial parking lot paving in Yukon? Call 405-476-5476 or request a bid online from H&H Construction.",
+      "If you have a commercial paving project in Yukon — new parking lot construction, mill-and-overlay, resurfacing, or a lot in need of repair — H&H Construction is ready to scope it and provide a competitive bid. Call 405-476-5476 or submit a bid request online. We serve Yukon and the surrounding Oklahoma City metro, including Oklahoma City, Edmond, Mustang, and beyond.",
   },
 
   {

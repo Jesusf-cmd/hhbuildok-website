@@ -13,6 +13,9 @@
 			"name": "EMAIL"
 		}
 	],
+	"vars": {
+		"NEXT_PUBLIC_SITE_ENV": "production"
+	},
 	"assets": {
 		"directory": ".open-next/assets",
 		"binding": "ASSETS"

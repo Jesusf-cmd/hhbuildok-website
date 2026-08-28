@@ -3,10 +3,10 @@
 import { useId, useState, type FormEvent } from "react";
 import { nap } from "@/lib/site-data";
 import {
-  PROJECT_TYPES,
-  REFERRAL_SOURCES,
-  TIMELINES,
+  CONTACT_FORM_ACCEPT,
+  CONTACT_FORM_MAX_FILES,
   initialContactFormValues,
+  validateContactAttachments,
   validateContactForm,
   type ContactFormField,
   type ContactFormValues,
@@ -34,15 +34,35 @@ function formatPhoneInput(value: string) {
   return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
 }
 
+function formatFileList(files: File[]) {
+  if (files.length === 0) {
+    return null;
+  }
+
+  if (files.length === 1) {
+    return files[0].name;
+  }
+
+  return `${files.length} files selected`;
+}
+
 type FieldProps = {
   id: string;
   label: string;
   error?: string;
   required?: boolean;
+  optional?: boolean;
   children: React.ReactNode;
 };
 
-function Field({ id, label, error, required = false, children }: FieldProps) {
+function Field({
+  id,
+  label,
+  error,
+  required = false,
+  optional = false,
+  children,
+}: FieldProps) {
   const errorId = `${id}-error`;
 
   return (
@@ -53,6 +73,11 @@ function Field({ id, label, error, required = false, children }: FieldProps) {
           <span className="text-accent" aria-hidden="true">
             {" "}
             *
+          </span>
+        ) : null}
+        {optional ? (
+          <span className="ml-2 text-xs font-normal normal-case tracking-normal text-text-muted">
+            (optional)
           </span>
         ) : null}
       </label>
@@ -69,9 +94,11 @@ function Field({ id, label, error, required = false, children }: FieldProps) {
 export function ContactForm() {
   const formId = useId();
   const [values, setValues] = useState<ContactFormValues>(initialContactFormValues);
+  const [projectDocs, setProjectDocs] = useState<File[]>([]);
   const [errors, setErrors] = useState<Partial<Record<ContactFormField, string>>>(
     {},
   );
+  const [fileError, setFileError] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
     "idle",
   );
@@ -89,12 +116,23 @@ export function ContactForm() {
     }
   }
 
+  function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const files = Array.from(event.target.files ?? []);
+    const attachmentError = validateContactAttachments(files);
+
+    setProjectDocs(files);
+    setFileError(attachmentError ?? "");
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const validationErrors = validateContactForm(values);
-    if (Object.keys(validationErrors).length > 0) {
+    const attachmentError = validateContactAttachments(projectDocs);
+
+    if (Object.keys(validationErrors).length > 0 || attachmentError) {
       setErrors(validationErrors);
+      setFileError(attachmentError ?? "");
       setStatus("idle");
       return;
     }
@@ -102,17 +140,32 @@ export function ContactForm() {
     setStatus("submitting");
     setSubmitError("");
 
+    const formData = new FormData();
+    formData.set("name", values.name);
+    formData.set("email", values.email);
+    formData.set("phone", values.phone);
+    formData.set("description", values.description);
+    formData.set("website", values.website);
+
+    for (const file of projectDocs) {
+      formData.append("projectDocs", file);
+    }
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: formData,
       });
 
       if (!response.ok) {
         const payload = (await response.json().catch(() => null)) as
-          | { error?: string }
+          | { error?: string; errors?: Partial<Record<ContactFormField, string>> }
           | null;
+
+        if (payload?.errors) {
+          setErrors(payload.errors);
+        }
+
         throw new Error(payload?.error || "Unable to send your request.");
       }
 
@@ -155,6 +208,7 @@ export function ContactForm() {
       id={formId}
       onSubmit={handleSubmit}
       noValidate
+      encType="multipart/form-data"
       className="rounded-sm border border-border bg-surface p-6 text-left shadow-sm sm:p-8"
       aria-labelledby={`${formId}-title`}
     >
@@ -169,7 +223,7 @@ export function ContactForm() {
         and next steps.
       </p>
 
-      <div className="mt-8 grid gap-6 sm:grid-cols-2">
+      <div className="mt-8 flex flex-col gap-6">
         <Field id={`${formId}-name`} label="Name" error={errors.name} required>
           <input
             id={`${formId}-name`}
@@ -186,29 +240,17 @@ export function ContactForm() {
         </Field>
 
         <Field
-          id={`${formId}-company`}
-          label="Company / Organization"
-          error={errors.company}
+          id={`${formId}-email`}
+          label="Email"
+          error={errors.email}
+          optional
         >
-          <input
-            id={`${formId}-company`}
-            name="company"
-            type="text"
-            autoComplete="organization"
-            value={values.company}
-            onChange={(event) => updateField("company", event.target.value)}
-            className={inputClassName}
-          />
-        </Field>
-
-        <Field id={`${formId}-email`} label="Email" error={errors.email} required>
           <input
             id={`${formId}-email`}
             name="email"
             type="email"
             autoComplete="email"
             inputMode="email"
-            required
             value={values.email}
             onChange={(event) => updateField("email", event.target.value)}
             aria-invalid={Boolean(errors.email)}
@@ -237,114 +279,56 @@ export function ContactForm() {
         </Field>
 
         <Field
-          id={`${formId}-project-type`}
-          label="Project Type"
-          error={errors.projectType}
+          id={`${formId}-description`}
+          label="Project Description"
+          error={errors.description}
           required
         >
-          <select
-            id={`${formId}-project-type`}
-            name="projectType"
+          <textarea
+            id={`${formId}-description`}
+            name="description"
             required
-            value={values.projectType}
-            onChange={(event) => updateField("projectType", event.target.value)}
-            aria-invalid={Boolean(errors.projectType)}
+            rows={5}
+            value={values.description}
+            onChange={(event) => updateField("description", event.target.value)}
+            placeholder="Tell us about the project: location, scope, timeline, and anything else we should know."
+            aria-invalid={Boolean(errors.description)}
             aria-describedby={
-              errors.projectType ? `${formId}-project-type-error` : undefined
+              errors.description ? `${formId}-description-error` : undefined
             }
-            className={inputClassName}
-          >
-            <option value="">Select a project type</option>
-            {PROJECT_TYPES.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </Field>
-
-        <Field
-          id={`${formId}-project-location`}
-          label="Project Location"
-          error={errors.projectLocation}
-          required
-        >
-          <input
-            id={`${formId}-project-location`}
-            name="projectLocation"
-            type="text"
-            required
-            value={values.projectLocation}
-            onChange={(event) =>
-              updateField("projectLocation", event.target.value)
-            }
-            placeholder="City, site address, or general area"
-            aria-invalid={Boolean(errors.projectLocation)}
-            aria-describedby={
-              errors.projectLocation ? `${formId}-project-location-error` : undefined
-            }
-            className={inputClassName}
+            className={`${inputClassName} min-h-32 resize-y`}
           />
         </Field>
 
-        <div className="sm:col-span-2">
-          <Field
-            id={`${formId}-scope`}
-            label="Project Scope / Description"
-            error={errors.scope}
-            required
-          >
-            <textarea
-              id={`${formId}-scope`}
-              name="scope"
-              required
-              rows={5}
-              value={values.scope}
-              onChange={(event) => updateField("scope", event.target.value)}
-              placeholder="Tell us about the project: size, timeline, and any specs you have."
-              aria-invalid={Boolean(errors.scope)}
-              aria-describedby={errors.scope ? `${formId}-scope-error` : undefined}
-              className={`${inputClassName} resize-y min-h-32`}
-            />
-          </Field>
-        </div>
-
-        <Field id={`${formId}-timeline`} label="Timeline" error={errors.timeline}>
-          <select
-            id={`${formId}-timeline`}
-            name="timeline"
-            value={values.timeline}
-            onChange={(event) => updateField("timeline", event.target.value)}
-            className={inputClassName}
-          >
-            <option value="">Select a timeline (optional)</option>
-            {TIMELINES.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </Field>
-
         <Field
-          id={`${formId}-referral`}
-          label="How did you hear about us?"
-          error={errors.referralSource}
+          id={`${formId}-project-docs`}
+          label="Project Docs"
+          error={fileError}
+          optional
         >
-          <select
-            id={`${formId}-referral`}
-            name="referralSource"
-            value={values.referralSource}
-            onChange={(event) => updateField("referralSource", event.target.value)}
-            className={inputClassName}
+          <input
+            id={`${formId}-project-docs`}
+            name="projectDocs"
+            type="file"
+            multiple
+            accept={CONTACT_FORM_ACCEPT}
+            onChange={handleFileChange}
+            aria-invalid={Boolean(fileError)}
+            aria-describedby={
+              fileError ? `${formId}-project-docs-error` : `${formId}-project-docs-help`
+            }
+            className={`${inputClassName} file:mr-4 file:border-0 file:bg-charcoal file:px-4 file:py-2 file:text-sm file:font-semibold file:uppercase file:tracking-wider file:text-surface hover:file:bg-charcoal/90`}
+          />
+          <p
+            id={`${formId}-project-docs-help`}
+            className="mt-2 text-xs leading-relaxed text-text-muted"
           >
-            <option value="">Select one (optional)</option>
-            {REFERRAL_SOURCES.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+            PDF, images, spreadsheets, or zip files. Up to {CONTACT_FORM_MAX_FILES}{" "}
+            files, 4 MB total.
+          </p>
+          {formatFileList(projectDocs) ? (
+            <p className="mt-2 text-sm text-charcoal">{formatFileList(projectDocs)}</p>
+          ) : null}
         </Field>
       </div>
 

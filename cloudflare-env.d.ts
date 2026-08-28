@@ -11,6 +11,13 @@ declare global {
         text?: string;
         html?: string;
         replyTo?: string | { email: string; name?: string };
+        attachments?: Array<{
+          filename: string;
+          type: string;
+          content: string | ArrayBuffer | ArrayBufferView;
+          disposition: "attachment" | "inline";
+          contentId?: string;
+        }>;
       }): Promise<{ messageId?: string }>;
     };
     RESEND_API_KEY?: string;

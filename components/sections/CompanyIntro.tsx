@@ -14,8 +14,8 @@ export function CompanyIntro() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal className="relative aspect-[4/3] w-full overflow-hidden border border-border">
             <Image
-              src="/images/stock/company-intro-team-site.jpg"
-              alt="H&H Construction team and commercial job site photo"
+              src="/images/asphalt/driveway-culvert-replacement-asphalt-patch-oklahoma.jpg"
+              alt="H&H Construction crew replacing a culvert and patching asphalt on a driveway in Oklahoma"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"

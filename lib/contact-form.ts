@@ -1,52 +1,33 @@
 import { siteConfig } from "@/lib/site-data";
 
-export const PROJECT_TYPES = [
-  { value: "concrete", label: "Concrete Construction" },
-  { value: "asphalt", label: "Asphalt Paving" },
-  { value: "metal-buildings", label: "Metal Buildings & Roofing" },
-  { value: "multiple", label: "Not Sure — Multiple Services" },
-] as const;
+export const CONTACT_FORM_ACCEPT =
+  ".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.txt,.zip";
 
-export const TIMELINES = [
-  { value: "asap", label: "ASAP" },
-  { value: "30-days", label: "Within 30 Days" },
-  { value: "1-3-months", label: "1–3 Months" },
-  { value: "planning", label: "Planning Stage" },
-  { value: "not-sure", label: "Not Sure" },
-] as const;
-
-export const REFERRAL_SOURCES = [
-  { value: "referral", label: "Referral" },
-  { value: "google", label: "Google Search" },
-  { value: "existing-client", label: "Existing Client" },
-  { value: "other", label: "Other" },
-] as const;
+export const CONTACT_FORM_MAX_FILES = 5;
+export const CONTACT_FORM_MAX_FILE_BYTES = 4 * 1024 * 1024;
+export const CONTACT_FORM_MAX_TOTAL_ATTACHMENT_BYTES = 4 * 1024 * 1024;
 
 export type ContactFormValues = {
   name: string;
-  company: string;
   email: string;
   phone: string;
-  projectType: string;
-  projectLocation: string;
-  scope: string;
-  timeline: string;
-  referralSource: string;
+  description: string;
   website: string;
 };
 
 export type ContactFormField = keyof ContactFormValues;
 
+export type ContactFormAttachment = {
+  filename: string;
+  type: string;
+  content: ArrayBuffer;
+};
+
 export const initialContactFormValues: ContactFormValues = {
   name: "",
-  company: "",
   email: "",
   phone: "",
-  projectType: "",
-  projectLocation: "",
-  scope: "",
-  timeline: "",
-  referralSource: "",
+  description: "",
   website: "",
 };
 
@@ -58,27 +39,6 @@ function normalizePhoneDigits(phone: string) {
     return digits.slice(1);
   }
   return digits;
-}
-
-function labelForValue<T extends { value: string; label: string }>(
-  options: readonly T[],
-  value: string,
-) {
-  return options.find((option) => option.value === value)?.label ?? value;
-}
-
-export function formatProjectType(value: string) {
-  return labelForValue(PROJECT_TYPES, value);
-}
-
-export function formatTimeline(value: string) {
-  if (!value) return "Not provided";
-  return labelForValue(TIMELINES, value);
-}
-
-export function formatReferralSource(value: string) {
-  if (!value) return "Not provided";
-  return labelForValue(REFERRAL_SOURCES, value);
 }
 
 export function validateContactForm(
@@ -94,9 +54,7 @@ export function validateContactForm(
   }
 
   const email = values.email.trim();
-  if (!email) {
-    errors.email = "Email is required.";
-  } else if (!EMAIL_PATTERN.test(email)) {
+  if (email && !EMAIL_PATTERN.test(email)) {
     errors.email = "Enter a valid email address.";
   }
 
@@ -107,58 +65,76 @@ export function validateContactForm(
     errors.phone = "Enter a valid 10-digit US phone number.";
   }
 
-  if (!values.projectType) {
-    errors.projectType = "Select a project type.";
-  }
-
-  const projectLocation = values.projectLocation.trim();
-  if (!projectLocation) {
-    errors.projectLocation = "Project location is required.";
-  } else if (projectLocation.length < 3) {
-    errors.projectLocation = "Enter the city or site address.";
-  }
-
-  const scope = values.scope.trim();
-  if (!scope) {
-    errors.scope = "Project scope is required.";
-  } else if (scope.length < 20) {
-    errors.scope = "Add a bit more detail so we can qualify your project.";
+  const description = values.description.trim();
+  if (!description) {
+    errors.description = "Project description is required.";
+  } else if (description.length < 10) {
+    errors.description = "Add a bit more detail about your project.";
   }
 
   return errors;
 }
 
+export function validateContactAttachments(
+  files: File[],
+): string | null {
+  if (files.length === 0) {
+    return null;
+  }
+
+  if (files.length > CONTACT_FORM_MAX_FILES) {
+    return `Upload up to ${CONTACT_FORM_MAX_FILES} files.`;
+  }
+
+  let totalBytes = 0;
+
+  for (const file of files) {
+    if (file.size === 0) {
+      return `"${file.name}" is empty.`;
+    }
+
+    if (file.size > CONTACT_FORM_MAX_FILE_BYTES) {
+      return `"${file.name}" is too large. Each file must be under 4 MB.`;
+    }
+
+    totalBytes += file.size;
+  }
+
+  if (totalBytes > CONTACT_FORM_MAX_TOTAL_ATTACHMENT_BYTES) {
+    return "Combined file size must be under 4 MB.";
+  }
+
+  return null;
+}
+
 export function sanitizeContactForm(values: ContactFormValues) {
   return {
     name: values.name.trim(),
-    company: values.company.trim(),
     email: values.email.trim().toLowerCase(),
     phone: values.phone.trim(),
-    projectType: values.projectType,
-    projectLocation: values.projectLocation.trim(),
-    scope: values.scope.trim(),
-    timeline: values.timeline,
-    referralSource: values.referralSource,
+    description: values.description.trim(),
     website: values.website.trim(),
   };
 }
 
-export function buildContactEmailBody(data: ReturnType<typeof sanitizeContactForm>) {
+export function buildContactEmailBody(
+  data: ReturnType<typeof sanitizeContactForm>,
+  attachmentNames: string[],
+) {
   const lines = [
     "New bid request from hhbuildok.com",
     "",
     `Name: ${data.name}`,
-    `Company / Organization: ${data.company || "Not provided"}`,
-    `Email: ${data.email}`,
+    `Email: ${data.email || "Not provided"}`,
     `Phone: ${data.phone}`,
-    `Project Type: ${formatProjectType(data.projectType)}`,
-    `Project Location: ${data.projectLocation}`,
-    `Timeline: ${formatTimeline(data.timeline)}`,
-    `How they heard about us: ${formatReferralSource(data.referralSource)}`,
     "",
-    "Project Scope / Description:",
-    data.scope,
+    "Project Description:",
+    data.description,
   ];
+
+  if (attachmentNames.length > 0) {
+    lines.push("", "Attached files:", ...attachmentNames.map((name) => `- ${name}`));
+  }
 
   return lines.join("\n");
 }
@@ -169,7 +145,7 @@ export function buildAutoReplyBody(name: string) {
     "",
     "Thanks for reaching out to H&H Construction. We received your bid request and will review your project details.",
     "",
-    "A member of our team will follow up within 1–2 business days to discuss scope, location, and next steps.",
+    "A member of our team will follow up within 1–2 business days to discuss scope and next steps.",
     "",
     "If your project is urgent, call us directly at 405-476-5476.",
     "",

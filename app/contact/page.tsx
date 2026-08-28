@@ -18,11 +18,10 @@ export const metadata: Metadata = {
 };
 
 const bidChecklist = [
-  "Project location, or the general area if the site is not final",
-  "Scope and approximate quantities — square footage, tonnage, or building size",
-  "Plans, specs, or a bid package if you have them",
-  "Target schedule, including any hard completion date",
-  "Delivery method and whether prevailing wage applies",
+  "Project location and general scope",
+  "Approximate size or quantities if you know them",
+  "Plans, specs, or photos if you have them",
+  "Target schedule or any hard deadline",
 ];
 
 export default function ContactPage() {

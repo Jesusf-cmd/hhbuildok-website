@@ -148,19 +148,29 @@ export const services = [
     ],
     faqs: [
       {
-        question: "What types of concrete projects does H&H Construction handle?",
+        question: "What types of commercial concrete projects do you handle?",
         answer:
-          "We handle structural and flatwork concrete for commercial buildings, industrial facilities, and public infrastructure — including foundations, slabs, sidewalks, curbs and gutters, retaining walls, and site concrete for parking lots and developments.",
+          "We handle the full range of commercial concrete work — structural foundations and footings, slab-on-grade for warehouses and retail, parking lot and site concrete, loading dock pads, dumpster pads, sidewalks, curbs, gutters, and retaining walls. Our crews adapt to project size and industry requirements, from single-building pads to multi-phase commercial programs where schedule and spec have to hold across every pour.",
       },
       {
-        question: "Do you work on public and municipal concrete projects?",
+        question: "Do you coordinate with general contractors and other trades?",
         answer:
-          "Yes. We work with municipalities and school districts on public infrastructure such as sidewalks, curbs, and facility concrete, coordinating around active operations and public schedules.",
+          "Yes. Commercial concrete usually sits at the center of the site package — before asphalt, before steel, and often alongside underground utilities. We coordinate placement windows, embeds, sleeves, and handoffs with GCs, engineers, and mechanical and electrical trades so foundations and flatwork meet the drawings without holding up the rest of the job.",
       },
       {
-        question: "What areas of Oklahoma do you serve for concrete work?",
+        question: "How do Oklahoma soils and weather affect commercial concrete?",
         answer:
-          "We serve commercial concrete projects across Oklahoma, including the Oklahoma City and Edmond metro areas, Norman, Tulsa, and surrounding communities. Contact us with your project location and scope.",
+          "Central Oklahoma's expansive clay and hard freeze-thaw cycles punish slabs and foundations that are not detailed for local conditions. Subgrade preparation, base thickness, air entrainment, joint layout, and curing are not optional here — they are what keeps a commercial pour from cracking, heaving, or failing inspection after the first season.",
+      },
+      {
+        question: "Do you work on public, municipal, and ADA-regulated concrete?",
+        answer:
+          "Yes. We place sidewalks, curb ramps, accessible routes, and facility flatwork that must meet inspected ADA and municipal standards. Public and institutional work is coordinated around access, inspection, and occupied-site schedules — not just placement speed.",
+      },
+      {
+        question: "How do I request a bid for a commercial concrete project?",
+        answer:
+          "Call 405-476-5476 or submit a bid request through our contact form with your project location, scope, and any plans or specs you have. We review the details, ask the questions that affect price and schedule, and follow up within one to two business days to discuss next steps.",
       },
     ],
   },

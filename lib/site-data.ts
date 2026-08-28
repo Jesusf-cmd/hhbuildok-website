@@ -287,8 +287,9 @@ export const services = [
       "H&H Construction erects pre-engineered metal buildings and installs metal roofing systems for warehouses, industrial facilities, and commercial structures across Oklahoma.",
     heroDescription:
       "H&H Construction erects pre-engineered metal buildings and installs metal roofing systems for warehouses, industrial facilities, and commercial structures across Oklahoma.",
-    image: "/images/stock/service-metal-buildings-roofing.jpg",
-    imageAlt: "metal building and roofing project photo",
+    image: "/images/metal/pre-engineered-metal-building-construction-oklahoma.jpg",
+    imageAlt:
+      "Aerial view of a completed pre-engineered metal building with crew and trucks on site in Oklahoma",
     href: "/services/metal-buildings-roofing",
     scopeItems: [
       "Pre-engineered metal building erection",

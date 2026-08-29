@@ -16,6 +16,7 @@ import {
 } from "@/lib/concrete-service-page";
 import { parkingLotHubHref } from "@/lib/parking-lot-service-page";
 import { foundationsHubHref } from "@/lib/commercial-foundations-page";
+import { metalBuildingsHubHref } from "@/lib/commercial-metal-buildings-page";
 import { caseStudies, hasCaseStudies } from "@/lib/projects-data";
 import { hasPublishableCredentials } from "@/lib/credentials-data";
 
@@ -114,6 +115,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  const metalBuildingsHubRoute: MetadataRoute.Sitemap = [
+    {
+      url: `${siteConfig.url}${metalBuildingsHubHref}`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+  ];
+
   // These routes exist so they can be reviewed on staging, but an empty
   // projects or credentials page is a thin page and is not worth submitting.
   const projectsIndex: MetadataRoute.Sitemap = hasCaseStudies
@@ -154,6 +164,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...concreteCityRoutes,
     ...parkingLotHubRoute,
     ...foundationsHubRoute,
+    ...metalBuildingsHubRoute,
     ...projectsIndex,
     ...projectRoutes,
     ...certificationsRoute,

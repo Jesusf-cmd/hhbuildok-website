@@ -26,8 +26,12 @@ export function Hero() {
             id="hero-heading"
             className="animate-fade-up font-display text-4xl font-extrabold uppercase leading-[1.02] tracking-tight text-charcoal sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            Building Oklahoma&apos;s Commercial Infrastructure
+            Commercial Concrete, Asphalt Paving &amp; Metal Buildings in
+            Oklahoma
           </h1>
+          <p className="animate-fade-up mt-4 font-display text-lg font-bold uppercase tracking-tight text-charcoal/75 sm:text-xl md:text-2xl">
+            Building Oklahoma&apos;s Commercial Infrastructure
+          </p>
           <p className="animate-fade-up animate-delay-100 mt-6 max-w-2xl text-base leading-relaxed text-charcoal/80 sm:text-lg md:text-xl">
             H&amp;H Construction delivers commercial concrete, asphalt paving,
             metal buildings, and roofing for general contractors, developers,

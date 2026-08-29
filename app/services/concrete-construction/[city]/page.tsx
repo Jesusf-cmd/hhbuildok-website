@@ -13,6 +13,7 @@ import {
   getConcreteCityPage,
   concreteCityPageParams,
 } from "@/lib/concrete-city-pages";
+import { withProductionRobots } from "@/lib/production-metadata";
 
 type ConcreteCityPageProps = {
   params: Promise<{ city: string }>;
@@ -38,7 +39,7 @@ export async function generateMetadata({
 
   const path = concreteCityHref(citySlug);
 
-  return {
+  return withProductionRobots({
     title: entry.metaTitle,
     description: entry.metaDescription,
     alternates: { canonical: path },
@@ -47,7 +48,7 @@ export async function generateMetadata({
       description: entry.metaDescription,
       url: path,
     },
-  };
+  });
 }
 
 export default async function ConcreteCityPage({ params }: ConcreteCityPageProps) {

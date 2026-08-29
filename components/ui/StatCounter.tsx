@@ -26,7 +26,7 @@ export function StatCounter({
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, threshold: 0.4 });
   const prefersReducedMotion = usePrefersReducedMotion();
-  const [displayValue, setDisplayValue] = useState(0);
+  const [displayValue, setDisplayValue] = useState(value);
 
   useEffect(() => {
     if (!isInView) {
@@ -37,6 +37,8 @@ export function StatCounter({
       setDisplayValue(value);
       return;
     }
+
+    setDisplayValue(0);
 
     let frameId = 0;
     const start = performance.now();

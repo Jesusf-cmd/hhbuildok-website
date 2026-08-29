@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { serviceAreaCities, priorityCities } from "@/lib/site-data";
+import { serviceAreaCities, serviceAreaCityHref } from "@/lib/site-data";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
@@ -25,28 +25,19 @@ export function ServiceArea() {
               className="mt-10 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3"
               aria-label="Cities and regions served"
             >
-              {serviceAreaCities.map((city) => {
-                const priorityCity = priorityCities.find(
-                  (item) => item.name === city,
-                );
-                return (
-                  <li
-                    key={city}
-                    className="text-sm text-text-muted before:mr-2 before:text-accent before:content-['■']"
+              {serviceAreaCities.map((city) => (
+                <li
+                  key={city}
+                  className="text-sm text-text-muted before:mr-2 before:text-accent before:content-['■']"
+                >
+                  <Link
+                    href={serviceAreaCityHref(city)}
+                    className="underline-offset-2 transition-colors hover:text-accent hover:underline focus-visible:text-accent focus-visible:underline"
                   >
-                    {priorityCity ? (
-                      <Link
-                        href={`/service-area/${priorityCity.slug}`}
-                        className="underline-offset-2 transition-colors hover:text-accent hover:underline focus-visible:text-accent focus-visible:underline"
-                      >
-                        {city}
-                      </Link>
-                    ) : (
-                      city
-                    )}
-                  </li>
-                );
-              })}
+                    {city}
+                  </Link>
+                </li>
+              ))}
             </ul>
             <p className="mt-8 text-sm text-text-muted">
               Don&apos;t see your location listed?{" "}

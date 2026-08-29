@@ -12,18 +12,13 @@ import {
   siteConfig,
   serviceAreaCities,
 } from "@/lib/site-data";
-import { TrustBlock } from "@/components/sections/TrustBlock";
-import {
-  concreteCityHref,
-  concreteHubFaqs,
-  concreteRiskIntro,
-  concreteServiceAreaCities,
-  concreteTrustItems,
-} from "@/lib/concrete-service-page";
+import { withProductionRobots } from "@/lib/production-metadata";
 import {
   cityServiceHref,
   getCityServicesForService,
 } from "@/lib/city-service-data";
+
+const dedicatedServiceSlugs = new Set(["asphalt-paving", "concrete-construction"]);
 
 type ServicePageProps = {
   params: Promise<{ slug: string }>;
@@ -34,9 +29,8 @@ function getService(slug: string) {
 }
 
 export function generateStaticParams() {
-  // Asphalt has a dedicated route at /services/asphalt-paving
   return services
-    .filter((service) => service.slug !== "asphalt-paving")
+    .filter((service) => !dedicatedServiceSlugs.has(service.slug))
     .map((service) => ({ slug: service.slug }));
 }
 
@@ -46,11 +40,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getService(slug);
 
-  if (!service || slug === "asphalt-paving") {
+  if (!service || dedicatedServiceSlugs.has(slug)) {
     return {};
   }
 
-  return {
+  return withProductionRobots({
     title: service.metaTitle,
     description: service.metaDescription,
     alternates: {
@@ -61,13 +55,13 @@ export async function generateMetadata({
       description: service.metaDescription,
       url: service.href,
     },
-  };
+  });
 }
 
 export default async function ServiceDetailPage({ params }: ServicePageProps) {
   const { slug } = await params;
 
-  if (slug === "asphalt-paving") {
+  if (dedicatedServiceSlugs.has(slug)) {
     notFound();
   }
 
@@ -95,12 +89,10 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     url: `${siteConfig.url}${service.href}`,
   };
 
-  const pageFaqs = slug === "concrete-construction" ? concreteHubFaqs : service.faqs;
-
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: pageFaqs.map((faq) => ({
+    mainEntity: service.faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {
@@ -161,44 +153,20 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         </Container>
       </section>
 
-      {slug === "concrete-construction" ? (
-        <TrustBlock items={concreteTrustItems} />
-      ) : null}
-
-      {slug === "concrete-construction" ? (
-        <section className="bg-surface">
-          <Container className="py-16 lg:py-20">
-            <div className="max-w-3xl">
-              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-                {concreteRiskIntro.heading}
-              </h2>
-              {concreteRiskIntro.paragraphs.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-6 sm:text-lg"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </Container>
-        </section>
-      ) : (
-        <section className="bg-surface">
-          <Container className="py-16 lg:py-20">
-            <div className="max-w-3xl">
-              {service.detail.overview.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-0 sm:text-lg"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
+      <section className="bg-surface">
+        <Container className="py-16 lg:py-20">
+          <div className="max-w-3xl">
+            {service.detail.overview.map((paragraph) => (
+              <p
+                key={paragraph}
+                className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-0 sm:text-lg"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </Container>
+      </section>
 
       <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">
@@ -300,45 +268,30 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">
           <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            {slug === "concrete-construction"
-              ? "Service Areas"
-              : "Available in Featured Cities"}
+            Available in Featured Cities
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-            {slug === "concrete-construction"
-              ? "Commercial concrete work across Oklahoma's highest-volume markets — with city-specific pages for local scope, access, and market conditions."
-              : "City-specific pages cover local market conditions, access, and how this trade usually shows up in each place."}
+            City-specific pages cover local market conditions, access, and how
+            this trade usually shows up in each place.
           </p>
           <ul className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-6">
-            {slug === "concrete-construction"
-              ? concreteServiceAreaCities.map((city) => (
-                  <li key={city.slug}>
-                    <Link
-                      href={concreteCityHref(city.slug)}
-                      className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                    >
-                      {city.name}, OK
-                      <span aria-hidden="true">&rarr;</span>
-                    </Link>
-                  </li>
-                ))
-              : getCityServicesForService(service.slug).map((entry) => {
-                  const city = priorityCities.find(
-                    (item) => item.slug === entry.citySlug,
-                  );
-                  if (!city) return null;
-                  return (
-                    <li key={entry.citySlug}>
-                      <Link
-                        href={cityServiceHref(entry.citySlug, service.slug)}
-                        className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                      >
-                        {service.shortTitle} in {city.name}
-                        <span aria-hidden="true">&rarr;</span>
-                      </Link>
-                    </li>
-                  );
-                })}
+            {getCityServicesForService(service.slug).map((entry) => {
+              const city = priorityCities.find(
+                (item) => item.slug === entry.citySlug,
+              );
+              if (!city) return null;
+              return (
+                <li key={entry.citySlug}>
+                  <Link
+                    href={cityServiceHref(entry.citySlug, service.slug)}
+                    className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                  >
+                    {service.shortTitle} in {city.name}
+                    <span aria-hidden="true">&rarr;</span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </Container>
       </section>
@@ -349,7 +302,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             Frequently Asked Questions
           </h2>
           <div className="mt-8 flex flex-col gap-6">
-            {pageFaqs.map((faq) => (
+            {service.faqs.map((faq) => (
               <div key={faq.question} className="border-b border-border pb-6">
                 <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
                   {faq.question}
@@ -369,8 +322,8 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             Discuss Your {service.shortTitle} Project
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Tell us about your project scope and location. Our team will
-            review the details and follow up to discuss next steps.
+            Tell us about your project scope and location. Our team will review
+            the details and follow up to discuss next steps.
           </p>
           <div className="mt-8">
             <Button href="/contact" variant="secondary">

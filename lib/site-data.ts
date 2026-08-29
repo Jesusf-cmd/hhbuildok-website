@@ -518,6 +518,20 @@ export const serviceAreaCities = [
   "Ardmore",
 ] as const;
 
+/** Homepage and footer city list links — featured metros to city pages, others to service area. */
+export function serviceAreaCityHref(cityName: (typeof serviceAreaCities)[number]) {
+  const featured = priorityCities.find((city) => city.name === cityName);
+  if (featured) {
+    return `/service-area/${featured.slug}`;
+  }
+
+  if (cityName === "Tulsa") {
+    return "/services/concrete-construction/tulsa";
+  }
+
+  return "/service-area";
+}
+
 export const priorityCities = [
   {
     slug: "oklahoma-city",

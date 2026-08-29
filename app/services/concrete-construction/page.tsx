@@ -6,15 +6,17 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { services, siteConfig, serviceAreaCities } from "@/lib/site-data";
-import { commercialAsphaltProjectPhotos } from "@/lib/asphalt-gallery-data";
-import { ProjectGallery } from "@/components/sections/ProjectGallery";
-import {
-  asphaltCityIndex,
-  asphaltCityHref,
-} from "@/lib/asphalt-city-index";
+import { TrustBlock } from "@/components/sections/TrustBlock";
 import { withProductionRobots } from "@/lib/production-metadata";
+import {
+  concreteCityHref,
+  concreteHubFaqs,
+  concreteRiskIntro,
+  concreteServiceAreaCities,
+  concreteTrustItems,
+} from "@/lib/concrete-service-page";
 
-const service = services.find((item) => item.slug === "asphalt-paving")!;
+const service = services.find((item) => item.slug === "concrete-construction")!;
 
 export const metadata: Metadata = withProductionRobots({
   title: service.metaTitle,
@@ -29,7 +31,7 @@ export const metadata: Metadata = withProductionRobots({
   },
 });
 
-export default function AsphaltServicePage() {
+export default function ConcreteConstructionPage() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -51,27 +53,12 @@ export default function AsphaltServicePage() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: service.faqs.map((faq) => ({
+    mainEntity: concreteHubFaqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {
         "@type": "Answer",
         text: faq.answer,
-      },
-    })),
-  };
-
-  const imageGallerySchema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Commercial asphalt paving project photos",
-    itemListElement: commercialAsphaltProjectPhotos.map((image, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "ImageObject",
-        contentUrl: `${siteConfig.url}${image.src}`,
-        description: image.alt,
       },
     })),
   };
@@ -85,12 +72,6 @@ export default function AsphaltServicePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(imageGallerySchema),
-        }}
       />
 
       <Breadcrumbs
@@ -133,13 +114,18 @@ export default function AsphaltServicePage() {
         </Container>
       </section>
 
+      <TrustBlock items={concreteTrustItems} />
+
       <section className="bg-surface">
         <Container className="py-16 lg:py-20">
           <div className="max-w-3xl">
-            {service.detail.overview.map((paragraph) => (
+            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              {concreteRiskIntro.heading}
+            </h2>
+            {concreteRiskIntro.paragraphs.map((paragraph) => (
               <p
                 key={paragraph}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-0 sm:text-lg"
+                className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-6 sm:text-lg"
               >
                 {paragraph}
               </p>
@@ -147,13 +133,6 @@ export default function AsphaltServicePage() {
           </div>
         </Container>
       </section>
-
-      <ProjectGallery
-        id="project-photos"
-        heading="Recent Asphalt Projects"
-        description="Real commercial and industrial paving work across Oklahoma — milling, new paving, overlays, patching, and parking lot rehabilitation."
-        images={commercialAsphaltProjectPhotos}
-      />
 
       <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">
@@ -255,20 +234,21 @@ export default function AsphaltServicePage() {
       <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">
           <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            Available in Featured Cities
+            Service Areas
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-            City-specific pages cover local market conditions, access, and how
-            this trade usually shows up in each place.
+            Commercial concrete work across Oklahoma&apos;s highest-volume markets
+            — with city-specific pages for local scope, access, and market
+            conditions.
           </p>
           <ul className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-6">
-            {asphaltCityIndex.map((page) => (
-              <li key={page.citySlug}>
+            {concreteServiceAreaCities.map((city) => (
+              <li key={city.slug}>
                 <Link
-                  href={asphaltCityHref(page.citySlug)}
+                  href={concreteCityHref(city.slug)}
                   className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
                 >
-                  {service.shortTitle} in {page.cityName}
+                  {city.name}, OK
                   <span aria-hidden="true">&rarr;</span>
                 </Link>
               </li>
@@ -283,7 +263,7 @@ export default function AsphaltServicePage() {
             Frequently Asked Questions
           </h2>
           <div className="mt-8 flex flex-col gap-6">
-            {service.faqs.map((faq) => (
+            {concreteHubFaqs.map((faq) => (
               <div key={faq.question} className="border-b border-border pb-6">
                 <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
                   {faq.question}

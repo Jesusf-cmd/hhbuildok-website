@@ -32,6 +32,11 @@ contract, which removes the coordination burden from the general contractor.
   Asphalt or concrete lot construction and reconstruction, site concrete,
   curb and gutter, approaches, striping, ADA flatwork, and Division 32
   exterior improvements for commercial properties across Oklahoma.
+- [Commercial Foundations](https://hhbuildok.com/services/commercial-foundations):
+  Spread footings, stem walls, slab-on-grade, structural slabs, equipment
+  pads, anchor bolt layouts for metal buildings, and Division 03 structural
+  concrete for warehouses, retail, medical, and institutional projects
+  across Oklahoma.
 - [Metal Buildings & Roofing](https://hhbuildok.com/services/metal-buildings-roofing):
   Pre-engineered metal building erection, warehouse and industrial facility
   structures, commercial metal roofing systems, and building shells.

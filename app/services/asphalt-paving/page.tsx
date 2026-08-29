@@ -1,82 +1,34 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { services, siteConfig, serviceAreaCities } from "@/lib/site-data";
+import { commercialAsphaltProjectPhotos } from "@/lib/asphalt-gallery-data";
+import { ProjectGallery } from "@/components/sections/ProjectGallery";
 import {
-  priorityCities,
-  services,
-  siteConfig,
-  serviceAreaCities,
-} from "@/lib/site-data";
-import { TrustBlock } from "@/components/sections/TrustBlock";
-import {
-  concreteCityHref,
-  concreteHubFaqs,
-  concreteRiskIntro,
-  concreteServiceAreaCities,
-  concreteTrustItems,
-} from "@/lib/concrete-service-page";
-import {
-  cityServiceHref,
-  getCityServicesForService,
-} from "@/lib/city-service-data";
+  asphaltCityIndex,
+  asphaltCityHref,
+} from "@/lib/asphalt-city-index";
 
-type ServicePageProps = {
-  params: Promise<{ slug: string }>;
-};
+const service = services.find((item) => item.slug === "asphalt-paving")!;
 
-function getService(slug: string) {
-  return services.find((service) => service.slug === slug);
-}
-
-export function generateStaticParams() {
-  // Asphalt has a dedicated route at /services/asphalt-paving
-  return services
-    .filter((service) => service.slug !== "asphalt-paving")
-    .map((service) => ({ slug: service.slug }));
-}
-
-export async function generateMetadata({
-  params,
-}: ServicePageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const service = getService(slug);
-
-  if (!service || slug === "asphalt-paving") {
-    return {};
-  }
-
-  return {
+export const metadata: Metadata = {
+  title: service.metaTitle,
+  description: service.metaDescription,
+  alternates: {
+    canonical: service.href,
+  },
+  openGraph: {
     title: service.metaTitle,
     description: service.metaDescription,
-    alternates: {
-      canonical: service.href,
-    },
-    openGraph: {
-      title: service.metaTitle,
-      description: service.metaDescription,
-      url: service.href,
-    },
-  };
-}
+    url: service.href,
+  },
+};
 
-export default async function ServiceDetailPage({ params }: ServicePageProps) {
-  const { slug } = await params;
-
-  if (slug === "asphalt-paving") {
-    notFound();
-  }
-
-  const service = getService(slug);
-
-  if (!service) {
-    notFound();
-  }
-
+export default function AsphaltServicePage() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -95,17 +47,30 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     url: `${siteConfig.url}${service.href}`,
   };
 
-  const pageFaqs = slug === "concrete-construction" ? concreteHubFaqs : service.faqs;
-
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: pageFaqs.map((faq) => ({
+    mainEntity: service.faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {
         "@type": "Answer",
         text: faq.answer,
+      },
+    })),
+  };
+
+  const imageGallerySchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Commercial asphalt paving project photos",
+    itemListElement: commercialAsphaltProjectPhotos.map((image, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "ImageObject",
+        contentUrl: `${siteConfig.url}${image.src}`,
+        description: image.alt,
       },
     })),
   };
@@ -119,6 +84,12 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(imageGallerySchema),
+        }}
       />
 
       <Breadcrumbs
@@ -161,44 +132,27 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         </Container>
       </section>
 
-      {slug === "concrete-construction" ? (
-        <TrustBlock items={concreteTrustItems} />
-      ) : null}
+      <section className="bg-surface">
+        <Container className="py-16 lg:py-20">
+          <div className="max-w-3xl">
+            {service.detail.overview.map((paragraph) => (
+              <p
+                key={paragraph}
+                className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-0 sm:text-lg"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </Container>
+      </section>
 
-      {slug === "concrete-construction" ? (
-        <section className="bg-surface">
-          <Container className="py-16 lg:py-20">
-            <div className="max-w-3xl">
-              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-                {concreteRiskIntro.heading}
-              </h2>
-              {concreteRiskIntro.paragraphs.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-6 sm:text-lg"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </Container>
-        </section>
-      ) : (
-        <section className="bg-surface">
-          <Container className="py-16 lg:py-20">
-            <div className="max-w-3xl">
-              {service.detail.overview.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-0 sm:text-lg"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
+      <ProjectGallery
+        id="project-photos"
+        heading="Recent Asphalt Projects"
+        description="Real commercial and industrial paving work across Oklahoma — milling, new paving, overlays, patching, and parking lot rehabilitation."
+        images={commercialAsphaltProjectPhotos}
+      />
 
       <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">
@@ -300,45 +254,24 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">
           <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            {slug === "concrete-construction"
-              ? "Service Areas"
-              : "Available in Featured Cities"}
+            Available in Featured Cities
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-            {slug === "concrete-construction"
-              ? "Commercial concrete work across Oklahoma's highest-volume markets — with city-specific pages for local scope, access, and market conditions."
-              : "City-specific pages cover local market conditions, access, and how this trade usually shows up in each place."}
+            City-specific pages cover local market conditions, access, and how
+            this trade usually shows up in each place.
           </p>
           <ul className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-6">
-            {slug === "concrete-construction"
-              ? concreteServiceAreaCities.map((city) => (
-                  <li key={city.slug}>
-                    <Link
-                      href={concreteCityHref(city.slug)}
-                      className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                    >
-                      {city.name}, OK
-                      <span aria-hidden="true">&rarr;</span>
-                    </Link>
-                  </li>
-                ))
-              : getCityServicesForService(service.slug).map((entry) => {
-                  const city = priorityCities.find(
-                    (item) => item.slug === entry.citySlug,
-                  );
-                  if (!city) return null;
-                  return (
-                    <li key={entry.citySlug}>
-                      <Link
-                        href={cityServiceHref(entry.citySlug, service.slug)}
-                        className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                      >
-                        {service.shortTitle} in {city.name}
-                        <span aria-hidden="true">&rarr;</span>
-                      </Link>
-                    </li>
-                  );
-                })}
+            {asphaltCityIndex.map((page) => (
+              <li key={page.citySlug}>
+                <Link
+                  href={asphaltCityHref(page.citySlug)}
+                  className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                >
+                  {service.shortTitle} in {page.cityName}
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </li>
+            ))}
           </ul>
         </Container>
       </section>
@@ -349,7 +282,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             Frequently Asked Questions
           </h2>
           <div className="mt-8 flex flex-col gap-6">
-            {pageFaqs.map((faq) => (
+            {service.faqs.map((faq) => (
               <div key={faq.question} className="border-b border-border pb-6">
                 <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
                   {faq.question}
@@ -369,8 +302,8 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             Discuss Your {service.shortTitle} Project
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Tell us about your project scope and location. Our team will
-            review the details and follow up to discuss next steps.
+            Tell us about your project scope and location. Our team will review
+            the details and follow up to discuss next steps.
           </p>
           <div className="mt-8">
             <Button href="/contact" variant="secondary">

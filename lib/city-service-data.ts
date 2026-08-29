@@ -797,10 +797,13 @@ export function getCityService(citySlug: string, serviceSlug: string) {
 }
 
 export function getCityServiceParams() {
-  return cityServicePages.map((entry) => ({
-    slug: entry.citySlug,
-    service: entry.serviceSlug,
-  }));
+  // Asphalt city landings live at /services/asphalt-paving/[city].
+  return cityServicePages
+    .filter((entry) => entry.serviceSlug !== "asphalt-paving")
+    .map((entry) => ({
+      slug: entry.citySlug,
+      service: entry.serviceSlug,
+    }));
 }
 
 export function getCityServicesForCity(citySlug: string) {
@@ -812,6 +815,10 @@ export function getCityServicesForService(serviceSlug: string) {
 }
 
 export function cityServiceHref(citySlug: string, serviceSlug: string) {
+  if (serviceSlug === "asphalt-paving") {
+    return `/services/asphalt-paving/${citySlug}`;
+  }
+
   return `/service-area/${citySlug}/${serviceSlug}`;
 }
 

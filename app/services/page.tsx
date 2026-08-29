@@ -110,8 +110,8 @@ export default function ServicesPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
             Specialty
           </p>
-          <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-12">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="mt-8 grid gap-10 lg:grid-cols-3 lg:gap-8">
+            <div className="flex flex-col gap-6">
               <div className="max-w-xl">
                 <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
                   Commercial Parking Lots
@@ -130,7 +130,7 @@ export default function ServicesPage() {
                 <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-col gap-6">
               <div className="max-w-xl">
                 <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
                   Commercial Foundations
@@ -146,6 +146,25 @@ export default function ServicesPage() {
                 className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
               >
                 View Foundation Services
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
+            <div className="flex flex-col gap-6">
+              <div className="max-w-xl">
+                <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+                  Commercial Metal Buildings
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-charcoal/80">
+                  Pre-engineered metal building erection, red iron framing, and
+                  metal roofing — coordinated with foundation and paving scopes
+                  across Oklahoma.
+                </p>
+              </div>
+              <Link
+                href="/services/commercial-metal-buildings"
+                className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+              >
+                View Metal Building Services
                 <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>

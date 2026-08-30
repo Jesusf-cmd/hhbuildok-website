@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Archivo, Inter } from "next/font/google";
-import { nap, siteConfig, services, serviceAreaCities } from "@/lib/site-data";
+import {
+  nap,
+  siteConfig,
+  services,
+  serviceAreaCities,
+  businessHours,
+} from "@/lib/site-data";
 import { isProductionSite } from "@/lib/site-env";
 import "./globals.css";
 
@@ -70,6 +76,12 @@ export default function RootLayout({
       addressRegion: siteConfig.address.state,
       postalCode: siteConfig.address.zip,
       addressCountry: "US",
+    },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [...businessHours.days],
+      opens: businessHours.opens,
+      closes: businessHours.closes,
     },
     areaServed: [
       { "@type": "State", name: "Oklahoma" },

@@ -30,7 +30,22 @@ export const emailHref =
 // Bump when page content meaningfully changes. Stamping sitemap entries with a
 // fresh Date on every build makes every URL claim it just changed, which search
 // engines learn to distrust.
-export const contentLastUpdated = "2026-08-29";
+export const contentLastUpdated = "2026-08-30";
+
+/** Public office hours — used on Contact page and LocalBusiness schema. */
+export const businessHours = {
+  label: "Monday–Saturday, 8:00 AM – 5:00 PM",
+  days: [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ] as const,
+  opens: "08:00",
+  closes: "17:00",
+} as const;
 
 export const nap = {
   name: siteConfig.name,
@@ -42,6 +57,10 @@ export const nap = {
   mapsQuery: encodeURIComponent(
     `${siteConfig.address.street} ${siteConfig.address.suite}, ${siteConfig.address.city}, ${siteConfig.address.state} ${siteConfig.address.zip}`,
   ),
+  mapsHref: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    `${siteConfig.address.street} ${siteConfig.address.suite}, ${siteConfig.address.city}, ${siteConfig.address.state} ${siteConfig.address.zip}`,
+  )}`,
+  hoursLabel: businessHours.label,
 } as const;
 
 export const navLinks = [

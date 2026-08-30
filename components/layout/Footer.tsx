@@ -90,7 +90,7 @@ export function Footer() {
               <div>
                 <p className="font-medium text-charcoal">{nap.name}</p>
                 <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${nap.mapsQuery}`}
+                  href={nap.mapsHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-1 block transition-colors hover:text-charcoal"

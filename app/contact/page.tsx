@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ContactForm } from "@/components/ContactForm";
 import { nap, serviceAreaCities } from "@/lib/site-data";
 import { PhoneLink } from "@/components/ui/PhoneLink";
@@ -11,7 +10,7 @@ import { EmailLink } from "@/components/ui/EmailLink";
 export const metadata: Metadata = {
   title: "Contact H&H Construction",
   description:
-    "Request a bid for commercial concrete, asphalt paving, or metal building work in Oklahoma. Call 405-476-5476 or send your project scope to H&H Construction in Norman, OK.",
+    "Contact H&H Construction in Norman, OK. Call 405-476-5476, email logan@hhbuildok.com, or request a bid for commercial concrete, asphalt paving, or metal building work.",
   alternates: {
     canonical: "/contact",
   },
@@ -31,12 +30,70 @@ export default function ContactPage() {
 
       <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">
-          <SectionHeading
-            as="h1"
-            eyebrow="Contact"
-            title="Request a Bid"
-            description="Tell us about your commercial concrete, asphalt, or metal building project. Our team reviews the scope and follows up to discuss next steps."
-          />
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
+            Contact
+          </p>
+          <h1 className="font-heading text-3xl font-bold uppercase leading-tight text-charcoal sm:text-4xl lg:text-5xl">
+            Contact H&amp;H Construction
+          </h1>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-text-muted sm:text-lg">
+            Based in Norman and working commercial concrete, asphalt paving, and
+            metal building projects across Oklahoma. Call, email, or send your
+            project details below.
+          </p>
+
+          <address className="mt-10 max-w-xl border border-border bg-surface p-6 not-italic sm:p-8">
+            <p className="font-heading text-xl font-bold uppercase text-charcoal sm:text-2xl">
+              {nap.name}
+            </p>
+
+            <p className="mt-5">
+              <a
+                href={nap.mapsHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-base leading-relaxed text-charcoal transition-colors hover:text-accent"
+              >
+                {nap.addressLine1}
+                <br />
+                {nap.addressLine2}
+              </a>
+            </p>
+
+            <p className="mt-5">
+              <PhoneLink
+                showIcon
+                className="inline-flex items-center gap-2 text-lg font-semibold text-charcoal transition-colors hover:text-accent"
+              />
+            </p>
+
+            <p className="mt-3">
+              <EmailLink
+                showIcon
+                className="inline-flex items-center gap-2 text-base text-charcoal transition-colors hover:text-accent"
+              />
+            </p>
+
+            <p className="mt-5 text-sm leading-relaxed text-text-muted">
+              <span className="font-semibold uppercase tracking-wider text-charcoal">
+                Hours
+              </span>
+              <br />
+              {nap.hoursLabel}
+            </p>
+
+            <p className="mt-6">
+              <a
+                href={nap.mapsHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+              >
+                Get Directions
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+          </address>
         </Container>
       </section>
 
@@ -45,48 +102,18 @@ export default function ContactPage() {
           <div className="grid gap-12 lg:grid-cols-[1fr_1.25fr] lg:gap-16">
             <div>
               <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-                Reach Us Directly
+                Request a Bid
               </h2>
-
-              <address className="mt-8 text-base not-italic leading-relaxed text-charcoal/90">
-                <p className="font-heading text-lg font-bold uppercase text-charcoal">
-                  {nap.name}
-                </p>
-                <p className="mt-3 text-text-muted">
-                  {nap.addressLine1}
-                  <br />
-                  {nap.addressLine2}
-                </p>
-                <p className="mt-4">
-                  <PhoneLink
-                    showIcon
-                    className="inline-flex items-center gap-2 font-semibold text-charcoal transition-colors hover:text-accent"
-                  />
-                </p>
-                <p className="mt-2">
-                  <EmailLink
-                    showIcon
-                    className="inline-flex items-center gap-2 text-charcoal transition-colors hover:text-accent"
-                  />
-                </p>
-              </address>
-
-              <p className="mt-6">
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${nap.mapsQuery}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                >
-                  Get Directions
-                  <span aria-hidden="true">&rarr;</span>
-                </a>
+              <p className="mt-4 text-base leading-relaxed text-text-muted">
+                Tell us about your commercial concrete, asphalt, or metal
+                building project. Our team reviews the scope and follows up to
+                discuss next steps.
               </p>
 
-              <h2 className="mt-12 font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              <h3 className="mt-10 font-heading text-lg font-bold uppercase text-charcoal">
                 What to Include
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-text-muted">
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-text-muted">
                 The more of this you can share up front, the faster we can come
                 back with something useful.
               </p>
@@ -104,10 +131,10 @@ export default function ContactPage() {
                 ))}
               </ul>
 
-              <h2 className="mt-12 font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              <h3 className="mt-10 font-heading text-lg font-bold uppercase text-charcoal">
                 Where We Work
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-text-muted">
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-text-muted">
                 Based in Norman and working throughout Oklahoma, including{" "}
                 {serviceAreaCities.slice(0, 6).join(", ")}, and beyond. If your
                 city is not listed, ask — we evaluate projects across the state.

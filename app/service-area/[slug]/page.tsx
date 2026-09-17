@@ -5,7 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { priorityCities, services, siteConfig, nap } from "@/lib/site-data";
+import { priorityCities, services, siteConfig, nap, serviceProviderSchema } from "@/lib/site-data";
 import { cityServiceHref } from "@/lib/city-service-data";
 
 type CityPageProps = {
@@ -57,11 +57,7 @@ export default async function CityPage({ params }: CityPageProps) {
     "@type": "Service",
     name: `Commercial Construction Services in ${city.name}, OK`,
     description: city.metaDescription,
-    provider: {
-      "@type": "GeneralContractor",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    provider: serviceProviderSchema,
     areaServed: {
       "@type": "City",
       name: city.name,

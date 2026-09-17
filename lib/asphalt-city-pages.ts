@@ -56,7 +56,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     cityName: "Norman",
     h1: "Commercial Asphalt Paving in Norman, OK",
     metaTitle:
-      "Asphalt Paving Norman OK | Commercial Paving Contractor | H&H Construction",
+      "Asphalt Paving Norman OK | Commercial Paving Contractor",
     metaDescription:
       "H&H Construction provides commercial asphalt paving, parking lot construction, mill-and-overlay, and pavement maintenance in Norman, OK. Serving contractors, developers, and the University of Oklahoma area. Request a bid today.",
     heroLead:
@@ -190,7 +190,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     cityName: "Oklahoma City",
     h1: "Commercial Asphalt Paving in Oklahoma City, OK",
     metaTitle:
-      "Asphalt Paving Oklahoma City OK | Commercial Paving Contractor | H&H Construction",
+      "Asphalt Paving Oklahoma City OK | Commercial Paving Contractor",
     metaDescription:
       "H&H Construction provides commercial asphalt paving, parking lot construction, mill-and-overlay, and pavement maintenance in Oklahoma City, OK. Serving developers, municipalities, and property owners statewide. Request a bid today.",
     heroLead:
@@ -327,7 +327,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     cityName: "Edmond",
     h1: "Commercial Asphalt Paving in Edmond, OK",
     metaTitle:
-      "Asphalt Paving Edmond OK | Commercial Paving Contractor | H&H Construction",
+      "Asphalt Paving Edmond OK | Commercial Paving Contractor",
     metaDescription:
       "H&H Construction delivers commercial asphalt paving, parking lot construction, mill-and-overlay, and pavement maintenance in Edmond, OK. Serving developers, retail centers, and institutional facilities. Request a bid today.",
     heroLead:
@@ -462,7 +462,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     cityName: "Moore",
     h1: "Commercial Asphalt Paving in Moore, OK",
     metaTitle:
-      "Asphalt Paving Moore OK | Commercial Parking Lots | H&H Construction",
+      "Asphalt Paving Moore OK | Commercial Parking Lots",
     metaDescription:
       "H&H Construction provides commercial asphalt paving, parking lot construction, and mill-and-overlay resurfacing in Moore, OK for retail, school, and I-35 corridor sites.",
     heroLead:
@@ -566,7 +566,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     cityName: "Yukon",
     h1: "Commercial Asphalt Paving in Yukon, OK",
     metaTitle:
-      "Asphalt Paving Yukon OK | Commercial Paving Contractor | H&H Construction",
+      "Asphalt Paving Yukon OK | Commercial Paving Contractor",
     metaDescription:
       "H&H Construction provides commercial asphalt paving, parking lot construction, mill-and-overlay, and pavement maintenance in Yukon, OK. Serving developers, retail centers, and new commercial growth. Request a bid today.",
     heroLead:
@@ -699,7 +699,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     cityName: "Midwest City",
     h1: "Commercial Asphalt Paving in Midwest City, OK",
     metaTitle:
-      "Asphalt Paving Midwest City OK | Commercial & Industrial Paving | H&H Construction",
+      "Asphalt Paving Midwest City OK | Commercial & Industrial Paving",
     metaDescription:
       "H&H Construction provides commercial asphalt paving, parking lots, and heavy-duty paving in Midwest City, OK for retail, hospitality, and Tinker-adjacent industrial sites.",
     heroLead:
@@ -803,7 +803,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     cityName: "Tulsa",
     h1: "Commercial Asphalt Paving in Tulsa, OK",
     metaTitle:
-      "Asphalt Paving Tulsa OK | Commercial Paving Contractor | H&H Construction",
+      "Asphalt Paving Tulsa OK | Commercial Paving Contractor",
     metaDescription:
       "H&H Construction delivers commercial asphalt paving, parking lot construction, mill-and-overlay, and pavement maintenance in Tulsa, OK. Serving industrial, commercial, and municipal projects. Request a bid today.",
     heroLead:

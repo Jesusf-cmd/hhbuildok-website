@@ -5,7 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { nap, siteConfig } from "@/lib/site-data";
+import { nap, siteConfig, serviceProviderSchema } from "@/lib/site-data";
 import { withProductionRobots } from "@/lib/production-metadata";
 import { PhoneLink } from "@/components/ui/PhoneLink";
 import {
@@ -51,11 +51,7 @@ export default function CommercialMetalBuildingsPage() {
     serviceType: "Commercial Metal Building Construction",
     name: metalBuildingsMeta.title,
     description: metalBuildingsMeta.description,
-    provider: {
-      "@type": "GeneralContractor",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    provider: serviceProviderSchema,
     areaServed: {
       "@type": "State",
       name: "Oklahoma",

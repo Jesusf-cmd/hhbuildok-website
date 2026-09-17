@@ -5,7 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { siteConfig } from "@/lib/site-data";
+import { siteConfig, serviceProviderSchema } from "@/lib/site-data";
 import {
   foundationsHubHref,
   foundationsMeta,
@@ -46,11 +46,7 @@ export default function CommercialFoundationsPage() {
     serviceType: "Commercial Foundation Construction",
     name: foundationsMeta.title,
     description: foundationsMeta.description,
-    provider: {
-      "@type": "GeneralContractor",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    provider: serviceProviderSchema,
     areaServed: {
       "@type": "State",
       name: "Oklahoma",

@@ -6,6 +6,8 @@ import {
   services,
   serviceAreaCities,
   businessHours,
+  organizationSchemaId,
+  postalAddressSchema,
 } from "@/lib/site-data";
 import { isProductionSite } from "@/lib/site-env";
 import "./globals.css";
@@ -62,21 +64,14 @@ export default function RootLayout({
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "GeneralContractor",
-    "@id": `${siteConfig.url}/#organization`,
+    "@id": organizationSchemaId,
     name: nap.name,
     url: siteConfig.url,
     image: `${siteConfig.url}/images/hh-construction-logo.png`,
     logo: `${siteConfig.url}/images/hh-construction-logo.png`,
     telephone: siteConfig.phoneE164,
     email: siteConfig.email,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: `${siteConfig.address.street} ${siteConfig.address.suite}`,
-      addressLocality: siteConfig.address.city,
-      addressRegion: siteConfig.address.state,
-      postalCode: siteConfig.address.zip,
-      addressCountry: "US",
-    },
+    address: postalAddressSchema,
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: [...businessHours.days],
@@ -113,7 +108,7 @@ export default function RootLayout({
     "@id": `${siteConfig.url}/#website`,
     url: siteConfig.url,
     name: siteConfig.name,
-    publisher: { "@id": `${siteConfig.url}/#organization` },
+    publisher: { "@id": organizationSchemaId },
     inLanguage: "en-US",
   };
 

@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/Button";
 import { PhoneLink } from "@/components/ui/PhoneLink";
 import { nap, siteConfig } from "@/lib/site-data";
 import { asphaltServiceHeroImage } from "@/lib/asphalt-gallery-data";
-import { withProductionRobots } from "@/lib/production-metadata";
 import {
   parkingLotHubHref,
   parkingLotMeta,
@@ -28,7 +27,7 @@ import {
   parkingLotProjectEvidence,
 } from "@/lib/parking-lot-service-page";
 
-export const metadata: Metadata = withProductionRobots({
+export const metadata: Metadata = {
   title: parkingLotMeta.title,
   description: parkingLotMeta.description,
   alternates: {
@@ -39,7 +38,7 @@ export const metadata: Metadata = withProductionRobots({
     description: parkingLotMeta.description,
     url: parkingLotHubHref,
   },
-});
+};
 
 export default function CommercialParkingLotsPage() {
   const serviceSchema = {
@@ -343,9 +342,10 @@ export default function CommercialParkingLotsPage() {
             Related Commercial Services
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-            Asphalt-specific paving, repair, and resurfacing belong on the
-            asphalt trade page. Concrete pads and curb that travel with a lot
-            are covered with commercial concrete.
+            Need asphalt paving, overlay, or patching without a full lot
+            rebuild? See our commercial asphalt paving services. Concrete pads
+            and curb that travel with a lot are covered with commercial
+            concrete.
           </p>
           <ul className="mt-8 flex flex-col gap-4">
             {parkingLotRelatedLinks.map((item) => (

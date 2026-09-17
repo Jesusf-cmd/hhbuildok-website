@@ -220,7 +220,7 @@ export default function AsphaltServicePage() {
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
             These are the paving scopes we bid. Subgrade, drainage, compaction,
             and overlay-versus-rebuild calls below explain how we choose a
-            method — they are not extra product lines.
+            method.
           </p>
           <div className="mt-10 grid gap-8 lg:grid-cols-2">
             {asphaltOfferedScopes.map((item) => (
@@ -367,9 +367,9 @@ export default function AsphaltServicePage() {
             Related Commercial Services
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-            This page is the asphalt trade. Use the parking-lot page when the
-            customer needs a broader site package, and the Oklahoma City asphalt
-            page when the work is specifically in that market.
+            Need paving coordinated with curbs, concrete approaches, and
+            striping? Explore our commercial parking-lot services. Oklahoma City
+            commercial sites can start with the Oklahoma City asphalt page.
           </p>
           <ul className="mt-8 flex flex-col gap-4">
             {asphaltRelatedLinks.map((item) => (

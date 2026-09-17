@@ -29,7 +29,7 @@ export const parkingLotAudience = {
   heading: "Who This Service Is For",
   paragraphs: [
     "This page is for commercial property owners, general contractors, facility managers, and municipalities who need a parking lot built or rebuilt as a package — paving plus the site concrete, drainage coordination, curbs, approaches, and markings that make the lot usable.",
-    "If the bid is asphalt-only — a new mat, overlay, mill-and-prep, or isolated patching — start on the commercial asphalt paving page. Come back here when curb, mixed concrete sections, striping, or occupied-site phasing have to travel with the paving.",
+    "Need asphalt paving, overlay, or patching without a full lot rebuild? See our commercial asphalt paving services.",
   ],
 } as const;
 
@@ -50,8 +50,8 @@ export const parkingLotBidPrep = {
 export const parkingLotConstructionVsRehab = {
   heading: "New Construction Versus Rehabilitation",
   paragraphs: [
-    "New lots start with grade, base, drainage, and the pavement the traffic actually requires — asphalt, concrete, or both. Rehabilitation starts with what is already failing: surface oxidation, isolated base failures, ponding, or curb that has settled at the drives. Overlay is appropriate when the base is still sound. Full-depth reconstruction is the honest answer when the section has already moved.",
-    "We do not prescribe a fixed thickness or a guaranteed service life from a website. Section, mix, and repair method come from the drawings, the loads on site, and what a proof-roll or cores show — not from a one-size parking-lot recipe.",
+    "New lots start with grade, base, drainage, and the pavement the traffic actually requires — asphalt, concrete, or both. Rehabilitation starts with what is already failing: surface oxidation, isolated base failures, ponding, or curb that has settled at the drives. Overlay is appropriate when the base is still sound. Full-depth reconstruction is typically the lasting fix when the section has already moved.",
+    "Section, mix, and repair method come from the drawings, the loads on site, and what a proof-roll or cores show on that pavement — not a one-size parking-lot recipe.",
   ],
 } as const;
 
@@ -100,7 +100,7 @@ export const parkingLotServices = [
       "Parking lot striping and pavement markings",
       "Accessible stall layout, fire lanes, and directional marking as specified",
       "Phased work to keep tenants, deliveries, and fire access moving",
-      "Coordination of striping and accessibility markings — not a blanket code guarantee",
+      "Coordination of striping and accessibility markings to the layout specified for the project",
     ],
   },
 ] as const;
@@ -169,9 +169,9 @@ export const parkingLotFaqs = [
       "Yes. Retail, medical, and institutional lots often have to stay partially open while sections are milled, paved, or restriped. We sequence work to maintain fire lanes, accessible routes, and primary entrances unless the owner approves a defined shutdown window.",
   },
   {
-    question: "When should I use the asphalt paving page instead of this one?",
+    question: "What if we only need asphalt paving, overlay, or patching?",
     answer:
-      "Use the commercial asphalt paving page when the work is the asphalt trade itself — new paving, overlay, milling, or patching. Use this page when you need the broader parking-lot package: paving plus curb, approaches, mixed concrete sections, striping, and phasing around an occupied site.",
+      "We also bid asphalt paving, overlays, milling, and patching on their own. See our commercial asphalt paving services for that work. When curb, approaches, mixed concrete sections, striping, and occupied-site phasing travel with the paving, we bid it as a parking-lot package on this page.",
   },
 ] as const;
 
@@ -191,11 +191,11 @@ export const parkingLotRelatedLinks = [
 ] as const;
 
 export const parkingLotProjectEvidence = {
-  heading: "Project Evidence: Chandler County Courthouse Lot",
+  heading: "Chandler County Courthouse Parking Lot",
   href: `/projects/${chandlerCountyCourthouseSlug}`,
   location: "Chandler, Oklahoma",
   summary:
-    "Two-phase parking lot rehabilitation for Chandler County: sealcoat and restriping on sound pavement, then asphalt overlay, full-depth patching, 120 linear feet of curb replacement, and a final stall layout including accessible spaces. The courthouse lot stayed usable between phases. Details below are from the published case study — not a statewide performance claim.",
+    "Two-phase parking lot rehabilitation for Chandler County: sealcoat and restriping on sound pavement, then asphalt overlay, full-depth patching, 120 linear feet of curb replacement, and a final stall layout including accessible spaces. The lot returned to service between phases with usable parking throughout.",
   photos: [chandlerCountyCourthousePhotos[0], chandlerCountyCourthousePhotos[2]],
 } as const;
 

@@ -214,13 +214,14 @@ export const services = [
       "Asphalt overlays and resurfacing",
       "Patching and pothole repair",
       "Parking lot construction and rehabilitation",
+      "Municipal roadway paving",
       "Milling and pavement preparation",
       "Industrial yard and heavy-duty paving",
     ],
     detail: {
       overview: [
         "Asphalt pavement is a structure, not a surface. What holds up under loaded trucks is the subgrade, base, and asphalt section working together, which is why two lots that look the same can be years apart in service life. Water is the other half of the story: pavement that does not drain fails from the bottom up no matter how good the mat looks on the day it was placed.",
-        "H&H Construction builds and rehabilitates commercial and industrial asphalt across Oklahoma — new paving, overlays and resurfacing, patching, parking lot construction, and municipal roadways for contractors, developers, municipalities, school districts, and property owners. Work is coordinated from Norman and regularly includes Oklahoma City and the rest of the OKC metro. Asphalt-only scopes belong on this page; full parking-lot packages with curb, approaches, and mixed concrete sit on the commercial parking lots page.",
+        "H&H Construction builds and rehabilitates commercial and industrial asphalt across Oklahoma — new paving, overlays and resurfacing, patching, parking lot construction, and municipal roadways for contractors, developers, municipalities, school districts, and property owners. Work is coordinated from Norman and regularly includes Oklahoma City and the rest of the OKC metro.",
       ],
       considerations: [
         {
@@ -282,7 +283,7 @@ export const services = [
       },
       {
         title: "Patch now versus rebuild the section",
-        body: "Isolated potholes over sound base are patch candidates. Widespread alligatoring, raveling across travel lanes, or drainage that ponds in the same birdbaths after every rain means the section or the grade is wrong. Patching those conditions is maintenance theater — it looks fixed until the next season.",
+        body: "Isolated potholes over sound base are typically patch candidates. When alligatoring is widespread, raveling runs across travel lanes, or drainage ponds in the same birdbaths after every rain, we evaluate whether the section or grade has failed and whether isolated patches will hold.",
       },
     ],
     faqs: [
@@ -299,12 +300,12 @@ export const services = [
       {
         question: "Do you pave parking lots for schools and municipalities?",
         answer:
-          "Yes, we regularly work with school districts and municipalities on parking lot construction and rehabilitation, scheduling work to minimize disruption to operations. The Chandler County Courthouse lot is a published example of sequenced public-site rehabilitation — not a claim that every public body pre-qualifies us the same way.",
+          "Yes, we regularly work with school districts and municipalities on parking lot construction and rehabilitation, scheduling work to minimize disruption to operations. The Chandler County Courthouse lot is a published example of sequenced public-site rehabilitation.",
       },
       {
-        question: "When should I use the commercial parking lots page instead?",
+        question: "Can you coordinate paving with curbs and striping?",
         answer:
-          "Use this page for commercial asphalt paving, repair, overlays, milling, and resurfacing. Use the commercial parking lots page when the bid includes curb, approaches, mixed asphalt and concrete sections, striping, and phasing around an occupied lot.",
+          "Yes. When the work includes curb, mixed concrete sections, striping, and phasing around an occupied lot, we bid it as a parking-lot package. Explore our commercial parking-lot services.",
       },
       {
         question: "How do I request a paving bid?",

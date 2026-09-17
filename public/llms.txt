@@ -19,8 +19,8 @@ contract, which removes the coordination burden from the general contractor.
   Structural foundations and footings, slab-on-grade and structural slabs,
   sidewalks, curbs and gutters, retaining walls, and site concrete.
 - [Commercial Asphalt Paving](https://hhbuildok.com/services/asphalt-paving):
-  Primary asphalt trade page for new commercial paving, overlays and
-  resurfacing, asphalt repair, milling, and heavy-duty industrial mats.
+  New commercial paving, overlays and resurfacing, asphalt repair, milling,
+  and heavy-duty industrial mats.
   City pages: [Norman](https://hhbuildok.com/services/asphalt-paving/norman),
   [Oklahoma City](https://hhbuildok.com/services/asphalt-paving/oklahoma-city),
   [Edmond](https://hhbuildok.com/services/asphalt-paving/edmond),
@@ -29,9 +29,9 @@ contract, which removes the coordination burden from the general contractor.
   [Midwest City](https://hhbuildok.com/services/asphalt-paving/midwest-city),
   [Tulsa](https://hhbuildok.com/services/asphalt-paving/tulsa).
 - [Commercial Parking Lots](https://hhbuildok.com/services/commercial-parking-lots):
-  Broader parking-lot construction and rehabilitation page covering
-  asphalt or concrete options, site concrete, curb and gutter, approaches,
-  striping, and occupied-site phasing for commercial properties across Oklahoma.
+  Parking-lot construction and rehabilitation covering asphalt or concrete
+  options, site concrete, curb and gutter, approaches, striping, and
+  occupied-site phasing for commercial properties across Oklahoma.
 - [Commercial Foundations](https://hhbuildok.com/services/commercial-foundations):
   Spread footings, stem walls, slab-on-grade, structural slabs, equipment
   pads, anchor bolt layouts for metal buildings, and Division 03 structural

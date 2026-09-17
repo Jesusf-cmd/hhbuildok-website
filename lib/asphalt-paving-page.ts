@@ -7,8 +7,8 @@ export { asphaltHubHref } from "@/lib/parking-lot-service-page";
 export const asphaltAudience = {
   heading: "Who This Service Is For",
   paragraphs: [
-    "This page is the commercial asphalt trade page — new paving, overlays and resurfacing, full-depth patching, milling and preparation, and heavy-duty industrial mats. It is written for property owners, general contractors, facility managers, and municipalities who already know the work is asphalt and need a contractor who will bid the section that actually matches the traffic.",
-    "H&H Construction paves commercial and industrial asphalt across Oklahoma from our Norman headquarters, including Oklahoma City and the rest of the OKC metro. When the job is a full parking-lot package — curb, approaches, striping, and mixed asphalt/concrete sections — use the commercial parking lots page instead of stretching this trade page into civil site work it is not meant to replace.",
+    "H&H Construction paves commercial and industrial asphalt across Oklahoma from our Norman headquarters, including Oklahoma City and the rest of the OKC metro. We bid new paving, overlays and resurfacing, full-depth patching, milling and preparation, and heavy-duty industrial mats for property owners, general contractors, facility managers, and municipalities.",
+    "Need paving coordinated with curbs, concrete approaches, and striping? Explore our commercial parking-lot services.",
   ],
 } as const;
 
@@ -37,19 +37,19 @@ export const asphaltOfferedScopes = [
   },
   {
     title: "Full-depth patching and pothole repair",
-    body: "Isolated failures cut out and rebuilt through the section when the surrounding pavement is still structurally useful. Widespread alligatoring is not a patching job.",
+    body: "Isolated failures can be cut out and rebuilt through the section when the surrounding pavement is still structurally useful. When alligatoring is widespread or load-related, we evaluate whether isolated patches will hold or whether the section needs a deeper repair.",
   },
   {
     title: "Parking-lot rehabilitation",
-    body: "Asphalt repair, overlay, or reconstruction on existing lots. When curb, approaches, striping, and mixed concrete sections travel with the paving, that package lives on the commercial parking lots page.",
+    body: "Asphalt repair, overlay, or reconstruction on existing lots. Need paving coordinated with curbs, concrete approaches, and striping? Explore our commercial parking-lot services.",
   },
   {
     title: "Industrial and heavy-duty paving",
-    body: "Truck courts, yards, and drive aisles designed for loaded traffic rather than passenger-car stall areas. Concentrated truck zones often need a thicker asphalt section or concrete — we do not pretend one mix works everywhere.",
+    body: "Truck courts, yards, and drive aisles designed for loaded traffic rather than passenger-car stall areas. Concentrated truck zones often need a thicker asphalt section or concrete; we evaluate the loads on site before recommending a mix.",
   },
   {
     title: "Milling and preparation",
-    body: "Cold milling to remove failed surface, restore profile, and prepare a bond for overlay or new paving. Field photos on this page include milling at an industrial yard, not a stock illustration.",
+    body: "Cold milling to remove failed surface, restore profile, and prepare a bond for overlay or new paving. Field photos on this page include milling at an industrial yard.",
   },
 ] as const;
 

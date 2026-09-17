@@ -119,8 +119,8 @@ export default function ServicesPage() {
                 <p className="mt-4 text-base leading-relaxed text-charcoal/80">
                   Asphalt or concrete paving, site concrete, curb and gutter,
                   approaches, and striping — one contractor for the full lot
-                  package. Asphalt-only overlays and repair live on the asphalt
-                  paving page.
+                  package. Need overlay or repair without a full lot rebuild?
+                  See our commercial asphalt paving services.
                 </p>
               </div>
               <Link

@@ -38,13 +38,13 @@ contract, which removes the coordination burden from the general contractor.
   concrete for warehouses, retail, medical, and institutional projects
   across Oklahoma.
 - [Commercial Metal Buildings](https://hhbuildok.com/services/commercial-metal-buildings):
-  Pre-engineered metal building erection, red iron framing, anchor bolt
-  coordination, wall and roof systems, metal roofing, and Division 13 scope
-  for warehouses, industrial, municipal, and commercial projects across
-  Oklahoma.
+  Commercial metal-building and erection detail: pre-engineered metal
+  building erection, red iron framing, anchor bolt coordination, wall and
+  roof systems, and Division 13 scope for warehouses, industrial, municipal,
+  and commercial projects across Oklahoma.
 - [Metal Buildings & Roofing](https://hhbuildok.com/services/metal-buildings-roofing):
-  Pre-engineered metal building erection, warehouse and industrial facility
-  structures, commercial metal roofing systems, and building shells.
+  Service overview for pre-engineered metal building erection and commercial
+  metal roofing, including roof replacement on existing structures.
 
 ## Service Area
 

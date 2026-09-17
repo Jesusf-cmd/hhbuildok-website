@@ -110,10 +110,32 @@ export const metalBuildingsWhyHh = {
   ],
 } as const;
 
+export const metalBuildingsAudience = {
+  heading: "Who This Service Is For",
+  paragraphs: [
+    "This page is for general contractors, developers, and commercial or municipal owners who need a pre-engineered metal building erected from a manufacturer-supplied package — warehouses, industrial facilities, municipal buildings, and developer shells. We erect from the engineered manufacturer drawings provided for the project.",
+    "When the same bid includes concrete, we review those drawings against the foundation plans, set and verify anchor bolts during the pour, and sequence steel building erection so the red iron frame is waiting on a pad that actually matches. Paving can travel with that package when the truck court and dock approaches have to finish on the same calendar.",
+  ],
+} as const;
+
+export const metalBuildingsBidPrep = {
+  heading: "What Helps Us Prepare a Bid",
+  intro:
+    "Send what you have. A location and building size is enough to start; manufacturer drawings and specs let us price erection, anchor-bolt coordination, and related site work more accurately.",
+  items: [
+    "Project location and target schedule, including any hard completion date",
+    "Building size, occupancy, and whether a manufacturer is already selected",
+    "Manufacturer erection drawings and foundation plans, if available",
+    "Spec sections for the metal building package",
+    "Whether foundation, anchor bolts, or paving should be included in the same bid",
+  ],
+} as const;
+
 export const metalBuildingsRelatedLinks = {
   foundations: foundationsHubHref,
   parkingLots: parkingLotHubHref,
   metalServiceHub: "/services/metal-buildings-roofing",
+  serviceArea: "/service-area",
 } as const;
 
 export const metalBuildingsCityLinks = getCityServicesForService(
@@ -168,6 +190,9 @@ export function countCommercialMetalBuildingsWords() {
     ...metalBuildingsOklahomaWind.paragraphs,
     ...metalBuildingsProcess.paragraphs,
     ...metalBuildingsWhyHh.paragraphs,
+    ...metalBuildingsAudience.paragraphs,
+    metalBuildingsBidPrep.intro,
+    ...metalBuildingsBidPrep.items,
     ...metalBuildingsFaqs.flatMap((faq) => [faq.question, faq.answer]),
   ];
   return parts.join(" ").split(/\s+/).filter(Boolean).length;

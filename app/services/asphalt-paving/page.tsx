@@ -5,7 +5,8 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { services, siteConfig, serviceAreaCities } from "@/lib/site-data";
+import { PhoneLink } from "@/components/ui/PhoneLink";
+import { nap, services, siteConfig, serviceAreaCities } from "@/lib/site-data";
 import { commercialAsphaltProjectPhotos } from "@/lib/asphalt-gallery-data";
 import { ProjectGallery } from "@/components/sections/ProjectGallery";
 import {
@@ -13,6 +14,13 @@ import {
   asphaltCityHref,
 } from "@/lib/asphalt-city-index";
 import { withProductionRobots } from "@/lib/production-metadata";
+import {
+  asphaltAudience,
+  asphaltBidPrep,
+  asphaltOfferedScopes,
+  asphaltRelatedLinks,
+} from "@/lib/asphalt-paving-page";
+import { parkingLotProjectEvidence } from "@/lib/parking-lot-service-page";
 
 const service = services.find((item) => item.slug === "asphalt-paving")!;
 
@@ -113,10 +121,13 @@ export default function AsphaltServicePage() {
               <p className="mt-6 max-w-xl text-base leading-relaxed text-text-muted sm:text-lg">
                 {service.heroDescription}
               </p>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap gap-4">
                 <Button href="/contact" variant="primary">
                   Request a Bid
                 </Button>
+                <PhoneLink className="inline-flex items-center justify-center border border-charcoal/25 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:border-charcoal hover:bg-charcoal/5">
+                  Call {nap.phone}
+                </PhoneLink>
               </div>
             </div>
             <div className="relative aspect-[4/3] w-full overflow-hidden border border-border">
@@ -148,6 +159,52 @@ export default function AsphaltServicePage() {
         </Container>
       </section>
 
+      <section className="bg-off-white-muted">
+        <Container className="py-16 lg:py-20">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+                {asphaltAudience.heading}
+              </h2>
+              {asphaltAudience.paragraphs.map((paragraph) => (
+                <p
+                  key={paragraph}
+                  className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+            <div>
+              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+                {asphaltBidPrep.heading}
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg">
+                {asphaltBidPrep.intro}
+              </p>
+              <ul className="mt-6 flex flex-col gap-3">
+                {asphaltBidPrep.items.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90 sm:text-base"
+                  >
+                    <span aria-hidden="true" className="mt-0.5 text-accent">
+                      &#9632;
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8">
+                <Button href="/contact" variant="primary">
+                  Request a Bid
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       <ProjectGallery
         id="project-photos"
         heading="Recent Asphalt Projects"
@@ -158,21 +215,25 @@ export default function AsphaltServicePage() {
       <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">
           <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            What This Service Includes
+            Asphalt Work We Perform
           </h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-            {service.scopeItems.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 border border-border bg-surface-muted p-5 text-sm text-charcoal/90"
-              >
-                <span aria-hidden="true" className="mt-0.5 text-accent">
-                  &#9632;
-                </span>
-                {item}
-              </li>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
+            These are the paving scopes we bid. Subgrade, drainage, compaction,
+            and overlay-versus-rebuild calls below explain how we choose a
+            method — they are not extra product lines.
+          </p>
+          <div className="mt-10 grid gap-8 lg:grid-cols-2">
+            {asphaltOfferedScopes.map((item) => (
+              <div key={item.title} className="border border-border bg-surface p-6">
+                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                  {item.body}
+                </p>
+              </div>
             ))}
-          </ul>
+          </div>
         </Container>
       </section>
 
@@ -280,6 +341,55 @@ export default function AsphaltServicePage() {
       <section className="bg-surface">
         <Container className="py-16 lg:py-20">
           <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+            {parkingLotProjectEvidence.heading}
+          </h2>
+          <p className="mt-3 text-sm font-semibold uppercase tracking-wider text-accent">
+            {parkingLotProjectEvidence.location}
+          </p>
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-charcoal/80 sm:text-lg">
+            {parkingLotProjectEvidence.summary}
+          </p>
+          <div className="mt-8">
+            <Link
+              href={parkingLotProjectEvidence.href}
+              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+            >
+              Read the Chandler case study
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-off-white-muted">
+        <Container className="py-16 lg:py-20">
+          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+            Related Commercial Services
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
+            This page is the asphalt trade. Use the parking-lot page when the
+            customer needs a broader site package, and the Oklahoma City asphalt
+            page when the work is specifically in that market.
+          </p>
+          <ul className="mt-8 flex flex-col gap-4">
+            {asphaltRelatedLinks.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                >
+                  {item.label}
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      <section className="bg-surface">
+        <Container className="py-16 lg:py-20">
+          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
             Frequently Asked Questions
           </h2>
           <div className="mt-8 flex flex-col gap-6">
@@ -303,13 +413,16 @@ export default function AsphaltServicePage() {
             Discuss Your {service.shortTitle} Project
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Tell us about your project scope and location. Our team will review
-            the details and follow up to discuss next steps.
+            Send an address and what you need paved or repaired. You do not
+            need complete plans to inquire.
           </p>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Button href="/contact" variant="secondary">
               Request a Bid
             </Button>
+            <PhoneLink className="inline-flex items-center justify-center border border-surface/70 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-surface transition-colors hover:border-surface hover:bg-surface/10">
+              Call {nap.phone}
+            </PhoneLink>
           </div>
         </Container>
       </section>

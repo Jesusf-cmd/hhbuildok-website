@@ -347,6 +347,15 @@ export default async function AsphaltCityPage({
                     <span aria-hidden="true">&rarr;</span>
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/services/commercial-parking-lots"
+                    className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                  >
+                    Commercial parking lots — full lot packages
+                    <span aria-hidden="true">&rarr;</span>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

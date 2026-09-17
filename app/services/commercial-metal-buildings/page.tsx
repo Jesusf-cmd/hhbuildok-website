@@ -5,8 +5,9 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { siteConfig } from "@/lib/site-data";
+import { nap, siteConfig } from "@/lib/site-data";
 import { withProductionRobots } from "@/lib/production-metadata";
+import { PhoneLink } from "@/components/ui/PhoneLink";
 import {
   metalBuildingsHubHref,
   metalBuildingsMeta,
@@ -18,6 +19,8 @@ import {
   metalBuildingsOklahomaWind,
   metalBuildingsProcess,
   metalBuildingsWhyHh,
+  metalBuildingsAudience,
+  metalBuildingsBidPrep,
   metalBuildingsRelatedLinks,
   metalBuildingsCityLinks,
   metalBuildingsFaqs,
@@ -104,10 +107,13 @@ export default function CommercialMetalBuildingsPage() {
               <p className="mt-6 max-w-xl text-base leading-relaxed text-text-muted sm:text-lg">
                 {metalBuildingsMeta.heroDescription}
               </p>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap gap-4">
                 <Button href="/contact" variant="primary">
                   Request a Bid
                 </Button>
+                <PhoneLink className="inline-flex items-center justify-center border border-charcoal/25 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:border-charcoal hover:bg-charcoal/5">
+                  Call {nap.phone}
+                </PhoneLink>
               </div>
             </div>
             <div className="relative aspect-[4/3] w-full overflow-hidden border border-border">
@@ -144,6 +150,52 @@ export default function CommercialMetalBuildingsPage() {
 
       <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+                {metalBuildingsAudience.heading}
+              </h2>
+              {metalBuildingsAudience.paragraphs.map((paragraph) => (
+                <p
+                  key={paragraph}
+                  className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+            <div>
+              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+                {metalBuildingsBidPrep.heading}
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg">
+                {metalBuildingsBidPrep.intro}
+              </p>
+              <ul className="mt-6 flex flex-col gap-3">
+                {metalBuildingsBidPrep.items.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90 sm:text-base"
+                  >
+                    <span aria-hidden="true" className="mt-0.5 text-accent">
+                      &#9632;
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8">
+                <Button href="/contact" variant="primary">
+                  Request a Bid
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-surface">
+        <Container className="py-16 lg:py-20">
           <div className="max-w-3xl">
             <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
               {metalBuildingsDivision13.heading}
@@ -160,7 +212,7 @@ export default function CommercialMetalBuildingsPage() {
         </Container>
       </section>
 
-      <section className="bg-surface">
+      <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">
           <div className="max-w-3xl">
             <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
@@ -178,7 +230,7 @@ export default function CommercialMetalBuildingsPage() {
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
+      <section className="bg-surface">
         <Container className="py-16 lg:py-20">
           <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
             Commercial Metal Building Services
@@ -289,9 +341,11 @@ export default function CommercialMetalBuildingsPage() {
             Related Commercial Services
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-            Metal building jobs rarely stop at the shell. These specialty hubs
-            cover the scopes that usually travel with PEMB erection on Oklahoma
-            pad sites.
+            This page is the commercial metal-building and erection detail.
+            The metal buildings &amp; roofing page remains the broader service
+            overview, including roof replacement on existing structures.
+            Foundation, paving, and service-area pages cover the scopes that
+            usually travel with a commercial shell.
           </p>
           <ul className="mt-8 flex flex-col gap-4">
             <li>
@@ -318,6 +372,15 @@ export default function CommercialMetalBuildingsPage() {
                 className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
               >
                 Metal Buildings &amp; Roofing Service Overview
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={metalBuildingsRelatedLinks.serviceArea}
+                className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+              >
+                Oklahoma Service Area
                 <span aria-hidden="true">&rarr;</span>
               </Link>
             </li>
@@ -376,14 +439,17 @@ export default function CommercialMetalBuildingsPage() {
             Discuss Your Metal Building Project
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Tell us about your scope and location — new erection, shell package,
-            or roofing replacement. Our team will review the details and follow
-            up to discuss next steps.
+            Send manufacturer drawings and foundation plans if you have them,
+            or start with the location, building size, and schedule. Request a
+            bid online or call.
           </p>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Button href="/contact" variant="secondary">
               Request a Bid
             </Button>
+            <PhoneLink className="inline-flex items-center justify-center border border-surface/70 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-surface transition-colors hover:border-surface hover:bg-surface/10">
+              Call {nap.phone}
+            </PhoneLink>
           </div>
         </Container>
       </section>

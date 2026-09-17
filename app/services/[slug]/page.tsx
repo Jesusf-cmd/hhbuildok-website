@@ -17,6 +17,7 @@ import {
   cityServiceHref,
   getCityServicesForService,
 } from "@/lib/city-service-data";
+import { metalBuildingsHubHref } from "@/lib/commercial-metal-buildings-page";
 
 const dedicatedServiceSlugs = new Set(["asphalt-paving", "concrete-construction"]);
 
@@ -164,6 +165,30 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 {paragraph}
               </p>
             ))}
+            {slug === "metal-buildings-roofing" ? (
+              <div className="mt-10 max-w-3xl border-l-2 border-accent pl-6">
+                <h2 className="font-heading text-lg font-bold uppercase text-charcoal">
+                  Commercial Metal Building Erection
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-text-muted sm:text-base">
+                  This page is the service overview for pre-engineered metal
+                  building erection and commercial metal roofing, including roof
+                  replacement on existing structures. For red iron framing,
+                  foundation and anchor-bolt coordination, and how we bid
+                  commercial erection packages, see the commercial metal
+                  buildings page.
+                </p>
+                <p className="mt-4">
+                  <Link
+                    href={metalBuildingsHubHref}
+                    className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                  >
+                    Commercial Metal Building Construction
+                    <span aria-hidden="true">&rarr;</span>
+                  </Link>
+                </p>
+              </div>
+            ) : null}
           </div>
         </Container>
       </section>

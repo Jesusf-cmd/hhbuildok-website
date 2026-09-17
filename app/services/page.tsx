@@ -118,8 +118,9 @@ export default function ServicesPage() {
                 </h2>
                 <p className="mt-4 text-base leading-relaxed text-charcoal/80">
                   Asphalt or concrete paving, site concrete, curb and gutter,
-                  approaches, and ADA flatwork — one contractor for the full lot
-                  package across Oklahoma.
+                  approaches, and striping — one contractor for the full lot
+                  package. Need overlay or repair without a full lot rebuild?
+                  See our commercial asphalt paving services.
                 </p>
               </div>
               <Link

@@ -1,15 +1,20 @@
 import { asphaltCityHref } from "@/lib/asphalt-city-index";
 import { concreteCityHref } from "@/lib/concrete-service-page";
+import {
+  chandlerCountyCourthousePhotos,
+  chandlerCountyCourthouseSlug,
+} from "@/lib/chandler-county-courthouse-data";
 
 export const parkingLotHubHref = "/services/commercial-parking-lots";
+export const asphaltHubHref = "/services/asphalt-paving";
 
 export const parkingLotMeta = {
   title: "Commercial Parking Lot Construction in Oklahoma",
   description:
-    "H&H Construction builds and rehabilitates commercial parking lots across Oklahoma — asphalt or concrete paving, site concrete, curb and gutter, approaches, striping, and ADA work from one contractor.",
+    "H&H Construction builds and rehabilitates commercial parking lots across Oklahoma — asphalt or concrete paving, site concrete, curb and gutter, approaches, and striping from one contractor.",
   h1: "Commercial Parking Lot Construction in Oklahoma",
   heroDescription:
-    "New parking lots, full-depth reconstruction, and occupied-site rehabilitation — asphalt or concrete paving, site concrete, curb and gutter, approaches, and ADA flatwork coordinated from our Norman headquarters.",
+    "New parking lots, full-depth reconstruction, and occupied-site rehabilitation — asphalt or concrete paving, site concrete, curb and gutter, approaches, and striping coordinated from our Norman headquarters.",
 } as const;
 
 export const parkingLotIntro = {
@@ -17,6 +22,36 @@ export const parkingLotIntro = {
   paragraphs: [
     "A commercial parking lot is rarely just a mat of asphalt. Most projects include site concrete — curb and gutter, sidewalks, handicap ramps, drive approaches, dumpster pads, and dock aprons — plus drainage, base prep, and striping before the owner can open the doors. H&H Construction self-performs the paving and the site concrete scopes that usually travel together on Oklahoma commercial jobs, so general contractors and developers are not stitching together three subcontractors for one lot.",
     "Whether the drawings call for asphalt or concrete pavement, we evaluate subgrade, traffic loading, and drainage before recommending a section that will actually survive Oklahoma's expansive clay and freeze-thaw cycles. On rehabilitation work, we will tell you when mill-and-overlay is the honest answer — and when the base has already failed and full-depth reconstruction is the only fix that lasts.",
+  ],
+} as const;
+
+export const parkingLotAudience = {
+  heading: "Who This Service Is For",
+  paragraphs: [
+    "This page is for commercial property owners, general contractors, facility managers, and municipalities who need a parking lot built or rebuilt as a package — paving plus the site concrete, drainage coordination, curbs, approaches, and markings that make the lot usable.",
+    "Need asphalt paving, overlay, or patching without a full lot rebuild? See our commercial asphalt paving services.",
+  ],
+} as const;
+
+export const parkingLotBidPrep = {
+  heading: "What to Send for a Parking Lot Bid",
+  intro:
+    "Send what you have. A site address and whether the lot is new or already in use is enough to start. Plans, photos, and operating constraints make the bid more accurate.",
+  items: [
+    "Project address and property type",
+    "New construction versus rehabilitation of an existing lot",
+    "Approximate area or civil drawings, if available",
+    "Photos of pavement, curb, and drainage conditions",
+    "Known drainage, access, or accessibility concerns",
+    "Desired schedule and whether parking, deliveries, or a fire lane must stay open",
+  ],
+} as const;
+
+export const parkingLotConstructionVsRehab = {
+  heading: "New Construction Versus Rehabilitation",
+  paragraphs: [
+    "New lots start with grade, base, drainage, and the pavement the traffic actually requires — asphalt, concrete, or both. Rehabilitation starts with what is already failing: surface oxidation, isolated base failures, ponding, or curb that has settled at the drives. Overlay is appropriate when the base is still sound. Full-depth reconstruction is typically the lasting fix when the section has already moved.",
+    "Section, mix, and repair method come from the drawings, the loads on site, and what a proof-roll or cores show on that pavement — not a one-size parking-lot recipe.",
   ],
 } as const;
 
@@ -35,7 +70,8 @@ export const parkingLotServices = [
       "Mill-and-overlay and resurfacing",
       "Full-depth reconstruction and base repair",
       "Drive aisles, truck courts, and heavy-load sections",
-      "Sealcoating, crack sealing, and pothole repair",
+      "Full-depth patching of isolated pavement failures",
+      "Sealcoating and restriping on sound pavement as part of a sequenced rehab",
     ],
   },
   {
@@ -62,9 +98,9 @@ export const parkingLotServices = [
     title: "Finishing & Compliance",
     items: [
       "Parking lot striping and pavement markings",
-      "ADA stall layout, fire lanes, and directional marking",
-      "Phased work to keep tenants and traffic moving",
-      "Municipal and inspected public lot standards",
+      "Accessible stall layout, fire lanes, and directional marking as specified",
+      "Phased work to keep tenants, deliveries, and fire access moving",
+      "Coordination of striping and accessibility markings to the layout specified for the project",
     ],
   },
 ] as const;
@@ -81,7 +117,7 @@ export const parkingLotIndustries = [
 export const parkingLotWhyHh = {
   heading: "Why One Contractor for the Whole Lot",
   paragraphs: [
-    "Parking lots fail at the seams — where asphalt meets concrete, where curb height does not match the gutter, or where a approach was poured before the paving crew knew the final elevation. H&H self-performs commercial concrete, asphalt paving, and metal building work from Norman, which means one mobilization, one schedule, and one team accountable for the lot turning over clean.",
+    "Parking lots fail at the seams — where asphalt meets concrete, where curb height does not match the gutter, or where an approach was poured before the paving crew knew the final elevation. H&H self-performs commercial concrete, asphalt paving, and metal building work from Norman, which means one mobilization, one schedule, and one team accountable for the lot turning over clean.",
     "Our Chandler County Courthouse parking lot rehabilitation — sealcoat, restriping, asphalt overlay, full-depth patching, and curb replacement — is the kind of multi-scope municipal lot work we bring to commercial and public projects across the metro. When a GC hands us Division 32 civil scope, we bid it as a coordinated package, not a line-item paving quote with everything else as an allowance.",
   ],
 } as const;
@@ -132,7 +168,36 @@ export const parkingLotFaqs = [
     answer:
       "Yes. Retail, medical, and institutional lots often have to stay partially open while sections are milled, paved, or restriped. We sequence work to maintain fire lanes, accessible routes, and primary entrances unless the owner approves a defined shutdown window.",
   },
+  {
+    question: "What if we only need asphalt paving, overlay, or patching?",
+    answer:
+      "We also bid asphalt paving, overlays, milling, and patching on their own. See our commercial asphalt paving services for that work. When curb, approaches, mixed concrete sections, striping, and occupied-site phasing travel with the paving, we bid it as a parking-lot package on this page.",
+  },
 ] as const;
+
+export const parkingLotRelatedLinks = [
+  {
+    href: asphaltHubHref,
+    label: "Commercial asphalt paving — overlays, repair, and new mats",
+  },
+  {
+    href: "/services/concrete-construction",
+    label: "Commercial concrete — pads, curb, and site flatwork",
+  },
+  {
+    href: `/projects/${chandlerCountyCourthouseSlug}`,
+    label: "Chandler County Courthouse parking lot case study",
+  },
+] as const;
+
+export const parkingLotProjectEvidence = {
+  heading: "Chandler County Courthouse Parking Lot",
+  href: `/projects/${chandlerCountyCourthouseSlug}`,
+  location: "Chandler, Oklahoma",
+  summary:
+    "Two-phase parking lot rehabilitation for Chandler County: sealcoat and restriping on sound pavement, then asphalt overlay, full-depth patching, 120 linear feet of curb replacement, and a final stall layout including accessible spaces. The lot returned to service between phases with usable parking throughout.",
+  photos: [chandlerCountyCourthousePhotos[0], chandlerCountyCourthousePhotos[2]],
+} as const;
 
 export function parkingLotAsphaltCityHref(citySlug: string) {
   return asphaltCityHref(citySlug);

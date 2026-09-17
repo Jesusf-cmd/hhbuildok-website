@@ -5,12 +5,16 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { siteConfig } from "@/lib/site-data";
+import { PhoneLink } from "@/components/ui/PhoneLink";
+import { nap, siteConfig } from "@/lib/site-data";
 import { asphaltServiceHeroImage } from "@/lib/asphalt-gallery-data";
 import {
   parkingLotHubHref,
   parkingLotMeta,
   parkingLotIntro,
+  parkingLotAudience,
+  parkingLotBidPrep,
+  parkingLotConstructionVsRehab,
   parkingLotDivision32,
   parkingLotServices,
   parkingLotIndustries,
@@ -19,6 +23,8 @@ import {
   parkingLotFaqs,
   parkingLotAsphaltCityHref,
   parkingLotConcreteCityHref,
+  parkingLotRelatedLinks,
+  parkingLotProjectEvidence,
 } from "@/lib/parking-lot-service-page";
 
 export const metadata: Metadata = {
@@ -97,10 +103,13 @@ export default function CommercialParkingLotsPage() {
               <p className="mt-6 max-w-xl text-base leading-relaxed text-text-muted sm:text-lg">
                 {parkingLotMeta.heroDescription}
               </p>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap gap-4">
                 <Button href="/contact" variant="primary">
                   Request a Bid
                 </Button>
+                <PhoneLink className="inline-flex items-center justify-center border border-charcoal/25 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:border-charcoal hover:bg-charcoal/5">
+                  Call {nap.phone}
+                </PhoneLink>
               </div>
             </div>
             <div className="relative aspect-[4/3] w-full overflow-hidden border border-border">
@@ -127,6 +136,70 @@ export default function CommercialParkingLotsPage() {
               <p
                 key={paragraph}
                 className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-6 sm:text-lg"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-off-white-muted">
+        <Container className="py-16 lg:py-20">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+                {parkingLotAudience.heading}
+              </h2>
+              {parkingLotAudience.paragraphs.map((paragraph) => (
+                <p
+                  key={paragraph}
+                  className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+            <div>
+              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+                {parkingLotBidPrep.heading}
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg">
+                {parkingLotBidPrep.intro}
+              </p>
+              <ul className="mt-6 flex flex-col gap-3">
+                {parkingLotBidPrep.items.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90 sm:text-base"
+                  >
+                    <span aria-hidden="true" className="mt-0.5 text-accent">
+                      &#9632;
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8">
+                <Button href="/contact" variant="primary">
+                  Request a Bid
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-surface">
+        <Container className="py-16 lg:py-20">
+          <div className="max-w-3xl">
+            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              {parkingLotConstructionVsRehab.heading}
+            </h2>
+            {parkingLotConstructionVsRehab.paragraphs.map((paragraph) => (
+              <p
+                key={paragraph}
+                className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg"
               >
                 {paragraph}
               </p>
@@ -225,6 +298,74 @@ export default function CommercialParkingLotsPage() {
       <section className="bg-off-white-muted">
         <Container className="py-16 lg:py-20">
           <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+            {parkingLotProjectEvidence.heading}
+          </h2>
+          <p className="mt-3 text-sm font-semibold uppercase tracking-wider text-accent">
+            {parkingLotProjectEvidence.location}
+          </p>
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-charcoal/80 sm:text-lg">
+            {parkingLotProjectEvidence.summary}
+          </p>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+            {parkingLotProjectEvidence.photos.map((photo) => (
+              <figure key={photo.src} className="overflow-hidden border border-border bg-surface">
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                  />
+                </div>
+                <figcaption className="border-t border-border px-4 py-3 text-sm leading-relaxed text-text-muted">
+                  {photo.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <div className="mt-8">
+            <Link
+              href={parkingLotProjectEvidence.href}
+              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+            >
+              Read the full Chandler case study
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-surface">
+        <Container className="py-16 lg:py-20">
+          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+            Related Commercial Services
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
+            Need asphalt paving, overlay, or patching without a full lot
+            rebuild? See our commercial asphalt paving services. Concrete pads
+            and curb that travel with a lot are covered with commercial
+            concrete.
+          </p>
+          <ul className="mt-8 flex flex-col gap-4">
+            {parkingLotRelatedLinks.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                >
+                  {item.label}
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      <section className="bg-off-white-muted">
+        <Container className="py-16 lg:py-20">
+          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
             Parking Lot Work by City
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
@@ -298,14 +439,16 @@ export default function CommercialParkingLotsPage() {
             Discuss Your Parking Lot Project
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Tell us about your scope and location — new construction,
-            reconstruction, or rehabilitation. Our team will review the details
-            and follow up to discuss next steps.
+            Send an address and whether the lot is new or already in use. You
+            do not need complete civil drawings to inquire.
           </p>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Button href="/contact" variant="secondary">
               Request a Bid
             </Button>
+            <PhoneLink className="inline-flex items-center justify-center border border-surface/70 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-surface transition-colors hover:border-surface hover:bg-surface/10">
+              Call {nap.phone}
+            </PhoneLink>
           </div>
         </Container>
       </section>

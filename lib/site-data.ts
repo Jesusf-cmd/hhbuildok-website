@@ -63,6 +63,28 @@ export const nap = {
   hoursLabel: businessHours.label,
 } as const;
 
+/** Shared org node for layout LocalBusiness and nested Service.provider. */
+export const organizationSchemaId = `${siteConfig.url}/#organization`;
+
+export const postalAddressSchema = {
+  "@type": "PostalAddress",
+  streetAddress: `${siteConfig.address.street} ${siteConfig.address.suite}`,
+  addressLocality: siteConfig.address.city,
+  addressRegion: siteConfig.address.state,
+  postalCode: siteConfig.address.zip,
+  addressCountry: "US",
+} as const;
+
+/** Complete provider entity so page-level Service JSON-LD is valid on its own. */
+export const serviceProviderSchema = {
+  "@type": "GeneralContractor",
+  "@id": organizationSchemaId,
+  name: nap.name,
+  url: siteConfig.url,
+  telephone: siteConfig.phoneE164,
+  address: postalAddressSchema,
+} as const;
+
 export const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },

@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { PhoneLink } from "@/components/ui/PhoneLink";
-import { siteConfig, services } from "@/lib/site-data";
+import { siteConfig, services, serviceProviderSchema } from "@/lib/site-data";
 import {
   asphaltCityHref,
   asphaltCityIndex,
@@ -75,20 +75,7 @@ export default async function AsphaltCityPage({
     serviceType: "Commercial Asphalt Paving",
     name: page.metaTitle,
     description: page.metaDescription,
-    provider: {
-      "@type": "GeneralContractor",
-      name: siteConfig.name,
-      url: siteConfig.url,
-      telephone: siteConfig.phoneE164,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: `${siteConfig.address.street} ${siteConfig.address.suite}`,
-        addressLocality: siteConfig.address.city,
-        addressRegion: siteConfig.address.state,
-        postalCode: siteConfig.address.zip,
-        addressCountry: "US",
-      },
-    },
+    provider: serviceProviderSchema,
     areaServed: {
       "@type": "City",
       name: city.name,

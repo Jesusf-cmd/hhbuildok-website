@@ -4,7 +4,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { services, siteConfig } from "@/lib/site-data";
+import { services, siteConfig, serviceProviderSchema } from "@/lib/site-data";
 import {
   concreteCityHref,
   concreteServiceAreaCities,
@@ -81,11 +81,7 @@ export default async function ConcreteCityPage({ params }: ConcreteCityPageProps
     serviceType: concreteService.title,
     name: entry.metaTitle,
     description: entry.metaDescription,
-    provider: {
-      "@type": "GeneralContractor",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    provider: serviceProviderSchema,
     areaServed: {
       "@type": "City",
       name: city.name,

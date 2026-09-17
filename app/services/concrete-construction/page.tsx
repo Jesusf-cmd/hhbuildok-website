@@ -5,7 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { services, siteConfig, serviceAreaCities } from "@/lib/site-data";
+import { services, siteConfig, serviceAreaCities, serviceProviderSchema } from "@/lib/site-data";
 import { TrustBlock } from "@/components/sections/TrustBlock";
 import { withProductionRobots } from "@/lib/production-metadata";
 import {
@@ -38,11 +38,7 @@ export default function ConcreteConstructionPage() {
     serviceType: service.title,
     name: service.metaTitle,
     description: service.metaDescription,
-    provider: {
-      "@type": "GeneralContractor",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    provider: serviceProviderSchema,
     areaServed: serviceAreaCities.map((city) => ({
       "@type": "City",
       name: city,

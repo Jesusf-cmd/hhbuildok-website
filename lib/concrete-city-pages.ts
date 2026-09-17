@@ -239,7 +239,7 @@ export const concreteCityPages: ConcreteCityPageContent[] = [
   {
     citySlug: "tulsa",
     h1: "Commercial Concrete Construction in Tulsa",
-    metaTitle: "Commercial Concrete in Tulsa, OK | H&H Construction",
+    metaTitle: "Commercial Concrete in Tulsa, OK",
     metaDescription:
       "H&H Construction places commercial concrete foundations, slabs, and loading dock infrastructure for Tulsa's industrial and distribution facilities. Request a bid.",
     heroDescription:

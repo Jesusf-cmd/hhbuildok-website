@@ -5,7 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { priorityCities, services, siteConfig } from "@/lib/site-data";
+import { priorityCities, services, siteConfig, serviceProviderSchema } from "@/lib/site-data";
 import {
   cityServiceHref,
   getCityServiceParams,
@@ -75,11 +75,7 @@ export default async function CityServicePage({
     serviceType: service.title,
     name: entry.metaTitle,
     description: entry.metaDescription,
-    provider: {
-      "@type": "GeneralContractor",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    provider: serviceProviderSchema,
     areaServed: {
       "@type": "City",
       name: city.name,

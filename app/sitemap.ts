@@ -20,37 +20,60 @@ import { metalBuildingsHubHref } from "@/lib/commercial-metal-buildings-page";
 import { caseStudies, hasCaseStudies } from "@/lib/projects-data";
 import { hasPublishableCredentials } from "@/lib/credentials-data";
 
+/**
+ * Path-level lastmod for URLs with dated substantive updates after
+ * contentLastUpdated. Dates match PR #22 / #23 merge dates (2026-09-16),
+ * not build time.
+ */
+const sitemapLastmodByPath: Record<string, string> = {
+  "/services": "2026-09-16",
+  "/services/asphalt-paving": "2026-09-16",
+  "/services/commercial-parking-lots": "2026-09-16",
+  "/services/commercial-metal-buildings": "2026-09-16",
+  "/services/metal-buildings-roofing": "2026-09-16",
+  ...Object.fromEntries(
+    asphaltCityIndex.map((page) => [
+      asphaltCityHref(page.citySlug),
+      "2026-09-16",
+    ]),
+  ),
+};
+
+function lastModifiedFor(path: string): Date {
+  return new Date(sitemapLastmodByPath[path] ?? contentLastUpdated);
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date(contentLastUpdated);
+  const defaultLastModified = lastModifiedFor("/");
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: siteConfig.url,
-      lastModified,
+      lastModified: defaultLastModified,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: `${siteConfig.url}/services`,
-      lastModified,
+      lastModified: lastModifiedFor("/services"),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${siteConfig.url}/service-area`,
-      lastModified,
+      lastModified: defaultLastModified,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${siteConfig.url}/industries`,
-      lastModified,
+      lastModified: defaultLastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${siteConfig.url}/contact`,
-      lastModified,
+      lastModified: defaultLastModified,
       changeFrequency: "yearly",
       priority: 0.7,
     },
@@ -58,14 +81,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const serviceRoutes: MetadataRoute.Sitemap = services.map((service) => ({
     url: `${siteConfig.url}/services/${service.slug}`,
-    lastModified,
+    lastModified: lastModifiedFor(`/services/${service.slug}`),
     changeFrequency: "monthly",
     priority: 0.8,
   }));
 
   const cityRoutes: MetadataRoute.Sitemap = priorityCities.map((city) => ({
     url: `${siteConfig.url}/service-area/${city.slug}`,
-    lastModified,
+    lastModified: defaultLastModified,
     changeFrequency: "monthly",
     priority: 0.8,
   }));
@@ -74,7 +97,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((entry) => entry.serviceSlug !== "asphalt-paving")
     .map((entry) => ({
       url: `${siteConfig.url}${cityServiceHref(entry.citySlug, entry.serviceSlug)}`,
-      lastModified,
+      lastModified: defaultLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
     }));
@@ -82,7 +105,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const asphaltCityRoutes: MetadataRoute.Sitemap = asphaltCityIndex.map(
     (page) => ({
       url: `${siteConfig.url}${asphaltCityHref(page.citySlug)}`,
-      lastModified,
+      lastModified: lastModifiedFor(asphaltCityHref(page.citySlug)),
       changeFrequency: "monthly",
       priority: 0.8,
     }),
@@ -91,7 +114,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const concreteCityRoutes: MetadataRoute.Sitemap = concreteServiceAreaCities.map(
     (city) => ({
       url: `${siteConfig.url}${concreteCityHref(city.slug)}`,
-      lastModified,
+      lastModified: defaultLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
     }),
@@ -100,7 +123,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const parkingLotHubRoute: MetadataRoute.Sitemap = [
     {
       url: `${siteConfig.url}${parkingLotHubHref}`,
-      lastModified,
+      lastModified: lastModifiedFor(parkingLotHubHref),
       changeFrequency: "monthly",
       priority: 0.85,
     },
@@ -109,7 +132,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const foundationsHubRoute: MetadataRoute.Sitemap = [
     {
       url: `${siteConfig.url}${foundationsHubHref}`,
-      lastModified,
+      lastModified: defaultLastModified,
       changeFrequency: "monthly",
       priority: 0.85,
     },
@@ -118,7 +141,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const metalBuildingsHubRoute: MetadataRoute.Sitemap = [
     {
       url: `${siteConfig.url}${metalBuildingsHubHref}`,
-      lastModified,
+      lastModified: lastModifiedFor(metalBuildingsHubHref),
       changeFrequency: "monthly",
       priority: 0.85,
     },
@@ -130,7 +153,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ? [
         {
           url: `${siteConfig.url}/projects`,
-          lastModified,
+          lastModified: defaultLastModified,
           changeFrequency: "monthly",
           priority: 0.9,
         },
@@ -141,7 +164,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ? [
         {
           url: `${siteConfig.url}/certifications`,
-          lastModified,
+          lastModified: defaultLastModified,
           changeFrequency: "yearly",
           priority: 0.7,
         },

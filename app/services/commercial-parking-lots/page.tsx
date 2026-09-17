@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { PhoneLink } from "@/components/ui/PhoneLink";
-import { nap, siteConfig } from "@/lib/site-data";
+import { nap, siteConfig, serviceProviderSchema } from "@/lib/site-data";
 import { asphaltServiceHeroImage } from "@/lib/asphalt-gallery-data";
 import {
   parkingLotHubHref,
@@ -47,11 +47,7 @@ export default function CommercialParkingLotsPage() {
     serviceType: "Commercial Parking Lot Construction",
     name: parkingLotMeta.title,
     description: parkingLotMeta.description,
-    provider: {
-      "@type": "GeneralContractor",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    provider: serviceProviderSchema,
     areaServed: {
       "@type": "State",
       name: "Oklahoma",

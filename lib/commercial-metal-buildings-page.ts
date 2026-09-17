@@ -113,7 +113,7 @@ export const metalBuildingsWhyHh = {
 export const metalBuildingsAudience = {
   heading: "Who This Service Is For",
   paragraphs: [
-    "This page is for general contractors, developers, and commercial or municipal owners who need a pre-engineered metal building erected from a manufacturer-supplied package — warehouses, industrial facilities, municipal buildings, and developer shells. H&H is the erector: we work from the engineered manufacturer drawings for the project. We do not manufacture the building system.",
+    "This page is for general contractors, developers, and commercial or municipal owners who need a pre-engineered metal building erected from a manufacturer-supplied package — warehouses, industrial facilities, municipal buildings, and developer shells. We erect from the engineered manufacturer drawings provided for the project.",
     "When the same bid includes concrete, we review those drawings against the foundation plans, set and verify anchor bolts during the pour, and sequence steel building erection so the red iron frame is waiting on a pad that actually matches. Paving can travel with that package when the truck court and dock approaches have to finish on the same calendar.",
   ],
 } as const;

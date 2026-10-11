@@ -28,7 +28,7 @@ export const commercialAsphaltProjectPhotos: GalleryImage[] = [
   },
   {
     src: "/images/asphalt/commercial-asphalt-milling-industrial-yard-oklahoma.jpg",
-    alt: "Cold planer milling asphalt at an industrial yard with FedEx trailers nearby",
+    alt: "Cold planer milling asphalt at an industrial yard with parked semi-trailers nearby",
     caption: "Asphalt milling at an industrial yard",
   },
   {
@@ -39,7 +39,7 @@ export const commercialAsphaltProjectPhotos: GalleryImage[] = [
   {
     src: "/images/asphalt/commercial-asphalt-patching-truck-terminal-oklahoma.jpg",
     alt: "Workers placing a rectangular asphalt patch across a truck terminal parking lot",
-    caption: "Full-depth asphalt patching in a drive lane",
+    caption: "Asphalt patching in a drive lane",
   },
 ];
 

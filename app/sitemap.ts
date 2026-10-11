@@ -24,11 +24,12 @@ import { hasPublishableCredentials } from "@/lib/credentials-data";
  * Path-level lastmod for URLs with dated substantive updates after
  * contentLastUpdated. Dates match PR #22 / #23 merge dates (2026-09-16),
  * not build time. The Oklahoma City asphalt page uses its PR #25 release
- * date (2026-10-11).
+ * date (2026-10-11). The statewide asphalt page uses its 2026-10-11 content
+ * revision date; reconcile with the release date if it ships later.
  */
 const sitemapLastmodByPath: Record<string, string> = {
   "/services": "2026-09-16",
-  "/services/asphalt-paving": "2026-09-16",
+  "/services/asphalt-paving": "2026-10-11",
   "/services/commercial-parking-lots": "2026-09-16",
   "/services/commercial-metal-buildings": "2026-09-16",
   "/services/metal-buildings-roofing": "2026-09-16",

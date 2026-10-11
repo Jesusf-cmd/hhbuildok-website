@@ -284,7 +284,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
           links: [
             {
               href: `/projects/${chandlerCountyCourthouseSlug}`,
-              label: "Courthouse lot rehabilitation in Chandler, Oklahoma",
+              label: "Parking lot rehabilitation in Chandler, Oklahoma",
             },
             {
               href: "/services/asphalt-paving",
@@ -319,7 +319,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
       ],
     },
     projectProof: {
-      heading: "Completed Project: Courthouse Parking Lot Rehabilitation",
+      heading: "Completed Project: Parking Lot Rehabilitation",
       location: "Chandler, Oklahoma",
       scopes: [
         "Sealcoating",
@@ -333,10 +333,10 @@ export const asphaltCityPages: AsphaltCityPage[] = [
       image: {
         src: chandlerCountyCourthousePhotos[0].src,
         alt: "Overhead drone view of a freshly sealcoated parking lot with new white stall lines and directional arrows beside a green-roofed building",
-        caption: "Courthouse parking lot in Chandler, Oklahoma, after sealcoating and restriping",
+        caption: "Parking lot in Chandler, Oklahoma, after sealcoating and restriping",
       },
       href: `/projects/${chandlerCountyCourthouseSlug}`,
-      linkLabel: "Read the Chandler courthouse parking lot case study",
+      linkLabel: "Read the Chandler parking lot case study",
     },
     climateHeading: "Site Conditions That Shape an Oklahoma City Paving Scope",
     climate: [

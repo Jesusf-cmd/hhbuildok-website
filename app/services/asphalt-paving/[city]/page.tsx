@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/layout/PageShell";
@@ -133,55 +134,196 @@ export default async function AsphaltCityPage({
             <PhoneLink className="inline-flex items-center justify-center border border-charcoal/25 bg-transparent px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors duration-200 hover:border-charcoal hover:bg-charcoal/5">
               Call {siteConfig.phone}
             </PhoneLink>
-            {asphaltService ? (
+            {/* Pages with buying paths link the statewide page from those paths instead. */}
+            {asphaltService && !page.buyingPaths ? (
               <Button href={asphaltService.href} variant="secondary">
                 Statewide Asphalt Overview
               </Button>
             ) : null}
           </div>
+          {page.heroNote ? (
+            <p className="mt-6 max-w-3xl text-sm leading-relaxed text-text-muted">
+              {page.heroNote}
+            </p>
+          ) : null}
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="max-w-3xl font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            {page.introHeading}
-          </h2>
-          <div className="mt-8 max-w-3xl">
-            {page.intro.map((paragraph) => (
-              <p
-                key={paragraph.slice(0, 48)}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-0 sm:text-lg"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            {page.servicesHeading}
-          </h2>
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            {page.services.map((service) => (
-              <div
-                key={service.title}
-                className="border border-border bg-surface p-6 sm:p-8"
-              >
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
-                  {service.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted sm:text-base">
-                  {service.body}
+      {page.intro?.length ? (
+        <section className="bg-surface">
+          <Container className="py-16 lg:py-20">
+            <h2 className="max-w-3xl font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              {page.introHeading}
+            </h2>
+            <div className="mt-8 max-w-3xl">
+              {page.intro.map((paragraph) => (
+                <p
+                  key={paragraph.slice(0, 48)}
+                  className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-0 sm:text-lg"
+                >
+                  {paragraph}
                 </p>
+              ))}
+            </div>
+          </Container>
+        </section>
+      ) : null}
+
+      {page.services?.length ? (
+        <section className="bg-off-white-muted">
+          <Container className="py-16 lg:py-20">
+            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              {page.servicesHeading}
+            </h2>
+            <div className="mt-10 grid gap-6 lg:grid-cols-2">
+              {page.services.map((service) => (
+                <div
+                  key={service.title}
+                  className="border border-border bg-surface p-6 sm:p-8"
+                >
+                  <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+                    {service.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-text-muted sm:text-base">
+                    {service.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+      ) : null}
+
+      {page.buyingPaths ? (
+        <section className="bg-surface">
+          <Container className="py-16 lg:py-20">
+            <h2 className="max-w-3xl font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              {page.buyingPaths.heading}
+            </h2>
+            <p className="mt-6 max-w-3xl text-base leading-relaxed text-charcoal/80 sm:text-lg">
+              {page.buyingPaths.intro}
+            </p>
+            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+              {page.buyingPaths.paths.map((path) => (
+                <article
+                  key={path.title}
+                  className="flex flex-col border border-border bg-surface-muted p-6 sm:p-8"
+                >
+                  <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+                    {path.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-text-muted sm:text-base">
+                    {path.conditions}
+                  </p>
+                  <h4 className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">
+                    What helps us scope it
+                  </h4>
+                  <ul className="mt-3 flex flex-col gap-2">
+                    {path.scopeInputs.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90"
+                      >
+                        <span aria-hidden="true" className="mt-0.5 text-accent">
+                          &#9632;
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <ul className="mt-6 flex flex-col gap-1 border-t border-border pt-4">
+                    {path.links.map((link) => (
+                      <li key={link.href + link.label}>
+                        <Link
+                          href={link.href}
+                          className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-charcoal underline decoration-border underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                        >
+                          {link.label}
+                          <span aria-hidden="true">&rarr;</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-auto pt-4">
+                    <Link
+                      href="/contact"
+                      className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold uppercase tracking-wider text-accent transition-colors hover:text-accent-hover"
+                    >
+                      {path.ctaLabel}
+                      <span aria-hidden="true">&rarr;</span>
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className="mt-10 max-w-3xl border-l-2 border-accent pl-6">
+              <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+                {page.buyingPaths.methodHeading}
+              </h3>
+              <p className="mt-3 text-base leading-relaxed text-charcoal/80">
+                {page.buyingPaths.method}
+              </p>
+            </div>
+          </Container>
+        </section>
+      ) : null}
+
+      {page.projectProof ? (
+        <section className="bg-off-white-muted">
+          <Container className="py-16 lg:py-20">
+            <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+              <figure className="overflow-hidden border border-border bg-surface">
+                <div className="relative aspect-video">
+                  <Image
+                    src={page.projectProof.image.src}
+                    alt={page.projectProof.image.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
+                <figcaption className="border-t border-border px-4 py-3 text-sm leading-relaxed text-text-muted">
+                  {page.projectProof.image.caption}
+                </figcaption>
+              </figure>
+              <div>
+                <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+                  {page.projectProof.heading}
+                </h2>
+                <p className="mt-3 text-sm font-semibold uppercase tracking-wider text-accent">
+                  {page.projectProof.location}
+                </p>
+                <h3 className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">
+                  Scope performed
+                </h3>
+                <ul className="mt-3 flex flex-col gap-2">
+                  {page.projectProof.scopes.map((scope) => (
+                    <li
+                      key={scope}
+                      className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90 sm:text-base"
+                    >
+                      <span aria-hidden="true" className="mt-0.5 text-accent">
+                        &#9632;
+                      </span>
+                      {scope}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-6 text-base leading-relaxed text-charcoal/80">
+                  {page.projectProof.relevance}
+                </p>
+                <Link
+                  href={page.projectProof.href}
+                  className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                >
+                  {page.projectProof.linkLabel}
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
               </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+            </div>
+          </Container>
+        </section>
+      ) : null}
 
       <section className="bg-surface">
         <Container className="py-16 lg:py-20">
@@ -368,6 +510,37 @@ export default async function AsphaltCityPage({
           </div>
         </Container>
       </section>
+
+      {page.inquiryGuidance ? (
+        <section className="bg-surface">
+          <Container className="py-16 lg:py-20">
+            <div className="max-w-3xl">
+              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+                {page.inquiryGuidance.heading}
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg">
+                {page.inquiryGuidance.intro}
+              </p>
+              <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                {page.inquiryGuidance.items.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90 sm:text-base"
+                  >
+                    <span aria-hidden="true" className="mt-0.5 text-accent">
+                      &#9632;
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-sm leading-relaxed text-text-muted">
+                {page.inquiryGuidance.note}
+              </p>
+            </div>
+          </Container>
+        </section>
+      ) : null}
 
       <section className="bg-accent">
         <Container className="py-16 text-center lg:py-20">

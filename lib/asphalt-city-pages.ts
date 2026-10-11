@@ -3,6 +3,10 @@ import {
   asphaltCityHref,
   getAsphaltCityParams,
 } from "@/lib/asphalt-city-index";
+import {
+  chandlerCountyCourthousePhotos,
+  chandlerCountyCourthouseSlug,
+} from "@/lib/chandler-county-courthouse-data";
 
 export type AsphaltCityServiceBlock = {
   title: string;
@@ -19,6 +23,30 @@ export type AsphaltCityProcessStep = {
   body: string;
 };
 
+export type AsphaltCityLink = {
+  href: string;
+  label: string;
+};
+
+/** One way a commercial paving inquiry typically starts, with scoping inputs. */
+export type AsphaltCityBuyingPath = {
+  title: string;
+  conditions: string;
+  scopeInputs: string[];
+  links: AsphaltCityLink[];
+  ctaLabel: string;
+};
+
+export type AsphaltCityProjectProof = {
+  heading: string;
+  location: string;
+  scopes: string[];
+  relevance: string;
+  image: { src: string; alt: string; caption: string };
+  href: string;
+  linkLabel: string;
+};
+
 export type AsphaltCityPage = {
   citySlug: string;
   cityName: string;
@@ -26,10 +54,26 @@ export type AsphaltCityPage = {
   metaTitle: string;
   metaDescription: string;
   heroLead: string;
-  introHeading: string;
-  intro: string[];
-  servicesHeading: string;
-  services: AsphaltCityServiceBlock[];
+  /** Short service-area line shown under the hero CTAs. */
+  heroNote?: string;
+  introHeading?: string;
+  intro?: string[];
+  servicesHeading?: string;
+  services?: AsphaltCityServiceBlock[];
+  buyingPaths?: {
+    heading: string;
+    intro: string;
+    methodHeading: string;
+    method: string;
+    paths: AsphaltCityBuyingPath[];
+  };
+  projectProof?: AsphaltCityProjectProof;
+  inquiryGuidance?: {
+    heading: string;
+    intro: string;
+    items: string[];
+    note: string;
+  };
   climateHeading: string;
   climate: string[];
   audiencesHeading: string;
@@ -188,102 +232,162 @@ export const asphaltCityPages: AsphaltCityPage[] = [
   {
     citySlug: "oklahoma-city",
     cityName: "Oklahoma City",
-    h1: "Commercial Asphalt Paving in Oklahoma City, OK",
-    metaTitle:
-      "Asphalt Paving Oklahoma City OK | Commercial Paving Contractor",
+    h1: "Commercial Asphalt Paving in Oklahoma City",
+    metaTitle: "Commercial Asphalt Paving Oklahoma City",
     metaDescription:
-      "H&H Construction provides commercial asphalt paving, parking lot construction, mill-and-overlay, and pavement maintenance in Oklahoma City, OK. Serving developers, municipalities, and property owners statewide. Request a bid today.",
+      "Commercial asphalt paving, repair, and resurfacing for Oklahoma City parking lots and industrial yards. Request a project bid from Norman-based H&H Construction.",
     heroLead:
-      "Commercial parking lot paving, industrial yard asphalt, mill-and-overlay resurfacing, full-depth reconstruction, and municipal paving for Oklahoma City developments, warehouses, and public sites across the metro.",
-    introHeading:
-      "Commercial Asphalt Paving for a City Under Constant Construction",
-    intro: [
-      "Oklahoma City has passed 700,000 residents and continues adding population faster than almost any city its size in the country. Downtown alone is in the middle of a generational build-out — MAPS 4 projects, the new Thunder arena backed by a $900 million bond, and the Boardwalk at Bricktown development are reshaping the city's core, while commercial and industrial growth continues to spread across the metro. That level of construction activity means a constant need for commercial-grade asphalt paving, and H&H Construction is built to deliver it — from new commercial parking lot installation to mill-and-overlay resurfacing and full-depth pavement reconstruction across the OKC metro.",
-      "We work with general contractors, developers, municipalities, and property owners on commercial asphalt projects ranging from single retail lots to large industrial yard paving and municipal paving packages — including heavy-duty sections for truck traffic that passenger-car lot designs cannot survive.",
-    ],
-    servicesHeading: "Our Commercial Asphalt Paving Services in Oklahoma City",
-    services: [
-      {
-        title: "New Commercial & Industrial Asphalt Installation",
-        body: "Complete commercial paving for new developments, industrial yards, warehouse docks, and municipal roadways — excavation, grading, aggregate base preparation, and hot-mix finish paving delivered as one coordinated scope with section thickness matched to actual traffic loads.",
+      "New paving, repair and resurfacing, and full-depth reconstruction for commercial parking lots, industrial and warehouse yards, and existing pavement that needs rehabilitation. We work with property owners, facility managers, general contractors, developers, and public owners.",
+    heroNote: `Based in ${siteConfig.address.city} and serving Oklahoma City and the surrounding metro. Send a bid request or call ${siteConfig.phone}.`,
+    buyingPaths: {
+      heading: "Three Ways Oklahoma City Paving Projects Start",
+      intro:
+        "Most commercial paving inquiries fit one of these paths. If you are not sure which one applies, describe what you are seeing and we will help sort out the scope.",
+      methodHeading: "How the Method Gets Chosen",
+      method:
+        "The right approach depends on pavement condition, base and subgrade, drainage, traffic loading, and the project specifications — not on how the surface looks from a parking space. Where a project has plans and specifications, we install to them. Where it does not, the proposal states the recommended approach, the conditions it is based on, and the anticipated schedule.",
+      paths: [
+        {
+          title: "New Commercial Asphalt Paving",
+          conditions:
+            "New parking lots, lot expansions, drive lanes, and industrial or warehouse yards where pavement is being built for the first time. On most new work, the pavement section, grades, and drainage come from the civil drawings.",
+          scopeInputs: [
+            "Site address and civil or paving plans, if issued",
+            "Approximate area and the specified pavement section",
+            "Expected traffic: passenger cars, delivery trucks, or loaded semis",
+            "Where the paving scope starts and stops relative to grading, utilities, and site concrete",
+            "Target schedule and construction sequence",
+          ],
+          links: [
+            {
+              href: "/services/asphalt-paving",
+              label: "Commercial asphalt paving services across Oklahoma",
+            },
+            {
+              href: "/services/commercial-parking-lots",
+              label: "Parking lot packages with curb and site concrete",
+            },
+          ],
+          ctaLabel: "Request a bid for new paving",
+        },
+        {
+          title: "Repair, Patching, Overlays & Resurfacing",
+          conditions:
+            "Existing lots and drives with surface wear, oxidation, cracking, potholes, or isolated failed areas. Overlays and mill-and-overlay suit pavement whose base is still performing; patching suits isolated failures surrounded by sound pavement. Repair recommendations depend on pavement and base conditions, so an overlay is not a fix for pavement that is failing structurally.",
+          scopeInputs: [
+            "Photos of the cracking, potholes, ponding, or failed areas",
+            "Approximate area or a rough site sketch",
+            "Which areas carry delivery or truck traffic",
+            "Entrances, fire lanes, and accessible routes that must stay usable during the work",
+            "Whether restriping is needed",
+          ],
+          links: [
+            {
+              href: `/projects/${chandlerCountyCourthouseSlug}`,
+              label: "Courthouse lot rehabilitation in Chandler, Oklahoma",
+            },
+            {
+              href: "/services/asphalt-paving",
+              label: "Overlay versus full-depth repair, explained",
+            },
+          ],
+          ctaLabel: "Request a repair or resurfacing bid",
+        },
+        {
+          title: "Full-Depth Reconstruction or Lot Replacement",
+          conditions:
+            "Widespread alligator cracking, potholes that keep returning in the same areas, pumping, rutting in drive lanes, or drainage that keeps undermining the pavement can point to base or subgrade problems that a surface treatment will not correct. When the work also involves curb, approaches, concrete sections, and restriping across the lot, it is usually scoped as a parking-lot package.",
+          scopeInputs: [
+            "Photos of the worst areas and of drainage after rain",
+            "Any geotechnical report, cores, or earlier pavement evaluations",
+            "Lot layout, approximate area, and curb or concrete that will remain",
+            "Phasing needs for tenants, deliveries, and emergency access",
+            "Desired schedule and any hard deadlines",
+          ],
+          links: [
+            {
+              href: "/services/commercial-parking-lots",
+              label: "Commercial parking lot construction and rehabilitation",
+            },
+            {
+              href: "/services/concrete-construction",
+              label: "Concrete for truck pads, curbs, and approaches",
+            },
+          ],
+          ctaLabel: "Request a reconstruction bid",
+        },
+      ],
+    },
+    projectProof: {
+      heading: "Completed Project: Courthouse Parking Lot Rehabilitation",
+      location: "Chandler, Oklahoma",
+      scopes: [
+        "Sealcoating",
+        "Asphalt overlay",
+        "Patching of distressed pavement",
+        "Curb replacement",
+        "Restriping, including accessible stalls",
+      ],
+      relevance:
+        "This project is in Chandler, not Oklahoma City. It is shown here because the scope reflects the decisions behind many Oklahoma City repair and resurfacing projects: which areas need only a surface treatment, which need an overlay or patching, and where curb and striping need to be restored.",
+      image: {
+        src: chandlerCountyCourthousePhotos[0].src,
+        alt: "Overhead drone view of a freshly sealcoated parking lot with new white stall lines and directional arrows beside a green-roofed building",
+        caption: "Courthouse parking lot in Chandler, Oklahoma, after sealcoating and restriping",
       },
-      {
-        title: "Commercial Parking Lot Construction & Reconstruction",
-        body: "New commercial parking lot construction and full-depth reconstruction for failed or aging pavement, engineered for OKC's traffic loads, drainage requirements, ADA compliance, and drive aisles that see more than light passenger cars.",
-      },
-      {
-        title: "Asphalt Overlays, Mill-and-Overlay & Resurfacing",
-        body: "Commercial overlay and mill-and-overlay solutions for lots and private roadways where the base remains sound but the surface has oxidized or deteriorated — a frequent need across OKC's older commercial corridors and industrial districts. We will tell you when an overlay is the wrong answer because the base has already failed.",
-      },
-      {
-        title: "Heavy-Duty Industrial Yard Paving",
-        body: "Thicker commercial asphalt sections for dock approaches, trailer yards, dumpster pads, and distribution facilities handling constant truck traffic — or an honest recommendation to use concrete in the highest-load zones.",
-      },
-      {
-        title: "Patching, Pothole Repair & Pavement Maintenance",
-        body: "Fast, targeted full-depth patches for cracking, potholes, and drainage-related pavement failure, plus crack sealing and sealcoat maintenance where the commercial section is still structurally sound — before distress escalates into a larger liability.",
-      },
-      {
-        title: "Striping, Layout & ADA Marking",
-        body: "ADA-compliant commercial striping, stall layout, van-accessible access aisles, directional markings, and fire-lane designation for new and resurfaced Oklahoma City lots.",
-      },
-    ],
-    climateHeading:
-      "Paving Built for Oklahoma City's Soil, Weather, and Scale",
+      href: `/projects/${chandlerCountyCourthouseSlug}`,
+      linkLabel: "Read the Chandler courthouse parking lot case study",
+    },
+    climateHeading: "Site Conditions That Shape an Oklahoma City Paving Scope",
     climate: [
-      "Oklahoma City's clay-heavy soil and dramatic seasonal swings — hard summer heat followed by winter freeze-thaw cycles — put real stress on commercial asphalt that is not properly engineered from the base up. Standing water and weak compaction destroy lots from the bottom up; the mat on top cannot save a section that was never drained correctly.",
-      "On top of that, OKC's scale means many projects involve heavier truck traffic, higher-volume parking demand, or municipal-grade specifications that require tighter tolerances than a typical residential job. We grade, compact, and build every base to account for both the region's soil conditions and the specific traffic load of your commercial site, which is what keeps asphalt performing for well over a decade instead of failing early.",
+      "Drainage and base condition often matter more than the surface. Much of central Oklahoma sits on clay soils that move with moisture, so ponding areas, inlets, and curb lines that hold water belong in the scope conversation from the start.",
+      "Many Oklahoma City commercial sites stay open while the work happens — retail centers, offices, warehouses with dock schedules, and public facilities. Which entrances, fire lanes, accessible routes, and dock approaches stay open, and when, is agreed in the project scope.",
+      "Industrial and warehouse properties along the I-40 and I-240 corridors and near the airport often carry loaded trailer traffic. Drive lanes, dock approaches, and dumpster pads may need a heavier section or concrete; the project specifications or the proposal identify where.",
     ],
-    audiencesHeading: "Who We Serve with Commercial Asphalt in Oklahoma City",
+    audiencesHeading: "Who We Work With in Oklahoma City",
     audiences: [
       {
+        title: "Property Owners & Managers",
+        body: "Repair, resurfacing, and restriping for retail centers, offices, and mixed-use properties, phased around tenants and deliveries as agreed in the scope.",
+      },
+      {
         title: "General Contractors & Developers",
-        body: "Site work and commercial paving packages that integrate with your broader construction schedule — from ground-up retail and industrial pads to downtown redevelopment next to MAPS and arena-related work.",
+        body: "Paving for new commercial and industrial sites, installed to the project plans and specifications and coordinated with grading, utilities, and site concrete.",
       },
       {
-        title: "Municipalities & Public Entities",
-        body: "Roadway, parking, and public-facility asphalt paving delivered to city and county specifications, including projects for courthouses, parks, transit-adjacent sites, and public works that must stay open during construction.",
+        title: "Industrial & Warehouse Facilities",
+        body: "Yards, truck courts, and dock approaches where loaded trailers determine what the pavement has to carry.",
       },
       {
-        title: "School Districts",
-        body: "Commercial parking lots, bus lanes, and campus paving scoped to minimize disruption to school operations and finish inside academic calendar windows.",
-      },
-      {
-        title: "Industrial Facilities",
-        body: "Heavy-duty commercial asphalt built for yards, loading areas, and distribution facilities handling constant truck traffic along the I-40, I-240, and airport corridors.",
-      },
-      {
-        title: "Commercial Property Owners",
-        body: "Parking lot rehabilitation, mill-and-overlay resurfacing, and preventive pavement maintenance for retail centers, offices, and mixed-use properties across the metro — phased so tenants and deliveries keep access.",
+        title: "Public & Institutional Owners",
+        body: "Parking lots and facility paving built to the owner's specifications and access requirements.",
       },
     ],
-    localPartnerHeading:
-      "A Metro-Wide Contractor Rooted in Oklahoma City's Growth",
+    localPartnerHeading: "Norman-Based, Working Across the Metro",
     localPartner: [
-      "H&H Construction is based in Norman and works throughout the greater Oklahoma City metro on commercial concrete, asphalt paving, and metal building projects. Our Chandler County Courthouse parking lot rehabilitation — a two-phase project including sealcoat, restriping, asphalt overlay, full-depth patching, and curb replacement — reflects the kind of municipal-grade commercial asphalt work we deliver across the metro.",
-      "We coordinate directly with general contractors, developers, municipal staff, and property managers, starting every bid with a full site evaluation of soil, drainage, existing pavement structure, and traffic conditions before recommending overlay versus full-depth reconstruction.",
+      `H&H Construction is based in Norman at ${siteConfig.address.street} ${siteConfig.address.suite} and takes on commercial paving across Oklahoma City and the surrounding metro. When a paving project also needs curb, approaches, or concrete pads, those scopes can be bid together.`,
     ],
-    processHeading: "Our Commercial Asphalt Paving Process",
+    processHeading: "How a Commercial Paving Project Moves",
     process: [
       {
-        title: "Site Evaluation",
-        body: "We assess pavement condition, soil type, drainage flow, and expected traffic loads — including heavier volumes for municipal and industrial sites — before recommending mill-and-overlay or full-depth commercial reconstruction.",
+        title: "Site and Document Review",
+        body: "We review the plans and specifications if the project has them, and look at existing pavement condition, drainage, and how the pavement is used before recommending an approach.",
       },
       {
-        title: "Detailed Proposal",
-        body: "A written commercial asphalt scope covering base preparation, hot-mix specs, phasing, timeline, and cost, scaled to the size and complexity of the Oklahoma City project.",
+        title: "Written Proposal",
+        body: "The proposal defines the repair, overlay, or reconstruction areas, the base work, phasing and access, and the anticipated schedule.",
       },
       {
-        title: "Base Preparation",
-        body: "Excavation, grading, and compaction done to spec, since this is the step that most affects how long commercial pavement lasts under OKC's traffic and climate conditions.",
+        title: "Base and Surface Preparation",
+        body: "Milling, removal, subgrade and base repair, and compaction as defined in the scope or specifications.",
       },
       {
-        title: "Paving & Finishing",
-        body: "Hot-mix asphalt installed to the designed thickness and compacted while the mat is still hot, with equipment matched to the job — from retail parking lots to industrial yards and municipal roadways.",
+        title: "Paving",
+        body: "Hot-mix asphalt placed and compacted to the specified section and project requirements.",
       },
       {
-        title: "Striping & Walkthrough",
-        body: "Code-compliant commercial striping, ADA verification, fire-lane marking, and a final walkthrough before project closeout.",
+        title: "Striping and Walkthrough",
+        body: "Striping and markings to the approved layout, including accessible stalls as specified, followed by a walkthrough with the owner or general contractor.",
       },
     ],
     faqs: [
@@ -291,35 +395,45 @@ export const asphaltCityPages: AsphaltCityPage[] = [
         question:
           "How long does a commercial paving project take in Oklahoma City?",
         answer:
-          "Timeline depends heavily on scope — a standard commercial retail lot typically runs one to two weeks from mobilization to finished striping, while larger municipal or industrial projects with full-depth reconstruction can take longer. We provide a specific timeline with every proposal.",
+          "It depends on the area, the repair method, base conditions, phasing, and weather. The proposal identifies the anticipated schedule, and phasing requirements are agreed in the scope before work begins.",
       },
       {
-        question: "Do you handle municipal and public sector paving projects?",
+        question: "Is an overlay enough, or does the lot need full-depth repair?",
         answer:
-          "Yes. We've completed municipal work including courthouse parking lot rehabilitation for Chandler County — sealcoat, restriping, asphalt overlay, full-depth patching, and curb replacement — and we regularly bid public infrastructure and commercial asphalt projects across the OKC metro.",
+          "Overlays suit pavement whose base is still performing and whose distress is mostly in the surface. When cracking is load-related, areas pump water, or the base has failed, an overlay alone is unlikely to hold, and full-depth patching or reconstruction is usually considered. The recommendation depends on the pavement and base conditions on site and any testing the owner provides.",
       },
       {
-        question:
-          "What makes Oklahoma City pavement different from other markets?",
+        question: "Can you pave without shutting down an occupied property?",
         answer:
-          "OKC's combination of clay-heavy soil, seasonal freeze-thaw cycles, and higher traffic volumes from the metro's growth means base preparation and material specification both need to be dialed in correctly — cutting corners on either shows up as commercial pavement failure within a few years.",
+          "Often, yes. Work can usually be sequenced in sections so parking, deliveries, and emergency access remain available. Which areas stay open, and when, is agreed in the project scope.",
       },
       {
-        question:
-          "Do you pave industrial yards for heavy trucks in Oklahoma City?",
+        question: "Do you pave industrial yards and truck areas?",
         answer:
-          "Yes. We build heavier commercial asphalt sections for drive aisles, dock approaches, and yards that see loaded trailer traffic — and we will tell you when concrete is the better answer for the highest-load zones.",
+          "Yes. Drive lanes, dock approaches, and yards that carry loaded trucks need a heavier section than passenger-car stalls, and some high-load zones perform better in concrete. The section comes from the project specifications or is identified in the proposal.",
       },
       {
-        question:
-          "Can you pave without shutting down an occupied Oklahoma City property?",
+        question: "Do I need drawings before requesting a bid?",
         answer:
-          "Usually yes. We phase commercial mill-and-overlay and reconstruction in sections so parking, deliveries, and emergency access stay available for retail, medical, and warehouse sites.",
+          "No. A site address and a description of the work is enough to start. Plans, specifications, photos, and an approximate area help us price more accurately and can be attached to the bid form.",
       },
     ],
+    inquiryGuidance: {
+      heading: "What to Include in Your Bid Request",
+      intro:
+        "You do not need complete drawings to inquire. In the Project Description box on the bid form, include what you know about:",
+      items: [
+        "Project location",
+        "Approximate area",
+        "The pavement problem you are seeing, or the new-work scope",
+        "Traffic and loading: cars, delivery trucks, or loaded semis",
+        "Access constraints, such as areas that must stay open",
+        "Desired schedule",
+      ],
+      note: "Photos, plans, or specifications can be attached to the form if you have them.",
+    },
     ctaHeading: "Request a Commercial Asphalt Paving Bid in Oklahoma City",
-    ctaBody:
-      "If you have a commercial, municipal, or industrial paving project anywhere in the Oklahoma City metro, H&H Construction is ready to scope it. Call 405-476-5476 or submit a bid request online. We serve Oklahoma City and the surrounding metro, including Edmond, Norman, Yukon, Midwest City, and statewide.",
+    ctaBody: `Send the project location and a short description of the work, or call ${siteConfig.phone}. H&H Construction is based in Norman and serves Oklahoma City and the surrounding metro.`,
   },
 
   {

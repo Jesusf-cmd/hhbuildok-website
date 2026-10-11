@@ -326,7 +326,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
         "Asphalt overlay",
         "Patching of distressed pavement",
         "Curb replacement",
-        "Restriping, including accessible stalls",
+        "Restriping",
       ],
       relevance:
         "This project is in Chandler, not Oklahoma City. It is shown here because the scope reflects the decisions behind many Oklahoma City repair and resurfacing projects: which areas need only a surface treatment, which need an overlay or patching, and where curb and striping need to be restored.",

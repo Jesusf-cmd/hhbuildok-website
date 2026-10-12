@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
+import { CtaBand } from "@/components/ui/CtaBand";
+import { PageHero } from "@/components/ui/PageHero";
 import { credentials, hasPublishableCredentials } from "@/lib/credentials-data";
 import { nap } from "@/lib/site-data";
 
@@ -26,13 +27,13 @@ function rows(entries: [string, string | undefined][]): Row[] {
 
 function DefinitionGrid({ items }: { items: Row[] }) {
   return (
-    <dl className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <dl className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((item) => (
-        <div key={item.label} className="border border-border bg-surface p-6">
-          <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">
+        <div key={item.label} className="border border-line border-t-4 border-t-accent bg-white p-6 sm:p-8">
+          <dt className="type-label text-muted">
             {item.label}
           </dt>
-          <dd className="mt-2 font-heading text-xl font-bold uppercase text-charcoal">
+          <dd className="mt-3 font-display text-2xl font-medium uppercase leading-tight text-graphite">
             {item.value}
           </dd>
         </div>
@@ -72,21 +73,16 @@ export default function CertificationsPage() {
         items={[{ label: "Safety & Credentials", href: "/certifications" }]}
       />
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <SectionHeading
-            as="h1"
-            eyebrow="Prequalification"
-            title="Safety, Licensing & Bonding"
-            description="The documentation general contractors, municipalities, and school districts request before awarding work."
-          />
-        </Container>
-      </section>
+      <PageHero eyebrow="Prequalification" title="Safety, Licensing & Bonding">
+        <p className="type-lead mt-6 max-w-2xl">
+          The documentation general contractors, municipalities, and school districts request before awarding work.
+        </p>
+      </PageHero>
 
       {safety.length > 0 ? (
-        <section className="bg-surface">
-          <Container className="py-16 lg:py-20">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+        <section className="bg-paper">
+          <Container className="band">
+            <h2 className="type-h2 text-graphite">
               Safety Record
             </h2>
             <DefinitionGrid items={safety} />
@@ -95,9 +91,9 @@ export default function CertificationsPage() {
       ) : null}
 
       {bonding.length > 0 ? (
-        <section className="bg-off-white-muted">
-          <Container className="py-16 lg:py-20">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+        <section className="bg-warm">
+          <Container className="band">
+            <h2 className="type-h2 text-graphite">
               Bonding Capacity
             </h2>
             <DefinitionGrid items={bonding} />
@@ -106,9 +102,9 @@ export default function CertificationsPage() {
       ) : null}
 
       {insurance.length > 0 ? (
-        <section className="bg-surface">
-          <Container className="py-16 lg:py-20">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+        <section className="bg-paper">
+          <Container className="band">
+            <h2 className="type-h2 text-graphite">
               Insurance
             </h2>
             <DefinitionGrid items={insurance} />
@@ -117,25 +113,25 @@ export default function CertificationsPage() {
       ) : null}
 
       {lists.map((group) => (
-        <section key={group.title} className="bg-off-white-muted">
-          <Container className="py-16 lg:py-20">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+        <section key={group.title} className="bg-warm">
+          <Container className="band">
+            <h2 className="type-h2 text-graphite">
               {group.title}
             </h2>
-            <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+            <ul className="mt-10 grid gap-4 sm:grid-cols-2">
               {group.items.map((item) => (
                 <li
                   key={item.label}
-                  className="border border-border bg-surface p-6"
+                  className="border border-line bg-white p-6 sm:p-8"
                 >
-                  <p className="font-heading text-lg font-bold uppercase text-charcoal">
+                  <p className="type-h3 text-graphite">
                     {item.label}
                   </p>
                   {item.value ? (
-                    <p className="mt-2 text-sm text-charcoal/80">{item.value}</p>
+                    <p className="mt-2 text-sm text-graphite">{item.value}</p>
                   ) : null}
                   {item.note ? (
-                    <p className="mt-2 text-sm text-text-muted">{item.note}</p>
+                    <p className="mt-2 text-sm text-muted">{item.note}</p>
                   ) : null}
                 </li>
               ))}
@@ -145,21 +141,21 @@ export default function CertificationsPage() {
       ))}
 
       {!hasPublishableCredentials ? (
-        <section className="bg-surface">
-          <Container className="py-16 lg:py-20">
-            <div className="max-w-2xl border border-border bg-surface-muted p-8">
-              <h2 className="font-heading text-xl font-bold uppercase text-charcoal sm:text-2xl">
+        <section className="bg-paper">
+          <Container className="band">
+            <div className="max-w-3xl border border-line border-t-4 border-t-accent bg-white p-7 sm:p-10">
+              <h2 className="type-h2-sm text-graphite">
                 Documentation Available on Request
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-text-muted">
+              <p className="type-prose mt-5">
                 {nap.name} carries the licensing and insurance required for
                 commercial and public work in Oklahoma. Certificates of
                 insurance, licensing details, and safety documentation are
                 provided directly during prequalification — contact us and we
                 will send what your process requires.
               </p>
-              <div className="mt-6">
-                <Button href="/contact" variant="primary">
+              <div className="mt-8">
+                <Button href="/contact" variant="primary" arrow>
                   Request Documentation
                 </Button>
               </div>
@@ -168,22 +164,19 @@ export default function CertificationsPage() {
         </section>
       ) : null}
 
-      <section className="bg-accent">
-        <Container className="py-16 text-center lg:py-20">
-          <h2 className="font-heading text-3xl font-bold uppercase text-surface sm:text-4xl">
-            Running a Prequalification?
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Send us your forms and requirements and our team will return the
-            documentation your process calls for.
-          </p>
-          <div className="mt-8">
-            <Button href="/contact" variant="secondary">
-              Contact Us
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <CtaBand
+        title="Running a Prequalification?"
+        actions={
+          <Button href="/contact" variant="secondary" arrow>
+            Contact Us
+          </Button>
+        }
+      >
+        <p>
+          Send us your forms and requirements and our team will return the
+          documentation your process calls for.
+        </p>
+      </CtaBand>
     </PageShell>
   );
 }

@@ -11,7 +11,7 @@ type TrustBlockProps = {
 };
 
 function TrustIcon({ icon }: { icon: TrustItem["icon"] }) {
-  const className = "h-7 w-7 text-accent";
+  const className = "h-6 w-6 text-accent";
 
   if (icon === "document") {
     return (
@@ -63,18 +63,21 @@ function TrustIcon({ icon }: { icon: TrustItem["icon"] }) {
 
 export function TrustBlock({ items }: TrustBlockProps) {
   return (
-    <section className="border-y border-border bg-off-white-muted">
-      <Container className="py-10 lg:py-12">
-        <ul className="grid gap-8 sm:grid-cols-3 sm:gap-10">
+    <section className="border-b border-line bg-warm">
+      <Container>
+        <ul className="grid sm:grid-cols-3">
           {items.map((item) => (
-            <li key={item.title} className="text-center sm:text-left">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-sm border border-border bg-surface sm:mx-0">
+            <li
+              key={item.title}
+              className="border-b border-line-strong py-8 last:border-b-0 sm:border-b-0 sm:border-l sm:px-8 sm:py-10 sm:first:border-l-0 sm:first:pl-0 lg:px-10"
+            >
+              <div className="flex h-12 w-12 items-center justify-center border border-line-strong bg-paper">
                 <TrustIcon icon={item.icon} />
               </div>
-              <h2 className="mt-4 font-heading text-base font-bold uppercase tracking-wide text-charcoal">
+              <h2 className="type-h3 mt-5 text-graphite">
                 {item.title}
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-text-muted">
+              <p className="type-body mt-2">
                 {item.body}
               </p>
             </li>

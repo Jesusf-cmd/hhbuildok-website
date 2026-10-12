@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { navLinks, siteConfig } from "@/lib/site-data";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClassName } from "@/components/ui/Button";
+import { ArrowIcon } from "@/components/ui/Icons";
 import { Logo } from "@/components/ui/Logo";
 import { PhoneLink } from "@/components/ui/PhoneLink";
 import { EmailLink } from "@/components/ui/EmailLink";
@@ -12,10 +13,11 @@ import { EmailLink } from "@/components/ui/EmailLink";
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 8);
     };
 
     handleScroll();
@@ -30,41 +32,50 @@ export function Header() {
     };
   }, [isMenuOpen]);
 
-  const linkColor = "text-charcoal/80 hover:text-charcoal";
-  const menuButtonColor = "border-charcoal/20 text-charcoal";
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isMenuOpen]);
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b bg-paper/[0.97] transition-shadow duration-300 ${
         isScrolled || isMenuOpen
-          ? "border-b border-border bg-surface/95 shadow-sm backdrop-blur-md"
-          : "bg-transparent"
+          ? "border-line shadow-[0_8px_24px_rgb(23_26_26/0.08)]"
+          : "border-line/70"
       }`}
     >
       <Container as="nav" aria-label="Main navigation">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-20 items-center justify-between gap-6">
           <Logo priority />
 
+          <ul className="hidden items-center gap-8 lg:flex xl:gap-10">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="il-nav-link">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
           <div className="hidden items-center gap-6 lg:flex">
-            <ul className="flex items-center gap-7">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={`text-sm font-medium uppercase tracking-wider transition-colors ${linkColor}`}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
             <PhoneLink
               showIcon
-              className="inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-charcoal transition-colors hover:text-accent"
+              className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-graphite transition-colors hover:text-accent"
             >
               {siteConfig.phone}
             </PhoneLink>
-            <Button href="/contact" variant="primary" className="px-5 py-2.5">
+            <Button href="/contact" variant="primary">
               Request a Bid
             </Button>
           </div>
@@ -72,15 +83,16 @@ export function Header() {
           <div className="flex items-center gap-2 lg:hidden">
             <PhoneLink
               showIcon
-              className="inline-flex h-11 min-w-11 items-center justify-center gap-1.5 border border-accent bg-accent px-3 text-surface transition-colors hover:bg-accent-hover"
+              className="inline-flex h-11 min-w-11 items-center justify-center gap-2 border border-accent bg-accent px-3.5 text-paper transition-colors hover:bg-accent-hover"
             >
-              <span className="text-xs font-semibold uppercase tracking-wider">
+              <span className="text-xs font-bold uppercase tracking-[0.08em]">
                 Call
               </span>
             </PhoneLink>
             <button
+              ref={menuButtonRef}
               type="button"
-              className={`flex h-11 w-11 items-center justify-center border ${menuButtonColor}`}
+              className="flex h-11 w-11 items-center justify-center border border-line-strong text-graphite transition-colors hover:border-graphite"
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -118,39 +130,40 @@ export function Header() {
       {isMenuOpen && (
         <div
           id="mobile-menu"
-          className="border-t border-border bg-surface lg:hidden"
+          className="tone-dark fixed inset-x-0 bottom-0 top-20 overflow-y-auto overscroll-contain lg:hidden"
         >
-          <Container className="py-6">
-            <div className="mb-6 grid grid-cols-2 gap-3">
+          <Container className="py-8">
+            <div className="mb-8 grid grid-cols-2 gap-3">
               <PhoneLink
                 showIcon
-                className="inline-flex min-h-12 items-center justify-center gap-2 bg-accent px-4 text-sm font-semibold uppercase tracking-wider text-surface"
+                className={buttonClassName("primary", "w-full")}
               >
                 Call Now
               </PhoneLink>
               <EmailLink
                 showIcon
-                className="inline-flex min-h-12 items-center justify-center gap-2 border border-border px-4 text-sm font-semibold uppercase tracking-wider text-charcoal"
+                className={buttonClassName("outline", "w-full")}
               >
                 Email Us
               </EmailLink>
             </div>
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col border-t border-white/15">
               {navLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.href} className="border-b border-white/15">
                   <Link
                     href={link.href}
-                    className="block py-2 text-base font-medium uppercase tracking-wider text-charcoal"
+                    className="group flex min-h-16 items-center justify-between gap-4 py-3 font-display text-[1.75rem] font-medium uppercase leading-none text-paper transition-colors hover:text-accent-light"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.label}
+                    <ArrowIcon className="il-arrow h-5 w-5 text-accent-light" />
                   </Link>
                 </li>
               ))}
-              <li className="pt-2">
+              <li className="pt-8">
                 <Link
                   href="/contact"
-                  className="inline-flex w-full items-center justify-center bg-charcoal px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-surface transition-colors hover:bg-charcoal-light"
+                  className={buttonClassName("primary", "w-full")}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Request a Bid

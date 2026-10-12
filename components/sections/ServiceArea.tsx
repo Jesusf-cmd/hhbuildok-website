@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { serviceAreaCities, serviceAreaCityHref } from "@/lib/site-data";
 import { Container } from "@/components/ui/Container";
+import { ArrowIcon } from "@/components/ui/Icons";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -10,10 +11,10 @@ export function ServiceArea() {
     <section
       id="service-area"
       aria-labelledby="service-area-heading"
-      className="bg-surface"
+      className="bg-paper"
     >
-      <Container className="py-20 lg:py-28">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <Container className="band">
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-20">
           <Reveal>
             <SectionHeading
               id="service-area-heading"
@@ -22,36 +23,28 @@ export function ServiceArea() {
               description="H&H Construction provides commercial concrete, asphalt paving, and metal building services throughout Oklahoma. Contact us to discuss your project location and scope."
             />
             <ul
-              className="mt-10 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3"
+              className="il-link-list mt-10 grid sm:grid-cols-2 sm:gap-x-8 sm:border-t-0 sm:[&>li:nth-child(-n+2)]:border-t sm:[&>li]:border-line-strong"
               aria-label="Cities and regions served"
             >
               {serviceAreaCities.map((city) => (
-                <li
-                  key={city}
-                  className="text-sm text-text-muted before:mr-2 before:text-accent before:content-['■']"
-                >
-                  <Link
-                    href={serviceAreaCityHref(city)}
-                    className="underline-offset-2 transition-colors hover:text-accent hover:underline focus-visible:text-accent focus-visible:underline"
-                  >
+                <li key={city}>
+                  <Link href={serviceAreaCityHref(city)}>
                     {city}
+                    <ArrowIcon />
                   </Link>
                 </li>
               ))}
             </ul>
-            <p className="mt-8 text-sm text-text-muted">
+            <p className="type-body mt-8">
               Don&apos;t see your location listed?{" "}
-              <Link
-                href="/service-area"
-                className="font-medium text-charcoal underline underline-offset-2 transition-colors hover:text-accent"
-              >
+              <Link href="/service-area" className="il-inline-link">
                 View our full service area
               </Link>{" "}
               — we evaluate projects across the state.
             </p>
           </Reveal>
 
-          <Reveal delay={120} className="relative aspect-square w-full overflow-hidden border border-border">
+          <Reveal delay={120} className="il-frame relative aspect-square w-full overflow-hidden bg-graphite">
             <Image
               src="/images/stock/oklahoma-service-area.jpg"
               alt="map or aerial photo showing Oklahoma service area"

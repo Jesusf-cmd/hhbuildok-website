@@ -5,6 +5,10 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { CtaBand } from "@/components/ui/CtaBand";
+import { ArrowIcon, CheckIcon } from "@/components/ui/Icons";
+import { PageHero } from "@/components/ui/PageHero";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { priorityCities, services, siteConfig, serviceProviderSchema } from "@/lib/site-data";
 import {
   cityServiceHref,
@@ -115,35 +119,30 @@ export default async function CityServicePage({
         ]}
       />
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-            {city.name}, OK · {service.shortTitle}
-          </p>
-          <h1 className="max-w-3xl font-heading text-3xl font-bold uppercase leading-tight text-charcoal sm:text-4xl lg:text-5xl">
-            {entry.h1}
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-text-muted sm:text-lg">
-            {entry.heroDescription}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Button href="/contact" variant="primary">
-              Request a Bid
-            </Button>
-            <Button href={service.href} variant="secondary">
-              Full {service.shortTitle} Overview
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        eyebrow={<>{city.name}, OK · {service.shortTitle}</>}
+        title={entry.h1}
+      >
+        <p className="type-lead mt-6 max-w-2xl">
+          {entry.heroDescription}
+        </p>
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Button href="/contact" variant="primary" arrow>
+            Request a Bid
+          </Button>
+          <Button href={service.href} variant="outline">
+            Full {service.shortTitle} Overview
+          </Button>
+        </div>
+      </PageHero>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <div className="max-w-3xl">
+      <section className="bg-paper">
+        <Container className="band">
+          <div className="max-w-4xl border-l-4 border-accent pl-6 sm:pl-10">
             {entry.localAngle.map((paragraph) => (
               <p
                 key={paragraph}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-0 sm:text-lg"
+                className="mt-6 text-lg leading-relaxed text-graphite first:mt-0 sm:text-xl sm:leading-relaxed"
               >
                 {paragraph}
               </p>
@@ -152,20 +151,15 @@ export default async function CityServicePage({
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="bg-warm">
+        <Container className="band">
+          <h2 className="type-h2 max-w-4xl text-graphite">
             Where This Work Shows Up in {city.name}
           </h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+          <ul className="mt-12 grid gap-3 sm:grid-cols-2">
             {entry.applications.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 border border-border bg-surface p-5 text-sm leading-relaxed text-charcoal/90"
-              >
-                <span aria-hidden="true" className="mt-0.5 text-accent">
-                  &#9632;
-                </span>
+              <li key={item} className="il-tile">
+                <CheckIcon />
                 {item}
               </li>
             ))}
@@ -173,29 +167,29 @@ export default async function CityServicePage({
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="bg-paper">
+        <Container className="band">
+          <h2 className="type-h2 max-w-4xl text-graphite">
             What Shapes {service.shortTitle} Work Here
           </h2>
-          <div className="mt-10 grid gap-8 lg:grid-cols-3">
+          <div className="mt-12 grid gap-x-12 gap-y-10 lg:grid-cols-3">
             {relevantNotes.map((note) => (
-              <div key={note.title} className="border-l-2 border-accent pl-6">
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+              <div key={note.title} className="il-ruled">
+                <h3 className="type-h3 text-graphite">
                   {note.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                <p className="type-body mt-3">
                   {note.body}
                 </p>
               </div>
             ))}
           </div>
-          <p className="mt-10 max-w-3xl text-sm leading-relaxed text-text-muted">
+          <p className="type-body mt-12 max-w-3xl border-t border-line pt-8">
             Typical {service.shortTitle.toLowerCase()} scope:{" "}
             {service.scopeItems.slice(0, 4).join("; ")}.{" "}
             <Link
               href={service.href}
-              className="font-semibold text-charcoal underline-offset-4 hover:text-accent hover:underline"
+              className="il-inline-link"
             >
               See the full {service.title.toLowerCase()} page
             </Link>{" "}
@@ -204,15 +198,17 @@ export default async function CityServicePage({
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            Same Crew Stack: Concrete, Asphalt & Metal Buildings
-          </h2>
-          <p className="mt-6 max-w-3xl text-base leading-relaxed text-charcoal/80">
-            {entry.bundlePitch}
-          </p>
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+      <section className="tone-dark">
+        <Container className="band">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-16">
+            <h2 className="type-h2 text-paper">
+              Same Crew Stack: Concrete, Asphalt & Metal Buildings
+            </h2>
+            <p className="type-lead max-w-xl">
+              {entry.bundlePitch}
+            </p>
+          </div>
+          <div className="mt-12 grid gap-4 sm:grid-cols-3">
             {services.map((item) => {
               const href =
                 item.slug === service.slug
@@ -224,23 +220,27 @@ export default async function CityServicePage({
                 <Link
                   key={item.id}
                   href={href}
-                  className={`border p-6 transition-colors sm:p-8 ${
+                  className={`group flex flex-col border p-6 transition-colors sm:p-8 ${
                     isCurrent
-                      ? "border-accent bg-surface"
-                      : "border-border bg-surface hover:border-accent"
+                      ? "border-accent-light bg-graphite-2"
+                      : "border-white/20 hover:border-white/60"
                   }`}
                 >
-                  <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+                  <h3 className="type-h3 text-paper">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                  <p className="type-body mt-3 flex-1">
                     {isCurrent
                       ? `You are viewing ${item.shortTitle.toLowerCase()} in ${city.name}.`
                       : `${item.shortTitle} in ${city.name} — same contractor, same schedule.`}
                   </p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal">
+                  <span
+                    className={`mt-6 inline-flex items-center gap-3 text-sm font-bold ${
+                      isCurrent ? "text-accent-light" : "text-paper"
+                    }`}
+                  >
                     {isCurrent ? "Current page" : `View ${item.shortTitle}`}
-                    {!isCurrent ? <span aria-hidden="true">&rarr;</span> : null}
+                    {!isCurrent ? <ArrowIcon /> : null}
                   </span>
                 </Link>
               );
@@ -249,14 +249,14 @@ export default async function CityServicePage({
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <div className="grid gap-12 lg:grid-cols-2">
+      <section className="bg-warm">
+        <Container className="band">
+          <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
             <div>
-              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              <h2 className="type-h2-sm text-graphite">
                 Other Services in {city.name}
               </h2>
-              <ul className="mt-8 flex flex-col gap-4">
+              <ul className="il-link-list mt-8">
                 {siblingServices.map((item) => {
                   const sibling = services.find(
                     (serviceItem) => serviceItem.slug === item.serviceSlug,
@@ -264,32 +264,26 @@ export default async function CityServicePage({
                   if (!sibling) return null;
                   return (
                     <li key={item.serviceSlug}>
-                      <Link
-                        href={cityServiceHref(city.slug, item.serviceSlug)}
-                        className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                      >
+                      <Link href={cityServiceHref(city.slug, item.serviceSlug)}>
                         {sibling.title} in {city.name}
-                        <span aria-hidden="true">&rarr;</span>
+                        <ArrowIcon />
                       </Link>
                     </li>
                   );
                 })}
                 <li>
-                  <Link
-                    href={`/service-area/${city.slug}`}
-                    className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                  >
+                  <Link href={`/service-area/${city.slug}`}>
                     All {city.name} services
-                    <span aria-hidden="true">&rarr;</span>
+                    <ArrowIcon />
                   </Link>
                 </li>
               </ul>
             </div>
             <div>
-              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              <h2 className="type-h2-sm text-graphite">
                 {service.shortTitle} in Nearby Cities
               </h2>
-              <ul className="mt-8 flex flex-col gap-4">
+              <ul className="il-link-list mt-8">
                 {peerCities.map((item) => {
                   const peerCity = priorityCities.find(
                     (cityItem) => cityItem.slug === item.citySlug,
@@ -297,23 +291,17 @@ export default async function CityServicePage({
                   if (!peerCity) return null;
                   return (
                     <li key={item.citySlug}>
-                      <Link
-                        href={cityServiceHref(item.citySlug, service.slug)}
-                        className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                      >
+                      <Link href={cityServiceHref(item.citySlug, service.slug)}>
                         {service.shortTitle} in {peerCity.name}
-                        <span aria-hidden="true">&rarr;</span>
+                        <ArrowIcon />
                       </Link>
                     </li>
                   );
                 })}
                 <li>
-                  <Link
-                    href={service.href}
-                    className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                  >
+                  <Link href={service.href}>
                     Statewide {service.shortTitle.toLowerCase()} overview
-                    <span aria-hidden="true">&rarr;</span>
+                    <ArrowIcon />
                   </Link>
                 </li>
               </ul>
@@ -322,42 +310,21 @@ export default async function CityServicePage({
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            Frequently Asked Questions
-          </h2>
-          <div className="mt-8 flex flex-col gap-6">
-            {entry.faqs.map((faq) => (
-              <div key={faq.question} className="border-b border-border pb-6">
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
-                  {faq.question}
-                </h3>
-                <p className="mt-3 text-base leading-relaxed text-text-muted">
-                  {faq.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <FaqSection heading="Frequently Asked Questions" faqs={entry.faqs} />
 
-      <section className="bg-accent">
-        <Container className="py-16 text-center lg:py-20">
-          <h2 className="font-heading text-3xl font-bold uppercase text-surface sm:text-4xl">
-            Discuss Your {city.name} {service.shortTitle} Project
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Tell us about the scope and site constraints in {city.name}. Our
-            team will follow up to discuss next steps.
-          </p>
-          <div className="mt-8">
-            <Button href="/contact" variant="secondary">
-              Request a Bid
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <CtaBand
+        title={<>Discuss Your {city.name} {service.shortTitle} Project</>}
+        actions={
+          <Button href="/contact" variant="secondary" arrow>
+            Request a Bid
+          </Button>
+        }
+      >
+        <p>
+          Tell us about the scope and site constraints in {city.name}. Our
+          team will follow up to discuss next steps.
+        </p>
+      </CtaBand>
     </PageShell>
   );
 }

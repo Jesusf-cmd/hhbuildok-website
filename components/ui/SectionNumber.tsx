@@ -7,7 +7,7 @@ export function SectionNumber({ value, className = "" }: SectionNumberProps) {
   return (
     <p
       aria-hidden="true"
-      className={`mb-4 font-display text-6xl font-light leading-none tracking-tight text-charcoal/15 sm:text-7xl ${className}`}
+      className={`il-num mb-5 text-[2.75rem] sm:text-[3.5rem] ${className}`}
     >
       {value}
     </p>

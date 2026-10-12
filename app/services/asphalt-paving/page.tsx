@@ -4,7 +4,10 @@ import Link from "next/link";
 import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClassName } from "@/components/ui/Button";
+import { CtaBand } from "@/components/ui/CtaBand";
+import { ArrowIcon, CheckIcon } from "@/components/ui/Icons";
+import { PageHero } from "@/components/ui/PageHero";
 import { PhoneLink } from "@/components/ui/PhoneLink";
 import { nap, services, siteConfig, serviceAreaCities, serviceProviderSchema } from "@/lib/site-data";
 import { commercialAsphaltProjectPhotos } from "@/lib/asphalt-gallery-data";
@@ -40,9 +43,6 @@ export const metadata: Metadata = withProductionRobots({
     url: service.href,
   },
 });
-
-const textLinkClass =
-  "inline-flex min-h-11 items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent";
 
 export default function AsphaltServicePage() {
   const serviceSchema = {
@@ -111,65 +111,61 @@ export default function AsphaltServicePage() {
         ]}
       />
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-                Services
-              </p>
-              <h1 className="font-heading text-3xl font-bold uppercase leading-tight text-charcoal sm:text-4xl lg:text-5xl">
-                {asphaltStatewidePage.h1}
-              </h1>
-              {asphaltStatewidePage.opening.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="mt-6 max-w-xl text-base leading-relaxed text-text-muted sm:text-lg"
-                >
-                  {paragraph}
-                </p>
-              ))}
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Button href="/contact" variant="primary">
-                  Request a Bid
-                </Button>
-                <PhoneLink className="inline-flex items-center justify-center border border-charcoal/25 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:border-charcoal hover:bg-charcoal/5">
-                  Call {nap.phone}
-                </PhoneLink>
-              </div>
-            </div>
-            <div className="relative aspect-[4/3] w-full overflow-hidden border border-border">
-              <Image
-                src={service.image}
-                alt={service.imageAlt}
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
+      <PageHero
+        eyebrow="Services"
+        title={asphaltStatewidePage.h1}
+        media={
+          <div className="relative aspect-[4/3] w-full overflow-hidden bg-graphite-2 lg:aspect-square">
+            <Image
+              src={service.image}
+              alt={service.imageAlt}
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 45vw"
+            />
           </div>
-        </Container>
-      </section>
+        }
+      >
+        {asphaltStatewidePage.opening.map((paragraph) => (
+          <p key={paragraph} className="type-lead mt-6 max-w-xl">
+            {paragraph}
+          </p>
+        ))}
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Button href="/contact" variant="primary" arrow>
+            Request a Bid
+          </Button>
+          <PhoneLink className={buttonClassName("outline")}>
+            Call {nap.phone}
+          </PhoneLink>
+        </div>
+      </PageHero>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="bg-warm">
+        <Container className="band">
+          <h2 className="type-h2 max-w-3xl text-graphite">
             Commercial Asphalt Services
           </h2>
-          <div className="mt-10 grid gap-8 lg:grid-cols-2">
-            {asphaltServiceSections.map((item) => (
-              <div key={item.title} className="border border-border bg-surface p-6">
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+          <div className="mt-12 grid border-l border-t border-line-strong lg:grid-cols-2">
+            {asphaltServiceSections.map((item, index) => (
+              <div
+                key={item.title}
+                className="border-b border-r border-line-strong p-7 sm:p-9"
+              >
+                <p aria-hidden="true" className="il-num text-base">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="type-h3 mt-6 text-graphite">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                <p className="type-body mt-4">
                   {item.body}
                 </p>
                 {item.link ? (
-                  <Link href={item.link.href} className={`mt-2 ${textLinkClass}`}>
+                  <Link href={item.link.href} className="il-link mt-5">
                     {item.link.label}
-                    <span aria-hidden="true">&rarr;</span>
+                    <ArrowIcon />
                   </Link>
                 ) : null}
               </div>
@@ -178,21 +174,23 @@ export default function AsphaltServicePage() {
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            {asphaltMethodDecision.heading}
-          </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-            {asphaltMethodDecision.intro}
-          </p>
-          <div className="mt-10 grid gap-8 lg:grid-cols-2">
+      <section className="bg-paper">
+        <Container className="band">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-16">
+            <h2 className="type-h2 text-graphite">
+              {asphaltMethodDecision.heading}
+            </h2>
+            <p className="type-lead max-w-xl">
+              {asphaltMethodDecision.intro}
+            </p>
+          </div>
+          <div className="mt-12 grid gap-x-12 gap-y-10 lg:grid-cols-2">
             {asphaltMethodDecision.factors.map((item) => (
-              <div key={item.title} className="border-l-2 border-accent pl-6">
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+              <div key={item.title} className="il-ruled">
+                <h3 className="type-h3 text-graphite">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                <p className="type-body mt-3">
                   {item.body}
                 </p>
               </div>
@@ -208,53 +206,48 @@ export default function AsphaltServicePage() {
         images={commercialAsphaltProjectPhotos}
       />
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
-            <figure className="overflow-hidden border border-border bg-surface">
-              <div className="relative aspect-video">
+      <section className="bg-warm">
+        <Container className="band">
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
+            <figure>
+              <div className="il-frame relative aspect-video overflow-hidden bg-graphite">
                 <Image
                   src={asphaltProjectProof.image.src}
                   alt={asphaltProjectProof.image.alt}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(max-width: 1024px) 100vw, 55vw"
                 />
               </div>
-              <figcaption className="border-t border-border px-4 py-3 text-sm leading-relaxed text-text-muted">
+              <figcaption className="il-figcaption mt-3">
                 {asphaltProjectProof.image.caption}
               </figcaption>
             </figure>
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-accent">
+              <p className="type-eyebrow">
                 {asphaltProjectProof.label}
               </p>
-              <h2 className="mt-3 font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              <h2 className="type-h2-sm mt-4 text-graphite">
                 {asphaltProjectProof.heading}
               </h2>
-              <h3 className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">
+              <h3 className="type-label mt-8 text-graphite">
                 Scope performed
               </h3>
-              <ul className="mt-3 flex flex-col gap-2">
+              <ul className="il-checklist mt-4">
                 {asphaltProjectProof.scopes.map((scope) => (
-                  <li
-                    key={scope}
-                    className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90 sm:text-base"
-                  >
-                    <span aria-hidden="true" className="mt-0.5 text-accent">
-                      &#9632;
-                    </span>
+                  <li key={scope}>
+                    <CheckIcon />
                     {scope}
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 text-base leading-relaxed text-charcoal/80">
+              <p className="type-prose mt-6">
                 {asphaltProjectProof.relevance}
               </p>
               <div className="mt-6">
-                <Link href={asphaltProjectProof.href} className={textLinkClass}>
+                <Link href={asphaltProjectProof.href} className="il-link">
                   {asphaltProjectProof.linkLabel}
-                  <span aria-hidden="true">&rarr;</span>
+                  <ArrowIcon />
                 </Link>
               </div>
             </div>
@@ -262,77 +255,72 @@ export default function AsphaltServicePage() {
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            How a Project Runs
-          </h2>
-          <ol className="mt-10 flex flex-col gap-8">
-            {asphaltProcess.map((step, index) => (
-              <li key={step.title} className="flex gap-6">
-                <span
-                  aria-hidden="true"
-                  className="font-heading text-2xl font-bold text-accent"
+      <section className="bg-paper">
+        <Container className="band">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+            <h2 className="type-h2 text-graphite lg:sticky lg:top-28 lg:self-start">
+              How a Project Runs
+            </h2>
+            <ol className="border-t border-line-strong">
+              {asphaltProcess.map((step, index) => (
+                <li
+                  key={step.title}
+                  className="grid grid-cols-[3rem_minmax(0,1fr)] gap-4 border-b border-line-strong py-7 sm:grid-cols-[4rem_minmax(0,1fr)]"
                 >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted">
-                    {step.body}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
+                  <span
+                    aria-hidden="true"
+                    className="il-num pt-1 text-lg"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="type-h3-sm text-graphite">
+                      {step.title}
+                    </h3>
+                    <p className="type-body mt-2 max-w-2xl">
+                      {step.body}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+      <section className="tone-dark">
+        <Container className="band">
+          <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
             <div>
-              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              <h2 className="type-h2-sm text-paper">
                 {asphaltAudience.heading}
               </h2>
-              <ul className="mt-6 flex flex-col gap-3">
+              <ul className="il-checklist il-checklist-ruled mt-8">
                 {asphaltAudience.items.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90 sm:text-base"
-                  >
-                    <span aria-hidden="true" className="mt-0.5 text-accent">
-                      &#9632;
-                    </span>
+                  <li key={item}>
+                    <CheckIcon />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              <h2 className="type-h2-sm text-paper">
                 {asphaltBidPrep.heading}
               </h2>
-              <p className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg">
+              <p className="type-lead mt-6">
                 {asphaltBidPrep.intro}
               </p>
-              <ul className="mt-6 flex flex-col gap-3">
+              <ul className="il-checklist il-checklist-ruled mt-8">
                 {asphaltBidPrep.items.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90 sm:text-base"
-                  >
-                    <span aria-hidden="true" className="mt-0.5 text-accent">
-                      &#9632;
-                    </span>
+                  <li key={item}>
+                    <CheckIcon />
                     {item}
                   </li>
                 ))}
               </ul>
-              <div className="mt-8">
-                <Button href="/contact" variant="primary">
+              <div className="mt-10">
+                <Button href="/contact" variant="primary" arrow>
                   Request a Bid
                 </Button>
               </div>
@@ -341,21 +329,23 @@ export default function AsphaltServicePage() {
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            Available in Featured Cities
-          </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-            City-specific pages cover local market conditions, access, and how
-            this trade usually shows up in each place.
-          </p>
-          <ul className="mt-8 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6">
+      <section className="bg-warm">
+        <Container className="band">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-16">
+            <h2 className="type-h2 text-graphite">
+              Available in Featured Cities
+            </h2>
+            <p className="type-lead max-w-xl">
+              City-specific pages cover local market conditions, access, and how
+              this trade usually shows up in each place.
+            </p>
+          </div>
+          <ul className="il-link-list mt-12 sm:grid sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-3">
             {asphaltCityIndex.map((page) => (
               <li key={page.citySlug}>
-                <Link href={asphaltCityHref(page.citySlug)} className={textLinkClass}>
+                <Link href={asphaltCityHref(page.citySlug)}>
                   Asphalt paving in {page.cityName}
-                  <span aria-hidden="true">&rarr;</span>
+                  <ArrowIcon />
                 </Link>
               </li>
             ))}
@@ -363,17 +353,17 @@ export default function AsphaltServicePage() {
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="bg-warm">
+        <Container className="band pt-0">
+          <h2 className="type-h2-sm text-graphite">
             Related Commercial Services
           </h2>
-          <ul className="mt-8 flex flex-col gap-2">
+          <ul className="il-link-list mt-8 max-w-3xl">
             {asphaltRelatedLinks.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className={textLinkClass}>
+                <Link href={item.href}>
                   {item.label}
-                  <span aria-hidden="true">&rarr;</span>
+                  <ArrowIcon />
                 </Link>
               </li>
             ))}
@@ -381,45 +371,46 @@ export default function AsphaltServicePage() {
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            Frequently Asked Questions
-          </h2>
-          <div className="mt-8 flex flex-col gap-6">
-            {asphaltFaqs.map((faq) => (
-              <div key={faq.question} className="border-b border-border pb-6">
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
-                  {faq.question}
-                </h3>
-                <p className="mt-3 text-base leading-relaxed text-text-muted">
-                  {faq.answer}
-                </p>
-              </div>
-            ))}
+      <section className="bg-paper">
+        <Container className="band">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-16">
+            <h2 className="type-h2 text-graphite lg:sticky lg:top-28 lg:self-start">
+              Frequently Asked Questions
+            </h2>
+            <div className="il-faq">
+              {asphaltFaqs.map((faq) => (
+                <div key={faq.question}>
+                  <h3>
+                    {faq.question}
+                  </h3>
+                  <p>
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </Container>
       </section>
 
-      <section className="bg-accent">
-        <Container className="py-16 text-center lg:py-20">
-          <h2 className="font-heading text-3xl font-bold uppercase text-surface sm:text-4xl">
-            Discuss Your Commercial Asphalt Project
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Send an address and what you need paved or repaired. Complete
-            drawings are not required.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Button href="/contact" variant="secondary">
+      <CtaBand
+        title="Discuss Your Commercial Asphalt Project"
+        actions={
+          <>
+            <Button href="/contact" variant="secondary" arrow>
               Request a Bid
             </Button>
-            <PhoneLink className="inline-flex items-center justify-center border border-surface/70 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-surface transition-colors hover:border-surface hover:bg-surface/10">
+            <PhoneLink className={buttonClassName("outline")}>
               Call {nap.phone}
             </PhoneLink>
-          </div>
-        </Container>
-      </section>
+          </>
+        }
+      >
+        <p>
+          Send an address and what you need paved or repaired. Complete
+          drawings are not required.
+        </p>
+      </CtaBand>
     </PageShell>
   );
 }

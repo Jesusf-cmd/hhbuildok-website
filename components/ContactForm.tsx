@@ -13,12 +13,13 @@ import {
 } from "@/lib/contact-form";
 import { PhoneLink } from "@/components/ui/PhoneLink";
 import { EmailLink } from "@/components/ui/EmailLink";
+import { buttonClassName } from "@/components/ui/Button";
+import { CheckIcon } from "@/components/ui/Icons";
 
 const inputClassName =
-  "w-full border border-border bg-surface px-4 py-3 text-sm text-charcoal placeholder:text-text-muted transition-colors focus:border-accent focus:outline-none";
+  "min-h-[3.125rem] w-full rounded-none border border-line-strong bg-paper px-4 py-3 text-base text-graphite placeholder:text-[#737876] transition-colors hover:border-graphite/60 focus:border-graphite aria-[invalid=true]:border-error aria-[invalid=true]:bg-[#fdf6f5]";
 
-const labelClassName =
-  "block text-sm font-semibold uppercase tracking-wider text-charcoal";
+const labelClassName = "type-label block text-graphite";
 
 function formatPhoneInput(value: string) {
   const digits = value.replace(/\D/g, "").slice(0, 10);
@@ -76,14 +77,18 @@ function Field({
           </span>
         ) : null}
         {optional ? (
-          <span className="ml-2 text-xs font-normal normal-case tracking-normal text-text-muted">
+          <span className="ml-2 text-xs font-medium normal-case tracking-normal text-text-muted">
             (optional)
           </span>
         ) : null}
       </label>
       <div className="mt-2">{children}</div>
       {error ? (
-        <p id={errorId} className="mt-2 text-sm text-accent" role="alert">
+        <p
+          id={errorId}
+          className="mt-2 border-l-2 border-error pl-3 text-sm font-medium text-error"
+          role="alert"
+        >
           {error}
         </p>
       ) : null}
@@ -183,20 +188,26 @@ export function ContactForm() {
   if (status === "success") {
     return (
       <div
-        className="rounded-sm border border-border bg-surface p-8 text-left shadow-sm sm:p-10"
+        className="tone-light border border-line border-t-4 border-t-success bg-white p-6 text-left text-graphite shadow-[0_24px_60px_rgb(23_26_26/0.12)] sm:p-10"
         role="status"
         aria-live="polite"
       >
-        <h3 className="font-heading text-2xl font-bold uppercase text-charcoal">
+        <span
+          aria-hidden="true"
+          className="mb-6 flex h-12 w-12 items-center justify-center bg-success text-white"
+        >
+          <CheckIcon className="h-6 w-6" />
+        </span>
+        <h3 className="type-h2-sm text-graphite">
           Request Received
         </h3>
-        <p className="mt-4 text-base leading-relaxed text-charcoal-light">
+        <p className="mt-4 text-base leading-relaxed text-[#3a3f3e]">
           Thanks — we&apos;ll review your project and follow up within 1–2
           business days.
         </p>
         <p className="mt-4 text-sm leading-relaxed text-text-muted">
           Need to talk sooner? Call{" "}
-          <PhoneLink className="font-semibold text-charcoal transition-colors hover:text-accent" />
+          <PhoneLink className="font-semibold text-graphite underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent" />
           .
         </p>
       </div>
@@ -209,16 +220,16 @@ export function ContactForm() {
       onSubmit={handleSubmit}
       noValidate
       encType="multipart/form-data"
-      className="rounded-sm border border-border bg-surface p-6 text-left shadow-sm sm:p-8"
+      className="tone-light border border-line border-t-4 border-t-accent bg-white p-6 text-left text-graphite shadow-[0_24px_60px_rgb(23_26_26/0.12)] sm:p-10"
       aria-labelledby={`${formId}-title`}
     >
       <h3
         id={`${formId}-title`}
-        className="font-heading text-xl font-bold uppercase text-charcoal sm:text-2xl"
+        className="type-h2-sm text-graphite"
       >
         Request a Bid
       </h3>
-      <p className="mt-3 text-sm leading-relaxed text-text-muted">
+      <p className="mt-3 text-sm leading-relaxed text-text-muted sm:text-[0.9375rem]">
         Share your project details and our team will follow up to discuss scope
         and next steps.
       </p>
@@ -317,7 +328,7 @@ export function ContactForm() {
             aria-describedby={
               fileError ? `${formId}-project-docs-error` : `${formId}-project-docs-help`
             }
-            className={`${inputClassName} file:mr-4 file:border-0 file:bg-charcoal file:px-4 file:py-2 file:text-sm file:font-semibold file:uppercase file:tracking-wider file:text-surface hover:file:bg-charcoal/90`}
+            className="block w-full cursor-pointer border border-dashed border-line-strong bg-warm px-4 py-5 text-sm text-graphite transition-colors hover:border-graphite/60 aria-[invalid=true]:border-error file:mr-4 file:min-h-11 file:cursor-pointer file:border-0 file:bg-graphite file:px-5 file:text-xs file:font-bold file:uppercase file:tracking-[0.08em] file:text-paper hover:file:bg-graphite-2"
           />
           <p
             id={`${formId}-project-docs-help`}
@@ -327,7 +338,7 @@ export function ContactForm() {
             files, 4 MB total.
           </p>
           {formatFileList(projectDocs) ? (
-            <p className="mt-2 text-sm text-charcoal">{formatFileList(projectDocs)}</p>
+            <p className="mt-2 text-sm font-medium text-graphite">{formatFileList(projectDocs)}</p>
           ) : null}
         </Field>
       </div>
@@ -347,29 +358,38 @@ export function ContactForm() {
 
       {status === "error" ? (
         <div
-          className="mt-6 rounded-sm border border-accent/30 bg-accent/5 px-4 py-3 text-sm text-charcoal"
+          className="mt-6 border-l-4 border-error bg-[#fbf1f0] px-5 py-4 text-sm text-graphite"
           role="alert"
         >
-          <p>{submitError}</p>
-          <p className="mt-2 text-text-muted">
+          <p className="font-semibold text-error">{submitError}</p>
+          <p className="mt-2 leading-relaxed text-[#3a3f3e]">
             Having trouble? Call us directly at{" "}
-            <PhoneLink className="font-semibold text-charcoal transition-colors hover:text-accent" />{" "}
+            <PhoneLink className="font-semibold text-graphite underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent" />{" "}
             or email{" "}
-            <EmailLink className="font-semibold text-charcoal transition-colors hover:text-accent" />
+            <EmailLink className="break-all font-semibold text-graphite underline decoration-line-strong underline-offset-4 transition-colors hover:text-accent" />
             .
           </p>
         </div>
       ) : null}
 
-      <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+      <div className="mt-8 flex flex-col gap-3 border-t border-line pt-8 sm:flex-row sm:flex-wrap sm:items-center">
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex items-center justify-center bg-accent px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-surface transition-colors duration-200 hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-70"
+          className={buttonClassName(
+            "primary",
+            "min-h-[3.25rem] px-7 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0",
+          )}
         >
+          {status === "submitting" ? (
+            <span
+              aria-hidden="true"
+              className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white motion-reduce:animate-none"
+            />
+          ) : null}
           {status === "submitting" ? "Sending..." : "Submit Bid Request"}
         </button>
-        <PhoneLink className="inline-flex items-center justify-center border border-charcoal/25 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:border-charcoal hover:bg-charcoal/5">
+        <PhoneLink className={buttonClassName("outline-dark", "min-h-[3.25rem] px-7")}>
           Call {nap.phone}
         </PhoneLink>
       </div>

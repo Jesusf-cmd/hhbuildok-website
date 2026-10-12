@@ -4,8 +4,10 @@ import Link from "next/link";
 import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
+import { CtaBand } from "@/components/ui/CtaBand";
+import { ArrowIcon, CheckIcon } from "@/components/ui/Icons";
+import { PageHero } from "@/components/ui/PageHero";
 import { services, priorityCities } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -22,82 +24,74 @@ export default function ServicesPage() {
     <PageShell>
       <Breadcrumbs items={[{ label: "Services", href: "/services" }]} />
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <SectionHeading
-            as="h1"
-            eyebrow="What We Do"
-            title="Commercial Construction Services"
-            description="Three trades, one crew stack: commercial concrete, asphalt paving, and metal buildings & roofing for contractors, developers, and public agencies across Oklahoma."
-          />
-          <div className="mt-10 max-w-3xl space-y-6 text-base leading-relaxed text-charcoal/80">
-            <p>
-              Most commercial sites need more than one of these scopes before
-              they can open. Foundations and slabs come first, paving and
-              sidewalks follow, and many industrial or municipal projects finish
-              with a pre-engineered metal building. When those packages go to
-              separate subcontractors, the schedule fills with handoffs —
-              different mobilizations, different punch lists, and nobody
-              accountable for the seam between them.
-            </p>
-            <p>
-              H&H Construction self-performs all three. That means one point of
-              contact from bid through closeout, crews that already know how the
-              adjacent trade will land on the same site, and fewer gaps for a
-              general contractor or owner to manage. Work is coordinated from
-              our Norman headquarters and runs statewide.
-            </p>
-          </div>
-        </Container>
-      </section>
+      <PageHero eyebrow="What We Do" title="Commercial Construction Services">
+        <p className="type-lead mt-6 max-w-2xl">
+          Three trades, one crew stack: commercial concrete, asphalt paving, and metal buildings & roofing for contractors, developers, and public agencies across Oklahoma.
+        </p>
+        <div className="type-prose mt-10 max-w-3xl space-y-6 border-t border-white/15 pt-10">
+          <p>
+            Most commercial sites need more than one of these scopes before
+            they can open. Foundations and slabs come first, paving and
+            sidewalks follow, and many industrial or municipal projects finish
+            with a pre-engineered metal building. When those packages go to
+            separate subcontractors, the schedule fills with handoffs —
+            different mobilizations, different punch lists, and nobody
+            accountable for the seam between them.
+          </p>
+          <p>
+            H&H Construction self-performs all three. That means one point of
+            contact from bid through closeout, crews that already know how the
+            adjacent trade will land on the same site, and fewer gaps for a
+            general contractor or owner to manage. Work is coordinated from
+            our Norman headquarters and runs statewide.
+          </p>
+        </div>
+      </PageHero>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <div className="grid gap-8 lg:grid-cols-3">
-            {services.map((service) => (
+      <section className="bg-warm">
+        <Container className="band">
+          <div className="grid gap-6 lg:grid-cols-3">
+            {services.map((service, index) => (
               <article
                 key={service.id}
-                className="flex flex-col border border-border bg-surface"
+                className="card-interactive flex flex-col border border-line bg-white"
               >
-                <div className="relative aspect-[4/3] w-full">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-graphite">
                   <Image
                     src={service.image}
                     alt={service.imageAlt}
                     fill
-                    className="object-cover"
+                    className="card-interactive-image object-cover"
                     sizes="(max-width: 1024px) 100vw, 33vw"
                   />
                 </div>
-                <div className="flex flex-1 flex-col p-6 sm:p-8">
-                  <h2 className="font-heading text-xl font-bold uppercase text-charcoal sm:text-2xl">
+                <div className="flex flex-1 flex-col p-7 sm:p-9">
+                  <p aria-hidden="true" className="il-num text-base">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h2 className="type-h2-sm mt-4 text-graphite">
                     {service.title}
                   </h2>
-                  <p className="mt-4 text-sm leading-relaxed text-text-muted">
+                  <p className="type-body mt-4">
                     {service.description}
                   </p>
-                  <h3 className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">
+                  <h3 className="type-label mt-8 text-text-muted">
                     Typical Scope
                   </h3>
-                  <ul className="mt-4 flex flex-col gap-2.5">
+                  <ul className="il-checklist mt-4">
                     {service.scopeItems.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90"
-                      >
-                        <span aria-hidden="true" className="mt-0.5 text-accent">
-                          &#9632;
-                        </span>
+                      <li key={item}>
+                        <CheckIcon />
                         {item}
                       </li>
                     ))}
                   </ul>
-                  <Link
-                    href={service.href}
-                    className="mt-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                  >
-                    View {service.shortTitle} Details
-                    <span aria-hidden="true">&rarr;</span>
-                  </Link>
+                  <div className="mt-auto pt-8">
+                    <Link href={service.href} className="il-link">
+                      View {service.shortTitle} Details
+                      <ArrowIcon />
+                    </Link>
+                  </div>
                 </div>
               </article>
             ))}
@@ -105,18 +99,18 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      <section className="bg-off-white-muted border-y border-border">
-        <Container className="py-12 lg:py-14">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
+      <section className="tone-dark">
+        <Container className="band">
+          <p className="type-eyebrow">
             Specialty
           </p>
-          <div className="mt-8 grid gap-10 lg:grid-cols-3 lg:gap-8">
-            <div className="flex flex-col gap-6">
+          <div className="mt-8 grid gap-y-10 lg:grid-cols-3">
+            <div className="flex flex-col gap-6 border-t border-white/20 pt-8 lg:border-l lg:border-t-0 lg:px-8 lg:pt-0 lg:first:border-l-0 lg:first:pl-0">
               <div className="max-w-xl">
-                <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+                <h2 className="type-h2-sm text-paper">
                   Commercial Parking Lots
                 </h2>
-                <p className="mt-4 text-base leading-relaxed text-charcoal/80">
+                <p className="type-body mt-4">
                   Asphalt or concrete paving, site concrete, curb and gutter,
                   approaches, and striping — one contractor for the full lot
                   package. Need overlay or repair without a full lot rebuild?
@@ -125,18 +119,18 @@ export default function ServicesPage() {
               </div>
               <Link
                 href="/services/commercial-parking-lots"
-                className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                className="il-link self-start"
               >
                 View Parking Lot Services
-                <span aria-hidden="true">&rarr;</span>
+                <ArrowIcon />
               </Link>
             </div>
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-6 border-t border-white/20 pt-8 lg:border-l lg:border-t-0 lg:px-8 lg:pt-0">
               <div className="max-w-xl">
-                <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+                <h2 className="type-h2-sm text-paper">
                   Commercial Foundations
                 </h2>
-                <p className="mt-4 text-base leading-relaxed text-charcoal/80">
+                <p className="type-body mt-4">
                   Footings, slab-on-grade, anchor bolt layouts, and site
                   concrete at the building line — coordinated with metal building
                   and GC schedules across Oklahoma.
@@ -144,18 +138,18 @@ export default function ServicesPage() {
               </div>
               <Link
                 href="/services/commercial-foundations"
-                className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                className="il-link self-start"
               >
                 View Foundation Services
-                <span aria-hidden="true">&rarr;</span>
+                <ArrowIcon />
               </Link>
             </div>
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-6 border-t border-white/20 pt-8 lg:border-l lg:border-t-0 lg:px-8 lg:pt-0">
               <div className="max-w-xl">
-                <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+                <h2 className="type-h2-sm text-paper">
                   Commercial Metal Buildings
                 </h2>
-                <p className="mt-4 text-base leading-relaxed text-charcoal/80">
+                <p className="type-body mt-4">
                   Pre-engineered metal building erection, red iron framing, and
                   metal roofing — coordinated with foundation and paving scopes
                   across Oklahoma.
@@ -163,24 +157,24 @@ export default function ServicesPage() {
               </div>
               <Link
                 href="/services/commercial-metal-buildings"
-                className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                className="il-link self-start"
               >
                 View Metal Building Services
-                <span aria-hidden="true">&rarr;</span>
+                <ArrowIcon />
               </Link>
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+      <section className="bg-paper">
+        <Container className="band">
+          <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
             <div>
-              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              <h2 className="type-h2-sm text-graphite">
                 Built for How Commercial Projects Actually Run
               </h2>
-              <div className="mt-6 space-y-5 text-base leading-relaxed text-charcoal/80">
+              <div className="type-prose mt-6 space-y-5">
                 <p>
                   Schedules on these jobs are driven by other trades, weather
                   windows, and the day the owner needs the lot open. We bid and
@@ -198,42 +192,33 @@ export default function ServicesPage() {
               </div>
             </div>
             <div>
-              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              <h2 className="type-h2-sm text-graphite">
                 Where We Work
               </h2>
-              <p className="mt-6 text-base leading-relaxed text-charcoal/80">
+              <p className="type-prose mt-6">
                 Headquartered in Norman with active work across the Oklahoma City
                 metro and statewide. Start with a featured city page, or tell us
                 where the site is — we evaluate projects across Oklahoma.
               </p>
-              <ul className="mt-8 flex flex-col gap-3">
+              <ul className="il-link-list mt-8">
                 {priorityCities.map((city) => (
                   <li key={city.slug}>
-                    <Link
-                      href={`/service-area/${city.slug}`}
-                      className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                    >
+                    <Link href={`/service-area/${city.slug}`}>
                       {city.name}, OK
-                      <span aria-hidden="true">&rarr;</span>
+                      <ArrowIcon />
                     </Link>
                   </li>
                 ))}
                 <li>
-                  <Link
-                    href="/service-area"
-                    className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                  >
+                  <Link href="/service-area">
                     Full Service Area
-                    <span aria-hidden="true">&rarr;</span>
+                    <ArrowIcon />
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/industries"
-                    className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                  >
+                  <Link href="/industries">
                     Industries We Serve
-                    <span aria-hidden="true">&rarr;</span>
+                    <ArrowIcon />
                   </Link>
                 </li>
               </ul>
@@ -242,22 +227,19 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      <section className="bg-accent">
-        <Container className="py-16 text-center lg:py-20">
-          <h2 className="font-heading text-3xl font-bold uppercase text-surface sm:text-4xl">
-            Ready to Discuss Your Project?
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Tell us about your commercial concrete, asphalt, or metal building
-            scope and our team will follow up to discuss next steps.
-          </p>
-          <div className="mt-8">
-            <Button href="/contact" variant="secondary">
-              Request a Bid
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <CtaBand
+        title="Ready to Discuss Your Project?"
+        actions={
+          <Button href="/contact" variant="secondary" arrow>
+            Request a Bid
+          </Button>
+        }
+      >
+        <p>
+          Tell us about your commercial concrete, asphalt, or metal building
+          scope and our team will follow up to discuss next steps.
+        </p>
+      </CtaBand>
     </PageShell>
   );
 }

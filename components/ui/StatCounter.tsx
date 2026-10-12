@@ -63,7 +63,7 @@ export function StatCounter({
   return (
     <span
       ref={ref}
-      className={`font-display text-4xl font-bold tabular-nums text-accent sm:text-5xl ${className}`}
+      className={`font-display text-5xl font-medium leading-none tabular-nums text-paper sm:text-6xl ${className}`}
     >
       {prefix}
       {displayValue}

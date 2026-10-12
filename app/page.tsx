@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main id="main-content" className="pb-20 lg:pb-0">
+      <main id="main-content" className="pt-20">
         <Hero />
         <ServiceBlocks />
         <CompanyIntro />

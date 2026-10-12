@@ -4,8 +4,10 @@ import Link from "next/link";
 import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClassName } from "@/components/ui/Button";
+import { CtaBand } from "@/components/ui/CtaBand";
+import { ArrowIcon } from "@/components/ui/Icons";
+import { PageHero } from "@/components/ui/PageHero";
 import { caseStudies, getPrimaryFeaturedCaseStudy, hasCaseStudies } from "@/lib/projects-data";
 import { services } from "@/lib/site-data";
 
@@ -35,52 +37,47 @@ export default function ProjectsPage() {
     <PageShell>
       <Breadcrumbs items={[{ label: "Projects", href: "/projects" }]} />
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <SectionHeading
-            as="h1"
-            eyebrow="Our Work"
-            title="Commercial Projects Across Oklahoma"
-            description="Concrete, paving, and metal building scopes delivered for general contractors, developers, municipalities, and school districts."
-          />
-        </Container>
-      </section>
+      <PageHero eyebrow="Our Work" title="Commercial Projects Across Oklahoma">
+        <p className="type-lead mt-6 max-w-2xl">
+          Concrete, paving, and metal building scopes delivered for general contractors, developers, municipalities, and school districts.
+        </p>
+      </PageHero>
 
       {hasCaseStudies ? (
         <>
           {spotlight ? (
-            <section className="bg-surface">
-              <Container className="pb-8 pt-16 lg:pb-12 lg:pt-20">
+            <section className="bg-paper">
+              <Container className="pb-8 pt-16 lg:pb-12 lg:pt-24">
                 <Link
                   href={`/projects/${spotlight.slug}`}
-                  className="group grid overflow-hidden border-2 border-accent lg:grid-cols-2"
+                  className="card-interactive group grid overflow-hidden bg-graphite lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)]"
                 >
                   {spotlight.images[0] ? (
-                    <div className="relative aspect-[16/10] w-full lg:aspect-auto lg:min-h-[22rem]">
+                    <div className="il-frame relative aspect-[16/10] w-full overflow-hidden lg:aspect-auto lg:min-h-[32rem]">
                       <Image
                         src={spotlight.images[0].src}
                         alt={spotlight.images[0].alt}
                         fill
                         priority
-                        className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="card-interactive-image object-cover"
+                        sizes="(max-width: 1024px) 100vw, 62vw"
                       />
                     </div>
                   ) : null}
-                  <div className="flex flex-col justify-center bg-charcoal p-8 sm:p-10 lg:p-12">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                  <div className="tone-dark flex flex-col justify-center p-8 sm:p-10 lg:p-12">
+                    <p className="type-eyebrow">
                       Featured Case Study &middot; Asphalt &middot;{" "}
                       {spotlight.city}, OK
                     </p>
-                    <h2 className="mt-4 font-heading text-2xl font-bold uppercase text-surface sm:text-3xl">
+                    <h2 className="type-h2-sm mt-4 text-paper">
                       {spotlight.title}
                     </h2>
-                    <p className="mt-4 text-base leading-relaxed text-surface/85">
+                    <p className="type-body mt-5">
                       {spotlight.summary}
                     </p>
-                    <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-surface group-hover:text-accent">
+                    <span className={buttonClassName("primary", "mt-8 self-start")}>
                       Read the full case study
-                      <span aria-hidden="true">&rarr;</span>
+                      <ArrowIcon />
                     </span>
                   </div>
                 </Link>
@@ -89,41 +86,41 @@ export default function ProjectsPage() {
           ) : null}
 
           {otherStudies.length > 0 ? (
-            <section className="bg-surface">
-              <Container className="py-16 lg:py-20">
-                <div className="grid gap-8 md:grid-cols-2">
+            <section className="bg-paper">
+              <Container className="band">
+                <div className="grid gap-6 md:grid-cols-2">
                   {otherStudies.map((study) => (
                     <article
                       key={study.slug}
-                      className="flex flex-col border border-border bg-surface"
+                      className="card-interactive flex flex-col border border-line bg-white"
                     >
                       {study.images[0] ? (
-                        <div className="relative aspect-[16/9] w-full">
+                        <div className="relative aspect-[16/9] w-full overflow-hidden bg-graphite">
                           <Image
                             src={study.images[0].src}
                             alt={study.images[0].alt}
                             fill
-                            className="object-cover"
+                            className="card-interactive-image object-cover"
                             sizes="(max-width: 768px) 100vw, 50vw"
                           />
                         </div>
                       ) : null}
-                      <div className="flex flex-1 flex-col p-6 sm:p-8">
-                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                      <div className="flex flex-1 flex-col p-7 sm:p-9">
+                        <p className="type-eyebrow">
                           {serviceLabel(study.serviceSlug)} &middot; {study.city}, OK
                         </p>
-                        <h2 className="mt-3 font-heading text-xl font-bold uppercase text-charcoal sm:text-2xl">
+                        <h2 className="type-h3 mt-3 text-graphite sm:text-[1.75rem]">
                           {study.title}
                         </h2>
-                        <p className="mt-4 flex-1 text-sm leading-relaxed text-text-muted">
+                        <p className="type-body mt-4 flex-1">
                           {study.summary}
                         </p>
                         <Link
                           href={`/projects/${study.slug}`}
-                          className="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                          className="il-link mt-6 self-start"
                         >
                           Read the Case Study
-                          <span aria-hidden="true">&rarr;</span>
+                          <ArrowIcon />
                         </Link>
                       </div>
                     </article>
@@ -134,19 +131,19 @@ export default function ProjectsPage() {
           ) : null}
         </>
       ) : (
-        <section className="bg-surface">
-          <Container className="py-16 lg:py-20">
-            <div className="max-w-2xl border border-border bg-surface-muted p-8">
-              <h2 className="font-heading text-xl font-bold uppercase text-charcoal sm:text-2xl">
+        <section className="bg-paper">
+          <Container className="band">
+            <div className="il-card max-w-2xl border-t-4 border-t-accent">
+              <h2 className="type-h2-sm text-graphite">
                 Project Write-Ups in Progress
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-text-muted">
+              <p className="type-prose mt-4">
                 Detailed case studies are being prepared. If you are evaluating
                 H&amp;H Construction for a bid now, contact us and we will send
                 project references relevant to your scope and delivery method.
               </p>
-              <div className="mt-6">
-                <Button href="/contact" variant="primary">
+              <div className="mt-8">
+                <Button href="/contact" variant="primary" arrow>
                   Request References
                 </Button>
               </div>
@@ -155,22 +152,19 @@ export default function ProjectsPage() {
         </section>
       )}
 
-      <section className="bg-accent">
-        <Container className="py-16 text-center lg:py-20">
-          <h2 className="font-heading text-3xl font-bold uppercase text-surface sm:text-4xl">
-            Have a Similar Scope?
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Tell us about your project and our team will review the details and
-            follow up to discuss next steps.
-          </p>
-          <div className="mt-8">
-            <Button href="/contact" variant="secondary">
-              Request a Bid
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <CtaBand
+        title="Have a Similar Scope?"
+        actions={
+          <Button href="/contact" variant="secondary" arrow>
+            Request a Bid
+          </Button>
+        }
+      >
+        <p>
+          Tell us about your project and our team will review the details and
+          follow up to discuss next steps.
+        </p>
+      </CtaBand>
     </PageShell>
   );
 }

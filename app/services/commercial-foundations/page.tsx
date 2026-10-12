@@ -5,6 +5,11 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { CtaBand } from "@/components/ui/CtaBand";
+import { ArrowIcon, CheckIcon } from "@/components/ui/Icons";
+import { PageHero } from "@/components/ui/PageHero";
+import { FaqSection } from "@/components/sections/FaqSection";
+import { ProseSection } from "@/components/sections/ProseSection";
 import { siteConfig, serviceProviderSchema } from "@/lib/site-data";
 import {
   foundationsHubHref,
@@ -85,95 +90,65 @@ export default function CommercialFoundationsPage() {
         ]}
       />
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-                Services · Foundations
-              </p>
-              <h1 className="font-heading text-3xl font-bold uppercase leading-tight text-charcoal sm:text-4xl lg:text-5xl">
-                {foundationsMeta.h1}
-              </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-text-muted sm:text-lg">
-                {foundationsMeta.heroDescription}
-              </p>
-              <div className="mt-8">
-                <Button href="/contact" variant="primary">
-                  Request a Bid
-                </Button>
-              </div>
-            </div>
-            <div className="relative aspect-[4/3] w-full overflow-hidden border border-border">
-              <Image
-                src={foundationHeroImage.src}
-                alt={foundationHeroImage.alt}
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
+      <PageHero
+        eyebrow="Services · Foundations"
+        title={foundationsMeta.h1}
+        media={
+          <div className="relative aspect-[4/3] w-full overflow-hidden bg-graphite-2 lg:aspect-square">
+            <Image
+              src={foundationHeroImage.src}
+              alt={foundationHeroImage.alt}
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 45vw"
+            />
           </div>
-        </Container>
-      </section>
+        }
+      >
+        <p className="type-lead mt-6 max-w-xl">
+          {foundationsMeta.heroDescription}
+        </p>
+        <div className="mt-10">
+          <Button href="/contact" variant="primary" arrow>
+            Request a Bid
+          </Button>
+        </div>
+      </PageHero>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-              {foundationsIntro.heading}
-            </h2>
-            {foundationsIntro.paragraphs.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-6 sm:text-lg"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <ProseSection heading={foundationsIntro.heading}>
+        {foundationsIntro.paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </ProseSection>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-              {foundationsDivision03.heading}
-            </h2>
-            {foundationsDivision03.paragraphs.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <ProseSection heading={foundationsDivision03.heading} tone="warm">
+        {foundationsDivision03.paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </ProseSection>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="bg-paper">
+        <Container className="band">
+          <h2 className="type-h2 max-w-4xl text-graphite">
             Commercial Foundation Services
           </h2>
-          <div className="mt-10 grid gap-8 lg:grid-cols-2">
-            {foundationsServices.map((group) => (
-              <div key={group.title} className="border border-border bg-surface-muted p-6">
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+          <div className="mt-12 grid border-l border-t border-line-strong lg:grid-cols-2">
+            {foundationsServices.map((group, index) => (
+              <div
+                key={group.title}
+                className="border-b border-r border-line-strong p-7 sm:p-9"
+              >
+                <p aria-hidden="true" className="il-num text-base">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="type-h3 mt-6 text-graphite">
                   {group.title}
                 </h3>
-                <ul className="mt-4 flex flex-col gap-3">
+                <ul className="il-checklist mt-5">
                   {group.items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90"
-                    >
-                      <span aria-hidden="true" className="mt-0.5 text-accent">
-                        &#9632;
-                      </span>
+                    <li key={item}>
+                      <CheckIcon />
                       {item}
                     </li>
                   ))}
@@ -184,20 +159,15 @@ export default function CommercialFoundationsPage() {
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="bg-warm">
+        <Container className="band">
+          <h2 className="type-h2 max-w-4xl text-graphite">
             Building Types We Foundation
           </h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {foundationsIndustries.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 border border-border bg-surface p-5 text-sm text-charcoal/90"
-              >
-                <span aria-hidden="true" className="mt-0.5 text-accent">
-                  &#9632;
-                </span>
+              <li key={item} className="il-tile">
+                <CheckIcon />
                 {item}
               </li>
             ))}
@@ -205,78 +175,41 @@ export default function CommercialFoundationsPage() {
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-              {foundationsOklahomaSoils.heading}
-            </h2>
-            {foundationsOklahomaSoils.paragraphs.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <ProseSection heading={foundationsOklahomaSoils.heading}>
+        {foundationsOklahomaSoils.paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </ProseSection>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-              {foundationsProcess.heading}
-            </h2>
-            {foundationsProcess.paragraphs.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <ProseSection heading={foundationsProcess.heading} tone="dark">
+        {foundationsProcess.paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </ProseSection>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-              {foundationsWhyHh.heading}
-            </h2>
-            {foundationsWhyHh.paragraphs.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <ProseSection heading={foundationsWhyHh.heading}>
+        {foundationsWhyHh.paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </ProseSection>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            Foundation &amp; Concrete Work by City
-          </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-            City-specific pages cover local market conditions, soil considerations,
-            and how commercial concrete work shows up in each Oklahoma market.
-          </p>
-          <ul className="mt-10 flex flex-col gap-3">
+      <section className="bg-warm">
+        <Container className="band">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-16">
+            <h2 className="type-h2 text-graphite">
+              Foundation &amp; Concrete Work by City
+            </h2>
+            <p className="type-lead max-w-xl">
+              City-specific pages cover local market conditions, soil considerations,
+              and how commercial concrete work shows up in each Oklahoma market.
+            </p>
+          </div>
+          <ul className="il-link-list mt-12 sm:grid sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-3">
             {foundationsCityLinks.map((city) => (
               <li key={city.slug}>
-                <Link
-                  href={foundationsConcreteCityHref(city.slug)}
-                  className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                >
+                <Link href={foundationsConcreteCityHref(city.slug)}>
                   Commercial Concrete in {city.name}
-                  <span aria-hidden="true">&rarr;</span>
+                  <ArrowIcon />
                 </Link>
               </li>
             ))}
@@ -284,43 +217,22 @@ export default function CommercialFoundationsPage() {
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            Commercial Foundation FAQs
-          </h2>
-          <div className="mt-8 flex flex-col gap-6">
-            {foundationsFaqs.map((faq) => (
-              <div key={faq.question} className="border-b border-border pb-6">
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
-                  {faq.question}
-                </h3>
-                <p className="mt-3 text-base leading-relaxed text-text-muted">
-                  {faq.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <FaqSection heading="Commercial Foundation FAQs" faqs={foundationsFaqs} />
 
-      <section className="bg-accent">
-        <Container className="py-16 text-center lg:py-20">
-          <h2 className="font-heading text-3xl font-bold uppercase text-surface sm:text-4xl">
-            Discuss Your Foundation Project
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Tell us about your scope and location — new construction, expansion,
-            or anchor bolt layout for a metal building. Our team will review the
-            details and follow up to discuss next steps.
-          </p>
-          <div className="mt-8">
-            <Button href="/contact" variant="secondary">
-              Request a Bid
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <CtaBand
+        title="Discuss Your Foundation Project"
+        actions={
+          <Button href="/contact" variant="secondary" arrow>
+            Request a Bid
+          </Button>
+        }
+      >
+        <p>
+          Tell us about your scope and location — new construction, expansion,
+          or anchor bolt layout for a metal building. Our team will review the
+          details and follow up to discuss next steps.
+        </p>
+      </CtaBand>
     </PageShell>
   );
 }

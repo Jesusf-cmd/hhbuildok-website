@@ -4,8 +4,10 @@ import Image from "next/image";
 import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
+import { CtaBand } from "@/components/ui/CtaBand";
+import { ArrowIcon } from "@/components/ui/Icons";
+import { PageHero } from "@/components/ui/PageHero";
 import { serviceAreaCities, priorityCities, services, nap } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -29,73 +31,73 @@ export default function ServiceAreaPage() {
     <PageShell>
       <Breadcrumbs items={[{ label: "Service Area", href: "/service-area" }]} />
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <SectionHeading
-            as="h1"
-            eyebrow="Service Area"
-            title="Serving Commercial Construction Across Oklahoma"
-            description="Headquartered in Norman, H&H Construction delivers commercial concrete, asphalt paving, and metal buildings throughout Oklahoma — from the Oklahoma City metro to projects statewide."
-          />
-          <div className="mt-10 max-w-3xl space-y-6 text-base leading-relaxed text-charcoal/80">
-            <p>
-              Our office is at {nap.addressLine1} in Norman, which puts crews
-              and equipment inside the Oklahoma City metro on a short
-              mobilization. That matters on phased work, weather delays, and
-              punch items that should not wait for a crew driving in from
-              another region. Norman, Oklahoma City, and Edmond are the markets
-              we cover in the most detail on this site because that is where the
-              densest commercial volume sits.
-            </p>
-            <p>
-              Outside the metro, we evaluate work across the state — Tulsa and
-              Broken Arrow to the northeast, Stillwater and Enid north, Lawton
-              and Ardmore south, and the corridor cities in between. If your
-              city is listed below or not, send the location and scope. Distance
-              alone rarely decides whether a project is a fit; access, schedule,
-              and scope do.
+      <PageHero
+        eyebrow="Service Area"
+        title="Serving Commercial Construction Across Oklahoma"
+      >
+        <p className="type-lead mt-6 max-w-2xl">
+          Headquartered in Norman, H&H Construction delivers commercial concrete, asphalt paving, and metal buildings throughout Oklahoma — from the Oklahoma City metro to projects statewide.
+        </p>
+        <div className="type-prose mt-10 max-w-3xl space-y-6 border-t border-white/15 pt-10">
+          <p>
+            Our office is at {nap.addressLine1} in Norman, which puts crews
+            and equipment inside the Oklahoma City metro on a short
+            mobilization. That matters on phased work, weather delays, and
+            punch items that should not wait for a crew driving in from
+            another region. Norman, Oklahoma City, and Edmond are the markets
+            we cover in the most detail on this site because that is where the
+            densest commercial volume sits.
+          </p>
+          <p>
+            Outside the metro, we evaluate work across the state — Tulsa and
+            Broken Arrow to the northeast, Stillwater and Enid north, Lawton
+            and Ardmore south, and the corridor cities in between. If your
+            city is listed below or not, send the location and scope. Distance
+            alone rarely decides whether a project is a fit; access, schedule,
+            and scope do.
+          </p>
+        </div>
+      </PageHero>
+
+      <section className="bg-paper">
+        <Container className="band">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-16">
+            <h2 className="type-h2 text-graphite">
+              Featured Service Areas
+            </h2>
+            <p className="type-lead max-w-xl">
+              These city pages cover local market conditions, access corridors,
+              and the kinds of commercial work we see most often in each place.
             </p>
           </div>
-        </Container>
-      </section>
-
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            Featured Service Areas
-          </h2>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-charcoal/80">
-            These city pages cover local market conditions, access corridors,
-            and the kinds of commercial work we see most often in each place.
-          </p>
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {priorityCities.map((city) => (
               <Link
                 key={city.slug}
                 href={`/service-area/${city.slug}`}
-                className="group flex flex-col border border-border bg-surface transition-colors hover:border-accent"
+                className="card-interactive group flex flex-col border border-line bg-white"
               >
-                <div className="relative aspect-[16/9] overflow-hidden bg-charcoal">
+                <div className="relative aspect-[16/9] overflow-hidden bg-graphite">
                   <Image
                     src="/images/stock/oklahoma-service-area.jpg"
                     alt=""
                     fill
                     aria-hidden="true"
-                    className="object-cover opacity-40 transition-transform duration-500 group-hover:scale-105"
+                    className="card-interactive-image object-cover opacity-35 grayscale"
                   />
-                  <div className="absolute inset-0 flex items-end p-6">
-                    <h3 className="font-heading text-2xl font-bold uppercase text-surface sm:text-3xl">
+                  <div className="absolute inset-0 flex items-end p-6 sm:p-8">
+                    <h3 className="type-h2-sm text-paper">
                       {city.name}, OK
                     </h3>
                   </div>
                 </div>
                 <div className="flex flex-1 flex-col p-6 sm:p-8">
-                  <p className="flex-1 text-sm leading-relaxed text-text-muted">
+                  <p className="type-body flex-1">
                     {city.intro}
                   </p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors group-hover:text-accent">
+                  <span className="il-link mt-6 self-start group-hover:text-accent">
                     View {city.name} Details
-                    <span aria-hidden="true">&rarr;</span>
+                    <ArrowIcon />
                   </span>
                 </div>
               </Link>
@@ -104,24 +106,26 @@ export default function ServiceAreaPage() {
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            Also Serving Across Oklahoma
-          </h2>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-charcoal/80">
-            Cities without a dedicated page still sit inside our working
-            radius. Dedicated pages get built where we have enough local detail
-            to make them useful — not as thin placeholders.
-          </p>
+      <section className="bg-warm">
+        <Container className="band">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-16">
+            <h2 className="type-h2 text-graphite">
+              Also Serving Across Oklahoma
+            </h2>
+            <p className="type-lead max-w-xl">
+              Cities without a dedicated page still sit inside our working
+              radius. Dedicated pages get built where we have enough local detail
+              to make them useful — not as thin placeholders.
+            </p>
+          </div>
           <ul
-            className="mt-8 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3 lg:grid-cols-4"
+            className="il-dot-list mt-12 grid grid-cols-2 border-t border-line-strong sm:grid-cols-3 lg:grid-cols-4"
             aria-label="Additional cities and regions served"
           >
             {otherCities.map((city) => (
               <li
                 key={city}
-                className="text-sm text-text-muted before:mr-2 before:text-accent before:content-['■']"
+                className="border-b border-line-strong py-4 text-[0.9375rem] font-medium text-graphite"
               >
                 {city}
               </li>
@@ -130,32 +134,34 @@ export default function ServiceAreaPage() {
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            The Same Three Services in Every Market
-          </h2>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-charcoal/80">
-            Geography changes access and permitting. The trades do not. Wherever
-            the site is, the work is commercial concrete, asphalt paving, and
-            metal buildings & roofing.
-          </p>
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+      <section className="tone-dark">
+        <Container className="band">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-16">
+            <h2 className="type-h2 text-paper">
+              The Same Three Services in Every Market
+            </h2>
+            <p className="type-lead max-w-xl">
+              Geography changes access and permitting. The trades do not. Wherever
+              the site is, the work is commercial concrete, asphalt paving, and
+              metal buildings & roofing.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-y-10 sm:grid-cols-3">
             {services.map((service) => (
               <Link
                 key={service.id}
                 href={service.href}
-                className="group border border-border bg-surface p-6 transition-colors hover:border-accent sm:p-8"
+                className="group flex flex-col border-t border-white/20 pt-8 sm:border-l sm:border-t-0 sm:px-8 sm:pt-0 sm:first:border-l-0 sm:first:pl-0"
               >
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+                <h3 className="type-h3 text-paper transition-colors group-hover:text-accent-light">
                   {service.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                <p className="type-body mt-3 flex-1">
                   {service.description}
                 </p>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors group-hover:text-accent">
+                <span className="il-link mt-6 self-start">
                   View {service.shortTitle}
-                  <span aria-hidden="true">&rarr;</span>
+                  <ArrowIcon />
                 </span>
               </Link>
             ))}
@@ -163,22 +169,19 @@ export default function ServiceAreaPage() {
         </Container>
       </section>
 
-      <section className="bg-accent">
-        <Container className="py-16 text-center lg:py-20">
-          <h2 className="font-heading text-3xl font-bold uppercase text-surface sm:text-4xl">
-            Have a Project in Oklahoma?
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Contact us with your project location and scope, and our team
-            will follow up to discuss next steps.
-          </p>
-          <div className="mt-8">
-            <Button href="/contact" variant="secondary">
-              Request a Bid
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <CtaBand
+        title="Have a Project in Oklahoma?"
+        actions={
+          <Button href="/contact" variant="secondary" arrow>
+            Request a Bid
+          </Button>
+        }
+      >
+        <p>
+          Contact us with your project location and scope, and our team
+          will follow up to discuss next steps.
+        </p>
+      </CtaBand>
     </PageShell>
   );
 }

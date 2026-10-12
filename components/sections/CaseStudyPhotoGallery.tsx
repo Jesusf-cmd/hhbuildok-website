@@ -28,10 +28,10 @@ export function CaseStudyPhotoGallery({
     <section
       id={id}
       aria-labelledby={`${id}-heading`}
-      className="bg-surface"
+      className="bg-paper"
     >
       {heroImage ? (
-        <Reveal className="relative aspect-[21/9] w-full min-h-[14rem] overflow-hidden border-b border-border sm:min-h-[18rem] lg:min-h-[24rem]">
+        <Reveal className="il-frame relative aspect-[21/9] w-full min-h-[16rem] overflow-hidden bg-graphite sm:min-h-[20rem] lg:min-h-[28rem]">
           <Image
             src={heroImage.src}
             alt={heroImage.alt}
@@ -41,7 +41,7 @@ export function CaseStudyPhotoGallery({
             sizes="100vw"
           />
           {heroImage.caption ? (
-            <p className="absolute inset-x-0 bottom-0 bg-charcoal/75 px-5 py-3 text-sm text-surface sm:px-8">
+            <p className="absolute bottom-0 left-0 max-w-full bg-graphite/90 px-5 py-3 text-sm leading-relaxed text-paper sm:max-w-2xl sm:px-8">
               {heroImage.caption}
             </p>
           ) : null}
@@ -49,25 +49,24 @@ export function CaseStudyPhotoGallery({
       ) : null}
 
       {gridImages.length > 0 ? (
-        <Container className="py-12 lg:py-16">
+        <Container className="band">
           <Reveal>
             <h2
               id={`${id}-heading`}
-              className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl"
+              className="type-h2 text-graphite"
             >
               {heading}
             </h2>
           </Reveal>
 
-          <div className="mt-8 grid gap-6 sm:grid-cols-2">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:mt-12">
             {gridImages.map((image, index) => (
               <Reveal
                 key={image.src}
                 delay={index * 60}
-                className="overflow-hidden border border-border bg-surface-muted"
               >
                 <figure>
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-warm">
                     <Image
                       src={image.src}
                       alt={image.alt}
@@ -77,7 +76,7 @@ export function CaseStudyPhotoGallery({
                     />
                   </div>
                   {image.caption ? (
-                    <figcaption className="border-t border-border px-4 py-3 text-sm leading-relaxed text-text-muted">
+                    <figcaption className="il-figcaption mt-3">
                       {image.caption}
                     </figcaption>
                   ) : null}

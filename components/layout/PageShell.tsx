@@ -11,7 +11,7 @@ export function PageShell({ children }: PageShellProps) {
   return (
     <>
       <Header />
-      <main id="main-content" className="pt-20 pb-20 lg:pb-0">
+      <main id="main-content" className="pt-20">
         {children}
       </main>
       <Footer />

@@ -5,7 +5,10 @@ import { notFound } from "next/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClassName } from "@/components/ui/Button";
+import { CtaBand } from "@/components/ui/CtaBand";
+import { ArrowIcon, CheckIcon } from "@/components/ui/Icons";
+import { PageHero } from "@/components/ui/PageHero";
 import { PhoneLink } from "@/components/ui/PhoneLink";
 import { siteConfig, services, serviceProviderSchema } from "@/lib/site-data";
 import {
@@ -116,75 +119,75 @@ export default async function AsphaltCityPage({
         ]}
       />
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-            {city.name}, OK · Commercial Asphalt Paving
-          </p>
-          <h1 className="max-w-4xl font-heading text-3xl font-bold uppercase leading-tight text-charcoal sm:text-4xl lg:text-5xl">
-            {page.h1}
-          </h1>
-          <p className="mt-6 max-w-3xl text-base leading-relaxed text-text-muted sm:text-lg">
-            {page.heroLead}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Button href="/contact" variant="primary">
-              Request a Bid
+      <PageHero
+        eyebrow={<>{city.name}, OK · Commercial Asphalt Paving</>}
+        title={page.h1}
+      >
+        <p className="type-lead mt-6 max-w-3xl">
+          {page.heroLead}
+        </p>
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Button href="/contact" variant="primary" arrow>
+            Request a Bid
+          </Button>
+          <PhoneLink className={buttonClassName("outline")}>
+            Call {siteConfig.phone}
+          </PhoneLink>
+          {/* Pages with buying paths link the statewide page from those paths instead. */}
+          {asphaltService && !page.buyingPaths ? (
+            <Button href={asphaltService.href} variant="outline">
+              Statewide Asphalt Overview
             </Button>
-            <PhoneLink className="inline-flex items-center justify-center border border-charcoal/25 bg-transparent px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors duration-200 hover:border-charcoal hover:bg-charcoal/5">
-              Call {siteConfig.phone}
-            </PhoneLink>
-            {/* Pages with buying paths link the statewide page from those paths instead. */}
-            {asphaltService && !page.buyingPaths ? (
-              <Button href={asphaltService.href} variant="secondary">
-                Statewide Asphalt Overview
-              </Button>
-            ) : null}
-          </div>
-          {page.heroNote ? (
-            <p className="mt-6 max-w-3xl text-sm leading-relaxed text-text-muted">
-              {page.heroNote}
-            </p>
           ) : null}
-        </Container>
-      </section>
+        </div>
+        {page.heroNote ? (
+          <p className="type-body mt-8 max-w-3xl border-l-2 border-accent-light pl-4">
+            {page.heroNote}
+          </p>
+        ) : null}
+      </PageHero>
 
       {page.intro?.length ? (
-        <section className="bg-surface">
-          <Container className="py-16 lg:py-20">
-            <h2 className="max-w-3xl font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-              {page.introHeading}
-            </h2>
-            <div className="mt-8 max-w-3xl">
-              {page.intro.map((paragraph) => (
-                <p
-                  key={paragraph.slice(0, 48)}
-                  className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-0 sm:text-lg"
-                >
-                  {paragraph}
-                </p>
-              ))}
+        <section className="bg-paper">
+          <Container className="band">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+              <h2 className="type-h2 text-graphite">
+                {page.introHeading}
+              </h2>
+              <div className="type-prose">
+                {page.intro.map((paragraph) => (
+                  <p
+                    key={paragraph.slice(0, 48)}
+                    className="mt-6 first:mt-0"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
             </div>
           </Container>
         </section>
       ) : null}
 
       {page.services?.length ? (
-        <section className="bg-off-white-muted">
-          <Container className="py-16 lg:py-20">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+        <section className="bg-warm">
+          <Container className="band">
+            <h2 className="type-h2 max-w-4xl text-graphite">
               {page.servicesHeading}
             </h2>
-            <div className="mt-10 grid gap-6 lg:grid-cols-2">
-              {page.services.map((service) => (
+            <div className="mt-12 grid border-l border-t border-line-strong lg:grid-cols-2">
+              {page.services.map((service, index) => (
                 <div
                   key={service.title}
-                  className="border border-border bg-surface p-6 sm:p-8"
+                  className="border-b border-r border-line-strong p-7 sm:p-9"
                 >
-                  <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+                  <p aria-hidden="true" className="il-num text-base">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="type-h3 mt-6 text-graphite">
                     {service.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-text-muted sm:text-base">
+                  <p className="type-body mt-4">
                     {service.body}
                   </p>
                 </div>
@@ -195,72 +198,66 @@ export default async function AsphaltCityPage({
       ) : null}
 
       {page.buyingPaths ? (
-        <section className="bg-surface">
-          <Container className="py-16 lg:py-20">
-            <h2 className="max-w-3xl font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-              {page.buyingPaths.heading}
-            </h2>
-            <p className="mt-6 max-w-3xl text-base leading-relaxed text-charcoal/80 sm:text-lg">
-              {page.buyingPaths.intro}
-            </p>
-            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <section className="bg-paper">
+          <Container className="band">
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-16">
+              <h2 className="type-h2 text-graphite">
+                {page.buyingPaths.heading}
+              </h2>
+              <p className="type-lead">
+                {page.buyingPaths.intro}
+              </p>
+            </div>
+            <div className="mt-12 grid gap-6 lg:grid-cols-3">
               {page.buyingPaths.paths.map((path) => (
                 <article
                   key={path.title}
-                  className="flex flex-col border border-border bg-surface-muted p-6 sm:p-8"
+                  className="il-card flex flex-col border-t-4 border-t-accent"
                 >
-                  <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+                  <h3 className="type-h3 text-graphite">
                     {path.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-text-muted sm:text-base">
+                  <p className="type-body mt-4">
                     {path.conditions}
                   </p>
-                  <h4 className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">
+                  <h4 className="type-label mt-8 text-graphite">
                     What helps us scope it
                   </h4>
-                  <ul className="mt-3 flex flex-col gap-2">
+                  <ul className="il-checklist mt-4">
                     {path.scopeInputs.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90"
-                      >
-                        <span aria-hidden="true" className="mt-0.5 text-accent">
-                          &#9632;
-                        </span>
+                      <li key={item}>
+                        <CheckIcon />
                         {item}
                       </li>
                     ))}
                   </ul>
-                  <ul className="mt-6 flex flex-col gap-1 border-t border-border pt-4">
+                  <ul className="il-link-list mt-8">
                     {path.links.map((link) => (
                       <li key={link.href + link.label}>
-                        <Link
-                          href={link.href}
-                          className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-charcoal underline decoration-border underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
-                        >
+                        <Link href={link.href}>
                           {link.label}
-                          <span aria-hidden="true">&rarr;</span>
+                          <ArrowIcon />
                         </Link>
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-auto pt-4">
+                  <div className="mt-auto pt-8">
                     <Link
                       href="/contact"
-                      className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold uppercase tracking-wider text-accent transition-colors hover:text-accent-hover"
+                      className={buttonClassName("primary", "w-full")}
                     >
                       {path.ctaLabel}
-                      <span aria-hidden="true">&rarr;</span>
+                      <ArrowIcon />
                     </Link>
                   </div>
                 </article>
               ))}
             </div>
-            <div className="mt-10 max-w-3xl border-l-2 border-accent pl-6">
-              <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+            <div className="il-ruled mt-14 max-w-3xl">
+              <h3 className="type-h3 text-graphite">
                 {page.buyingPaths.methodHeading}
               </h3>
-              <p className="mt-3 text-base leading-relaxed text-charcoal/80">
+              <p className="type-prose mt-4">
                 {page.buyingPaths.method}
               </p>
             </div>
@@ -269,55 +266,50 @@ export default async function AsphaltCityPage({
       ) : null}
 
       {page.projectProof ? (
-        <section className="bg-off-white-muted">
-          <Container className="py-16 lg:py-20">
-            <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
-              <figure className="overflow-hidden border border-border bg-surface">
-                <div className="relative aspect-video">
+        <section className="bg-warm">
+          <Container className="band">
+            <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
+              <figure>
+                <div className="il-frame relative aspect-video overflow-hidden bg-graphite">
                   <Image
                     src={page.projectProof.image.src}
                     alt={page.projectProof.image.alt}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    sizes="(max-width: 1024px) 100vw, 55vw"
                   />
                 </div>
-                <figcaption className="border-t border-border px-4 py-3 text-sm leading-relaxed text-text-muted">
+                <figcaption className="il-figcaption mt-3">
                   {page.projectProof.image.caption}
                 </figcaption>
               </figure>
               <div>
-                <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+                <h2 className="type-h2-sm text-graphite">
                   {page.projectProof.heading}
                 </h2>
-                <p className="mt-3 text-sm font-semibold uppercase tracking-wider text-accent">
+                <p className="type-eyebrow mt-4">
                   {page.projectProof.location}
                 </p>
-                <h3 className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">
+                <h3 className="type-label mt-8 text-graphite">
                   Scope performed
                 </h3>
-                <ul className="mt-3 flex flex-col gap-2">
+                <ul className="il-checklist mt-4">
                   {page.projectProof.scopes.map((scope) => (
-                    <li
-                      key={scope}
-                      className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90 sm:text-base"
-                    >
-                      <span aria-hidden="true" className="mt-0.5 text-accent">
-                        &#9632;
-                      </span>
+                    <li key={scope}>
+                      <CheckIcon />
                       {scope}
                     </li>
                   ))}
                 </ul>
-                <p className="mt-6 text-base leading-relaxed text-charcoal/80">
+                <p className="type-prose mt-6">
                   {page.projectProof.relevance}
                 </p>
                 <Link
                   href={page.projectProof.href}
-                  className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+                  className="il-link mt-6"
                 >
                   {page.projectProof.linkLabel}
-                  <span aria-hidden="true">&rarr;</span>
+                  <ArrowIcon />
                 </Link>
               </div>
             </div>
@@ -325,36 +317,38 @@ export default async function AsphaltCityPage({
         </section>
       ) : null}
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="max-w-3xl font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            {page.climateHeading}
-          </h2>
-          <div className="mt-8 max-w-3xl">
-            {page.climate.map((paragraph) => (
-              <p
-                key={paragraph.slice(0, 48)}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-0 sm:text-lg"
-              >
-                {paragraph}
-              </p>
-            ))}
+      <section className="bg-paper">
+        <Container className="band">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+            <h2 className="type-h2 text-graphite">
+              {page.climateHeading}
+            </h2>
+            <div className="type-prose">
+              {page.climate.map((paragraph) => (
+                <p
+                  key={paragraph.slice(0, 48)}
+                  className="mt-6 first:mt-0"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </div>
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="bg-warm">
+        <Container className="band">
+          <h2 className="type-h2 max-w-4xl text-graphite">
             {page.audiencesHeading}
           </h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+          <div className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
             {page.audiences.map((audience) => (
-              <div key={audience.title} className="border-l-2 border-accent pl-6">
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+              <div key={audience.title} className="il-ruled">
+                <h3 className="type-h3 text-graphite">
                   {audience.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted sm:text-base">
+                <p className="type-body mt-3">
                   {audience.body}
                 </p>
               </div>
@@ -363,43 +357,45 @@ export default async function AsphaltCityPage({
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="max-w-3xl font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            {page.localPartnerHeading}
-          </h2>
-          <div className="mt-8 max-w-3xl">
-            {page.localPartner.map((paragraph) => (
-              <p
-                key={paragraph.slice(0, 48)}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-0 sm:text-lg"
-              >
-                {paragraph}
-              </p>
-            ))}
+      <section className="bg-paper">
+        <Container className="band">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+            <h2 className="type-h2 text-graphite">
+              {page.localPartnerHeading}
+            </h2>
+            <div className="type-prose">
+              {page.localPartner.map((paragraph) => (
+                <p
+                  key={paragraph.slice(0, 48)}
+                  className="mt-6 first:mt-0"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </div>
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="tone-dark">
+        <Container className="band">
+          <h2 className="type-h2 max-w-4xl text-paper">
             {page.processHeading}
           </h2>
-          <ol className="mt-10 flex flex-col gap-6">
+          <ol className="mt-12 grid gap-y-10 md:grid-cols-2 xl:grid-cols-[repeat(auto-fit,minmax(13rem,1fr))]">
             {page.process.map((step, index) => (
               <li
                 key={step.title}
-                className="flex gap-5 border border-border bg-surface p-6 sm:p-8"
+                className="border-l border-white/20 pl-6 pr-4"
               >
-                <span className="font-heading text-2xl font-bold text-accent">
+                <span className="il-num block text-4xl">
                   {index + 1}
                 </span>
                 <div>
-                  <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+                  <h3 className="type-h3-sm mt-6 text-paper">
                     {step.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-text-muted sm:text-base">
+                  <p className="type-body mt-3">
                     {step.body}
                   </p>
                 </div>
@@ -409,16 +405,16 @@ export default async function AsphaltCityPage({
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <div className="grid gap-12 lg:grid-cols-2">
+      <section className="bg-warm">
+        <Container className="band">
+          <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
             <div>
-              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              <h2 className="type-h2-sm text-graphite">
                 {hasServiceAreaPage
                   ? `Other Services in ${city.name}`
                   : "Related Commercial Services"}
               </h2>
-              <ul className="mt-8 flex flex-col gap-4">
+              <ul className="il-link-list mt-8">
                 {services
                   .filter((service) => service.slug !== ASPHALT_SLUG)
                   .map((service) => (
@@ -429,60 +425,47 @@ export default async function AsphaltCityPage({
                             ? cityServiceHref(city.slug, service.slug)
                             : service.href
                         }
-                        className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
                       >
                         {hasServiceAreaPage
                           ? `${service.title} in ${city.name}`
                           : service.title}
-                        <span aria-hidden="true">&rarr;</span>
+                        <ArrowIcon />
                       </Link>
                     </li>
                   ))}
                 {hasServiceAreaPage ? (
                   <li>
-                    <Link
-                      href={`/service-area/${city.slug}`}
-                      className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                    >
+                    <Link href={`/service-area/${city.slug}`}>
                       All {city.name} services
-                      <span aria-hidden="true">&rarr;</span>
+                      <ArrowIcon />
                     </Link>
                   </li>
                 ) : null}
               </ul>
             </div>
             <div>
-              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              <h2 className="type-h2-sm text-graphite">
                 Commercial Asphalt in Nearby Cities
               </h2>
-              <ul className="mt-8 flex flex-col gap-4">
+              <ul className="il-link-list mt-8">
                 {peers.map((peer) => (
                   <li key={peer.citySlug}>
-                    <Link
-                      href={asphaltCityHref(peer.citySlug)}
-                      className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                    >
+                    <Link href={asphaltCityHref(peer.citySlug)}>
                       Asphalt Paving in {peer.cityName}
-                      <span aria-hidden="true">&rarr;</span>
+                      <ArrowIcon />
                     </Link>
                   </li>
                 ))}
                 <li>
-                  <Link
-                    href="/services/asphalt-paving"
-                    className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                  >
+                  <Link href="/services/asphalt-paving">
                     Statewide asphalt paving overview
-                    <span aria-hidden="true">&rarr;</span>
+                    <ArrowIcon />
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/services/commercial-parking-lots"
-                    className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                  >
+                  <Link href="/services/commercial-parking-lots">
                     Commercial parking lots — full lot packages
-                    <span aria-hidden="true">&rarr;</span>
+                    <ArrowIcon />
                   </Link>
                 </li>
               </ul>
@@ -491,75 +474,75 @@ export default async function AsphaltCityPage({
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            Frequently Asked Questions
-          </h2>
-          <div className="mt-8 flex flex-col gap-6">
-            {page.faqs.map((faq) => (
-              <div key={faq.question} className="border-b border-border pb-6">
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
-                  {faq.question}
-                </h3>
-                <p className="mt-3 text-base leading-relaxed text-text-muted">
-                  {faq.answer}
-                </p>
-              </div>
-            ))}
+      <section className="bg-paper">
+        <Container className="band">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-16">
+            <h2 className="type-h2 text-graphite lg:sticky lg:top-28 lg:self-start">
+              Frequently Asked Questions
+            </h2>
+            <div className="il-faq">
+              {page.faqs.map((faq) => (
+                <div key={faq.question}>
+                  <h3>
+                    {faq.question}
+                  </h3>
+                  <p>
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </Container>
       </section>
 
       {page.inquiryGuidance ? (
-        <section className="bg-surface">
-          <Container className="py-16 lg:py-20">
-            <div className="max-w-3xl">
-              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-                {page.inquiryGuidance.heading}
-              </h2>
-              <p className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg">
-                {page.inquiryGuidance.intro}
-              </p>
-              <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                {page.inquiryGuidance.items.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90 sm:text-base"
-                  >
-                    <span aria-hidden="true" className="mt-0.5 text-accent">
-                      &#9632;
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-6 text-sm leading-relaxed text-text-muted">
-                {page.inquiryGuidance.note}
-              </p>
+        <section className="tone-dark">
+          <Container className="band">
+            <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+              <div>
+                <h2 className="type-h2-sm text-paper">
+                  {page.inquiryGuidance.heading}
+                </h2>
+                <p className="type-lead mt-6">
+                  {page.inquiryGuidance.intro}
+                </p>
+              </div>
+              <div>
+                <ul className="il-checklist il-checklist-ruled">
+                  {page.inquiryGuidance.items.map((item) => (
+                    <li key={item}>
+                      <CheckIcon />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <p className="type-body mt-6">
+                  {page.inquiryGuidance.note}
+                </p>
+              </div>
             </div>
           </Container>
         </section>
       ) : null}
 
-      <section className="bg-accent">
-        <Container className="py-16 text-center lg:py-20">
-          <h2 className="font-heading text-3xl font-bold uppercase text-surface sm:text-4xl">
-            {page.ctaHeading}
-          </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            {page.ctaBody}
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Button href="/contact" variant="secondary">
+      <CtaBand
+        title={page.ctaHeading}
+        actions={
+          <>
+            <Button href="/contact" variant="secondary" arrow>
               Request a Bid
             </Button>
-            <PhoneLink className="inline-flex items-center justify-center border border-surface/40 bg-transparent px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-surface transition-colors duration-200 hover:border-surface hover:bg-surface/10">
+            <PhoneLink className={buttonClassName("outline")}>
               Call {siteConfig.phone}
             </PhoneLink>
-          </div>
-        </Container>
-      </section>
+          </>
+        }
+      >
+        <p>
+          {page.ctaBody}
+        </p>
+      </CtaBand>
     </PageShell>
   );
 }

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClassName } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PhoneLink } from "@/components/ui/PhoneLink";
@@ -9,42 +9,42 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative flex min-h-screen items-end"
+      className="il-frame tone-dark relative flex min-h-[calc(100svh-5rem)] items-end overflow-hidden"
     >
       <HeroImage
         src="/images/hero-rebar-construction.jpg"
         alt="Rebar reinforcement cage being tied at an H&H Construction commercial job site"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-off-white/95 via-off-white/70 to-off-white/25" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_18_18/0.55)_0%,rgb(16_18_18/0.88)_70%)] lg:bg-[linear-gradient(90deg,rgb(16_18_18/0.95)_0%,rgb(16_18_18/0.82)_42%,rgb(16_18_18/0.25)_100%)]" />
 
-      <Container className="relative z-10 pb-20 pt-32">
-        <div className="max-w-4xl">
-          <Eyebrow className="animate-fade-in mb-4 tracking-[0.3em]">
+      <Container className="relative z-10 pb-16 pt-24 sm:pb-20 lg:pb-24 lg:pt-32">
+        <div className="max-w-5xl">
+          <Eyebrow theme="dark" className="animate-fade-in">
             Commercial &amp; Industrial Construction
           </Eyebrow>
           <h1
             id="hero-heading"
-            className="animate-fade-up font-display text-4xl font-extrabold uppercase leading-[1.02] tracking-tight text-charcoal sm:text-5xl md:text-6xl lg:text-7xl"
+            className="animate-fade-up type-hero max-w-[19ch] text-paper"
           >
             Commercial Concrete, Asphalt Paving &amp; Metal Buildings in
             Oklahoma
           </h1>
-          <p className="animate-fade-up mt-4 font-display text-lg font-bold uppercase tracking-tight text-charcoal/75 sm:text-xl md:text-2xl">
+          <p className="animate-fade-up mt-6 font-display text-2xl font-medium uppercase leading-tight text-accent-light sm:text-3xl lg:text-4xl">
             Building Oklahoma&apos;s Commercial Infrastructure
           </p>
-          <p className="animate-fade-up animate-delay-100 mt-6 max-w-2xl text-base leading-relaxed text-charcoal/80 sm:text-lg md:text-xl">
+          <p className="animate-fade-up animate-delay-100 mt-6 max-w-2xl text-base leading-relaxed text-[#e3e6e4] sm:text-lg">
             H&amp;H Construction delivers commercial concrete, asphalt paving,
             metal buildings, and roofing for general contractors, developers,
             municipalities, and property owners across Oklahoma.
           </p>
-          <div className="animate-fade-up animate-delay-200 mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-            <Button href="/contact" variant="primary">
+          <div className="animate-fade-up animate-delay-200 mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button href="/contact" variant="primary" arrow>
               Request a Bid
             </Button>
-            <PhoneLink className="inline-flex items-center justify-center border border-charcoal/25 bg-transparent px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors duration-200 hover:border-charcoal hover:bg-charcoal/5">
+            <PhoneLink className={buttonClassName("outline")}>
               Call {siteConfig.phone}
             </PhoneLink>
-            <Button href="/projects" variant="outline-dark">
+            <Button href="/projects" variant="outline">
               View Projects
             </Button>
           </div>

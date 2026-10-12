@@ -8,11 +8,11 @@ export function CompanyIntro() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="bg-off-white-muted"
+      className="bg-paper"
     >
-      <Container className="py-20 lg:py-28">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <Reveal className="relative aspect-[4/3] w-full overflow-hidden border border-border">
+      <Container className="band">
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-20">
+          <Reveal className="il-frame relative aspect-[4/3] w-full overflow-hidden bg-warm">
             <Image
               src="/images/asphalt/driveway-culvert-replacement-asphalt-patch-oklahoma.jpg"
               alt="H&H Construction crew replacing a culvert and patching asphalt on a driveway in Oklahoma"
@@ -29,7 +29,7 @@ export function CompanyIntro() {
               title="A Partner for Demanding Commercial Work"
               description="H&H Construction focuses on the heavy-civil and commercial building work that keeps Oklahoma's developments, facilities, and public infrastructure moving forward."
             />
-            <div className="mt-8 space-y-5 text-base leading-relaxed text-charcoal/80">
+            <div className="type-prose mt-8 space-y-5 border-t border-line pt-8">
               <p>
                 We work alongside general contractors, developers, municipalities,
                 school districts, and property owners who need dependable execution

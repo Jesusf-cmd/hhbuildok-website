@@ -5,6 +5,9 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { CtaBand } from "@/components/ui/CtaBand";
+import { ArrowIcon } from "@/components/ui/Icons";
+import { PageHero } from "@/components/ui/PageHero";
 import { priorityCities, services, siteConfig, nap, serviceProviderSchema } from "@/lib/site-data";
 import { cityServiceHref } from "@/lib/city-service-data";
 
@@ -79,55 +82,49 @@ export default async function CityPage({ params }: CityPageProps) {
         ]}
       />
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-            Service Area
-          </p>
-          <h1 className="max-w-3xl font-heading text-3xl font-bold uppercase leading-tight text-charcoal sm:text-4xl lg:text-5xl">
-            {city.h1}
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-text-muted sm:text-lg">
-            {city.heroDescription}
-          </p>
-          <div className="mt-8">
-            <Button href="/contact" variant="primary">
-              Request a Bid
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <PageHero eyebrow="Service Area" title={city.h1}>
+        <p className="type-lead mt-6 max-w-2xl">
+          {city.heroDescription}
+        </p>
+        <div className="mt-10">
+          <Button href="/contact" variant="primary" arrow>
+            Request a Bid
+          </Button>
+        </div>
+      </PageHero>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <div className="max-w-3xl">
-            <p className="text-base leading-relaxed text-charcoal/80 sm:text-lg">
+      <section className="bg-paper">
+        <Container className="band">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+            <p className="text-lg leading-relaxed text-graphite sm:text-xl sm:leading-relaxed lg:border-l-4 lg:border-accent lg:pl-8">
               {city.intro}
             </p>
-            {city.localContext.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="mt-6 text-base leading-relaxed text-charcoal/80"
-              >
-                {paragraph}
-              </p>
-            ))}
+            <div className="type-prose">
+              {city.localContext.map((paragraph) => (
+                <p
+                  key={paragraph}
+                  className="mt-6 first:mt-0"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </div>
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="bg-warm">
+        <Container className="band">
+          <h2 className="type-h2 max-w-4xl text-graphite">
             What Shapes {city.name} Projects
           </h2>
-          <div className="mt-10 grid gap-8 lg:grid-cols-2">
+          <div className="mt-12 grid gap-x-12 gap-y-10 lg:grid-cols-2">
             {city.marketNotes.map((note) => (
-              <div key={note.title} className="border-l-2 border-accent pl-6">
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+              <div key={note.title} className="il-ruled">
+                <h3 className="type-h3 text-graphite">
                   {note.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                <p className="type-body mt-3">
                   {note.body}
                 </p>
               </div>
@@ -136,27 +133,27 @@ export default async function CityPage({ params }: CityPageProps) {
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="tone-dark">
+        <Container className="band">
+          <h2 className="type-h2 max-w-4xl text-paper">
             Services Available in {city.name}
           </h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-3">
+          <div className="mt-12 grid gap-y-10 sm:grid-cols-3">
             {services.map((service) => (
               <Link
                 key={service.id}
                 href={cityServiceHref(city.slug, service.slug)}
-                className="group border border-border bg-surface p-6 transition-shadow hover:shadow-md sm:p-8"
+                className="group flex flex-col border-t border-white/20 pt-8 sm:border-l sm:border-t-0 sm:px-8 sm:pt-0 sm:first:border-l-0 sm:first:pl-0"
               >
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal sm:text-xl">
+                <h3 className="type-h3 text-paper transition-colors group-hover:text-accent-light">
                   {service.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                <p className="type-body mt-3 flex-1">
                   {service.description}
                 </p>
-                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors group-hover:text-accent">
+                <span className="il-link mt-6 self-start">
                   {service.shortTitle} in {city.name}
-                  <span aria-hidden="true">&rarr;</span>
+                  <ArrowIcon />
                 </span>
               </Link>
             ))}
@@ -164,19 +161,19 @@ export default async function CityPage({ params }: CityPageProps) {
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="bg-warm">
+        <Container className="band-sm">
+          <h2 className="type-h2-sm text-graphite">
             Nearby Areas We Serve
           </h2>
           <ul
-            className="mt-6 flex flex-wrap gap-x-6 gap-y-3"
+            className="il-dot-list mt-6 flex flex-wrap gap-x-8 gap-y-3"
             aria-label={`Areas near ${city.name} served`}
           >
             {city.nearbyAreas.map((area) => (
               <li
                 key={area}
-                className="text-sm text-text-muted before:mr-2 before:text-accent before:content-['■']"
+                className="text-[0.9375rem] font-medium text-graphite"
               >
                 {area}
               </li>
@@ -185,23 +182,20 @@ export default async function CityPage({ params }: CityPageProps) {
         </Container>
       </section>
 
-      <section className="bg-accent">
-        <Container className="py-16 text-center lg:py-20">
-          <h2 className="font-heading text-3xl font-bold uppercase text-surface sm:text-4xl">
-            Start a Project in {city.name}
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Contact {nap.name} to discuss your commercial concrete, asphalt,
-            or metal building project in {city.name} and the surrounding
-            area.
-          </p>
-          <div className="mt-8">
-            <Button href="/contact" variant="secondary">
-              Request a Bid
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <CtaBand
+        title={<>Start a Project in {city.name}</>}
+        actions={
+          <Button href="/contact" variant="secondary" arrow>
+            Request a Bid
+          </Button>
+        }
+      >
+        <p>
+          Contact {nap.name} to discuss your commercial concrete, asphalt,
+          or metal building project in {city.name} and the surrounding
+          area.
+        </p>
+      </CtaBand>
     </PageShell>
   );
 }

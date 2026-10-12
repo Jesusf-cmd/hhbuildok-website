@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Inter } from "next/font/google";
+import { Inter, Oswald } from "next/font/google";
 import {
   nap,
   siteConfig,
@@ -18,10 +18,9 @@ const inter = Inter({
   display: "swap",
 });
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const oswald = Oswald({
+  variable: "--font-oswald",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
   display: "swap",
 });
 
@@ -115,9 +114,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${archivo.variable} h-full antialiased`}
+      className={`${inter.variable} ${oswald.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-off-white text-charcoal">
+      <body className="min-h-full flex flex-col bg-paper text-graphite">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -132,7 +131,7 @@ export default function RootLayout({
         />
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-accent focus:px-4 focus:py-2 focus:text-surface"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-graphite focus:px-5 focus:py-3 focus:text-sm focus:font-bold focus:text-paper"
         >
           Skip to main content
         </a>

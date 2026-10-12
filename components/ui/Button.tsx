@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { type ReactNode } from "react";
+import { ArrowIcon } from "@/components/ui/Icons";
 
-type ButtonVariant = "primary" | "secondary" | "outline" | "outline-dark";
+export type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "outline"
+  | "outline-dark"
+  | "dark";
 
 type ButtonProps = {
   children: ReactNode;
@@ -9,18 +15,23 @@ type ButtonProps = {
   variant?: ButtonVariant;
   className?: string;
   external?: boolean;
+  arrow?: boolean;
 };
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary:
-    "bg-accent text-surface hover:bg-accent-hover border border-accent",
-  secondary:
-    "bg-surface text-charcoal hover:bg-off-white-muted border border-border",
-  outline:
-    "bg-transparent text-surface border border-surface/70 hover:border-surface hover:bg-surface/10",
-  "outline-dark":
-    "bg-transparent text-charcoal border border-charcoal/25 hover:border-charcoal hover:bg-charcoal/5",
+  primary: "il-button-primary",
+  secondary: "il-button-light",
+  outline: "il-button-outline-light",
+  "outline-dark": "il-button-outline-dark",
+  dark: "il-button-dark",
 };
+
+export function buttonClassName(
+  variant: ButtonVariant = "primary",
+  className = "",
+) {
+  return `il-button ${variantStyles[variant]} ${className}`.trim();
+}
 
 export function Button({
   children,
@@ -28,25 +39,32 @@ export function Button({
   variant = "primary",
   className = "",
   external = false,
+  arrow = false,
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold uppercase tracking-wider transition-colors duration-200 ${variantStyles[variant]} ${className}`;
+  const classes = buttonClassName(variant, className);
+  const content = (
+    <>
+      {children}
+      {arrow ? <ArrowIcon /> : null}
+    </>
+  );
 
   if (external) {
     return (
       <a
         href={href}
-        className={classes}
+        className={`group ${classes}`}
         target="_blank"
         rel="noopener noreferrer"
       >
-        {children}
+        {content}
       </a>
     );
   }
 
   return (
-    <Link href={href} className={classes}>
-      {children}
+    <Link href={href} className={`group ${classes}`}>
+      {content}
     </Link>
   );
 }

@@ -4,8 +4,13 @@ import Link from "next/link";
 import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClassName } from "@/components/ui/Button";
+import { CtaBand } from "@/components/ui/CtaBand";
+import { ArrowIcon, CheckIcon } from "@/components/ui/Icons";
+import { PageHero } from "@/components/ui/PageHero";
 import { PhoneLink } from "@/components/ui/PhoneLink";
+import { FaqSection } from "@/components/sections/FaqSection";
+import { ProseSection } from "@/components/sections/ProseSection";
 import { nap, siteConfig, serviceProviderSchema } from "@/lib/site-data";
 import { asphaltServiceHeroImage } from "@/lib/asphalt-gallery-data";
 import {
@@ -86,98 +91,73 @@ export default function CommercialParkingLotsPage() {
         ]}
       />
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-                Services · Parking Lots
-              </p>
-              <h1 className="font-heading text-3xl font-bold uppercase leading-tight text-charcoal sm:text-4xl lg:text-5xl">
-                {parkingLotMeta.h1}
-              </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-text-muted sm:text-lg">
-                {parkingLotMeta.heroDescription}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Button href="/contact" variant="primary">
-                  Request a Bid
-                </Button>
-                <PhoneLink className="inline-flex items-center justify-center border border-charcoal/25 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:border-charcoal hover:bg-charcoal/5">
-                  Call {nap.phone}
-                </PhoneLink>
-              </div>
-            </div>
-            <div className="relative aspect-[4/3] w-full overflow-hidden border border-border">
-              <Image
-                src={asphaltServiceHeroImage.src}
-                alt={asphaltServiceHeroImage.alt}
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
+      <PageHero
+        eyebrow="Services · Parking Lots"
+        title={parkingLotMeta.h1}
+        media={
+          <div className="relative aspect-[4/3] w-full overflow-hidden bg-graphite-2 lg:aspect-square">
+            <Image
+              src={asphaltServiceHeroImage.src}
+              alt={asphaltServiceHeroImage.alt}
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 45vw"
+            />
           </div>
-        </Container>
-      </section>
+        }
+      >
+        <p className="type-lead mt-6 max-w-xl">
+          {parkingLotMeta.heroDescription}
+        </p>
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Button href="/contact" variant="primary" arrow>
+            Request a Bid
+          </Button>
+          <PhoneLink className={buttonClassName("outline")}>
+            Call {nap.phone}
+          </PhoneLink>
+        </div>
+      </PageHero>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-              {parkingLotIntro.heading}
-            </h2>
-            {parkingLotIntro.paragraphs.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-6 sm:text-lg"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <ProseSection heading={parkingLotIntro.heading}>
+        {parkingLotIntro.paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </ProseSection>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+      <section className="tone-dark">
+        <Container className="band">
+          <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
             <div>
-              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              <h2 className="type-h2-sm text-paper">
                 {parkingLotAudience.heading}
               </h2>
-              {parkingLotAudience.paragraphs.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg"
-                >
-                  {paragraph}
-                </p>
-              ))}
+              <div className="type-prose mt-6 space-y-6">
+                {parkingLotAudience.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
             </div>
             <div>
-              <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+              <h2 className="type-h2-sm text-paper">
                 {parkingLotBidPrep.heading}
               </h2>
-              <p className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg">
+              <p className="type-lead mt-6">
                 {parkingLotBidPrep.intro}
               </p>
-              <ul className="mt-6 flex flex-col gap-3">
+              <ul className="il-checklist il-checklist-ruled mt-8">
                 {parkingLotBidPrep.items.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90 sm:text-base"
-                  >
-                    <span aria-hidden="true" className="mt-0.5 text-accent">
-                      &#9632;
-                    </span>
+                  <li key={item}>
+                    <CheckIcon />
                     {item}
                   </li>
                 ))}
               </ul>
-              <div className="mt-8">
-                <Button href="/contact" variant="primary">
+              <div className="mt-10">
+                <Button href="/contact" variant="primary" arrow>
                   Request a Bid
                 </Button>
               </div>
@@ -186,62 +166,39 @@ export default function CommercialParkingLotsPage() {
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-              {parkingLotConstructionVsRehab.heading}
-            </h2>
-            {parkingLotConstructionVsRehab.paragraphs.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <ProseSection heading={parkingLotConstructionVsRehab.heading}>
+        {parkingLotConstructionVsRehab.paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </ProseSection>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-              {parkingLotDivision32.heading}
-            </h2>
-            {parkingLotDivision32.paragraphs.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <ProseSection heading={parkingLotDivision32.heading} tone="warm">
+        {parkingLotDivision32.paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </ProseSection>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="bg-paper">
+        <Container className="band">
+          <h2 className="type-h2 max-w-4xl text-graphite">
             Commercial Parking Lot Services
           </h2>
-          <div className="mt-10 grid gap-8 lg:grid-cols-2">
-            {parkingLotServices.map((group) => (
-              <div key={group.title} className="border border-border bg-surface-muted p-6">
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+          <div className="mt-12 grid border-l border-t border-line-strong lg:grid-cols-2">
+            {parkingLotServices.map((group, index) => (
+              <div
+                key={group.title}
+                className="border-b border-r border-line-strong p-7 sm:p-9"
+              >
+                <p aria-hidden="true" className="il-num text-base">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="type-h3 mt-6 text-graphite">
                   {group.title}
                 </h3>
-                <ul className="mt-4 flex flex-col gap-3">
+                <ul className="il-checklist mt-5">
                   {group.items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/90"
-                    >
-                      <span aria-hidden="true" className="mt-0.5 text-accent">
-                        &#9632;
-                      </span>
+                    <li key={item}>
+                      <CheckIcon />
                       {item}
                     </li>
                   ))}
@@ -252,20 +209,15 @@ export default function CommercialParkingLotsPage() {
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="bg-warm">
+        <Container className="band">
+          <h2 className="type-h2 max-w-4xl text-graphite">
             Industries We Serve
           </h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {parkingLotIndustries.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 border border-border bg-surface p-5 text-sm text-charcoal/90"
-              >
-                <span aria-hidden="true" className="mt-0.5 text-accent">
-                  &#9632;
-                </span>
+              <li key={item} className="il-tile">
+                <CheckIcon />
                 {item}
               </li>
             ))}
@@ -273,39 +225,31 @@ export default function CommercialParkingLotsPage() {
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-              {parkingLotWhyHh.heading}
-            </h2>
-            {parkingLotWhyHh.paragraphs.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <ProseSection heading={parkingLotWhyHh.heading}>
+        {parkingLotWhyHh.paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </ProseSection>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            {parkingLotProjectEvidence.heading}
-          </h2>
-          <p className="mt-3 text-sm font-semibold uppercase tracking-wider text-accent">
-            {parkingLotProjectEvidence.location}
-          </p>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-charcoal/80 sm:text-lg">
-            {parkingLotProjectEvidence.summary}
-          </p>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+      <section className="bg-warm">
+        <Container className="band">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-16">
+            <div>
+              <h2 className="type-h2 text-graphite">
+                {parkingLotProjectEvidence.heading}
+              </h2>
+              <p className="type-eyebrow mt-4">
+                {parkingLotProjectEvidence.location}
+              </p>
+            </div>
+            <p className="type-lead">
+              {parkingLotProjectEvidence.summary}
+            </p>
+          </div>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {parkingLotProjectEvidence.photos.map((photo) => (
-              <figure key={photo.src} className="overflow-hidden border border-border bg-surface">
-                <div className="relative aspect-[4/3]">
+              <figure key={photo.src}>
+                <div className="relative aspect-[4/3] overflow-hidden bg-graphite">
                   <Image
                     src={photo.src}
                     alt={photo.alt}
@@ -314,92 +258,89 @@ export default function CommercialParkingLotsPage() {
                     sizes="(max-width: 640px) 100vw, 50vw"
                   />
                 </div>
-                <figcaption className="border-t border-border px-4 py-3 text-sm leading-relaxed text-text-muted">
+                <figcaption className="il-figcaption mt-3">
                   {photo.caption}
                 </figcaption>
               </figure>
             ))}
           </div>
-          <div className="mt-8">
+          <div className="mt-10">
             <Link
               href={parkingLotProjectEvidence.href}
-              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
+              className="il-link"
             >
               Read the full Chandler case study
-              <span aria-hidden="true">&rarr;</span>
+              <ArrowIcon />
             </Link>
           </div>
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            Related Commercial Services
-          </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-            Need asphalt paving, overlay, or patching without a full lot
-            rebuild? See our commercial asphalt paving services. Concrete pads
-            and curb that travel with a lot are covered with commercial
-            concrete.
-          </p>
-          <ul className="mt-8 flex flex-col gap-4">
-            {parkingLotRelatedLinks.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                >
-                  {item.label}
-                  <span aria-hidden="true">&rarr;</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+      <section className="bg-paper">
+        <Container className="band">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <h2 className="type-h2-sm text-graphite">
+                Related Commercial Services
+              </h2>
+              <p className="type-body mt-4 max-w-2xl">
+                Need asphalt paving, overlay, or patching without a full lot
+                rebuild? See our commercial asphalt paving services. Concrete pads
+                and curb that travel with a lot are covered with commercial
+                concrete.
+              </p>
+            </div>
+            <ul className="il-link-list self-end">
+              {parkingLotRelatedLinks.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href}>
+                    {item.label}
+                    <ArrowIcon />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            Parking Lot Work by City
-          </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
-            City-specific pages cover local market conditions, access, and how
-            parking lot and paving work shows up in each market.
-          </p>
-          <div className="mt-10 grid gap-10 lg:grid-cols-2">
+      <section className="bg-warm">
+        <Container className="band">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-16">
+            <h2 className="type-h2 text-graphite">
+              Parking Lot Work by City
+            </h2>
+            <p className="type-lead max-w-xl">
+              City-specific pages cover local market conditions, access, and how
+              parking lot and paving work shows up in each market.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
-              <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+              <h3 className="type-label text-text-muted">
                 Asphalt Paving by City
               </h3>
-              <ul className="mt-4 flex flex-col gap-3">
+              <ul className="il-link-list mt-4">
                 {parkingLotCityLinks.asphalt.map((city) => (
                   <li key={city.slug}>
-                    <Link
-                      href={parkingLotAsphaltCityHref(city.slug)}
-                      className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                    >
+                    <Link href={parkingLotAsphaltCityHref(city.slug)}>
                       Parking Lots &amp; Asphalt in {city.name}
-                      <span aria-hidden="true">&rarr;</span>
+                      <ArrowIcon />
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
+              <h3 className="type-label text-text-muted">
                 Concrete &amp; Site Work by City
               </h3>
-              <ul className="mt-4 flex flex-col gap-3">
+              <ul className="il-link-list mt-4">
                 {parkingLotCityLinks.concrete.map((city) => (
                   <li key={city.slug}>
-                    <Link
-                      href={parkingLotConcreteCityHref(city.slug)}
-                      className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-charcoal transition-colors hover:text-accent"
-                    >
+                    <Link href={parkingLotConcreteCityHref(city.slug)}>
                       Concrete &amp; Site Work in {city.name}
-                      <span aria-hidden="true">&rarr;</span>
+                      <ArrowIcon />
                     </Link>
                   </li>
                 ))}
@@ -409,45 +350,26 @@ export default function CommercialParkingLotsPage() {
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            Commercial Parking Lot FAQs
-          </h2>
-          <div className="mt-8 flex flex-col gap-6">
-            {parkingLotFaqs.map((faq) => (
-              <div key={faq.question} className="border-b border-border pb-6">
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
-                  {faq.question}
-                </h3>
-                <p className="mt-3 text-base leading-relaxed text-text-muted">
-                  {faq.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <FaqSection heading="Commercial Parking Lot FAQs" faqs={parkingLotFaqs} />
 
-      <section className="bg-accent">
-        <Container className="py-16 text-center lg:py-20">
-          <h2 className="font-heading text-3xl font-bold uppercase text-surface sm:text-4xl">
-            Discuss Your Parking Lot Project
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Send an address and whether the lot is new or already in use. You
-            do not need complete civil drawings to inquire.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Button href="/contact" variant="secondary">
+      <CtaBand
+        title="Discuss Your Parking Lot Project"
+        actions={
+          <>
+            <Button href="/contact" variant="secondary" arrow>
               Request a Bid
             </Button>
-            <PhoneLink className="inline-flex items-center justify-center border border-surface/70 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-surface transition-colors hover:border-surface hover:bg-surface/10">
+            <PhoneLink className={buttonClassName("outline")}>
               Call {nap.phone}
             </PhoneLink>
-          </div>
-        </Container>
-      </section>
+          </>
+        }
+      >
+        <p>
+          Send an address and whether the lot is new or already in use. You
+          do not need complete civil drawings to inquire.
+        </p>
+      </CtaBand>
     </PageShell>
   );
 }

@@ -11,12 +11,14 @@ export function Eyebrow({
   theme = "light",
   className = "",
 }: EyebrowProps) {
-  const colorClass = theme === "dark" ? "text-accent" : "text-accent";
+  const colorClass = theme === "dark" ? "text-on-dark-muted" : "text-accent";
+  const ruleClass = theme === "dark" ? "bg-accent-light" : "bg-accent";
 
   return (
     <p
-      className={`mb-3 text-xs font-semibold uppercase tracking-[0.28em] ${colorClass} ${className}`}
+      className={`type-eyebrow mb-4 flex items-center gap-3 ${colorClass} ${className}`}
     >
+      <span aria-hidden="true" className={`h-px w-8 shrink-0 ${ruleClass}`} />
       {children}
     </p>
   );

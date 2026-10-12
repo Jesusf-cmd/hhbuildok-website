@@ -4,6 +4,9 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { CtaBand } from "@/components/ui/CtaBand";
+import { CheckIcon } from "@/components/ui/Icons";
+import { PageHero } from "@/components/ui/PageHero";
 import { services, siteConfig, serviceProviderSchema } from "@/lib/site-data";
 import {
   concreteCityHref,
@@ -111,35 +114,30 @@ export default async function ConcreteCityPage({ params }: ConcreteCityPageProps
         ]}
       />
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-            {city.name}, OK · Concrete
-          </p>
-          <h1 className="max-w-3xl font-heading text-3xl font-bold uppercase leading-tight text-charcoal sm:text-4xl lg:text-5xl">
-            {entry.h1}
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-text-muted sm:text-lg">
-            {entry.heroDescription}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Button href="/contact" variant="primary">
-              Request a Bid
-            </Button>
-            <Button href={concreteService.href} variant="secondary">
-              Full Concrete Overview
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        eyebrow={<>{city.name}, OK · Concrete</>}
+        title={entry.h1}
+      >
+        <p className="type-lead mt-6 max-w-2xl">
+          {entry.heroDescription}
+        </p>
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Button href="/contact" variant="primary" arrow>
+            Request a Bid
+          </Button>
+          <Button href={concreteService.href} variant="outline">
+            Full Concrete Overview
+          </Button>
+        </div>
+      </PageHero>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <div className="max-w-3xl">
+      <section className="bg-paper">
+        <Container className="band">
+          <div className="max-w-4xl border-l-4 border-accent pl-6 sm:pl-10">
             {entry.localAngle.map((paragraph) => (
               <p
                 key={paragraph}
-                className="mt-6 text-base leading-relaxed text-charcoal/80 first:mt-0 sm:text-lg"
+                className="mt-6 text-lg leading-relaxed text-graphite first:mt-0 sm:text-xl sm:leading-relaxed"
               >
                 {paragraph}
               </p>
@@ -148,20 +146,15 @@ export default async function ConcreteCityPage({ params }: ConcreteCityPageProps
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="bg-warm">
+        <Container className="band">
+          <h2 className="type-h2 max-w-4xl text-graphite">
             Typical Applications in {city.name}
           </h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+          <ul className="mt-12 grid gap-3 sm:grid-cols-2">
             {entry.applications.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 border border-border bg-surface-muted p-5 text-sm text-charcoal/90"
-              >
-                <span aria-hidden="true" className="mt-0.5 text-accent">
-                  &#9632;
-                </span>
+              <li key={item} className="il-tile">
+                <CheckIcon />
                 {item}
               </li>
             ))}
@@ -169,55 +162,54 @@ export default async function ConcreteCityPage({ params }: ConcreteCityPageProps
         </Container>
       </section>
 
-      <section className="bg-surface">
-        <Container className="py-16 lg:py-20">
-          <div className="max-w-3xl">
-            <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
+      <section className="bg-paper">
+        <Container className="band">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+            <h2 className="type-h2 text-graphite">
               How We Approach Concrete Work in {city.name}
             </h2>
-            <p className="mt-6 text-base leading-relaxed text-charcoal/80 sm:text-lg">
+            <p className="type-prose">
               {entry.approach}
             </p>
           </div>
         </Container>
       </section>
 
-      <section className="bg-off-white-muted">
-        <Container className="py-16 lg:py-20">
-          <h2 className="font-heading text-2xl font-bold uppercase text-charcoal sm:text-3xl">
-            Commercial Concrete FAQs for {city.name}
-          </h2>
-          <div className="mt-8 flex flex-col gap-6">
-            {entry.cityFaqs.map((faq) => (
-              <div key={faq.question} className="border-b border-border pb-6">
-                <h3 className="font-heading text-lg font-bold uppercase text-charcoal">
-                  {faq.question}
-                </h3>
-                <p className="mt-3 text-base leading-relaxed text-text-muted">
-                  {faq.answer}
-                </p>
-              </div>
-            ))}
+      <section className="bg-warm">
+        <Container className="band">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-16">
+            <h2 className="type-h2 text-graphite lg:sticky lg:top-28 lg:self-start">
+              Commercial Concrete FAQs for {city.name}
+            </h2>
+            <div className="il-faq">
+              {entry.cityFaqs.map((faq) => (
+                <div key={faq.question}>
+                  <h3>
+                    {faq.question}
+                  </h3>
+                  <p>
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </Container>
       </section>
 
-      <section className="bg-accent">
-        <Container className="py-16 text-center lg:py-20">
-          <h2 className="font-heading text-3xl font-bold uppercase text-surface sm:text-4xl">
-            Discuss Your {city.name} Concrete Project
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-surface/90 sm:text-lg">
-            Tell us about your scope and location. Our team will review the
-            details and follow up to discuss next steps.
-          </p>
-          <div className="mt-8">
-            <Button href="/contact" variant="secondary">
-              Request a Bid
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <CtaBand
+        title={<>Discuss Your {city.name} Concrete Project</>}
+        actions={
+          <Button href="/contact" variant="secondary" arrow>
+            Request a Bid
+          </Button>
+        }
+      >
+        <p>
+          Tell us about your scope and location. Our team will review the
+          details and follow up to discuss next steps.
+        </p>
+      </CtaBand>
     </PageShell>
   );
 }

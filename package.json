@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "build:worker": "NEXT_PUBLIC_SITE_ENV=production opennextjs-cloudflare build && opennextjs-cloudflare populateCache local",
-    "preview": "NEXT_PUBLIC_SITE_ENV=production opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "NEXT_PUBLIC_SITE_ENV=production opennextjs-cloudflare build && opennextjs-cloudflare deploy"
+    "preview": "npm run build:worker && opennextjs-cloudflare preview",
+    "deploy": "npm run build:worker && opennextjs-cloudflare deploy"
   },
   "dependencies": {
     "next": "^16.2.10",

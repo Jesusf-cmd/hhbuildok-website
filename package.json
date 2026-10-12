@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "build:worker": "NEXT_PUBLIC_SITE_ENV=production opennextjs-cloudflare build",
+    "build:worker": "NEXT_PUBLIC_SITE_ENV=production opennextjs-cloudflare build && opennextjs-cloudflare populateCache local",
     "preview": "NEXT_PUBLIC_SITE_ENV=production opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "NEXT_PUBLIC_SITE_ENV=production opennextjs-cloudflare build && opennextjs-cloudflare deploy"
   },

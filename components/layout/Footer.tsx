@@ -34,7 +34,7 @@ export function Footer() {
             <ul className="flex flex-col">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className={footerLink}>
+                  <Link href={link.href} prefetch={false} className={footerLink}>
                     {link.label}
                   </Link>
                 </li>
@@ -49,7 +49,7 @@ export function Footer() {
             <ul className="flex flex-col">
               {services.map((service) => (
                 <li key={service.id}>
-                  <Link href={service.href} className={footerLink}>
+                  <Link href={service.href} prefetch={false} className={footerLink}>
                     {service.shortTitle}
                   </Link>
                 </li>
@@ -66,6 +66,7 @@ export function Footer() {
                 <li key={city.slug}>
                   <Link
                     href={`/service-area/${city.slug}`}
+                    prefetch={false}
                     className={footerLink}
                   >
                     {city.name}, OK
@@ -73,7 +74,7 @@ export function Footer() {
                 </li>
               ))}
               <li>
-                <Link href="/service-area" className={footerLink}>
+                <Link href="/service-area" prefetch={false} className={footerLink}>
                   View All Areas
                 </Link>
               </li>

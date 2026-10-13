@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ContactForm } from "@/components/ContactForm";
+import { RetainingWallBudgetCalculator } from "@/components/retaining-walls/RetainingWallBudgetCalculator";
+import {
+  RetainingWallBidForm,
+  RetainingWallEstimateProvider,
+} from "@/components/retaining-walls/RetainingWallEstimateContext";
 import { PhoneLink } from "@/components/ui/PhoneLink";
+import {
+  RETAINING_WALL_RATE_HIGH,
+  RETAINING_WALL_RATE_LOW,
+} from "@/lib/retaining-wall-estimate";
 import { siteConfig } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -43,6 +51,7 @@ export default function RetainingWallLandingPage() {
         </div>
       </header>
       <main id="main-content">
+        <RetainingWallEstimateProvider>
         <section className="tone-dark relative isolate overflow-hidden bg-graphite text-paper">
           <Image src="/images/retaining-walls/tall-curved-block-wall.jpg" alt="Tall curved block retaining wall from a previous project" fill priority sizes="100vw" className="object-cover object-[65%_center]" />
           <div className="absolute inset-0 -z-0 bg-gradient-to-r from-graphite via-graphite/95 to-graphite/65" />
@@ -51,7 +60,7 @@ export default function RetainingWallLandingPage() {
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent-light">Yukon & Edmond · Oklahoma</p>
               <h1 className="mt-6 max-w-3xl text-5xl leading-[1.04] sm:text-7xl">Retaining walls.<br /><span className="text-accent-light">A clear scope.<br />A solid next step.</span></h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/85">Retaining-wall construction for grade changes, property improvements, and site development. Talk with H&H Construction about your site and what the wall needs to do.</p>
-              <div className="mt-8 flex flex-wrap gap-3"><a href="#request-bid" className={cta}>Request a retaining-wall bid ↗</a><PhoneLink className="inline-flex min-h-12 items-center justify-center border border-white/40 px-6 py-4 text-sm font-bold hover:bg-white/10">Call {siteConfig.phone}</PhoneLink></div>
+              <div className="mt-8 flex flex-wrap gap-3"><a href="#request-bid" className={cta}>Request a retaining-wall bid ↗</a><PhoneLink className="inline-flex min-h-12 items-center justify-center border border-white/40 px-6 py-4 text-sm font-bold hover:bg-white/10">Call {siteConfig.phone}</PhoneLink><a href="#budget-calculator" className="inline-flex min-h-12 items-center justify-center px-2 py-4 text-sm font-bold underline underline-offset-4 hover:text-accent-light">Estimate a planning budget</a></div>
             </div>
             <aside className="border border-white/25 bg-graphite/80 p-7">
               <p className="text-xs font-bold uppercase tracking-[0.15em] text-paper/70">Project fit</p>
@@ -63,6 +72,20 @@ export default function RetainingWallLandingPage() {
         </section>
         <section className="border-b border-line bg-warm">
           <div className="mx-auto grid max-w-7xl gap-5 px-5 py-7 text-sm font-semibold sm:grid-cols-3 sm:px-8"><p>01 / Retaining-wall construction</p><p>02 / Yukon & Edmond project focus</p><p>03 / Site-specific scope and pricing</p></div>
+        </section>
+        <section id="budget-calculator" aria-labelledby="budget-calculator-title" className="mx-auto grid max-w-7xl scroll-mt-6 gap-12 px-5 pt-16 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent">Plan your budget</p>
+            <h2 id="budget-calculator-title" className="mt-4 text-4xl sm:text-5xl">Estimate a<br />planning budget.</h2>
+            <p className="mt-6 text-lg font-semibold leading-relaxed text-graphite">{`Retaining-wall planning budgets: $${RETAINING_WALL_RATE_LOW}–$${RETAINING_WALL_RATE_HIGH} per square foot of wall face.`}</p>
+            <p className="mt-4 text-base leading-relaxed text-text-muted">Enter your wall length and average height above the footing to see a preliminary range. No contact information is needed to calculate.</p>
+            <ul className="mt-6 space-y-3 border-t border-line pt-6 text-sm text-text-muted">
+              <li>Wall-face area = length × average height above the footing.</li>
+              <li>If the wall steps up or down, use the average exposed height along its length.</li>
+              <li>Count one face of the wall only. Do not count both sides or include the footing.</li>
+            </ul>
+          </div>
+          <RetainingWallBudgetCalculator />
         </section>
         <section aria-labelledby="project-gallery-title" className="mx-auto max-w-7xl px-5 pt-16 sm:px-8">
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -90,13 +113,14 @@ export default function RetainingWallLandingPage() {
         <section className="tone-dark bg-graphite px-5 py-16 text-paper sm:px-8"><div className="mx-auto max-w-7xl"><p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-light">From inquiry to proposal</p><h2 className="mt-4 text-4xl sm:text-5xl">Know the next step.</h2><div className="mt-10 grid gap-8 md:grid-cols-3">{steps.map(([number, title, body]) => <article key={number} className="border-t border-white/25 pt-6"><p className="text-3xl text-accent-light">{number}</p><h3 className="mt-4 text-2xl">{title}</h3><p className="mt-3 text-sm leading-relaxed text-paper/75">{body}</p></article>)}</div></div></section>
         <section id="request-bid" className="mx-auto grid max-w-7xl scroll-mt-6 gap-12 px-5 py-16 sm:px-8 lg:grid-cols-2">
           <div><p className="text-xs font-bold uppercase tracking-[0.18em] text-accent">Tell us about your project</p><h2 className="mt-4 text-4xl sm:text-5xl">Let’s review your<br />retaining-wall scope.</h2><p className="mt-6 text-base leading-relaxed text-text-muted">For projects of $10,000 or more in Yukon and Edmond. Final pricing depends on wall dimensions, site conditions, access, required plans, and the agreed construction scope.</p><ul className="mt-6 space-y-3 border-t border-line pt-6 text-sm text-text-muted"><li>Include approximate wall length and height.</li><li>Attach site photos, drawings, or available plans.</li><li>Tell us your timeline and whether this is new construction or replacement.</li></ul><p className="mt-8 text-sm">Prefer to discuss it by phone?</p><PhoneLink className="mt-2 inline-flex min-h-12 items-center text-2xl font-bold text-accent underline underline-offset-4" /><p className="mt-8 text-sm leading-relaxed text-text-muted">Explore H&H’s <Link href="/services/concrete-construction" className="underline underline-offset-4">concrete construction services</Link> or <Link href="/projects/chandler-county-courthouse-parking-lot" className="underline underline-offset-4">published parking-lot case study</Link> for more about our construction work.</p></div>
-          <ContactForm retainingWall />
+          <RetainingWallBidForm />
         </section>
         <section className="border-t border-line bg-warm px-5 py-14 sm:px-8"><div className="mx-auto max-w-4xl"><h2 className="text-3xl">Before you request a bid</h2>{[
           ["Is $10,000 the price of a retaining wall?", "No. It is the minimum project value for this campaign. Your proposal depends on dimensions, construction requirements, drainage, access, and site conditions."],
           ["Can I submit a request without drawings?", "Yes. Send your approximate dimensions and site photos. We can discuss what additional information or professional design is needed to evaluate the scope."],
           ["Does submitting a request commit me to a project?", "No. A bid request starts a discussion. Work proceeds only after the scope, pricing, and agreement are established."],
         ].map(([question, answer]) => <details key={question} className="mt-5 border-b border-line pb-5"><summary className="min-h-11 cursor-pointer py-3 font-semibold">{question}</summary><p className="mt-2 text-sm leading-relaxed text-text-muted">{answer}</p></details>)}</div></section>
+        </RetainingWallEstimateProvider>
       </main>
       <footer className="border-t border-line px-5 py-8 pb-24 sm:px-8 sm:pb-8"><div className="mx-auto flex max-w-7xl flex-wrap justify-between gap-4 text-sm text-text-muted"><p>H&H Construction · Retaining-wall inquiries · Yukon & Edmond</p><a href={`mailto:${siteConfig.email}`} className="underline underline-offset-4">{siteConfig.email}</a><Link href="/contact" className="underline underline-offset-4">Contact & business information</Link></div></footer>
       <div className="tone-dark fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-px border-t border-white/20 bg-graphite p-2 text-white shadow-xl sm:hidden"><PhoneLink className="flex min-h-12 items-center justify-center text-sm font-bold">Call H&H</PhoneLink><a href="#request-bid" className="flex min-h-12 items-center justify-center bg-accent text-sm font-bold">Request a bid</a></div>

@@ -11,6 +11,10 @@ import {
   type ContactFormField,
   type ContactFormValues,
 } from "@/lib/contact-form";
+import {
+  buildEstimateRequestLines,
+  type RetainingWallEstimate,
+} from "@/lib/retaining-wall-estimate";
 import { PhoneLink } from "@/components/ui/PhoneLink";
 import { EmailLink } from "@/components/ui/EmailLink";
 import { buttonClassName } from "@/components/ui/Button";
@@ -96,7 +100,13 @@ function Field({
   );
 }
 
-export function ContactForm({ retainingWall = false }: { retainingWall?: boolean }) {
+export function ContactForm({
+  retainingWall = false,
+  retainingWallEstimate = null,
+}: {
+  retainingWall?: boolean;
+  retainingWallEstimate?: RetainingWallEstimate | null;
+}) {
   const formId = useId();
   const [city, setCity] = useState("");
   const [budget, setBudget] = useState("");
@@ -163,11 +173,15 @@ export function ContactForm({ retainingWall = false }: { retainingWall?: boolean
             return value ? [`${key}: ${value.replace(/[\r\n]/g, " ").slice(0, 300)}`] : [];
           }).join("\n")
       : "";
+    const estimateLines =
+      retainingWall && retainingWallEstimate
+        ? buildEstimateRequestLines(retainingWallEstimate).map((line) => `\n${line}`).join("")
+        : "";
     formData.set("name", values.name);
     formData.set("email", values.email);
     formData.set("phone", values.phone);
     formData.set("description", retainingWall
-      ? `Service: Retaining wall construction\nOrigin: /retaining-walls\nProject location: ${city}\nBudget range: ${budget}${attribution ? `\n${attribution}` : ""}\n\n${values.description}`
+      ? `Service: Retaining wall construction\nOrigin: /retaining-walls\nProject location: ${city}\nBudget range: ${budget}${estimateLines}${attribution ? `\n${attribution}` : ""}\n\n${values.description}`
       : values.description);
     formData.set("website", values.website);
 
@@ -270,6 +284,19 @@ export function ContactForm({ retainingWall = false }: { retainingWall?: boolean
               </select>
             </Field>
             {qualificationError ? <p id={`${formId}-qualification-error`} role="alert" className="text-sm text-error">{qualificationError}</p> : null}
+            {retainingWallEstimate ? (
+              <div className="border border-line bg-warm p-4 text-sm leading-relaxed">
+                <p className="type-label text-graphite">Included with this request</p>
+                <ul className="mt-2 space-y-1 text-[#3a3f3e]">
+                  {buildEstimateRequestLines(retainingWallEstimate).map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+                <p className="mt-2 text-xs text-text-muted">
+                  To change these, update the budget calculator above.
+                </p>
+              </div>
+            ) : null}
           </>
         ) : null}
         <Field id={`${formId}-name`} label="Name" error={errors.name} required>

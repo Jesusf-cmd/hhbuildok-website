@@ -55,19 +55,13 @@ export default function RetainingWallLandingPage() {
         <section className="tone-dark relative isolate overflow-hidden bg-graphite text-paper">
           <Image src="/images/retaining-walls/tall-curved-block-wall.jpg" alt="Tall curved block retaining wall from a previous project" fill priority sizes="100vw" className="object-cover object-[65%_center]" />
           <div className="absolute inset-0 -z-0 bg-gradient-to-r from-graphite via-graphite/95 to-graphite/65" />
-          <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.4fr_0.8fr] lg:items-end">
+          <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 sm:py-24">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent-light">Yukon & Edmond · Oklahoma</p>
               <h1 className="mt-6 max-w-3xl text-5xl leading-[1.04] sm:text-7xl">Retaining walls.<br /><span className="text-accent-light">A clear scope.<br />A solid next step.</span></h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/85">Retaining-wall construction for grade changes, property improvements, and site development. Talk with H&H Construction about your site and what the wall needs to do.</p>
               <div className="mt-8 flex flex-wrap gap-3"><a href="#request-bid" className={cta}>Request a retaining-wall bid ↗</a><PhoneLink className="inline-flex min-h-12 items-center justify-center border border-white/40 px-6 py-4 text-sm font-bold hover:bg-white/10">Call {siteConfig.phone}</PhoneLink><a href="#budget-calculator" className="inline-flex min-h-12 items-center justify-center px-2 py-4 text-sm font-bold underline underline-offset-4 hover:text-accent-light">Estimate a planning budget</a></div>
             </div>
-            <aside className="border border-white/25 bg-graphite/80 p-7">
-              <p className="text-xs font-bold uppercase tracking-[0.15em] text-paper/70">Project fit</p>
-              <p className="mt-3 font-heading text-4xl uppercase">$10,000+ projects</p>
-              <p className="mt-4 text-sm leading-relaxed text-paper/80">Retaining-wall construction in Yukon and Edmond. This is a project minimum, not a fixed wall price.</p>
-              <div className="mt-6 border-t border-white/20 pt-5 text-sm text-paper/80">Have photos or plans? Include them with your bid request.</div>
-            </aside>
           </div>
         </section>
         <section className="border-b border-line bg-warm">

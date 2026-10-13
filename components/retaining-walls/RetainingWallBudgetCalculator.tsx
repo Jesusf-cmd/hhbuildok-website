@@ -121,8 +121,9 @@ export function RetainingWallBudgetCalculator() {
           Budget calculator
         </h3>
         <p id={`${formId}-measure`} className="mt-3 text-sm leading-relaxed text-text-muted sm:text-[0.9375rem]">
-          Measure one face of the wall. Do not count both sides or include the
-          footing area.
+          Measure one face of the wall. Do not count both sides or add footing
+          area: footing is included in the planning price, not in the measured
+          area.
         </p>
 
         <div className="mt-8 grid gap-x-6 gap-y-2 sm:grid-cols-2">

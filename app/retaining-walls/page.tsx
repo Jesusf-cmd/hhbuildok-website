@@ -78,11 +78,14 @@ export default function RetainingWallLandingPage() {
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent">Plan your budget</p>
             <h2 id="budget-calculator-title" className="mt-4 text-4xl sm:text-5xl">Estimate a<br />planning budget.</h2>
             <p className="mt-6 text-lg font-semibold leading-relaxed text-graphite">Retaining-wall planning budgets: <span className="whitespace-nowrap">{`$${RETAINING_WALL_RATE_LOW}–$${RETAINING_WALL_RATE_HIGH}`}</span> per square foot of wall face.</p>
+            <p className="mt-4 text-base leading-relaxed text-graphite">H&H’s retaining-wall planning range of <span className="whitespace-nowrap">{`$${RETAINING_WALL_RATE_LOW}–$${RETAINING_WALL_RATE_HIGH}`}</span> per square foot of wall face includes footing, reinforcement, excavation, drainage, backfill, and permits.</p>
+            <p className="mt-4 text-base leading-relaxed text-text-muted">Demolition, haul-off, and engineering require scope review.</p>
             <p className="mt-4 text-base leading-relaxed text-text-muted">Enter your wall length and average height above the footing to see a preliminary range. No contact information is needed to calculate.</p>
             <ul className="mt-6 space-y-3 border-t border-line pt-6 text-sm text-text-muted">
               <li>Wall-face area = length × average height above the footing.</li>
               <li>If the wall steps up or down, use the average exposed height along its length.</li>
-              <li>Count one face of the wall only. Do not count both sides or include the footing.</li>
+              <li>Count one face of the wall only. Do not count both sides.</li>
+              <li>Footing is included in the planning price but is not added to the measured wall-face area.</li>
             </ul>
           </div>
           <RetainingWallBudgetCalculator />

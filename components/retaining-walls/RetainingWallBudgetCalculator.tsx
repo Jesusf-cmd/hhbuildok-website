@@ -28,8 +28,7 @@ const fieldLabels: Record<DimensionField, string> = {
 
 const minimum = formatUsd(RETAINING_WALL_PROJECT_MINIMUM);
 
-const minimumMessages: Record<RetainingWallMinimumStatus, string> = {
-  below: `This calculated range falls below this campaign’s ${minimum} project minimum.`,
+const minimumMessages: Partial<Record<RetainingWallMinimumStatus, string>> = {
   crosses: `This calculated range crosses this campaign’s ${minimum} project minimum. Whether the project meets the minimum depends on the reviewed scope.`,
   "at-or-above": `A calculated range at or above the ${minimum} project minimum does not confirm eligibility or pricing. H&H reviews each scope before providing a quote.`,
 };
@@ -205,12 +204,14 @@ export function RetainingWallBudgetCalculator() {
               <span className="whitespace-nowrap">{`$${RETAINING_WALL_RATE_LOW}–$${RETAINING_WALL_RATE_HIGH}`}</span>{" "}
               per square foot of wall face.
             </p>
+            {minimumMessages[estimate.minimumStatus] ? (
             <p
               data-minimum-status={estimate.minimumStatus}
               className="mt-5 border-l-4 border-accent bg-warm p-4 text-sm leading-relaxed text-graphite"
             >
               {minimumMessages[estimate.minimumStatus]}
             </p>
+            ) : null}
           </div>
         ) : (
           <p className="text-sm leading-relaxed text-text-muted">

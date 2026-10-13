@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type FormEvent } from "react";
+import { useId, useRef, useState, type FormEvent } from "react";
 import { nap } from "@/lib/site-data";
 import {
   CONTACT_FORM_ACCEPT,
@@ -121,6 +121,9 @@ export function ContactForm({
     "idle",
   );
   const [submitError, setSubmitError] = useState("");
+  // The disabled button only applies after React re-renders, so submits fired
+  // before then (or via requestSubmit) would otherwise send duplicate requests.
+  const submitInFlight = useRef(false);
 
   function updateField(field: ContactFormField, value: string) {
     setValues((current) => ({ ...current, [field]: value }));
@@ -145,6 +148,10 @@ export function ContactForm({
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    if (submitInFlight.current) {
+      return;
+    }
+
     const validationErrors = validateContactForm(values);
     const attachmentError = validateContactAttachments(projectDocs);
     if (retainingWall && (!city || !budget)) {
@@ -162,6 +169,7 @@ export function ContactForm({
       return;
     }
 
+    submitInFlight.current = true;
     setStatus("submitting");
     setSubmitError("");
 
@@ -215,6 +223,8 @@ export function ContactForm({
           ? error.message
           : "Unable to send your request right now.",
       );
+    } finally {
+      submitInFlight.current = false;
     }
   }
 

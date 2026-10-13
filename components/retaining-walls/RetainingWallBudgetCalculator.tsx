@@ -125,17 +125,20 @@ export function RetainingWallBudgetCalculator() {
           footing area.
         </p>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2">
-          {fields.map(({ field, label, help, placeholder, ref }) => {
+        <div className="mt-8 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+          {fields.map(({ field, label, help, placeholder, ref }, index) => {
             const inputId = `${formId}-${field}`;
             const error = errors[field];
 
             return (
-              <div key={field}>
-                <label htmlFor={inputId} className="type-label block text-graphite">
+              <div
+                key={field}
+                className={`row-span-4 grid grid-rows-subgrid ${index > 0 ? "mt-4 sm:mt-0" : ""}`}
+              >
+                <label htmlFor={inputId} className="type-label block self-end text-graphite">
                   {label}
                 </label>
-                <p id={`${inputId}-help`} className="mt-1 text-xs leading-relaxed text-text-muted">
+                <p id={`${inputId}-help`} className="text-xs leading-relaxed text-text-muted">
                   {help}
                 </p>
                 <input
@@ -151,12 +154,12 @@ export function RetainingWallBudgetCalculator() {
                   placeholder={placeholder}
                   aria-invalid={Boolean(error)}
                   aria-describedby={`${inputId}-help ${formId}-measure${error ? ` ${inputId}-error` : ""}`}
-                  className={`${inputClassName} mt-2`}
+                  className={inputClassName}
                 />
                 {error ? (
                   <p
                     id={`${inputId}-error`}
-                    className="mt-2 border-l-2 border-error pl-3 text-sm font-medium text-error"
+                    className="border-l-2 border-error pl-3 text-sm font-medium text-error"
                     role="alert"
                   >
                     {error}
@@ -197,8 +200,9 @@ export function RetainingWallBudgetCalculator() {
               </div>
             </dl>
             <p className="mt-4 text-sm text-text-muted">
-              {formatSquareFeet(estimate.areaSqFt)} × ${RETAINING_WALL_RATE_LOW}–$
-              {RETAINING_WALL_RATE_HIGH} per square foot of wall face.
+              {formatSquareFeet(estimate.areaSqFt)} ×{" "}
+              <span className="whitespace-nowrap">{`$${RETAINING_WALL_RATE_LOW}–$${RETAINING_WALL_RATE_HIGH}`}</span>{" "}
+              per square foot of wall face.
             </p>
             <p
               data-minimum-status={estimate.minimumStatus}

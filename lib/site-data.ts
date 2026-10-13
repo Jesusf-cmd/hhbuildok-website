@@ -4,11 +4,11 @@ export const siteConfig = {
   name: "H&H Construction",
   domain: "hhbuildok.com",
   url: "https://hhbuildok.com",
-  phone: "405-476-5476",
-  phoneTel: "4054765476",
+  phone: "405-451-7106",
+  phoneTel: "4054517106",
   // E.164 for structured data and tel: links; mobile dialers match this best.
-  phoneE164: "+14054765476",
-  email: "logan@hhbuildok.com",
+  phoneE164: "+14054517106",
+  email: "Bryan@hhbuildok.com",
   address: {
     street: "770 W Rock Creek",
     suite: "#115",
@@ -211,7 +211,7 @@ export const services = [
       {
         question: "How do I request a bid for a commercial concrete project?",
         answer:
-          "Call 405-476-5476 or submit a bid request through our contact form with your project location, scope, and any plans or specs you have. We review the details, ask the questions that affect price and schedule, and follow up within one to two business days to discuss next steps.",
+          "Call 405-451-7106 or submit a bid request through our contact form with your project location, scope, and any plans or specs you have. We review the details, ask the questions that affect price and schedule, and follow up within one to two business days to discuss next steps.",
       },
     ],
   },
@@ -332,7 +332,7 @@ export const services = [
       {
         question: "How do I request a paving bid?",
         answer:
-          "Call 405-476-5476 or submit a bid request through our contact form. An address and a short description is enough to start; photos, plans, and operating constraints help us price more accurately. You do not need every detail before you inquire.",
+          "Call 405-451-7106 or submit a bid request through our contact form. An address and a short description is enough to start; photos, plans, and operating constraints help us price more accurately. You do not need every detail before you inquire.",
       },
     ],
   },

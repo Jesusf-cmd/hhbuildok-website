@@ -147,7 +147,7 @@ export function buildAutoReplyBody(name: string) {
     "",
     "A member of our team will follow up within 1–2 business days to discuss scope and next steps.",
     "",
-    "If your project is urgent, call us directly at 405-451-7106.",
+    `If your project is urgent, call us directly at ${siteConfig.phone}.`,
     "",
     "— H&H Construction",
     siteConfig.email,

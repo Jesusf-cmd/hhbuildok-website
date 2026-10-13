@@ -12,7 +12,7 @@ import { EmailLink } from "@/components/ui/EmailLink";
 export const metadata: Metadata = {
   title: "Contact H&H Construction",
   description:
-    "Contact H&H Construction in Norman, OK. Call 405-476-5476, email logan@hhbuildok.com, or request a bid for commercial concrete, asphalt paving, or metal building work.",
+    "Contact H&H Construction in Norman, OK. Call 405-451-7106, email Bryan@hhbuildok.com, or request a bid for commercial concrete, asphalt paving, or metal building work.",
   alternates: {
     canonical: "/contact",
   },

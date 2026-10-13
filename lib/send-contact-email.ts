@@ -132,6 +132,7 @@ export async function sendContactEmails(
       to: data.email,
       subject: "We received your bid request — H&H Construction",
       text: buildAutoReplyBody(data.name),
+      replyTo: siteConfig.email,
     });
   }
 }

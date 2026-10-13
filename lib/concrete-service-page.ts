@@ -48,7 +48,7 @@ export const concreteHubFaqs = [
   {
     question: "How do I request a bid for a commercial concrete project?",
     answer:
-      "Call 405-476-5476 or submit a bid request through our contact form with your project location, scope, and any plans or specs you have. We review the details, ask the questions that affect price and schedule, and follow up within one to two business days to discuss next steps.",
+      "Call 405-451-7106 or submit a bid request through our contact form with your project location, scope, and any plans or specs you have. We review the details, ask the questions that affect price and schedule, and follow up within one to two business days to discuss next steps.",
   },
 ] as const;
 

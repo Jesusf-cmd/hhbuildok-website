@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type FormEvent } from "react";
+import { useId, useRef, useState, type FormEvent } from "react";
 import { nap } from "@/lib/site-data";
 import {
   CONTACT_FORM_ACCEPT,
@@ -11,6 +11,10 @@ import {
   type ContactFormField,
   type ContactFormValues,
 } from "@/lib/contact-form";
+import {
+  buildEstimateRequestLines,
+  type RetainingWallEstimate,
+} from "@/lib/retaining-wall-estimate";
 import { PhoneLink } from "@/components/ui/PhoneLink";
 import { EmailLink } from "@/components/ui/EmailLink";
 import { buttonClassName } from "@/components/ui/Button";
@@ -96,8 +100,17 @@ function Field({
   );
 }
 
-export function ContactForm() {
+export function ContactForm({
+  retainingWall = false,
+  retainingWallEstimate = null,
+}: {
+  retainingWall?: boolean;
+  retainingWallEstimate?: RetainingWallEstimate | null;
+}) {
   const formId = useId();
+  const [city, setCity] = useState("");
+  const [budget, setBudget] = useState("");
+  const [qualificationError, setQualificationError] = useState("");
   const [values, setValues] = useState<ContactFormValues>(initialContactFormValues);
   const [projectDocs, setProjectDocs] = useState<File[]>([]);
   const [errors, setErrors] = useState<Partial<Record<ContactFormField, string>>>(
@@ -108,6 +121,9 @@ export function ContactForm() {
     "idle",
   );
   const [submitError, setSubmitError] = useState("");
+  // The disabled button only applies after React re-renders, so submits fired
+  // before then (or via requestSubmit) would otherwise send duplicate requests.
+  const submitInFlight = useRef(false);
 
   function updateField(field: ContactFormField, value: string) {
     setValues((current) => ({ ...current, [field]: value }));
@@ -132,8 +148,19 @@ export function ContactForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    if (submitInFlight.current) {
+      return;
+    }
+
     const validationErrors = validateContactForm(values);
     const attachmentError = validateContactAttachments(projectDocs);
+    if (retainingWall && (!city || !budget)) {
+      setQualificationError("Select your project location and budget range.");
+      setErrors(validationErrors);
+      setFileError(attachmentError ?? "");
+      return;
+    }
+    setQualificationError("");
 
     if (Object.keys(validationErrors).length > 0 || attachmentError) {
       setErrors(validationErrors);
@@ -142,14 +169,28 @@ export function ContactForm() {
       return;
     }
 
+    submitInFlight.current = true;
     setStatus("submitting");
     setSubmitError("");
 
     const formData = new FormData();
+    const attribution = retainingWall
+      ? ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "gbraid", "wbraid"]
+          .flatMap((key) => {
+            const value = new URLSearchParams(window.location.search).get(key);
+            return value ? [`${key}: ${value.replace(/[\r\n]/g, " ").slice(0, 300)}`] : [];
+          }).join("\n")
+      : "";
+    const estimateLines =
+      retainingWall && retainingWallEstimate
+        ? buildEstimateRequestLines(retainingWallEstimate).map((line) => `\n${line}`).join("")
+        : "";
     formData.set("name", values.name);
     formData.set("email", values.email);
     formData.set("phone", values.phone);
-    formData.set("description", values.description);
+    formData.set("description", retainingWall
+      ? `Service: Retaining wall construction\nOrigin: /retaining-walls\nProject location: ${city}\nBudget range: ${budget}${estimateLines}${attribution ? `\n${attribution}` : ""}\n\n${values.description}`
+      : values.description);
     formData.set("website", values.website);
 
     for (const file of projectDocs) {
@@ -182,6 +223,8 @@ export function ContactForm() {
           ? error.message
           : "Unable to send your request right now.",
       );
+    } finally {
+      submitInFlight.current = false;
     }
   }
 
@@ -235,6 +278,37 @@ export function ContactForm() {
       </p>
 
       <div className="mt-8 flex flex-col gap-6">
+        {retainingWall ? (
+          <>
+            <p className="border-l-4 border-accent bg-warm p-4 text-sm leading-relaxed">This campaign is for retaining-wall construction projects of $10,000 or more in Yukon and Edmond. Your final price depends on the site and agreed scope.</p>
+            <Field id={`${formId}-city`} label="Project location" required>
+              <select id={`${formId}-city`} required value={city} onChange={(event) => setCity(event.target.value)} className={inputClassName} aria-describedby={qualificationError ? `${formId}-qualification-error` : undefined} aria-invalid={Boolean(qualificationError && !city)}>
+                <option value="">Select location</option>
+                <option>Yukon, OK</option><option>Edmond, OK</option><option>Other location</option>
+              </select>
+            </Field>
+            <Field id={`${formId}-budget`} label="Project budget" required>
+              <select id={`${formId}-budget`} required value={budget} onChange={(event) => setBudget(event.target.value)} className={inputClassName} aria-describedby={qualificationError ? `${formId}-qualification-error` : undefined} aria-invalid={Boolean(qualificationError && !budget)}>
+                <option value="">Select budget range</option>
+                <option>Under $10,000</option><option>$10,000–$25,000</option><option>$25,000–$50,000</option><option>$50,000+</option><option>Not sure yet</option>
+              </select>
+            </Field>
+            {qualificationError ? <p id={`${formId}-qualification-error`} role="alert" className="text-sm text-error">{qualificationError}</p> : null}
+            {retainingWallEstimate ? (
+              <div className="border border-line bg-warm p-4 text-sm leading-relaxed">
+                <p className="type-label text-graphite">Included with this request</p>
+                <ul className="mt-2 space-y-1 text-[#3a3f3e]">
+                  {buildEstimateRequestLines(retainingWallEstimate).map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+                <p className="mt-2 text-xs text-text-muted">
+                  To change these, update the budget calculator above.
+                </p>
+              </div>
+            ) : null}
+          </>
+        ) : null}
         <Field id={`${formId}-name`} label="Name" error={errors.name} required>
           <input
             id={`${formId}-name`}
@@ -302,7 +376,7 @@ export function ContactForm() {
             rows={5}
             value={values.description}
             onChange={(event) => updateField("description", event.target.value)}
-            placeholder="Tell us about the project: location, scope, timeline, and anything else we should know."
+            placeholder={retainingWall ? "Approximate wall length and height, property type, new wall or replacement, site access, and desired timeline." : "Tell us about the project: location, scope, timeline, and anything else we should know."}
             aria-invalid={Boolean(errors.description)}
             aria-describedby={
               errors.description ? `${formId}-description-error` : undefined

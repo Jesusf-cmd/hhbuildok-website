@@ -226,7 +226,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     ],
     ctaHeading: "Request a Commercial Asphalt Paving Bid in Norman",
     ctaBody:
-      "If you have a commercial paving project in Norman — new parking lot construction, mill-and-overlay, industrial yard work, or a lot in need of repair — H&H Construction is ready to review your scope and provide a competitive bid. Call 405-476-5476 or submit a bid request online. We serve Norman and the surrounding Oklahoma City metro, including Moore, Edmond, Oklahoma City, and beyond.",
+      "If you have a commercial paving project in Norman — new parking lot construction, mill-and-overlay, industrial yard work, or a lot in need of repair — H&H Construction is ready to review your scope and provide a competitive bid. Call 405-451-7106 or submit a bid request online. We serve Norman and the surrounding Oklahoma City metro, including Moore, Edmond, Oklahoma City, and beyond.",
   },
 
   {
@@ -568,7 +568,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     ],
     ctaHeading: "Request a Commercial Asphalt Paving Bid in Edmond",
     ctaBody:
-      "Whether you are breaking ground on new commercial space or need to rehabilitate an aging parking lot, H&H Construction is ready to scope your Edmond commercial paving project. Call 405-476-5476 or submit a bid request online. We proudly serve Edmond and the surrounding Oklahoma City metro, including Oklahoma City, Norman, Yukon, and beyond.",
+      "Whether you are breaking ground on new commercial space or need to rehabilitate an aging parking lot, H&H Construction is ready to scope your Edmond commercial paving project. Call 405-451-7106 or submit a bid request online. We proudly serve Edmond and the surrounding Oklahoma City metro, including Oklahoma City, Norman, Yukon, and beyond.",
   },
 
   {
@@ -672,7 +672,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     ],
     ctaHeading: "Request a Commercial Asphalt Bid in Moore",
     ctaBody:
-      "Need commercial parking lot paving or asphalt repair in Moore? Call 405-476-5476 or submit a bid request online.",
+      "Need commercial parking lot paving or asphalt repair in Moore? Call 405-451-7106 or submit a bid request online.",
   },
 
   {
@@ -805,7 +805,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     ],
     ctaHeading: "Request a Commercial Asphalt Paving Bid in Yukon",
     ctaBody:
-      "If you have a commercial paving project in Yukon — new parking lot construction, mill-and-overlay, resurfacing, or a lot in need of repair — H&H Construction is ready to scope it and provide a competitive bid. Call 405-476-5476 or submit a bid request online. We serve Yukon and the surrounding Oklahoma City metro, including Oklahoma City, Edmond, Mustang, and beyond.",
+      "If you have a commercial paving project in Yukon — new parking lot construction, mill-and-overlay, resurfacing, or a lot in need of repair — H&H Construction is ready to scope it and provide a competitive bid. Call 405-451-7106 or submit a bid request online. We serve Yukon and the surrounding Oklahoma City metro, including Oklahoma City, Edmond, Mustang, and beyond.",
   },
 
   {
@@ -909,7 +909,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     ],
     ctaHeading: "Request a Commercial Asphalt Bid in Midwest City",
     ctaBody:
-      "Have a commercial parking lot or industrial paving project in Midwest City? Call 405-476-5476 or request a bid online.",
+      "Have a commercial parking lot or industrial paving project in Midwest City? Call 405-451-7106 or request a bid online.",
   },
 
   {
@@ -1043,7 +1043,7 @@ export const asphaltCityPages: AsphaltCityPage[] = [
     ],
     ctaHeading: "Request a Commercial Asphalt Paving Bid in Tulsa",
     ctaBody:
-      "If you have a commercial or industrial paving project in Tulsa — parking lot construction, mill-and-overlay, industrial yard work, or full-depth reconstruction — H&H Construction is ready to review your scope and provide a competitive bid. Call 405-476-5476 or submit a bid request online. We serve Tulsa and the surrounding region as part of our statewide commercial paving work.",
+      "If you have a commercial or industrial paving project in Tulsa — parking lot construction, mill-and-overlay, industrial yard work, or full-depth reconstruction — H&H Construction is ready to review your scope and provide a competitive bid. Call 405-451-7106 or submit a bid request online. We serve Tulsa and the surrounding region as part of our statewide commercial paving work.",
   },
 ];
 

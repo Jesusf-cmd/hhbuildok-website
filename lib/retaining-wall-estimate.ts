@@ -1,7 +1,7 @@
 // Planning rates for the /retaining-walls campaign page only. Do not publish
 // these on other pages without owner approval.
-export const RETAINING_WALL_RATE_LOW = 35;
-export const RETAINING_WALL_RATE_HIGH = 45;
+export const RETAINING_WALL_RATE_LOW = 40;
+export const RETAINING_WALL_RATE_HIGH = 55;
 export const RETAINING_WALL_PROJECT_MINIMUM = 10_000;
 
 export type RetainingWallMinimumStatus = "below" | "crosses" | "at-or-above";

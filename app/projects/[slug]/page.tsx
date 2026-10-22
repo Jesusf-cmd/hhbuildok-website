@@ -218,7 +218,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
       {service ? (
         <section className="bg-warm">
-          <Container className="py-10">
+          <Container className="space-y-6 py-10">
             <Link
               href={service.href}
               className="il-link"
@@ -226,6 +226,19 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               More on our {service.shortTitle} services
               <ArrowIcon />
             </Link>
+            {study.relatedServices?.map((related) => (
+              <div key={related.href} className="max-w-2xl">
+                <p className="type-body mb-2">{related.description}</p>
+                <Link
+                  href={related.href}
+                  className="il-link"
+                  prefetch={false}
+                >
+                  {related.label}
+                  <ArrowIcon />
+                </Link>
+              </div>
+            ))}
           </Container>
         </section>
       ) : null}

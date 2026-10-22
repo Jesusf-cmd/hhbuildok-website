@@ -1,5 +1,6 @@
 import { services } from "@/lib/site-data";
 import { chandlerCountyCourthousePhotos } from "@/lib/chandler-county-courthouse-data";
+import { asphaltCityHref } from "@/lib/asphalt-city-index";
 
 export type ServiceSlug = (typeof services)[number]["slug"];
 
@@ -39,6 +40,12 @@ export type CaseStudy = {
   approach: string;
   outcome: string;
   images: CaseStudyImage[];
+  /** Relevant service guides, separate from the project's location and facts. */
+  relatedServices?: {
+    href: string;
+    label: string;
+    description: string;
+  }[];
   /** Surface this project on the homepage and projects index. */
   featured?: boolean;
   /** Only include with written permission to publish the quote. */
@@ -59,6 +66,14 @@ export const caseStudies: CaseStudy[] = [
       "H&H Construction sealcoated and restriped the Chandler County Courthouse parking lot, then overlaid failing pavement, patched distressed areas, replaced 120 LF of curb, and restriped for ADA compliance in Chandler, Oklahoma.",
     serviceSlug: "asphalt-paving",
     city: "Chandler",
+    relatedServices: [
+      {
+        href: asphaltCityHref("oklahoma-city"),
+        label: "Commercial asphalt paving in Oklahoma City",
+        description:
+          "Planning a commercial paving project in the Oklahoma City metro? Review repair, overlay, and new paving options and what to send for a bid.",
+      },
+    ],
     clientType: "County government",
     completedAt: "2025-10-15",
     summary:

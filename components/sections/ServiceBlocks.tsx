@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { services } from "@/lib/site-data";
+import { asphaltCityHref } from "@/lib/asphalt-city-index";
 import { Container } from "@/components/ui/Container";
 import { ArrowIcon } from "@/components/ui/Icons";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -68,6 +69,21 @@ export function ServiceBlocks() {
                       <ArrowIcon />
                     </Link>
                   </div>
+                  {service.slug === "asphalt-paving" ? (
+                    <div className="mt-5">
+                      <p className="type-body mb-2">
+                        Planning a commercial paving project in the metro?
+                      </p>
+                      <Link
+                        href={asphaltCityHref("oklahoma-city")}
+                        className="il-link"
+                        prefetch={false}
+                      >
+                        Commercial asphalt paving in Oklahoma City
+                        <ArrowIcon />
+                      </Link>
+                    </div>
+                  ) : null}
                 </div>
               </Reveal>
             );

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { services } from "@/lib/site-data";
 import { asphaltCityHref } from "@/lib/asphalt-city-index";
+import { parkingLotHubHref } from "@/lib/parking-lot-service-page";
 import { Container } from "@/components/ui/Container";
 import { ArrowIcon } from "@/components/ui/Icons";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -70,19 +71,35 @@ export function ServiceBlocks() {
                     </Link>
                   </div>
                   {service.slug === "asphalt-paving" ? (
-                    <div className="mt-5">
-                      <p className="type-body mb-2">
-                        Planning a commercial paving project in the metro?
-                      </p>
-                      <Link
-                        href={asphaltCityHref("oklahoma-city")}
-                        className="il-link"
-                        prefetch={false}
-                      >
-                        Commercial asphalt paving in Oklahoma City
-                        <ArrowIcon />
-                      </Link>
-                    </div>
+                    <>
+                      <div className="mt-5">
+                        <p className="type-body mb-2">
+                          Planning a commercial paving project in the metro?
+                        </p>
+                        <Link
+                          href={asphaltCityHref("oklahoma-city")}
+                          className="il-link"
+                          prefetch={false}
+                        >
+                          Commercial asphalt paving in Oklahoma City
+                          <ArrowIcon />
+                        </Link>
+                      </div>
+                      <div className="mt-5">
+                        <p className="type-body mb-2">
+                          Need paving coordinated with curb, site concrete, and
+                          striping?
+                        </p>
+                        <Link
+                          href={parkingLotHubHref}
+                          className="il-link"
+                          prefetch={false}
+                        >
+                          Commercial parking lot construction and rehabilitation
+                          <ArrowIcon />
+                        </Link>
+                      </div>
+                    </>
                   ) : null}
                 </div>
               </Reveal>

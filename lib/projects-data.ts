@@ -1,6 +1,7 @@
 import { services } from "@/lib/site-data";
 import { chandlerCountyCourthousePhotos } from "@/lib/chandler-county-courthouse-data";
 import { asphaltCityHref } from "@/lib/asphalt-city-index";
+import { parkingLotHubHref } from "@/lib/parking-lot-service-page";
 
 export type ServiceSlug = (typeof services)[number]["slug"];
 
@@ -72,6 +73,12 @@ export const caseStudies: CaseStudy[] = [
         label: "Commercial asphalt paving in Oklahoma City",
         description:
           "Planning a commercial paving project in the Oklahoma City metro? Review repair, overlay, and new paving options and what to send for a bid.",
+      },
+      {
+        href: parkingLotHubHref,
+        label: "Commercial parking lot construction and rehabilitation",
+        description:
+          "For a coordinated paving, curb, site concrete, and striping package, review our commercial parking lot services.",
       },
     ],
     clientType: "County government",

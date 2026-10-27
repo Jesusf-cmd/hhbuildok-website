@@ -198,6 +198,19 @@ export default async function CityServicePage({
         </Container>
       </section>
 
+      {entry.approach ? (
+        <section className="bg-warm">
+          <Container className="band">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+              <h2 className="type-h2 text-graphite">
+                How We Approach {service.shortTitle} Work in {city.name}
+              </h2>
+              <p className="type-prose">{entry.approach}</p>
+            </div>
+          </Container>
+        </section>
+      ) : null}
+
       <section className="tone-dark">
         <Container className="band">
           <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-16">

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --test lib/retaining-wall-estimate.test.mjs",
+    "test": "node --test lib/retaining-wall-estimate.test.mjs lib/concrete-city-consolidation.test.mjs",
     "build:worker": "NEXT_PUBLIC_SITE_ENV=production opennextjs-cloudflare build && opennextjs-cloudflare populateCache local",
     "preview": "npm run build:worker && opennextjs-cloudflare preview",
     "deploy": "npm run build:worker && opennextjs-cloudflare deploy"

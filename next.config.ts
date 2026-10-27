@@ -1,25 +1,17 @@
 import type { NextConfig } from "next";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+import { siteRedirects } from "./lib/site-redirects";
 
 initOpenNextCloudflareForDev();
 
-const asphaltCitySlugs = [
-  "norman",
-  "oklahoma-city",
-  "edmond",
-  "moore",
-  "yukon",
-  "midwest-city",
-  "tulsa",
-] as const;
-
 const nextConfig: NextConfig = {
+  // Next unshifts a trailing-slash redirect ahead of user redirects, which
+  // would chain /services/concrete-construction/{city}/ to the non-slash
+  // path and then to the survivor. Skip that built-in rule and append the
+  // same normalization after the concrete rules in siteRedirects().
+  skipTrailingSlashRedirect: true,
   async redirects() {
-    return asphaltCitySlugs.map((citySlug) => ({
-      source: `/service-area/${citySlug}/asphalt-paving`,
-      destination: `/services/asphalt-paving/${citySlug}`,
-      permanent: true,
-    }));
+    return siteRedirects();
   },
   async headers() {
     return [

@@ -11,6 +11,12 @@ import {
   asphaltCityHref,
 } from "@/lib/asphalt-city-index";
 import {
+  concreteConsolidationLastmod,
+  concreteSurvivorPath,
+  consolidatedConcreteCitySlugs,
+  isConsolidatedConcreteCity,
+} from "@/lib/concrete-city-consolidation";
+import {
   concreteCityHref,
   concreteServiceAreaCities,
 } from "@/lib/concrete-service-page";
@@ -40,6 +46,15 @@ const sitemapLastmodByPath: Record<string, string> = {
     ]),
   ),
   [asphaltCityHref("oklahoma-city")]: "2026-10-11",
+  // Survivor pages gained scope copy from the retired services URLs.
+  // concreteConsolidationLastmod is the revision date; reconcile with the
+  // merge date if this ships later. Other sitemap dates stay put.
+  ...Object.fromEntries(
+    consolidatedConcreteCitySlugs.map((citySlug) => [
+      concreteSurvivorPath(citySlug),
+      concreteConsolidationLastmod,
+    ]),
+  ),
 };
 
 function lastModifiedFor(path: string): Date {
@@ -98,12 +113,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const cityServiceRoutes: MetadataRoute.Sitemap = cityServicePages
     .filter((entry) => entry.serviceSlug !== "asphalt-paving")
-    .map((entry) => ({
-      url: `${siteConfig.url}${cityServiceHref(entry.citySlug, entry.serviceSlug)}`,
-      lastModified: defaultLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    }));
+    .map((entry) => {
+      const path = cityServiceHref(entry.citySlug, entry.serviceSlug);
+      return {
+        url: `${siteConfig.url}${path}`,
+        lastModified: lastModifiedFor(path),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      };
+    });
 
   const asphaltCityRoutes: MetadataRoute.Sitemap = asphaltCityIndex.map(
     (page) => ({
@@ -114,14 +132,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  const concreteCityRoutes: MetadataRoute.Sitemap = concreteServiceAreaCities.map(
-    (city) => ({
+  const concreteCityRoutes: MetadataRoute.Sitemap = concreteServiceAreaCities
+    .filter((city) => !isConsolidatedConcreteCity(city.slug))
+    .map((city) => ({
       url: `${siteConfig.url}${concreteCityHref(city.slug)}`,
       lastModified: defaultLastModified,
-      changeFrequency: "monthly",
+      changeFrequency: "monthly" as const,
       priority: 0.75,
-    }),
-  );
+    }));
 
   const parkingLotHubRoute: MetadataRoute.Sitemap = [
     {

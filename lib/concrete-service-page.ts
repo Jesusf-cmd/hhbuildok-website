@@ -1,3 +1,8 @@
+import {
+  concreteSurvivorPath,
+  isConsolidatedConcreteCity,
+} from "@/lib/concrete-city-consolidation";
+
 export const concreteTrustItems = [
   {
     title: "Licensed",
@@ -62,5 +67,9 @@ export const concreteServiceAreaCities = [
 ] as const;
 
 export function concreteCityHref(citySlug: string) {
+  if (isConsolidatedConcreteCity(citySlug)) {
+    return concreteSurvivorPath(citySlug);
+  }
+
   return `/services/concrete-construction/${citySlug}`;
 }

@@ -16,6 +16,7 @@ import {
   getConcreteCityPage,
   concreteCityPageParams,
 } from "@/lib/concrete-city-pages";
+import { isConsolidatedConcreteCity } from "@/lib/concrete-city-consolidation";
 import { withProductionRobots } from "@/lib/production-metadata";
 
 type ConcreteCityPageProps = {
@@ -26,8 +27,12 @@ const concreteService = services.find(
   (service) => service.slug === "concrete-construction",
 );
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  return concreteCityPageParams();
+  return concreteCityPageParams().filter(
+    (params) => !isConsolidatedConcreteCity(params.city),
+  );
 }
 
 export async function generateMetadata({
@@ -36,7 +41,7 @@ export async function generateMetadata({
   const { city: citySlug } = await params;
   const entry = getConcreteCityPage(citySlug);
 
-  if (!entry || !concreteService) {
+  if (isConsolidatedConcreteCity(citySlug) || !entry || !concreteService) {
     return {};
   }
 
@@ -59,7 +64,12 @@ export default async function ConcreteCityPage({ params }: ConcreteCityPageProps
   const city = concreteServiceAreaCities.find((item) => item.slug === citySlug);
   const entry = getConcreteCityPage(citySlug);
 
-  if (!city || !entry || !concreteService) {
+  if (
+    isConsolidatedConcreteCity(citySlug) ||
+    !city ||
+    !entry ||
+    !concreteService
+  ) {
     notFound();
   }
 

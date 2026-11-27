@@ -10,7 +10,10 @@ import {
   type ContactFormAttachment,
   type ContactFormValues,
 } from "@/lib/contact-form";
-import { sendContactEmails } from "@/lib/send-contact-email";
+import {
+  ContactPrimaryDeliveryError,
+  sendContactEmails,
+} from "@/lib/send-contact-email";
 
 function parseFormValues(formData: FormData): ContactFormValues {
   return {
@@ -102,11 +105,31 @@ export async function POST(request: Request) {
     }
 
     const { env } = await getCloudflareContext({ async: true });
-    await sendContactEmails(env, values, attachments);
+    const delivery = await sendContactEmails(env, values, attachments);
+
+    console.info("Contact form delivery accepted:", {
+      primaryMessageId: delivery.primary.messageId || null,
+      confirmationSkipped: Boolean(delivery.confirmation.skipped),
+      confirmationOk: delivery.confirmation.ok,
+      confirmationErrorCode: delivery.confirmation.errorCode || null,
+      confirmationReason: delivery.confirmation.reason || null,
+      attachmentCount: attachments.length,
+    });
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error("Contact form submission failed:", error);
+    if (error instanceof ContactPrimaryDeliveryError) {
+      console.error("Contact primary delivery failed:", {
+        errorCode: error.code || "EMAIL_SEND_FAILED",
+      });
+    } else {
+      console.error("Contact form submission failed:", {
+        errorCode:
+          error && typeof error === "object" && "code" in error
+            ? String((error as { code?: unknown }).code || "UNKNOWN")
+            : "UNKNOWN",
+      });
+    }
 
     return NextResponse.json(
       { error: "Unable to send your request right now. Please try again." },

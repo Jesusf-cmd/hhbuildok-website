@@ -30,6 +30,7 @@ import {
   parkingLotConcreteCityHref,
   parkingLotRelatedLinks,
   parkingLotProjectEvidence,
+  parkingLotTuttleEvidence,
 } from "@/lib/parking-lot-service-page";
 
 export const metadata: Metadata = {
@@ -272,6 +273,30 @@ export default function CommercialParkingLotsPage() {
               Read the full Chandler case study
               <ArrowIcon />
             </Link>
+          </div>
+
+          <div className="mt-16 border-t border-line pt-16 lg:mt-20 lg:pt-20">
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-16">
+              <div>
+                <h2 className="type-h2 text-graphite">
+                  {parkingLotTuttleEvidence.heading}
+                </h2>
+                <p className="type-eyebrow mt-4">
+                  {parkingLotTuttleEvidence.location}
+                  <span className="mx-2 text-line-strong" aria-hidden="true">
+                    ·
+                  </span>
+                  {parkingLotTuttleEvidence.statusLabel}
+                </p>
+              </div>
+              <p className="type-lead">{parkingLotTuttleEvidence.summary}</p>
+            </div>
+            <div className="mt-10">
+              <Link href={parkingLotTuttleEvidence.href} className="il-link">
+                Read the Tuttle Fire Station case study
+                <ArrowIcon />
+              </Link>
+            </div>
           </div>
         </Container>
       </section>

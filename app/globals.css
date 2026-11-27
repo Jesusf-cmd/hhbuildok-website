@@ -737,6 +737,156 @@
   transform: scale(1.04);
 }
 
+/* ---------- Project engineering visualization ---------- */
+.pev-stage {
+  isolation: isolate;
+  contain: layout paint;
+}
+
+.pev-vignette {
+  background:
+    radial-gradient(
+      ellipse 70% 60% at 50% 45%,
+      transparent 40%,
+      rgb(0 0 0 / 35%) 100%
+    );
+  z-index: 1;
+}
+
+.pev-svg {
+  position: relative;
+  z-index: 0;
+}
+
+.pev-layer--lot .pev-glow-line,
+.pev-layer--heavy .pev-glow-line,
+.pev-layer--walk .pev-glow-line,
+.pev-layer--curb .pev-glow-line,
+.pev-layer--frame .pev-glow-line {
+  transform-origin: center;
+}
+
+.pev[data-entered="false"] .pev-draw {
+  opacity: 0.15;
+}
+
+.pev[data-entered="true"] .pev-draw {
+  opacity: 1;
+  transition: opacity 900ms ease;
+}
+
+.pev[data-motion="on"] .pev-layer--lot .pev-glow-line {
+  animation: pev-glow-pulse 5.5s ease-in-out infinite;
+}
+
+.pev[data-motion="on"] .pev-layer--heavy .pev-glow-line {
+  animation: pev-glow-pulse 6.2s ease-in-out 0.7s infinite;
+}
+
+.pev[data-motion="on"] .pev-layer--walk .pev-glow-line {
+  animation: pev-glow-pulse 7s ease-in-out 1.2s infinite;
+}
+
+.pev[data-motion="on"] .pev-layer--curb .pev-glow-line {
+  animation: pev-glow-pulse 4.8s ease-in-out 0.35s infinite;
+}
+
+.pev[data-motion="on"] .pev-callout-panel {
+  animation: pev-callout-illuminate 6.5s ease-in-out infinite;
+}
+
+.pev[data-motion="on"] .pev-spec-value {
+  animation: pev-callout-illuminate 5.8s ease-in-out infinite;
+  animation-delay: var(--pev-delay, 0ms);
+}
+
+.pev-scan-beam {
+  opacity: 0;
+}
+
+.pev[data-motion="on"] .pev-scan-beam {
+  animation: pev-scan-sweep 11s ease-in-out 1.5s infinite;
+}
+
+.pev[data-entered="true"][data-motion="on"] .pev-draw.pev-glow-line {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 0;
+  animation:
+    pev-draw-in 1.8s ease-out both,
+    pev-glow-pulse 5.5s ease-in-out 1.8s infinite;
+}
+
+.pev[data-entered="true"][data-motion="on"] .pev-layer--heavy .pev-draw.pev-glow-line {
+  animation:
+    pev-draw-in 2s ease-out 0.15s both,
+    pev-glow-pulse 6.2s ease-in-out 2.1s infinite;
+}
+
+.pev[data-entered="true"][data-motion="on"] .pev-layer--walk .pev-draw.pev-glow-line {
+  animation:
+    pev-draw-in 1.5s ease-out 0.3s both,
+    pev-glow-pulse 7s ease-in-out 1.9s infinite;
+}
+
+.pev[data-entered="true"][data-motion="on"] .pev-layer--curb .pev-draw.pev-glow-line {
+  animation:
+    pev-draw-in 1.4s ease-out 0.45s both,
+    pev-glow-pulse 4.8s ease-in-out 2s infinite;
+}
+
+@keyframes pev-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.72;
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px rgb(185 50 40 / 45%));
+  }
+}
+
+@keyframes pev-callout-illuminate {
+  0%,
+  100% {
+    opacity: 0.82;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes pev-scan-sweep {
+  0%,
+  12% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  18% {
+    opacity: 0.55;
+  }
+  55% {
+    opacity: 0.35;
+    transform: translateX(780px);
+  }
+  62%,
+  100% {
+    opacity: 0;
+    transform: translateX(820px);
+  }
+}
+
+@keyframes pev-draw-in {
+  from {
+    stroke-dashoffset: 1400;
+    opacity: 0.2;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -772,5 +922,19 @@
   .card-interactive:hover .card-interactive-image,
   .card-interactive:focus-within .card-interactive-image {
     transform: none;
+  }
+
+  .pev .pev-draw,
+  .pev .pev-glow-line,
+  .pev .pev-callout-panel,
+  .pev .pev-spec-value,
+  .pev .pev-scan-beam {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+    filter: none !important;
+    transform: none !important;
   }
 }

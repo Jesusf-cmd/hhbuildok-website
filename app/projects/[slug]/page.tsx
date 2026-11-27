@@ -9,6 +9,7 @@ import { CtaBand } from "@/components/ui/CtaBand";
 import { ArrowIcon } from "@/components/ui/Icons";
 import { PageHero } from "@/components/ui/PageHero";
 import { CaseStudyPhotoGallery } from "@/components/sections/CaseStudyPhotoGallery";
+import { ProjectEngineeringVisualization } from "@/components/projects/ProjectEngineeringVisualization";
 import { caseStudies, getCaseStudy } from "@/lib/projects-data";
 import { services, siteConfig } from "@/lib/site-data";
 
@@ -66,7 +67,9 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     { label: "Client type", value: study.clientType },
     { label: "Location", value: `${study.city}, OK` },
     { label: "Scope", value: service?.title ?? "" },
-    { label: "Completed", value: completed },
+    study.statusLabel
+      ? { label: "Status", value: study.statusLabel }
+      : { label: "Completed", value: completed },
   ].filter((fact) => fact.value);
 
   const narrative = [
@@ -74,6 +77,9 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     { heading: "Our Approach", body: study.approach },
     { heading: "The Outcome", body: study.outcome },
   ];
+
+  const primaryImages = study.images.slice(0, 1);
+  const additionalImages = study.images.slice(1);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -96,21 +102,24 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     image: study.images.map((image) => `${siteConfig.url}${image.src}`),
   };
 
-  const imageGallerySchema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: `${study.title} project photos`,
-    itemListElement: study.images.map((image, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "ImageObject",
-        contentUrl: `${siteConfig.url}${image.src}`,
-        description: image.alt,
-        name: image.caption ?? image.alt,
-      },
-    })),
-  };
+  const imageGallerySchema =
+    study.images.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: `${study.title} project photos`,
+          itemListElement: study.images.map((image, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            item: {
+              "@type": "ImageObject",
+              contentUrl: `${siteConfig.url}${image.src}`,
+              description: image.alt,
+              name: image.caption ?? image.alt,
+            },
+          })),
+        }
+      : null;
 
   return (
     <PageShell>
@@ -118,10 +127,14 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(imageGallerySchema) }}
-      />
+      {imageGallerySchema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(imageGallerySchema),
+          }}
+        />
+      ) : null}
       <Breadcrumbs
         items={[
           { label: "Projects", href: "/projects" },
@@ -129,10 +142,9 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         ]}
       />
 
+      {/* 1. Project introduction */}
       <PageHero eyebrow="Case Study" title={study.h1}>
-        <p className="type-lead mt-6 max-w-2xl">
-          {study.summary}
-        </p>
+        <p className="type-lead mt-6 max-w-2xl">{study.summary}</p>
 
         <dl className="mt-12 grid border-t border-white/15 sm:grid-cols-2 lg:grid-cols-4">
           {facts.map((fact) => (
@@ -151,11 +163,28 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </dl>
       </PageHero>
 
-      <CaseStudyPhotoGallery images={study.images} />
+      {/* 2. Primary construction photography */}
+      {primaryImages.length > 0 ? (
+        <CaseStudyPhotoGallery
+          id="project-photos"
+          heading="Project Photos"
+          images={primaryImages}
+          showHero
+        />
+      ) : null}
 
+      {/* 3. Animated engineering visualization */}
+      {study.visualization ? (
+        <ProjectEngineeringVisualization config={study.visualization} />
+      ) : null}
+
+      {/* 4. Project scope and specifications */}
       {study.metrics.length > 0 ? (
-        <section className="tone-red">
+        <section className="tone-red" aria-labelledby="project-scope-heading">
           <Container className="band-sm">
+            <h2 id="project-scope-heading" className="sr-only">
+              Project scope and specifications
+            </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4">
               {study.metrics.map((metric) => (
                 <div
@@ -169,6 +198,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 </div>
               ))}
             </div>
+            {study.visualization?.quantitiesNote ? (
+              <p className="mt-8 max-w-3xl text-sm text-paper/85">
+                {study.visualization.quantitiesNote}
+              </p>
+            ) : null}
           </Container>
         </section>
       ) : null}
@@ -188,18 +222,24 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <h2 className="type-h2 text-graphite">
-                    {item.heading}
-                  </h2>
-                  <p className="type-prose mt-5">
-                    {item.body}
-                  </p>
+                  <h2 className="type-h2 text-graphite">{item.heading}</h2>
+                  <p className="type-prose mt-5">{item.body}</p>
                 </div>
               </div>
             ))}
           </div>
         </Container>
       </section>
+
+      {/* 5. Additional project photography */}
+      {additionalImages.length > 0 ? (
+        <CaseStudyPhotoGallery
+          id="additional-project-photos"
+          heading="Additional Project Photos"
+          images={additionalImages}
+          showHero={false}
+        />
+      ) : null}
 
       {study.testimonial ? (
         <section className="bg-warm">
@@ -216,13 +256,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </section>
       ) : null}
 
+      {/* 6. Related commercial services */}
       {service ? (
         <section className="bg-warm">
           <Container className="space-y-6 py-10">
-            <Link
-              href={service.href}
-              className="il-link"
-            >
+            <Link href={service.href} className="il-link">
               More on our {service.shortTitle} services
               <ArrowIcon />
             </Link>
@@ -243,6 +281,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </section>
       ) : null}
 
+      {/* 7. Request a Bid CTA */}
       <CtaBand
         title="Planning Something Similar?"
         actions={

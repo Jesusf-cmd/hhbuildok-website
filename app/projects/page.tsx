@@ -66,8 +66,12 @@ export default function ProjectsPage() {
                   ) : null}
                   <div className="tone-dark flex flex-col justify-center p-8 sm:p-10 lg:p-12">
                     <p className="type-eyebrow">
-                      Featured Case Study &middot; Asphalt &middot;{" "}
+                      Featured Case Study &middot;{" "}
+                      {serviceLabel(spotlight.serviceSlug)} &middot;{" "}
                       {spotlight.city}, OK
+                      {spotlight.statusLabel
+                        ? ` · ${spotlight.statusLabel}`
+                        : ""}
                     </p>
                     <h2 className="type-h2-sm mt-4 text-paper">
                       {spotlight.title}
@@ -107,7 +111,9 @@ export default function ProjectsPage() {
                       ) : null}
                       <div className="flex flex-1 flex-col p-7 sm:p-9">
                         <p className="type-eyebrow">
-                          {serviceLabel(study.serviceSlug)} &middot; {study.city}, OK
+                          {serviceLabel(study.serviceSlug)} &middot; {study.city}
+                          , OK
+                          {study.statusLabel ? ` · ${study.statusLabel}` : ""}
                         </p>
                         <h2 className="type-h3 mt-3 text-graphite sm:text-[1.75rem]">
                           {study.title}

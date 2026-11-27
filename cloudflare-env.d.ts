@@ -23,6 +23,8 @@ declare global {
     RESEND_API_KEY?: string;
     CONTACT_TO_EMAIL?: string;
     CONTACT_FROM_EMAIL?: string;
+    /** Set to "false" / "0" / "off" to skip optional customer confirmation emails. */
+    CONTACT_CONFIRMATION_EMAILS?: string;
   }
 }
 

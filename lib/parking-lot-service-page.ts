@@ -225,7 +225,7 @@ export const parkingLotProjectEvidence = {
   href: `/projects/${chandlerCountyCourthouseSlug}`,
   location: "Chandler, Oklahoma",
   cardSummary:
-    "Two-phase municipal lot rehab: sealcoat, restriping, asphalt overlay, full-depth patching, and curb replacement with usable parking between phases.",
+    "Two-phase municipal lot rehab: sealcoat, restriping, asphalt overlay, full-depth patching, and 120 LF of curb replacement with usable parking between phases.",
   summary:
     "Two-phase parking lot rehabilitation for Chandler County: sealcoat and restriping on sound pavement, then asphalt overlay, full-depth patching, 120 linear feet of curb replacement, and a final stall layout including accessible spaces. The lot returned to service between phases with usable parking throughout.",
   photos: [chandlerCountyCourthousePhotos[0], chandlerCountyCourthousePhotos[2]],
@@ -235,7 +235,7 @@ export const parkingLotProjectEvidence = {
 export const parkingLotTuttleEvidence = {
   ...tuttleFireStationProjectEvidence,
   cardSummary:
-    "Owner-confirmed upgrade from asphalt to 6-inch concrete parking lot paving, plus heavier concrete sections, sidewalk, and curb and gutter.",
+    "Owner-confirmed upgrade from asphalt to 6-inch concrete parking lot paving, plus 8,001 SF of planned concrete paving and sidewalk and 132 LF of planned curb and gutter.",
 } as const;
 
 export function parkingLotAsphaltCityHref(citySlug: string) {

@@ -161,7 +161,7 @@ export default function CommercialParkingLotsPage() {
             </h2>
             <p className="type-lead max-w-xl">
               Authentic project proof from municipal asphalt rehabilitation and
-              concrete parking lot paving in the Oklahoma City metro corridor.
+              concrete parking lot paving in central Oklahoma.
             </p>
           </div>
           <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:gap-8">

@@ -741,14 +741,20 @@
 .pev-stage {
   isolation: isolate;
   contain: layout paint;
+  background:
+    linear-gradient(165deg, #161a20 0%, #12151a 55%, #0e1116 100%);
+}
+
+.pev-schedule {
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 4%);
 }
 
 .pev-vignette {
   background:
     radial-gradient(
-      ellipse 70% 60% at 50% 45%,
-      transparent 40%,
-      rgb(0 0 0 / 35%) 100%
+      ellipse 72% 58% at 48% 42%,
+      transparent 42%,
+      rgb(0 0 0 / 28%) 100%
     );
   z-index: 1;
 }
@@ -776,40 +782,45 @@
 }
 
 .pev[data-motion="on"] .pev-breath {
-  animation: pev-breathe 5.6s ease-in-out infinite;
+  animation: pev-breathe 6.4s ease-in-out infinite;
   transform-box: fill-box;
   transform-origin: center;
 }
 
 .pev[data-motion="on"] .pev-spec-value {
-  animation: pev-callout-illuminate 5.8s ease-in-out infinite;
+  animation: pev-callout-illuminate 6.8s ease-in-out infinite;
   animation-delay: var(--pev-delay, 0ms);
 }
 
 .pev[data-motion="on"] .pev-trace {
-  stroke-dasharray: 6 10;
-  animation: pev-trace 10s linear infinite;
+  stroke-dasharray: 5 11;
+  animation: pev-trace 14s linear infinite;
 }
 
 .pev[data-motion="on"] .pev-scan-y {
-  animation: pev-scan-y 9s linear infinite;
-  opacity: 0.5;
+  animation: pev-scan-y 11s linear infinite;
+  opacity: 0.45;
+}
+
+.pev[data-motion="on"] .pev-dim,
+.pev[data-motion="on"] .pev-leader {
+  animation: pev-callout-illuminate 7.5s ease-in-out infinite;
 }
 
 @keyframes pev-breathe {
   0%,
   100% {
-    opacity: 0.32;
+    opacity: 0.28;
   }
   50% {
-    opacity: 0.95;
+    opacity: 0.92;
   }
 }
 
 @keyframes pev-callout-illuminate {
   0%,
   100% {
-    opacity: 0.82;
+    opacity: 0.78;
   }
   50% {
     opacity: 1;
@@ -818,22 +829,22 @@
 
 @keyframes pev-scan-y {
   0% {
-    transform: translateY(-300px);
+    transform: translateY(-280px);
     opacity: 0;
   }
-  12%,
-  88% {
-    opacity: 0.48;
+  10%,
+  90% {
+    opacity: 0.42;
   }
   100% {
-    transform: translateY(570px);
+    transform: translateY(700px);
     opacity: 0;
   }
 }
 
 @keyframes pev-trace {
   to {
-    stroke-dashoffset: -160;
+    stroke-dashoffset: -180;
   }
 }
 
@@ -881,7 +892,9 @@
   .pev .pev-spec-value,
   .pev .pev-scan-beam,
   .pev .pev-scan-y,
-  .pev .pev-trace {
+  .pev .pev-trace,
+  .pev .pev-dim,
+  .pev .pev-leader {
     animation: none !important;
     transition: none !important;
     opacity: 0.75 !important;

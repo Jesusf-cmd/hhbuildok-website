@@ -19,7 +19,7 @@ import {
   parkingLotIntro,
   parkingLotAudience,
   parkingLotBidPrep,
-  parkingLotConstructionVsRehab,
+  parkingLotPathways,
   parkingLotDivision32,
   parkingLotServices,
   parkingLotIndustries,
@@ -31,6 +31,7 @@ import {
   parkingLotRelatedLinks,
   parkingLotProjectEvidence,
   parkingLotTuttleEvidence,
+  asphaltOkcHref,
 } from "@/lib/parking-lot-service-page";
 
 export const metadata: Metadata = {
@@ -50,14 +51,24 @@ export default function CommercialParkingLotsPage() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Commercial Parking Lot Construction",
+    serviceType: "Commercial Parking Lot Paving and Construction",
     name: parkingLotMeta.title,
     description: parkingLotMeta.description,
     provider: serviceProviderSchema,
-    areaServed: {
-      "@type": "State",
-      name: "Oklahoma",
-    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Oklahoma City",
+        containedInPlace: {
+          "@type": "State",
+          name: "Oklahoma",
+        },
+      },
+      {
+        "@type": "State",
+        name: "Oklahoma",
+      },
+    ],
     url: `${siteConfig.url}${parkingLotHubHref}`,
   };
 
@@ -73,6 +84,27 @@ export default function CommercialParkingLotsPage() {
       },
     })),
   };
+
+  const projectCards = [
+    {
+      key: "chandler",
+      heading: parkingLotProjectEvidence.heading,
+      location: parkingLotProjectEvidence.location,
+      summary: parkingLotProjectEvidence.cardSummary,
+      href: parkingLotProjectEvidence.href,
+      linkLabel: "Read the Chandler case study",
+      photo: parkingLotProjectEvidence.photos[0],
+    },
+    {
+      key: "tuttle",
+      heading: parkingLotTuttleEvidence.heading,
+      location: `${parkingLotTuttleEvidence.location} · ${parkingLotTuttleEvidence.statusLabel}`,
+      summary: parkingLotTuttleEvidence.cardSummary,
+      href: parkingLotTuttleEvidence.href,
+      linkLabel: "Read the Tuttle case study",
+      photo: parkingLotTuttleEvidence.photos[0],
+    },
+  ] as const;
 
   return (
     <PageShell>
@@ -113,7 +145,7 @@ export default function CommercialParkingLotsPage() {
         </p>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Button href="/contact" variant="primary" arrow>
-            Request a Bid
+            Request a Parking Lot Bid
           </Button>
           <PhoneLink className={buttonClassName("outline")}>
             Call {nap.phone}
@@ -121,11 +153,84 @@ export default function CommercialParkingLotsPage() {
         </div>
       </PageHero>
 
+      <section className="bg-warm">
+        <Container className="band">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-16">
+            <h2 className="type-h2 text-graphite">
+              Recent Commercial Parking Lot Work
+            </h2>
+            <p className="type-lead max-w-xl">
+              Authentic project proof from municipal asphalt rehabilitation and
+              concrete parking lot paving in the Oklahoma City metro corridor.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:gap-8">
+            {projectCards.map((card) => (
+              <article
+                key={card.key}
+                className="border border-line-strong bg-paper"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-graphite">
+                  <Image
+                    src={card.photo.src}
+                    alt={card.photo.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
+                <div className="p-6 sm:p-7">
+                  <p className="type-eyebrow">{card.location}</p>
+                  <h3 className="type-h3 mt-3 text-graphite">{card.heading}</h3>
+                  <p className="type-body mt-3 text-text-muted">{card.summary}</p>
+                  <Link href={card.href} className="il-link mt-6 inline-flex">
+                    {card.linkLabel}
+                    <ArrowIcon />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       <ProseSection heading={parkingLotIntro.heading}>
         {parkingLotIntro.paragraphs.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}
+        <p>
+          For asphalt-only overlays, milling, or patching in the metro, see our{" "}
+          <Link href={asphaltOkcHref} className="il-inline-link">
+            Oklahoma City asphalt paving
+          </Link>{" "}
+          page.
+        </p>
       </ProseSection>
+
+      <section className="bg-paper">
+        <Container className="band">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-16">
+            <h2 className="type-h2 text-graphite">
+              {parkingLotPathways.heading}
+            </h2>
+            <p className="type-lead max-w-xl">{parkingLotPathways.intro}</p>
+          </div>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {parkingLotPathways.items.map((item, index) => (
+              <article
+                key={item.title}
+                className="border border-line-strong p-7 sm:p-8"
+              >
+                <p aria-hidden="true" className="il-num text-base">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="type-h3 mt-6 text-graphite">{item.title}</h3>
+                <p className="type-body mt-4 text-text-muted">{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
 
       <section className="tone-dark">
         <Container className="band">
@@ -136,19 +241,26 @@ export default function CommercialParkingLotsPage() {
               </h2>
               <div className="type-prose mt-6 space-y-6">
                 {parkingLotAudience.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>
-                    {paragraph}
-                  </p>
+                  <p key={paragraph}>{paragraph}</p>
                 ))}
+                <p>
+                  Need asphalt paving, overlay, or patching without a full lot
+                  rebuild? See{" "}
+                  <Link
+                    href={asphaltOkcHref}
+                    className="font-semibold text-accent-light underline decoration-white/30 underline-offset-4 hover:decoration-accent-light"
+                  >
+                    Oklahoma City asphalt paving
+                  </Link>
+                  .
+                </p>
               </div>
             </div>
             <div>
               <h2 className="type-h2-sm text-paper">
                 {parkingLotBidPrep.heading}
               </h2>
-              <p className="type-lead mt-6">
-                {parkingLotBidPrep.intro}
-              </p>
+              <p className="type-lead mt-6">{parkingLotBidPrep.intro}</p>
               <ul className="il-checklist il-checklist-ruled mt-8">
                 {parkingLotBidPrep.items.map((item) => (
                   <li key={item}>
@@ -159,19 +271,13 @@ export default function CommercialParkingLotsPage() {
               </ul>
               <div className="mt-10">
                 <Button href="/contact" variant="primary" arrow>
-                  Request a Bid
+                  Request a Parking Lot Bid
                 </Button>
               </div>
             </div>
           </div>
         </Container>
       </section>
-
-      <ProseSection heading={parkingLotConstructionVsRehab.heading}>
-        {parkingLotConstructionVsRehab.paragraphs.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
-      </ProseSection>
 
       <ProseSection heading={parkingLotDivision32.heading} tone="warm">
         {parkingLotDivision32.paragraphs.map((paragraph) => (
@@ -193,9 +299,7 @@ export default function CommercialParkingLotsPage() {
                 <p aria-hidden="true" className="il-num text-base">
                   {String(index + 1).padStart(2, "0")}
                 </p>
-                <h3 className="type-h3 mt-6 text-graphite">
-                  {group.title}
-                </h3>
+                <h3 className="type-h3 mt-6 text-graphite">{group.title}</h3>
                 <ul className="il-checklist mt-5">
                   {group.items.map((item) => (
                     <li key={item}>
@@ -232,97 +336,6 @@ export default function CommercialParkingLotsPage() {
         ))}
       </ProseSection>
 
-      <section className="bg-warm">
-        <Container className="band">
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-16">
-            <div>
-              <h2 className="type-h2 text-graphite">
-                {parkingLotProjectEvidence.heading}
-              </h2>
-              <p className="type-eyebrow mt-4">
-                {parkingLotProjectEvidence.location}
-              </p>
-            </div>
-            <p className="type-lead">
-              {parkingLotProjectEvidence.summary}
-            </p>
-          </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            {parkingLotProjectEvidence.photos.map((photo) => (
-              <figure key={photo.src}>
-                <div className="relative aspect-[4/3] overflow-hidden bg-graphite">
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                  />
-                </div>
-                <figcaption className="il-figcaption mt-3">
-                  {photo.caption}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-          <div className="mt-10">
-            <Link
-              href={parkingLotProjectEvidence.href}
-              className="il-link"
-            >
-              Read the full Chandler case study
-              <ArrowIcon />
-            </Link>
-          </div>
-
-          <div className="mt-16 border-t border-line pt-16 lg:mt-20 lg:pt-20">
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-16">
-              <div>
-                <h2 className="type-h2 text-graphite">
-                  {parkingLotTuttleEvidence.heading}
-                </h2>
-                <p className="type-eyebrow mt-4">
-                  {parkingLotTuttleEvidence.location}
-                  <span className="mx-2 text-line-strong" aria-hidden="true">
-                    ·
-                  </span>
-                  {parkingLotTuttleEvidence.statusLabel}
-                </p>
-              </div>
-              <p className="type-lead">{parkingLotTuttleEvidence.summary}</p>
-            </div>
-            {parkingLotTuttleEvidence.photos.length > 0 ? (
-              <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {parkingLotTuttleEvidence.photos.slice(0, 3).map((photo) => (
-                  <figure key={photo.src}>
-                    <div className="relative aspect-[4/3] overflow-hidden bg-graphite">
-                      <Image
-                        src={photo.src}
-                        alt={photo.alt}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                    </div>
-                    {photo.caption ? (
-                      <figcaption className="il-figcaption mt-3">
-                        {photo.caption}
-                      </figcaption>
-                    ) : null}
-                  </figure>
-                ))}
-              </div>
-            ) : null}
-            <div className="mt-10">
-              <Link href={parkingLotTuttleEvidence.href} className="il-link">
-                Read the Tuttle Fire Station case study
-                <ArrowIcon />
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </section>
-
       <section className="bg-paper">
         <Container className="band">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
@@ -332,9 +345,12 @@ export default function CommercialParkingLotsPage() {
               </h2>
               <p className="type-body mt-4 max-w-2xl">
                 Need asphalt paving, overlay, or patching without a full lot
-                rebuild? See our commercial asphalt paving services. Concrete pads
-                and curb that travel with a lot are covered with commercial
-                concrete.
+                rebuild? Start with{" "}
+                <Link href={asphaltOkcHref} className="il-inline-link">
+                  Oklahoma City asphalt paving
+                </Link>
+                . Concrete pads and curb that travel with a lot are covered with
+                commercial concrete.
               </p>
             </div>
             <ul className="il-link-list self-end">
@@ -354,9 +370,7 @@ export default function CommercialParkingLotsPage() {
       <section className="bg-warm">
         <Container className="band">
           <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-16">
-            <h2 className="type-h2 text-graphite">
-              Parking Lot Work by City
-            </h2>
+            <h2 className="type-h2 text-graphite">Parking Lot Work by City</h2>
             <p className="type-lead max-w-xl">
               City-specific pages cover local market conditions, access, and how
               parking lot and paving work shows up in each market.
@@ -404,7 +418,7 @@ export default function CommercialParkingLotsPage() {
         actions={
           <>
             <Button href="/contact" variant="secondary" arrow>
-              Request a Bid
+              Request a Parking Lot Bid
             </Button>
             <PhoneLink className={buttonClassName("outline")}>
               Call {nap.phone}
@@ -413,8 +427,8 @@ export default function CommercialParkingLotsPage() {
         }
       >
         <p>
-          Send an address and whether the lot is new or already in use. You
-          do not need complete civil drawings to inquire.
+          Send an address and whether the lot is new or already in use. You do
+          not need complete civil drawings to inquire.
         </p>
       </CtaBand>
     </PageShell>

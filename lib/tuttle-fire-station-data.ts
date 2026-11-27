@@ -8,16 +8,29 @@ export type TuttleProjectPhoto = {
 
 export const tuttleFireStationSlug = "tuttle-fire-station-2" as const;
 
-/** Substantive content revision date for sitemap lastmod (draft case study + visualization). */
+/** Substantive content revision date for sitemap lastmod. */
 export const tuttleFireStationContentUpdatedAt = "2026-11-26" as const;
 
 /**
- * Authentic Tuttle Fire Station No. 2 construction photos.
- * Place optimized JPGs under public/images/projects/tuttle-fire-station-2/ and list them here.
- * Do not substitute stock imagery, engineering drawings, or the visualization for project photos.
+ * Authentic Tuttle Fire Station No. 2 construction photos (optimized, EXIF stripped).
+ * Captions stay clearly in-progress — do not invent completion claims.
  */
 export const tuttleFireStationPhotos: TuttleProjectPhoto[] = [
-  // Wired after owner supplies the three authentic construction photographs.
+  {
+    src: "/images/projects/tuttle-fire-station-2/tuttle-fire-station-concrete-parking-lot.jpg",
+    alt: "Newly poured concrete parking lot in front of Tuttle Fire Station No. 2.",
+    caption: "In progress — newly poured concrete parking lot",
+  },
+  {
+    src: "/images/projects/tuttle-fire-station-2/tuttle-fire-station-concrete-paving-and-curb.jpg",
+    alt: "Concrete parking lot with visible joints and curb edge at a fire station in Tuttle.",
+    caption: "In progress — concrete paving with joints and curb edge",
+  },
+  {
+    src: "/images/projects/tuttle-fire-station-2/tuttle-fire-station-drive-approach.jpg",
+    alt: "New concrete drive approach beside the existing roadway at Tuttle Fire Station.",
+    caption: "In progress — concrete drive approach at the roadway",
+  },
 ];
 
 export const tuttleFireStationCaseStudy = {
@@ -55,7 +68,6 @@ export const tuttleFireStationCaseStudy = {
   visualization: tuttleFireStationVisualization,
   relatedServices: [
     {
-      // Literal keeps this module free of parking-lot circular imports.
       href: "/services/commercial-parking-lots",
       label: "Commercial parking lot construction and rehabilitation",
       description:

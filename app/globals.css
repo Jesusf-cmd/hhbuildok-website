@@ -775,24 +775,10 @@
   transition: opacity 900ms ease;
 }
 
-.pev[data-motion="on"] .pev-layer--lot .pev-glow-line {
-  animation: pev-glow-pulse 5.5s ease-in-out infinite;
-}
-
-.pev[data-motion="on"] .pev-layer--heavy .pev-glow-line {
-  animation: pev-glow-pulse 6.2s ease-in-out 0.7s infinite;
-}
-
-.pev[data-motion="on"] .pev-layer--walk .pev-glow-line {
-  animation: pev-glow-pulse 7s ease-in-out 1.2s infinite;
-}
-
-.pev[data-motion="on"] .pev-layer--curb .pev-glow-line {
-  animation: pev-glow-pulse 4.8s ease-in-out 0.35s infinite;
-}
-
-.pev[data-motion="on"] .pev-callout-panel {
-  animation: pev-callout-illuminate 6.5s ease-in-out infinite;
+.pev[data-motion="on"] .pev-breath {
+  animation: pev-breathe 5.6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .pev[data-motion="on"] .pev-spec-value {
@@ -800,51 +786,23 @@
   animation-delay: var(--pev-delay, 0ms);
 }
 
-.pev-scan-beam {
-  opacity: 0;
+.pev[data-motion="on"] .pev-trace {
+  stroke-dasharray: 6 10;
+  animation: pev-trace 10s linear infinite;
 }
 
-.pev[data-motion="on"] .pev-scan-beam {
-  animation: pev-scan-sweep 11s ease-in-out 1.5s infinite;
+.pev[data-motion="on"] .pev-scan-y {
+  animation: pev-scan-y 9s linear infinite;
+  opacity: 0.5;
 }
 
-.pev[data-entered="true"][data-motion="on"] .pev-draw.pev-glow-line {
-  stroke-dasharray: 1400;
-  stroke-dashoffset: 0;
-  animation:
-    pev-draw-in 1.8s ease-out both,
-    pev-glow-pulse 5.5s ease-in-out 1.8s infinite;
-}
-
-.pev[data-entered="true"][data-motion="on"] .pev-layer--heavy .pev-draw.pev-glow-line {
-  animation:
-    pev-draw-in 2s ease-out 0.15s both,
-    pev-glow-pulse 6.2s ease-in-out 2.1s infinite;
-}
-
-.pev[data-entered="true"][data-motion="on"] .pev-layer--walk .pev-draw.pev-glow-line {
-  animation:
-    pev-draw-in 1.5s ease-out 0.3s both,
-    pev-glow-pulse 7s ease-in-out 1.9s infinite;
-}
-
-.pev[data-entered="true"][data-motion="on"] .pev-layer--curb .pev-draw.pev-glow-line {
-  animation:
-    pev-draw-in 1.4s ease-out 0.45s both,
-    pev-glow-pulse 4.8s ease-in-out 2s infinite;
-}
-
-@keyframes pev-glow-pulse {
+@keyframes pev-breathe {
   0%,
   100% {
-    opacity: 0.78;
-    filter: drop-shadow(0 0 1px rgb(185 50 40 / 25%));
+    opacity: 0.32;
   }
   50% {
-    opacity: 1;
-    filter:
-      drop-shadow(0 0 5px rgb(185 50 40 / 55%))
-      drop-shadow(0 0 12px rgb(185 50 40 / 28%));
+    opacity: 0.95;
   }
 }
 
@@ -858,34 +816,24 @@
   }
 }
 
-@keyframes pev-scan-sweep {
-  0%,
-  12% {
+@keyframes pev-scan-y {
+  0% {
+    transform: translateY(-300px);
     opacity: 0;
-    transform: translateX(0);
   }
-  18% {
-    opacity: 0.55;
+  12%,
+  88% {
+    opacity: 0.48;
   }
-  55% {
-    opacity: 0.35;
-    transform: translateX(780px);
-  }
-  62%,
   100% {
+    transform: translateY(570px);
     opacity: 0;
-    transform: translateX(820px);
   }
 }
 
-@keyframes pev-draw-in {
-  from {
-    stroke-dashoffset: 1400;
-    opacity: 0.2;
-  }
+@keyframes pev-trace {
   to {
-    stroke-dashoffset: 0;
-    opacity: 1;
+    stroke-dashoffset: -160;
   }
 }
 
@@ -928,15 +876,22 @@
 
   .pev .pev-draw,
   .pev .pev-glow-line,
+  .pev .pev-breath,
   .pev .pev-callout-panel,
   .pev .pev-spec-value,
-  .pev .pev-scan-beam {
+  .pev .pev-scan-beam,
+  .pev .pev-scan-y,
+  .pev .pev-trace {
     animation: none !important;
     transition: none !important;
-    opacity: 1 !important;
+    opacity: 0.75 !important;
     stroke-dasharray: none !important;
     stroke-dashoffset: 0 !important;
     filter: none !important;
     transform: none !important;
+  }
+
+  .pev .pev-scan-y {
+    display: none !important;
   }
 }

@@ -91,23 +91,21 @@ export function ProjectEngineeringVisualization({
         ) : null}
 
         <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:gap-12 xl:gap-16">
-          <figure className="pev-stage relative min-w-0 overflow-hidden border border-white/12 bg-[#0e1111]">
+          <figure className="pev-stage relative min-w-0 overflow-hidden border border-white/12 bg-[#0b0d11]">
             <div className="pointer-events-none absolute inset-0 pev-vignette" aria-hidden="true" />
 
-            {/* Desktop / tablet specimen board */}
             <div className="hidden sm:block">
               {config.illustration === "paving-specimens" ? (
-                <PavingSpecimensBoard
+                <DesktopBlueprint
                   uid={uid}
                   ariaLabel={`Conceptual paving specimens for ${config.projectTitle}. ${quantityListLabel}. ${disclaimer}.`}
                 />
               ) : null}
             </div>
 
-            {/* Dedicated stacked mobile composition */}
             <div className="sm:hidden">
               {config.illustration === "paving-specimens" ? (
-                <PavingSpecimensMobile
+                <MobileBlueprint
                   uid={`${uid}-m`}
                   ariaLabel={`Conceptual paving specimens for ${config.projectTitle}. ${quantityListLabel}. ${disclaimer}.`}
                 />
@@ -149,8 +147,8 @@ export function ProjectEngineeringVisualization({
             </dl>
 
             <p className="mt-6 text-xs leading-relaxed text-on-dark-muted">
-              Illustration shows conceptual paving specimens only — not a site
-              plan, facility layout, utility drawing, or construction document.
+              Illustrative paving specimens — not a facility plan, utility
+              drawing, or construction document.
             </p>
           </aside>
         </div>
@@ -159,728 +157,804 @@ export function ProjectEngineeringVisualization({
   );
 }
 
-function SharedDefs({
-  uid,
-  hatchA,
-  hatchB,
-}: {
-  uid: string;
-  hatchA: string;
-  hatchB: string;
-}) {
+function BlueprintDefs({ uid }: { uid: string }) {
   return (
     <defs>
       <filter id={`glow-${uid}`} x="-40%" y="-40%" width="180%" height="180%">
-        <feGaussianBlur stdDeviation="2.4" result="blur" />
-        <feMerge>
-          <feMergeNode in="blur" />
-          <feMergeNode in="blur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-      <filter id={`glow-soft-${uid}`} x="-30%" y="-30%" width="160%" height="160%">
-        <feGaussianBlur stdDeviation="1.2" result="blur" />
+        <feGaussianBlur stdDeviation="4" result="blur" />
         <feMerge>
           <feMergeNode in="blur" />
           <feMergeNode in="SourceGraphic" />
         </feMerge>
       </filter>
-      <pattern id={`grid-${uid}`} width="20" height="20" patternUnits="userSpaceOnUse">
-        <path
-          d="M20 0H0V20"
-          fill="none"
-          stroke="rgba(185,50,40,0.07)"
-          strokeWidth="1"
-        />
-        <path
-          d="M20 0H0M0 0V20"
-          fill="none"
-          stroke="rgba(255,255,255,0.035)"
-          strokeWidth="0.5"
-        />
+      <pattern id={`grid-${uid}`} width="28" height="28" patternUnits="userSpaceOnUse">
+        <path d="M28 0H0V28" stroke="#39232a" strokeWidth="0.7" fill="none" />
+      </pattern>
+      <pattern id={`major-${uid}`} width="140" height="140" patternUnits="userSpaceOnUse">
+        <path d="M140 0H0V140" stroke="#45262c" strokeWidth="0.8" fill="none" />
       </pattern>
       <pattern
-        id={hatchA}
-        width="9"
-        height="9"
+        id={`hatch-${uid}`}
+        width="11"
+        height="11"
         patternUnits="userSpaceOnUse"
-        patternTransform="rotate(40)"
+        patternTransform="rotate(45)"
       >
-        <line
-          x1="0"
-          y1="0"
-          x2="0"
-          y2="9"
-          stroke="rgba(185,50,40,0.45)"
-          strokeWidth="1.5"
+        <path d="M0 0V11" stroke="#aa3d47" strokeWidth="1" opacity="0.4" />
+      </pattern>
+      <pattern id={`aggregate-${uid}`} width="23" height="23" patternUnits="userSpaceOnUse">
+        <path
+          d="M5 6l3 2-1 3z M17 17l-2-4 4 1z"
+          stroke="#b7636b"
+          strokeWidth="0.65"
+          fill="none"
+          opacity="0.6"
         />
       </pattern>
-      <pattern
-        id={hatchB}
-        width="7"
-        height="7"
-        patternUnits="userSpaceOnUse"
-        patternTransform="rotate(-48)"
-      >
-        <line
-          x1="0"
-          y1="0"
-          x2="0"
-          y2="7"
-          stroke="rgba(238,122,112,0.4)"
-          strokeWidth="1.75"
-        />
-      </pattern>
-      <linearGradient id={`scan-${uid}`} x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stopColor="rgba(185,50,40,0)" />
-        <stop offset="50%" stopColor="rgba(238,122,112,0.22)" />
-        <stop offset="100%" stopColor="rgba(185,50,40,0)" />
+      <linearGradient id={`scan-${uid}`} x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#ff3748" stopOpacity="0" />
+        <stop offset="88%" stopColor="#ff3748" stopOpacity="0.11" />
+        <stop offset="100%" stopColor="#ff6974" stopOpacity="0.6" />
       </linearGradient>
+      <radialGradient id={`field-${uid}`}>
+        <stop offset="0%" stopColor="#342026" stopOpacity="0.5" />
+        <stop offset="100%" stopColor="#0a0b0f" stopOpacity="0" />
+      </radialGradient>
+      <clipPath id={`scanclip-${uid}`}>
+        <rect x="20" y="20" width="1100" height="570" />
+      </clipPath>
     </defs>
   );
 }
 
-function TitleBlock({ x, y }: { x: number; y: number }) {
-  return (
-    <g transform={`translate(${x} ${y})`}>
-      <rect
-        width="248"
-        height="72"
-        fill="rgba(14,17,17,0.92)"
-        stroke="rgba(185,50,40,0.55)"
-        strokeWidth="1"
-      />
-      <text
-        x="14"
-        y="22"
-        fill="rgba(185,191,188,0.85)"
-        fontSize="9"
-        letterSpacing="0.16em"
-        fontFamily="var(--font-inter), system-ui, sans-serif"
-      >
-        H&amp;H CONSTRUCTION
-      </text>
-      <text
-        x="14"
-        y="42"
-        fill="#fffefa"
-        fontSize="14"
-        letterSpacing="0.04em"
-        fontFamily="var(--font-oswald), system-ui, sans-serif"
-      >
-        PAVING SPECIMENS
-      </text>
-      <text
-        x="14"
-        y="60"
-        fill="#ee7a70"
-        fontSize="9"
-        letterSpacing="0.14em"
-        fontFamily="var(--font-inter), system-ui, sans-serif"
-      >
-        CONCEPTUAL · SHEET V-01
-      </text>
-    </g>
-  );
-}
-
-function PavingSpecimensBoard({
+function DesktopBlueprint({
   uid,
   ariaLabel,
 }: {
   uid: string;
   ariaLabel: string;
 }) {
-  const hatchA = `hatch-a-${uid}`;
-  const hatchB = `hatch-b-${uid}`;
-  const glow = `url(#glow-${uid})`;
-  const glowSoft = `url(#glow-soft-${uid})`;
-
-  return (
-    <svg
-      className="pev-svg block h-auto w-full"
-      viewBox="0 0 960 640"
-      role="img"
-      aria-label={ariaLabel}
-    >
-      <SharedDefs uid={uid} hatchA={hatchA} hatchB={hatchB} />
-      <rect width="960" height="640" fill="#0e1111" />
-      <rect width="960" height="640" fill={`url(#grid-${uid})`} />
-
-      <g className="pev-layer pev-layer--frame" filter={glowSoft}>
-        <rect
-          x="24"
-          y="24"
-          width="912"
-          height="592"
-          fill="none"
-          stroke="rgba(185,50,40,0.45)"
-          strokeWidth="1.25"
-        />
-        <path
-          d="M24 52V24H52M908 24h28v28M936 588v28h-28M52 616H24v-28"
-          fill="none"
-          stroke="#b93228"
-          strokeWidth="2"
-        />
-      </g>
-
-      <TitleBlock x={668} y={40} />
-
-      {/* Specimen A — 6" parking lot */}
-      <g className="pev-layer pev-layer--lot" filter={glow}>
-        <rect
-          className="pev-draw pev-glow-line"
-          x="56"
-          y="120"
-          width="420"
-          height="200"
-          fill={`url(#${hatchA})`}
-          stroke="#b93228"
-          strokeWidth="2"
-        />
-        <path
-          className="pev-draw"
-          d="M56 280 H476"
-          fill="none"
-          stroke="rgba(255,250,240,0.2)"
-          strokeWidth="1"
-        />
-        {/* Section depth ticks */}
-        <path
-          className="pev-draw"
-          d="M76 280 V300 M76 300 H140 M140 280 V300"
-          fill="none"
-          stroke="#ee7a70"
-          strokeWidth="1.25"
-        />
-        <text
-          x="266"
-          y="188"
-          textAnchor="middle"
-          fill="rgba(255,250,240,0.92)"
-          fontSize="15"
-          letterSpacing="0.14em"
-          fontFamily="var(--font-inter), system-ui, sans-serif"
-          fontWeight="700"
-        >
-          SPECIMEN A
-        </text>
-        <text
-          x="266"
-          y="214"
-          textAnchor="middle"
-          fill="#ee7a70"
-          fontSize="18"
-          letterSpacing="0.04em"
-          fontFamily="var(--font-oswald), system-ui, sans-serif"
-        >
-          6&quot; CONCRETE PARKING
-        </text>
-        <text
-          x="266"
-          y="240"
-          textAnchor="middle"
-          fill="rgba(255,250,240,0.78)"
-          fontSize="14"
-          letterSpacing="0.08em"
-          fontFamily="var(--font-oswald), system-ui, sans-serif"
-        >
-          3,753 SF · PLAN QTY
-        </text>
-        <text
-          x="108"
-          y="316"
-          fill="rgba(238,122,112,0.9)"
-          fontSize="11"
-          letterSpacing="0.1em"
-          fontFamily="var(--font-inter), system-ui, sans-serif"
-        >
-          6&quot; SECTION
-        </text>
-      </g>
-
-      {/* Material upgrade callout */}
-      <g className="pev-layer pev-layer--callout" filter={glowSoft}>
-        <path
-          className="pev-draw"
-          d="M360 150 L420 110 L468 110"
-          fill="none"
-          stroke="rgba(238,122,112,0.7)"
-          strokeWidth="1.25"
-        />
-        <rect
-          className="pev-draw pev-callout-panel"
-          x="468"
-          y="86"
-          width="176"
-          height="52"
-          fill="rgba(14,17,17,0.94)"
-          stroke="rgba(185,50,40,0.7)"
-          strokeWidth="1.25"
-        />
-        <text
-          x="480"
-          y="108"
-          fill="#ee7a70"
-          fontSize="10"
-          letterSpacing="0.14em"
-          fontFamily="var(--font-inter), system-ui, sans-serif"
-          fontWeight="700"
-        >
-          MATERIAL UPGRADE
-        </text>
-        <text
-          x="480"
-          y="126"
-          fill="rgba(255,250,240,0.88)"
-          fontSize="12"
-          fontFamily="var(--font-inter), system-ui, sans-serif"
-        >
-          Asphalt → 6&quot; concrete
-        </text>
-      </g>
-
-      {/* Specimen B — 8" paving */}
-      <g className="pev-layer pev-layer--heavy" filter={glow}>
-        <rect
-          className="pev-draw pev-glow-line"
-          x="520"
-          y="170"
-          width="384"
-          height="240"
-          fill={`url(#${hatchB})`}
-          stroke="#ee7a70"
-          strokeWidth="2.25"
-        />
-        <path
-          className="pev-draw"
-          d="M540 210 H884 M540 250 H884 M540 290 H884 M540 330 H884 M540 370 H884"
-          fill="none"
-          stroke="rgba(185,50,40,0.28)"
-          strokeWidth="1"
-        />
-        <text
-          x="712"
-          y="268"
-          textAnchor="middle"
-          fill="rgba(255,250,240,0.92)"
-          fontSize="15"
-          letterSpacing="0.14em"
-          fontFamily="var(--font-inter), system-ui, sans-serif"
-          fontWeight="700"
-        >
-          SPECIMEN B
-        </text>
-        <text
-          x="712"
-          y="296"
-          textAnchor="middle"
-          fill="#ee7a70"
-          fontSize="18"
-          letterSpacing="0.04em"
-          fontFamily="var(--font-oswald), system-ui, sans-serif"
-        >
-          8&quot; CONCRETE PAVING
-        </text>
-        <text
-          x="712"
-          y="322"
-          textAnchor="middle"
-          fill="rgba(255,250,240,0.78)"
-          fontSize="14"
-          letterSpacing="0.08em"
-          fontFamily="var(--font-oswald), system-ui, sans-serif"
-        >
-          3,780 SF · PLAN QTY
-        </text>
-      </g>
-
-      {/* Specimen C — sidewalk */}
-      <g className="pev-layer pev-layer--walk" filter={glow}>
-        <rect
-          className="pev-draw pev-glow-line"
-          x="56"
-          y="360"
-          width="420"
-          height="72"
-          fill="rgba(185,50,40,0.14)"
-          stroke="#b93228"
-          strokeWidth="1.75"
-        />
-        <path
-          className="pev-draw"
-          d="M90 396 H140 M180 396 H230 M270 396 H320 M360 396 H410"
-          fill="none"
-          stroke="rgba(255,250,240,0.25)"
-          strokeWidth="1.25"
-          strokeDasharray="4 6"
-        />
-        <text
-          x="266"
-          y="392"
-          textAnchor="middle"
-          fill="rgba(255,250,240,0.9)"
-          fontSize="13"
-          letterSpacing="0.12em"
-          fontFamily="var(--font-inter), system-ui, sans-serif"
-          fontWeight="700"
-        >
-          SPECIMEN C · SIDEWALK
-        </text>
-        <text
-          x="266"
-          y="414"
-          textAnchor="middle"
-          fill="#ee7a70"
-          fontSize="14"
-          letterSpacing="0.06em"
-          fontFamily="var(--font-oswald), system-ui, sans-serif"
-        >
-          468 SF
-        </text>
-      </g>
-
-      {/* Specimen D — curb & gutter profile */}
-      <g className="pev-layer pev-layer--curb" filter={glow}>
-        <path
-          className="pev-draw pev-glow-line"
-          d="M56 500 H300 V470 H340 V520 H56 Z"
-          fill="rgba(238,122,112,0.12)"
-          stroke="#ee7a70"
-          strokeWidth="2"
-        />
-        <path
-          className="pev-draw"
-          d="M300 470 V520"
-          fill="none"
-          stroke="rgba(255,250,240,0.35)"
-          strokeWidth="1"
-        />
-        <text
-          x="198"
-          y="548"
-          textAnchor="middle"
-          fill="rgba(255,250,240,0.9)"
-          fontSize="12"
-          letterSpacing="0.12em"
-          fontFamily="var(--font-inter), system-ui, sans-serif"
-          fontWeight="700"
-        >
-          SPECIMEN D · CURB &amp; GUTTER
-        </text>
-        <text
-          x="198"
-          y="568"
-          textAnchor="middle"
-          fill="#ee7a70"
-          fontSize="14"
-          letterSpacing="0.06em"
-          fontFamily="var(--font-oswald), system-ui, sans-serif"
-        >
-          132 LF
-        </text>
-      </g>
-
-      {/* Total band */}
-      <g className="pev-layer pev-layer--total" filter={glowSoft}>
-        <rect
-          className="pev-draw pev-callout-panel"
-          x="520"
-          y="460"
-          width="384"
-          height="100"
-          fill="rgba(14,17,17,0.9)"
-          stroke="rgba(185,50,40,0.55)"
-          strokeWidth="1.25"
-        />
-        <text
-          x="712"
-          y="500"
-          textAnchor="middle"
-          fill="rgba(185,191,188,0.9)"
-          fontSize="11"
-          letterSpacing="0.16em"
-          fontFamily="var(--font-inter), system-ui, sans-serif"
-        >
-          TOTAL CONCRETE PAVING + SIDEWALK
-        </text>
-        <text
-          x="712"
-          y="536"
-          textAnchor="middle"
-          fill="#ee7a70"
-          fontSize="28"
-          letterSpacing="0.04em"
-          fontFamily="var(--font-oswald), system-ui, sans-serif"
-        >
-          8,001 SF
-        </text>
-      </g>
-
-      <g className="pev-scan" aria-hidden="true">
-        <rect
-          className="pev-scan-beam"
-          x="24"
-          y="24"
-          width="64"
-          height="592"
-          fill={`url(#scan-${uid})`}
-        />
-      </g>
-    </svg>
-  );
-}
-
-function PavingSpecimensMobile({
-  uid,
-  ariaLabel,
-}: {
-  uid: string;
-  ariaLabel: string;
-}) {
-  const hatchA = `hatch-a-${uid}`;
-  const hatchB = `hatch-b-${uid}`;
   const glow = `url(#glow-${uid})`;
 
   return (
     <svg
       className="pev-svg block h-auto w-full"
-      viewBox="0 0 390 920"
+      viewBox="0 0 1140 610"
       role="img"
       aria-label={ariaLabel}
     >
-      <SharedDefs uid={uid} hatchA={hatchA} hatchB={hatchB} />
-      <rect width="390" height="920" fill="#0e1111" />
-      <rect width="390" height="920" fill={`url(#grid-${uid})`} />
+      <BlueprintDefs uid={uid} />
+      <rect width="1140" height="610" fill="#0b0d11" />
+      <rect width="1140" height="610" fill={`url(#grid-${uid})`} opacity="0.65" />
+      <rect width="1140" height="610" fill={`url(#major-${uid})`} opacity="0.75" />
+      <ellipse cx="545" cy="288" rx="565" ry="350" fill={`url(#field-${uid})`} />
 
-      <g filter={`url(#glow-soft-${uid})`}>
-        <rect
-          x="14"
-          y="14"
-          width="362"
-          height="892"
-          fill="none"
-          stroke="rgba(185,50,40,0.45)"
-          strokeWidth="1.25"
-        />
+      {/* Drafting frame */}
+      <g fill="none" stroke="#6d444b" strokeWidth="1">
+        <rect x="20" y="20" width="1100" height="570" strokeDasharray="3 6" />
+        <path d="M20 55V20H55 M1085 20H1120V55 M20 555V590H55 M1085 590H1120V555" />
+        <path d="M40 94H1100 M40 526H1100 M568 115V510" strokeDasharray="4 8" />
       </g>
-
       <text
-        x="195"
+        x="42"
         y="48"
-        textAnchor="middle"
-        fill="rgba(185,191,188,0.85)"
-        fontSize="10"
-        letterSpacing="0.16em"
-        fontFamily="var(--font-inter), system-ui, sans-serif"
+        fill="#5f5962"
+        fontSize="8"
+        letterSpacing="1.5"
+        fontFamily="ui-monospace, Consolas, monospace"
       >
-        H&amp;H · PAVING SPECIMENS
+        FIG 01  /  MATERIAL &amp; SCOPE VISUALIZATION
       </text>
       <text
-        x="195"
-        y="70"
-        textAnchor="middle"
-        fill="#ee7a70"
-        fontSize="11"
-        letterSpacing="0.12em"
-        fontFamily="var(--font-inter), system-ui, sans-serif"
+        x="1098"
+        y="48"
+        textAnchor="end"
+        fill="#5f5962"
+        fontSize="8"
+        letterSpacing="1.5"
+        fontFamily="ui-monospace, Consolas, monospace"
       >
-        CONCEPTUAL · NOT TO SCALE
+        SCHEMATIC · NOT TO SCALE
+      </text>
+      <text
+        x="42"
+        y="76"
+        fill="#ff999d"
+        fontSize="12"
+        fontWeight="600"
+        letterSpacing="1.6"
+        fontFamily="ui-monospace, Consolas, monospace"
+      >
+        PAVING STUDIES
+      </text>
+      <text
+        x="1098"
+        y="76"
+        textAnchor="end"
+        fill="#a5a0a4"
+        fontSize="10"
+        letterSpacing="1"
+        fontFamily="ui-monospace, Consolas, monospace"
+      >
+        SURFACE / SECTION / EDGE
       </text>
 
-      {/* Stacked specimens with large mobile labels */}
-      <g className="pev-layer pev-layer--lot" filter={glow}>
-        <rect
-          className="pev-draw pev-glow-line"
-          x="34"
-          y="96"
-          width="322"
-          height="150"
-          fill={`url(#${hatchA})`}
-          stroke="#b93228"
-          strokeWidth="2"
-        />
+      {/* A — parking surface specimen */}
+      <g className="pev-layer pev-layer--lot" transform="translate(47 118)">
         <text
-          x="195"
-          y="152"
-          textAnchor="middle"
-          fill="rgba(255,250,240,0.95)"
-          fontSize="13"
-          letterSpacing="0.12em"
-          fontFamily="var(--font-inter), system-ui, sans-serif"
-          fontWeight="700"
+          x="0"
+          y="20"
+          fill="#ff999d"
+          fontSize="12"
+          fontWeight="600"
+          letterSpacing="1.6"
+          fontFamily="ui-monospace, Consolas, monospace"
         >
-          6&quot; CONCRETE PARKING
+          A  /  PARKING SURFACE
         </text>
         <text
-          x="195"
-          y="180"
+          x="0"
+          y="37"
+          fill="#a5a0a4"
+          fontSize="10"
+          letterSpacing="1"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          CONCRETE REPLACES PLANNED ASPHALT
+        </text>
+        <rect x="18" y="68" width="468" height="235" fill="#ff4449" opacity="0.05" />
+        <rect
+          className="pev-breath"
+          x="18"
+          y="68"
+          width="468"
+          height="235"
+          stroke="#fa3949"
+          strokeWidth="9"
+          fill="none"
+          opacity="0.5"
+          filter={glow}
+        />
+        <rect
+          className="pev-glow-line"
+          x="18"
+          y="68"
+          width="468"
+          height="235"
+          stroke="#ff6068"
+          strokeWidth="2"
+          fill="none"
+        />
+        <rect
+          x="27"
+          y="77"
+          width="450"
+          height="217"
+          stroke="#ad3b44"
+          strokeWidth="1.15"
+          fill="none"
+        />
+        <path
+          d="M27 133H477 M27 186H477 M27 241H477 M139 77V294 M251 77V294 M363 77V294"
+          stroke="#ad3b44"
+          strokeWidth="1.15"
+          fill="none"
+        />
+        <path
+          className="pev-breath"
+          d="M27 133H477 M27 186H477 M27 241H477 M139 77V294 M251 77V294 M363 77V294"
+          stroke="#ff444e"
+          strokeWidth="4"
+          fill="none"
+          filter={glow}
+          opacity="0.35"
+          style={{ animationDelay: "-1.7s" }}
+        />
+        <rect
+          x="27"
+          y="77"
+          width="450"
+          height="217"
+          fill={`url(#hatch-${uid})`}
+          opacity="0.23"
+        />
+        <path
+          d="M18 68h16 M18 68v16 M486 68h-16 M486 68v16 M18 303h16 M18 303v-16 M486 303h-16 M486 303v-16"
+          stroke="#ffb2b4"
+          strokeWidth="2"
+          fill="none"
+        />
+        <path
+          className="pev-trace"
+          d="M39 314H465"
+          stroke="#b72c3b"
+          strokeWidth="1"
+          fill="none"
+          opacity="0.5"
+        />
+        <path
+          d="M251 186H322L351 158H446"
+          stroke="#6d444b"
+          strokeWidth="1"
+          fill="none"
+        />
+        <circle cx="251" cy="186" r="4" fill="#ffb0b4" />
+        <circle cx="251" cy="186" r="9" stroke="#90464d" fill="none" />
+        <rect x="334" y="139" width="111" height="22" fill="#151014" stroke="#734148" />
+        <text
+          x="389"
+          y="154"
           textAnchor="middle"
-          fill="#ee7a70"
-          fontSize="22"
-          fontFamily="var(--font-oswald), system-ui, sans-serif"
+          fill="#d98e94"
+          fontSize="8"
+          letterSpacing="1.1"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          JOINT STUDY
+        </text>
+        <text
+          x="18"
+          y="345"
+          fill="#eee9e9"
+          fontSize="25"
+          fontWeight="700"
+          letterSpacing="-0.9"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          6 IN.
+        </text>
+        <text
+          x="486"
+          y="345"
+          textAnchor="end"
+          fill="#eee9e9"
+          fontSize="25"
+          fontWeight="700"
+          letterSpacing="-0.9"
+          fontFamily="ui-monospace, Consolas, monospace"
         >
           3,753 SF
         </text>
         <text
-          x="195"
-          y="206"
-          textAnchor="middle"
-          fill="rgba(185,191,188,0.85)"
-          fontSize="11"
-          letterSpacing="0.1em"
-          fontFamily="var(--font-inter), system-ui, sans-serif"
+          x="18"
+          y="362"
+          fill="#77747c"
+          fontSize="8"
+          letterSpacing="1.1"
+          fontFamily="ui-monospace, Consolas, monospace"
         >
-          ASPHALT → 6&quot; CONCRETE
+          CONCRETE THICKNESS
+        </text>
+        <text
+          x="486"
+          y="362"
+          textAnchor="end"
+          fill="#77747c"
+          fontSize="8"
+          letterSpacing="1.1"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          PLANNED PARKING AREA
         </text>
       </g>
 
-      <g className="pev-layer pev-layer--heavy" filter={glow}>
-        <rect
-          className="pev-draw pev-glow-line"
-          x="34"
-          y="270"
-          width="322"
-          height="150"
-          fill={`url(#${hatchB})`}
-          stroke="#ee7a70"
-          strokeWidth="2.25"
-        />
+      {/* B — illustrative material section */}
+      <g className="pev-layer pev-layer--heavy" transform="translate(600 118)">
         <text
-          x="195"
-          y="330"
-          textAnchor="middle"
-          fill="rgba(255,250,240,0.95)"
-          fontSize="13"
-          letterSpacing="0.12em"
-          fontFamily="var(--font-inter), system-ui, sans-serif"
-          fontWeight="700"
+          x="0"
+          y="20"
+          fill="#ff999d"
+          fontSize="12"
+          fontWeight="600"
+          letterSpacing="1.6"
+          fontFamily="ui-monospace, Consolas, monospace"
         >
-          8&quot; CONCRETE PAVING
+          B  /  CONCRETE PAVING
         </text>
         <text
-          x="195"
-          y="362"
-          textAnchor="middle"
-          fill="#ee7a70"
-          fontSize="22"
-          fontFamily="var(--font-oswald), system-ui, sans-serif"
+          x="0"
+          y="37"
+          fill="#a5a0a4"
+          fontSize="10"
+          letterSpacing="1"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          ILLUSTRATIVE MATERIAL SECTION
+        </text>
+        <g transform="translate(30 55)">
+          <path d="M0 61L264 0 422 71 158 132Z" fill="#e13440" opacity="0.09" />
+          <path
+            className="pev-breath"
+            d="M0 61L264 0 422 71 158 132Z M0 61V96L158 167 422 106V71 M158 132V167"
+            stroke="#ff3948"
+            strokeWidth="7"
+            filter={glow}
+            fill="none"
+            style={{ animationDelay: "-3.4s" }}
+          />
+          <path
+            className="pev-glow-line"
+            d="M0 61L264 0 422 71 158 132Z M0 61V96L158 167 422 106V71 M158 132V167"
+            stroke="#ff6068"
+            strokeWidth="2"
+            fill="none"
+          />
+          <path
+            d="M0 61V96L158 167V132Z M158 132L422 71V106L158 167Z"
+            fill={`url(#aggregate-${uid})`}
+            stroke="#bd414b"
+            strokeWidth="1"
+          />
+          <path
+            d="M88 41L246 112 M176 20L334 92 M79 96L343 35"
+            stroke="#ad3b44"
+            strokeWidth="1.15"
+            fill="none"
+          />
+          <circle cx="158" cy="132" r="3.5" fill="#ffa4aa" />
+        </g>
+        <text
+          x="18"
+          y="280"
+          fill="#eee9e9"
+          fontSize="25"
+          fontWeight="700"
+          letterSpacing="-0.9"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          8 IN.
+        </text>
+        <text
+          x="486"
+          y="280"
+          textAnchor="end"
+          fill="#eee9e9"
+          fontSize="25"
+          fontWeight="700"
+          letterSpacing="-0.9"
+          fontFamily="ui-monospace, Consolas, monospace"
         >
           3,780 SF
         </text>
-      </g>
-
-      <g className="pev-layer pev-layer--walk" filter={glow}>
-        <rect
-          className="pev-draw pev-glow-line"
-          x="34"
-          y="444"
-          width="322"
-          height="110"
-          fill="rgba(185,50,40,0.16)"
-          stroke="#b93228"
-          strokeWidth="1.75"
-        />
         <text
-          x="195"
-          y="492"
-          textAnchor="middle"
-          fill="rgba(255,250,240,0.95)"
-          fontSize="13"
-          letterSpacing="0.12em"
-          fontFamily="var(--font-inter), system-ui, sans-serif"
-          fontWeight="700"
+          x="18"
+          y="297"
+          fill="#77747c"
+          fontSize="8"
+          letterSpacing="1.1"
+          fontFamily="ui-monospace, Consolas, monospace"
         >
-          CONCRETE SIDEWALK
+          CONCRETE THICKNESS
         </text>
         <text
-          x="195"
-          y="524"
-          textAnchor="middle"
-          fill="#ee7a70"
-          fontSize="22"
-          fontFamily="var(--font-oswald), system-ui, sans-serif"
+          x="486"
+          y="297"
+          textAnchor="end"
+          fill="#77747c"
+          fontSize="8"
+          letterSpacing="1.1"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          PLAN QUANTITY
+        </text>
+      </g>
+
+      {/* C — sidewalk & curb */}
+      <g className="pev-layer pev-layer--walk" transform="translate(607 455)">
+        <text
+          x="0"
+          y="3"
+          fill="#ff999d"
+          fontSize="12"
+          fontWeight="600"
+          letterSpacing="1.6"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          C  /  SIDEWALK &amp; CURB
+        </text>
+        <g transform="translate(246 -7)" className="pev-breath pev-layer--curb">
+          <path
+            className="pev-glow-line"
+            d="M0 0H17V-12H26V0H58V9H0Z"
+            stroke="#ff646e"
+            strokeWidth="1.6"
+            fill="#7b2934"
+            fillOpacity="0.15"
+          />
+        </g>
+        <text
+          x="0"
+          y="28"
+          fill="#f9e7e8"
+          fontSize="13"
+          letterSpacing="0.75"
+          fontFamily="ui-monospace, Consolas, monospace"
         >
           468 SF
         </text>
-      </g>
-
-      <g className="pev-layer pev-layer--curb" filter={glow}>
-        <path
-          className="pev-draw pev-glow-line"
-          d="M34 590 H250 V560 H290 V620 H34 Z"
-          fill="rgba(238,122,112,0.14)"
-          stroke="#ee7a70"
-          strokeWidth="2"
-        />
         <text
-          x="195"
-          y="656"
-          textAnchor="middle"
-          fill="rgba(255,250,240,0.95)"
-          fontSize="13"
-          letterSpacing="0.12em"
-          fontFamily="var(--font-inter), system-ui, sans-serif"
-          fontWeight="700"
+          x="0"
+          y="42"
+          fill="#77747c"
+          fontSize="8"
+          letterSpacing="1.1"
+          fontFamily="ui-monospace, Consolas, monospace"
         >
-          CURB &amp; GUTTER
+          SIDEWALK
         </text>
         <text
-          x="195"
-          y="688"
-          textAnchor="middle"
-          fill="#ee7a70"
-          fontSize="22"
-          fontFamily="var(--font-oswald), system-ui, sans-serif"
+          x="175"
+          y="28"
+          fill="#f9e7e8"
+          fontSize="13"
+          letterSpacing="0.75"
+          fontFamily="ui-monospace, Consolas, monospace"
         >
           132 LF
         </text>
-      </g>
-
-      <g className="pev-layer pev-layer--total" filter={`url(#glow-soft-${uid})`}>
-        <rect
-          className="pev-draw pev-callout-panel"
-          x="34"
-          y="730"
-          width="322"
-          height="120"
-          fill="rgba(14,17,17,0.94)"
-          stroke="rgba(185,50,40,0.6)"
-          strokeWidth="1.5"
-        />
         <text
-          x="195"
-          y="776"
-          textAnchor="middle"
-          fill="rgba(185,191,188,0.9)"
-          fontSize="11"
-          letterSpacing="0.12em"
-          fontFamily="var(--font-inter), system-ui, sans-serif"
+          x="175"
+          y="42"
+          fill="#77747c"
+          fontSize="8"
+          letterSpacing="1.1"
+          fontFamily="ui-monospace, Consolas, monospace"
         >
-          TOTAL PAVING + SIDEWALK
-        </text>
-        <text
-          x="195"
-          y="818"
-          textAnchor="middle"
-          fill="#ee7a70"
-          fontSize="30"
-          fontFamily="var(--font-oswald), system-ui, sans-serif"
-        >
-          8,001 SF
+          CURB &amp; GUTTER
         </text>
       </g>
 
-      <g className="pev-scan" aria-hidden="true">
-        <rect
-          className="pev-scan-beam"
-          x="14"
-          y="14"
-          width="48"
-          height="892"
-          fill={`url(#scan-${uid})`}
-        />
+      {/* Vertical scan sweep (prototype language) */}
+      <g clipPath={`url(#scanclip-${uid})`} aria-hidden="true">
+        <g className="pev-scan-y">
+          <rect x="21" y="-74" width="1098" height="110" fill={`url(#scan-${uid})`} />
+          <path d="M21 36H1119" stroke="#ff6a72" strokeWidth="1" opacity="0.25" />
+        </g>
+      </g>
+
+      <text
+        x="42"
+        y="547"
+        fill="#77747c"
+        fontSize="8"
+        letterSpacing="1.1"
+        fontFamily="ui-monospace, Consolas, monospace"
+      >
+        ILLUSTRATIVE PAVING SPECIMENS — NOT A FACILITY PLAN
+      </text>
+      <text
+        x="42"
+        y="567"
+        fill="#a5a0a4"
+        fontSize="10"
+        letterSpacing="1"
+        fontFamily="ui-monospace, Consolas, monospace"
+      >
+        H&amp;H CONSTRUCTION  /  PROJECT SCOPE STUDY
+      </text>
+      <text
+        x="1098"
+        y="547"
+        textAnchor="end"
+        fill="#77747c"
+        fontSize="8"
+        letterSpacing="1.1"
+        fontFamily="ui-monospace, Consolas, monospace"
+      >
+        NOT FOR CONSTRUCTION
+      </text>
+      <text
+        x="1098"
+        y="567"
+        textAnchor="end"
+        fill="#a5a0a4"
+        fontSize="10"
+        letterSpacing="1"
+        fontFamily="ui-monospace, Consolas, monospace"
+      >
+        SHEET 01 / 01
+      </text>
+    </svg>
+  );
+}
+
+function MobileBlueprint({
+  uid,
+  ariaLabel,
+}: {
+  uid: string;
+  ariaLabel: string;
+}) {
+  const glow = `url(#glow-${uid})`;
+
+  return (
+    <svg
+      className="pev-svg block h-auto w-full"
+      viewBox="0 0 380 740"
+      role="img"
+      aria-label={ariaLabel}
+    >
+      <defs>
+        <filter id={`glow-${uid}`} x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <pattern id={`grid-${uid}`} width="19" height="19" patternUnits="userSpaceOnUse">
+          <path d="M19 0H0V19" stroke="#43262d" strokeWidth="0.65" fill="none" />
+        </pattern>
+        <pattern
+          id={`hatch-${uid}`}
+          width="8"
+          height="8"
+          patternUnits="userSpaceOnUse"
+          patternTransform="rotate(45)"
+        >
+          <path d="M0 0V8" stroke="#b94a54" opacity="0.35" strokeWidth="0.5" />
+        </pattern>
+      </defs>
+      <rect width="380" height="740" fill="#0b0d11" />
+      <rect width="380" height="740" fill={`url(#grid-${uid})`} opacity="0.6" />
+      <rect
+        x="12"
+        y="12"
+        width="356"
+        height="716"
+        fill="none"
+        stroke="#6d444b"
+        strokeWidth="1"
+        strokeDasharray="3 5"
+      />
+
+      <g transform="translate(25 28)">
+        <text
+          y="8"
+          fill="#77747c"
+          fontSize="8"
+          letterSpacing="1.1"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          FIG 01 / CONCEPTUAL SCOPE STUDIES
+        </text>
+        <text
+          y="34"
+          fill="#ff999d"
+          fontSize="12"
+          fontWeight="600"
+          letterSpacing="1.6"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          A / PARKING SURFACE
+        </text>
+        <text
+          y="50"
+          fill="#77747c"
+          fontSize="8"
+          letterSpacing="1.1"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          ASPHALT PLAN UPGRADED TO CONCRETE
+        </text>
+
+        <g className="pev-layer pev-layer--lot">
+          <rect
+            className="pev-glow-line"
+            x="12"
+            y="66"
+            width="306"
+            height="136"
+            stroke="#ff6068"
+            strokeWidth="2"
+            fill="none"
+          />
+          <rect
+            className="pev-breath"
+            x="12"
+            y="66"
+            width="306"
+            height="136"
+            stroke="#ff424e"
+            strokeWidth="7"
+            fill="none"
+            filter={glow}
+          />
+          <rect
+            x="18"
+            y="72"
+            width="294"
+            height="124"
+            fill={`url(#hatch-${uid})`}
+            stroke="#ad3b44"
+            strokeWidth="1.15"
+          />
+          <path
+            d="M18 113H312 M18 155H312 M92 72V196 M165 72V196 M239 72V196"
+            stroke="#ad3b44"
+            strokeWidth="1.15"
+            fill="none"
+          />
+          <text
+            x="12"
+            y="235"
+            fill="#eee9e9"
+            fontSize="22"
+            fontWeight="700"
+            fontFamily="ui-monospace, Consolas, monospace"
+          >
+            6 IN.
+          </text>
+          <text
+            x="318"
+            y="235"
+            textAnchor="end"
+            fill="#eee9e9"
+            fontSize="22"
+            fontWeight="700"
+            fontFamily="ui-monospace, Consolas, monospace"
+          >
+            3,753 SF
+          </text>
+        </g>
+
+        <path d="M0 263H330" stroke="#6d444b" strokeWidth="1" strokeDasharray="4 5" />
+
+        <text
+          y="287"
+          fill="#ff999d"
+          fontSize="12"
+          fontWeight="600"
+          letterSpacing="1.6"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          B / CONCRETE PAVING
+        </text>
+        <text
+          y="303"
+          fill="#77747c"
+          fontSize="8"
+          letterSpacing="1.1"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          ILLUSTRATIVE MATERIAL SECTION
+        </text>
+
+        <g className="pev-layer pev-layer--heavy" transform="translate(20 321)">
+          <path
+            className="pev-breath"
+            d="M0 45L184 0 291 50 107 95Z M0 45V68L107 118 291 73V50 M107 95V118"
+            stroke="#f83d4b"
+            strokeWidth="6"
+            filter={glow}
+            fill="none"
+            style={{ animationDelay: "-1.7s" }}
+          />
+          <path
+            className="pev-glow-line"
+            d="M0 45L184 0 291 50 107 95Z M0 45V68L107 118 291 73V50 M107 95V118"
+            stroke="#ff6068"
+            strokeWidth="2"
+            fill="none"
+          />
+          <path
+            d="M0 45V68L107 118V95Z M107 95L291 50V73L107 118Z"
+            fill={`url(#hatch-${uid})`}
+          />
+        </g>
+        <text
+          x="12"
+          y="476"
+          fill="#eee9e9"
+          fontSize="22"
+          fontWeight="700"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          8 IN.
+        </text>
+        <text
+          x="318"
+          y="476"
+          textAnchor="end"
+          fill="#eee9e9"
+          fontSize="22"
+          fontWeight="700"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          3,780 SF
+        </text>
+
+        <path d="M0 504H330" stroke="#6d444b" strokeWidth="1" strokeDasharray="4 5" />
+
+        <text
+          y="529"
+          fill="#ff999d"
+          fontSize="12"
+          fontWeight="600"
+          letterSpacing="1.6"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          C / SIDEWALK &amp; CURB
+        </text>
+        <g className="pev-layer pev-layer--curb">
+          <path
+            className="pev-glow-line"
+            d="M12 555H146V543H156V555H318V566H12Z"
+            stroke="#ff6068"
+            strokeWidth="2"
+            fill="none"
+          />
+          <path
+            className="pev-breath"
+            d="M12 555H146V543H156V555H318V566H12Z"
+            stroke="#ff424e"
+            strokeWidth="6"
+            filter={glow}
+            fill="none"
+            style={{ animationDelay: "-3.4s" }}
+          />
+        </g>
+        <text
+          x="12"
+          y="596"
+          fill="#eee9e9"
+          fontSize="22"
+          fontWeight="700"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          468 SF
+        </text>
+        <text
+          x="318"
+          y="596"
+          textAnchor="end"
+          fill="#eee9e9"
+          fontSize="22"
+          fontWeight="700"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          132 LF
+        </text>
+        <text
+          x="12"
+          y="609"
+          fill="#77747c"
+          fontSize="8"
+          letterSpacing="1.1"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          SIDEWALK
+        </text>
+        <text
+          x="318"
+          y="609"
+          textAnchor="end"
+          fill="#77747c"
+          fontSize="8"
+          letterSpacing="1.1"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          CURB &amp; GUTTER
+        </text>
+
+        <text
+          y="650"
+          fill="#77747c"
+          fontSize="8"
+          letterSpacing="1.1"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          ILLUSTRATIVE SPECIMENS · NOT A FACILITY PLAN
+        </text>
+        <text
+          y="666"
+          fill="#a5a0a4"
+          fontSize="10"
+          letterSpacing="1"
+          fontFamily="ui-monospace, Consolas, monospace"
+        >
+          NOT FOR CONSTRUCTION / N.T.S.
+        </text>
       </g>
     </svg>
   );

@@ -8,12 +8,17 @@ export type TuttleProjectPhoto = {
 
 export const tuttleFireStationSlug = "tuttle-fire-station-2" as const;
 
+/** Substantive content revision date for sitemap lastmod (draft case study + visualization). */
+export const tuttleFireStationContentUpdatedAt = "2026-11-26" as const;
+
 /**
  * Authentic Tuttle Fire Station No. 2 construction photos.
- * Add JPGs under public/images/projects/tuttle-fire-station-2/ and list them here.
- * Do not substitute stock imagery or the engineering visualization for project photos.
+ * Place optimized JPGs under public/images/projects/tuttle-fire-station-2/ and list them here.
+ * Do not substitute stock imagery, engineering drawings, or the visualization for project photos.
  */
-export const tuttleFireStationPhotos: TuttleProjectPhoto[] = [];
+export const tuttleFireStationPhotos: TuttleProjectPhoto[] = [
+  // Wired after owner supplies the three authentic construction photographs.
+];
 
 export const tuttleFireStationCaseStudy = {
   slug: tuttleFireStationSlug,
@@ -26,8 +31,11 @@ export const tuttleFireStationCaseStudy = {
   serviceSlug: "concrete-construction" as const,
   city: "Tuttle",
   clientType: "Municipal / public safety",
-  completedAt: "2026-11-01",
   statusLabel: "Nearing completion",
+  contentUpdatedAt: tuttleFireStationContentUpdatedAt,
+  /** Split primary/additional galleries around the engineering visualization. */
+  splitPhotoLayout: true,
+  outcomeHeading: "Current Progress",
   summary:
     "Commercial concrete parking lot and site paving for Tuttle Fire Station No. 2 in Tuttle, Oklahoma. The owner upgraded the originally specified asphalt parking lot to 6-inch concrete paving. Plan quantities total 8,001 SF of concrete paving and sidewalk plus 132 LF of curb and gutter.",
   featured: true,
@@ -38,11 +46,11 @@ export const tuttleFireStationCaseStudy = {
     { label: "Curb & gutter", value: "132 LF" },
   ],
   challenge:
-    "A new public-safety facility needs parking and site paving that can take emergency-vehicle loads, stay open for staged construction traffic, and meet municipal expectations for finish and drainage — without treating the lot as an afterthought to the building package.",
+    "A municipal fire-station site needed parking lot and site paving delivered as a coordinated concrete package — parking section, heavier paving where specified, sidewalk, and curb and gutter — while work stayed sequenced with the broader station project.",
   approach:
     "H&H scoped the civil flatwork as a coordinated concrete package: 6-inch concrete for the parking lot (replacing the asphalt originally specified), 8-inch concrete paving where heavier sections were required, sidewalk, and curb and gutter. Quantities shown on this page are plan quantities from the project documents.",
   outcome:
-    "The project is nearing completion. The parking lot material upgrade to 6-inch concrete gives the station a durable paved apron and stall area matched to public-safety use. Final as-built verification will follow closeout; published figures remain plan quantities until then.",
+    "The project is nearing completion. The parking lot was upgraded from the originally specified asphalt to 6-inch concrete paving. Published figures remain plan quantities until as-built verification at closeout.",
   images: tuttleFireStationPhotos,
   visualization: tuttleFireStationVisualization,
   relatedServices: [
@@ -69,4 +77,5 @@ export const tuttleFireStationProjectEvidence = {
   statusLabel: "Nearing completion",
   summary:
     "Owner-confirmed upgrade from asphalt to 6-inch concrete parking lot paving, plus 8-inch concrete paving, sidewalk, and curb and gutter for Tuttle Fire Station No. 2. Plan quantities: 8,001 SF of concrete paving and sidewalk and 132 LF of curb and gutter.",
-} as const;
+  photos: tuttleFireStationPhotos,
+};

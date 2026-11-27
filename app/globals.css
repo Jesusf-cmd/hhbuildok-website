@@ -837,12 +837,14 @@
 @keyframes pev-glow-pulse {
   0%,
   100% {
-    opacity: 0.72;
-    filter: drop-shadow(0 0 0 transparent);
+    opacity: 0.78;
+    filter: drop-shadow(0 0 1px rgb(185 50 40 / 25%));
   }
   50% {
     opacity: 1;
-    filter: drop-shadow(0 0 4px rgb(185 50 40 / 45%));
+    filter:
+      drop-shadow(0 0 5px rgb(185 50 40 / 55%))
+      drop-shadow(0 0 12px rgb(185 50 40 / 28%));
   }
 }
 

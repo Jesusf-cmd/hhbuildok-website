@@ -58,10 +58,12 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   }
 
   const service = services.find((item) => item.slug === study.serviceSlug);
-  const completed = new Date(study.completedAt).toLocaleDateString("en-US", {
-    month: "long",
-    year: "numeric",
-  });
+  const completed = study.completedAt
+    ? new Date(study.completedAt).toLocaleDateString("en-US", {
+        month: "long",
+        year: "numeric",
+      })
+    : "";
 
   const facts = [
     { label: "Client type", value: study.clientType },
@@ -69,25 +71,30 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     { label: "Scope", value: service?.title ?? "" },
     study.statusLabel
       ? { label: "Status", value: study.statusLabel }
-      : { label: "Completed", value: completed },
-  ].filter((fact) => fact.value);
+      : completed
+        ? { label: "Completed", value: completed }
+        : null,
+  ].filter((fact): fact is { label: string; value: string } => Boolean(fact?.value));
 
   const narrative = [
     { heading: "The Challenge", body: study.challenge },
     { heading: "Our Approach", body: study.approach },
-    { heading: "The Outcome", body: study.outcome },
+    {
+      heading: study.outcomeHeading ?? "The Outcome",
+      body: study.outcome,
+    },
   ];
 
-  const primaryImages = study.images.slice(0, 1);
-  const additionalImages = study.images.slice(1);
+  const useSplitPhotos = Boolean(study.splitPhotoLayout && study.visualization);
+  const primaryImages = useSplitPhotos ? study.images.slice(0, 1) : [];
+  const additionalImages = useSplitPhotos ? study.images.slice(1) : [];
 
-  const articleSchema = {
+  const articleSchema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: study.h1,
     name: study.title,
     description: study.metaDescription,
-    datePublished: study.completedAt,
     author: {
       "@type": "Organization",
       name: siteConfig.name,
@@ -101,6 +108,16 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     mainEntityOfPage: `${siteConfig.url}/projects/${study.slug}`,
     image: study.images.map((image) => `${siteConfig.url}${image.src}`),
   };
+
+  // Only emit verified dates — never invent completion or publication dates.
+  if (study.completedAt) {
+    articleSchema.datePublished = study.completedAt;
+  }
+  if (study.contentUpdatedAt) {
+    articleSchema.dateModified = study.contentUpdatedAt;
+  } else if (study.completedAt) {
+    articleSchema.dateModified = study.completedAt;
+  }
 
   const imageGallerySchema =
     study.images.length > 0
@@ -142,7 +159,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         ]}
       />
 
-      {/* 1. Project introduction */}
       <PageHero eyebrow="Case Study" title={study.h1}>
         <p className="type-lead mt-6 max-w-2xl">{study.summary}</p>
 
@@ -163,83 +179,52 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </dl>
       </PageHero>
 
-      {/* 2. Primary construction photography */}
-      {primaryImages.length > 0 ? (
-        <CaseStudyPhotoGallery
-          id="project-photos"
-          heading="Project Photos"
-          images={primaryImages}
-          showHero
-        />
-      ) : null}
+      {useSplitPhotos ? (
+        <>
+          {primaryImages.length > 0 ? (
+            <CaseStudyPhotoGallery
+              id="project-photos"
+              heading="Project Photos"
+              images={primaryImages}
+              showHero
+            />
+          ) : null}
 
-      {/* 3. Animated engineering visualization */}
-      {study.visualization ? (
-        <ProjectEngineeringVisualization config={study.visualization} />
-      ) : null}
+          {study.visualization ? (
+            <ProjectEngineeringVisualization config={study.visualization} />
+          ) : null}
 
-      {/* 4. Project scope and specifications */}
-      {study.metrics.length > 0 ? (
-        <section className="tone-red" aria-labelledby="project-scope-heading">
-          <Container className="band-sm">
-            <h2 id="project-scope-heading" className="sr-only">
-              Project scope and specifications
-            </h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4">
-              {study.metrics.map((metric) => (
-                <div
-                  key={metric.label}
-                  className="border-t border-white/30 py-6 sm:odd:pr-6 sm:even:border-l sm:even:pl-6 lg:border-l lg:border-t-0 lg:px-8 lg:py-2 lg:odd:pl-8 lg:first:border-l-0 lg:first:pl-0"
-                >
-                  <p className="font-display text-3xl font-medium uppercase leading-none text-paper sm:text-4xl">
-                    {metric.value}
-                  </p>
-                  <p className="mt-3 text-sm text-paper/90">{metric.label}</p>
-                </div>
-              ))}
-            </div>
-            {study.visualization?.quantitiesNote ? (
-              <p className="mt-8 max-w-3xl text-sm text-paper/85">
-                {study.visualization.quantitiesNote}
-              </p>
-            ) : null}
-          </Container>
-        </section>
-      ) : null}
+          {study.metrics.length > 0 ? (
+            <ScopeMetrics study={study} />
+          ) : null}
 
-      <section className="bg-paper">
-        <Container className="band">
-          <div className="mx-auto max-w-4xl">
-            {narrative.map((item, index) => (
-              <div
-                key={item.heading}
-                className="grid gap-4 border-b border-line py-10 first:pt-0 last:border-b-0 last:pb-0 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-8 lg:py-14"
-              >
-                <span
-                  aria-hidden="true"
-                  className="flex h-12 w-12 items-center justify-center border border-line-strong font-display text-lg text-graphite"
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h2 className="type-h2 text-graphite">{item.heading}</h2>
-                  <p className="type-prose mt-5">{item.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+          <NarrativeSection narrative={narrative} />
 
-      {/* 5. Additional project photography */}
-      {additionalImages.length > 0 ? (
-        <CaseStudyPhotoGallery
-          id="additional-project-photos"
-          heading="Additional Project Photos"
-          images={additionalImages}
-          showHero={false}
-        />
-      ) : null}
+          {additionalImages.length > 0 ? (
+            <CaseStudyPhotoGallery
+              id="additional-project-photos"
+              heading="Additional Project Photos"
+              images={additionalImages}
+              showHero={false}
+            />
+          ) : null}
+        </>
+      ) : (
+        <>
+          {/* Classic Chandler layout: full gallery, then metrics, then narrative. */}
+          <CaseStudyPhotoGallery images={study.images} />
+
+          {study.visualization ? (
+            <ProjectEngineeringVisualization config={study.visualization} />
+          ) : null}
+
+          {study.metrics.length > 0 ? (
+            <ScopeMetrics study={study} />
+          ) : null}
+
+          <NarrativeSection narrative={narrative} />
+        </>
+      )}
 
       {study.testimonial ? (
         <section className="bg-warm">
@@ -256,7 +241,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </section>
       ) : null}
 
-      {/* 6. Related commercial services */}
       {service ? (
         <section className="bg-warm">
           <Container className="space-y-6 py-10">
@@ -281,7 +265,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </section>
       ) : null}
 
-      {/* 7. Request a Bid CTA */}
       <CtaBand
         title="Planning Something Similar?"
         actions={
@@ -296,5 +279,71 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </p>
       </CtaBand>
     </PageShell>
+  );
+}
+
+function ScopeMetrics({
+  study,
+}: {
+  study: NonNullable<ReturnType<typeof getCaseStudy>>;
+}) {
+  return (
+    <section className="tone-red" aria-labelledby="project-scope-heading">
+      <Container className="band-sm">
+        <h2 id="project-scope-heading" className="sr-only">
+          Project scope and specifications
+        </h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4">
+          {study.metrics.map((metric) => (
+            <div
+              key={metric.label}
+              className="border-t border-white/30 py-6 sm:odd:pr-6 sm:even:border-l sm:even:pl-6 lg:border-l lg:border-t-0 lg:px-8 lg:py-2 lg:odd:pl-8 lg:first:border-l-0 lg:first:pl-0"
+            >
+              <p className="font-display text-3xl font-medium uppercase leading-none text-paper sm:text-4xl">
+                {metric.value}
+              </p>
+              <p className="mt-3 text-sm text-paper/90">{metric.label}</p>
+            </div>
+          ))}
+        </div>
+        {study.visualization?.quantitiesNote ? (
+          <p className="mt-8 max-w-3xl text-sm text-paper/85">
+            {study.visualization.quantitiesNote}
+          </p>
+        ) : null}
+      </Container>
+    </section>
+  );
+}
+
+function NarrativeSection({
+  narrative,
+}: {
+  narrative: { heading: string; body: string }[];
+}) {
+  return (
+    <section className="bg-paper">
+      <Container className="band">
+        <div className="mx-auto max-w-4xl">
+          {narrative.map((item, index) => (
+            <div
+              key={item.heading}
+              className="grid gap-4 border-b border-line py-10 first:pt-0 last:border-b-0 last:pb-0 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-8 lg:py-14"
+            >
+              <span
+                aria-hidden="true"
+                className="flex h-12 w-12 items-center justify-center border border-line-strong font-display text-lg text-graphite"
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h2 className="type-h2 text-graphite">{item.heading}</h2>
+                <p className="type-prose mt-5">{item.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
   );
 }

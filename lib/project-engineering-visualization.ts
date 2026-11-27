@@ -26,8 +26,11 @@ export type ProjectEngineeringVisualizationConfig = {
   quantitiesNote?: string;
   quantities: EngineeringQuantity[];
   disclaimer?: string;
-  /** Named illustration pack — keep conceptual, non-scale. */
-  illustration: "tuttle-paving-concept";
+  /**
+   * Named illustration pack — conceptual paving specimens only.
+   * Never a facility layout, utility plan, or construction drawing.
+   */
+  illustration: "paving-specimens";
 };
 
 export const DEFAULT_VISUALIZATION_DISCLAIMER =
@@ -79,5 +82,5 @@ export const tuttleFireStationVisualization: ProjectEngineeringVisualizationConf
       },
     ],
     disclaimer: DEFAULT_VISUALIZATION_DISCLAIMER,
-    illustration: "tuttle-paving-concept",
+    illustration: "paving-specimens",
   };

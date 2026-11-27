@@ -291,6 +291,28 @@ export default function CommercialParkingLotsPage() {
               </div>
               <p className="type-lead">{parkingLotTuttleEvidence.summary}</p>
             </div>
+            {parkingLotTuttleEvidence.photos.length > 0 ? (
+              <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {parkingLotTuttleEvidence.photos.slice(0, 3).map((photo) => (
+                  <figure key={photo.src}>
+                    <div className="relative aspect-[4/3] overflow-hidden bg-graphite">
+                      <Image
+                        src={photo.src}
+                        alt={photo.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </div>
+                    {photo.caption ? (
+                      <figcaption className="il-figcaption mt-3">
+                        {photo.caption}
+                      </figcaption>
+                    ) : null}
+                  </figure>
+                ))}
+              </div>
+            ) : null}
             <div className="mt-10">
               <Link href={parkingLotTuttleEvidence.href} className="il-link">
                 Read the Tuttle Fire Station case study

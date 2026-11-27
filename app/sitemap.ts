@@ -23,7 +23,12 @@ import {
 import { parkingLotHubHref } from "@/lib/parking-lot-service-page";
 import { foundationsHubHref } from "@/lib/commercial-foundations-page";
 import { metalBuildingsHubHref } from "@/lib/commercial-metal-buildings-page";
-import { caseStudies, hasCaseStudies } from "@/lib/projects-data";
+import {
+  caseStudies,
+  getCaseStudyLastModified,
+  hasCaseStudies,
+} from "@/lib/projects-data";
+import { tuttleFireStationContentUpdatedAt } from "@/lib/tuttle-fire-station-data";
 import { hasPublishableCredentials } from "@/lib/credentials-data";
 
 /**
@@ -36,7 +41,8 @@ import { hasPublishableCredentials } from "@/lib/credentials-data";
 const sitemapLastmodByPath: Record<string, string> = {
   "/services": "2026-09-16",
   "/services/asphalt-paving": "2026-10-11",
-  "/services/commercial-parking-lots": "2026-09-16",
+  // Updated when Tuttle Fire Station draft case study was featured on this hub.
+  "/services/commercial-parking-lots": "2026-11-26",
   "/services/commercial-metal-buildings": "2026-09-16",
   "/services/metal-buildings-roofing": "2026-09-16",
   ...Object.fromEntries(
@@ -174,7 +180,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ? [
         {
           url: `${siteConfig.url}/projects`,
-          lastModified: defaultLastModified,
+          lastModified: new Date(tuttleFireStationContentUpdatedAt),
           changeFrequency: "monthly",
           priority: 0.9,
         },
@@ -194,7 +200,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const projectRoutes: MetadataRoute.Sitemap = caseStudies.map((study) => ({
     url: `${siteConfig.url}/projects/${study.slug}`,
-    lastModified: new Date(study.completedAt),
+    lastModified: getCaseStudyLastModified(study),
     changeFrequency: "yearly",
     priority: study.featured ? 0.85 : 0.7,
   }));

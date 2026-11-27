@@ -737,6 +737,117 @@
   transform: scale(1.04);
 }
 
+/* ---------- Project engineering visualization ---------- */
+.pev-stage {
+  isolation: isolate;
+  contain: layout paint;
+  background:
+    linear-gradient(165deg, #161a20 0%, #12151a 55%, #0e1116 100%);
+}
+
+.pev-schedule {
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 4%);
+}
+
+.pev-vignette {
+  background:
+    radial-gradient(
+      ellipse 72% 58% at 48% 42%,
+      transparent 42%,
+      rgb(0 0 0 / 28%) 100%
+    );
+  z-index: 1;
+}
+
+.pev-svg {
+  position: relative;
+  z-index: 0;
+}
+
+.pev-layer--lot .pev-glow-line,
+.pev-layer--heavy .pev-glow-line,
+.pev-layer--walk .pev-glow-line,
+.pev-layer--curb .pev-glow-line,
+.pev-layer--frame .pev-glow-line {
+  transform-origin: center;
+}
+
+.pev[data-entered="false"] .pev-draw {
+  opacity: 0.15;
+}
+
+.pev[data-entered="true"] .pev-draw {
+  opacity: 1;
+  transition: opacity 900ms ease;
+}
+
+.pev[data-motion="on"] .pev-breath {
+  animation: pev-breathe 6.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.pev[data-motion="on"] .pev-spec-value {
+  animation: pev-callout-illuminate 6.8s ease-in-out infinite;
+  animation-delay: var(--pev-delay, 0ms);
+}
+
+.pev[data-motion="on"] .pev-trace {
+  stroke-dasharray: 5 11;
+  animation: pev-trace 14s linear infinite;
+}
+
+.pev[data-motion="on"] .pev-scan-y {
+  animation: pev-scan-y 11s linear infinite;
+  opacity: 0.45;
+}
+
+.pev[data-motion="on"] .pev-dim,
+.pev[data-motion="on"] .pev-leader {
+  animation: pev-callout-illuminate 7.5s ease-in-out infinite;
+}
+
+@keyframes pev-breathe {
+  0%,
+  100% {
+    opacity: 0.28;
+  }
+  50% {
+    opacity: 0.92;
+  }
+}
+
+@keyframes pev-callout-illuminate {
+  0%,
+  100% {
+    opacity: 0.78;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes pev-scan-y {
+  0% {
+    transform: translateY(-280px);
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 0.42;
+  }
+  100% {
+    transform: translateY(700px);
+    opacity: 0;
+  }
+}
+
+@keyframes pev-trace {
+  to {
+    stroke-dashoffset: -180;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -772,5 +883,28 @@
   .card-interactive:hover .card-interactive-image,
   .card-interactive:focus-within .card-interactive-image {
     transform: none;
+  }
+
+  .pev .pev-draw,
+  .pev .pev-glow-line,
+  .pev .pev-breath,
+  .pev .pev-callout-panel,
+  .pev .pev-spec-value,
+  .pev .pev-scan-beam,
+  .pev .pev-scan-y,
+  .pev .pev-trace,
+  .pev .pev-dim,
+  .pev .pev-leader {
+    animation: none !important;
+    transition: none !important;
+    opacity: 0.75 !important;
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  .pev .pev-scan-y {
+    display: none !important;
   }
 }

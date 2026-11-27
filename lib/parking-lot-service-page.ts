@@ -4,6 +4,10 @@ import {
   chandlerCountyCourthousePhotos,
   chandlerCountyCourthouseSlug,
 } from "@/lib/chandler-county-courthouse-data";
+import {
+  tuttleFireStationProjectEvidence,
+  tuttleFireStationSlug,
+} from "@/lib/tuttle-fire-station-data";
 
 export const parkingLotHubHref = "/services/commercial-parking-lots";
 export const asphaltHubHref = "/services/asphalt-paving";
@@ -185,6 +189,10 @@ export const parkingLotRelatedLinks = [
     label: "Commercial concrete — pads, curb, and site flatwork",
   },
   {
+    href: `/projects/${tuttleFireStationSlug}`,
+    label: "Tuttle Fire Station No. 2 concrete parking lot case study",
+  },
+  {
     href: `/projects/${chandlerCountyCourthouseSlug}`,
     label: "Chandler County Courthouse parking lot case study",
   },
@@ -198,6 +206,9 @@ export const parkingLotProjectEvidence = {
     "Two-phase parking lot rehabilitation for Chandler County: sealcoat and restriping on sound pavement, then asphalt overlay, full-depth patching, 120 linear feet of curb replacement, and a final stall layout including accessible spaces. The lot returned to service between phases with usable parking throughout.",
   photos: [chandlerCountyCourthousePhotos[0], chandlerCountyCourthousePhotos[2]],
 } as const;
+
+/** Featured alongside Chandler — concrete parking lot / site paving proof. */
+export const parkingLotTuttleEvidence = tuttleFireStationProjectEvidence;
 
 export function parkingLotAsphaltCityHref(citySlug: string) {
   return asphaltCityHref(citySlug);

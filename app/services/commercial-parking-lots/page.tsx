@@ -30,6 +30,7 @@ import {
   parkingLotConcreteCityHref,
   parkingLotRelatedLinks,
   parkingLotProjectEvidence,
+  parkingLotTuttleEvidence,
 } from "@/lib/parking-lot-service-page";
 
 export const metadata: Metadata = {
@@ -272,6 +273,52 @@ export default function CommercialParkingLotsPage() {
               Read the full Chandler case study
               <ArrowIcon />
             </Link>
+          </div>
+
+          <div className="mt-16 border-t border-line pt-16 lg:mt-20 lg:pt-20">
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-16">
+              <div>
+                <h2 className="type-h2 text-graphite">
+                  {parkingLotTuttleEvidence.heading}
+                </h2>
+                <p className="type-eyebrow mt-4">
+                  {parkingLotTuttleEvidence.location}
+                  <span className="mx-2 text-line-strong" aria-hidden="true">
+                    ·
+                  </span>
+                  {parkingLotTuttleEvidence.statusLabel}
+                </p>
+              </div>
+              <p className="type-lead">{parkingLotTuttleEvidence.summary}</p>
+            </div>
+            {parkingLotTuttleEvidence.photos.length > 0 ? (
+              <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {parkingLotTuttleEvidence.photos.slice(0, 3).map((photo) => (
+                  <figure key={photo.src}>
+                    <div className="relative aspect-[4/3] overflow-hidden bg-graphite">
+                      <Image
+                        src={photo.src}
+                        alt={photo.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </div>
+                    {photo.caption ? (
+                      <figcaption className="il-figcaption mt-3">
+                        {photo.caption}
+                      </figcaption>
+                    ) : null}
+                  </figure>
+                ))}
+              </div>
+            ) : null}
+            <div className="mt-10">
+              <Link href={parkingLotTuttleEvidence.href} className="il-link">
+                Read the Tuttle Fire Station case study
+                <ArrowIcon />
+              </Link>
+            </div>
           </div>
         </Container>
       </section>

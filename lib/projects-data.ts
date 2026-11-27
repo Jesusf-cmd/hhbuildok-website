@@ -2,6 +2,8 @@ import { services } from "@/lib/site-data";
 import { chandlerCountyCourthousePhotos } from "@/lib/chandler-county-courthouse-data";
 import { asphaltCityHref } from "@/lib/asphalt-city-index";
 import { parkingLotHubHref } from "@/lib/parking-lot-service-page";
+import { tuttleFireStationCaseStudy } from "@/lib/tuttle-fire-station-data";
+import type { ProjectEngineeringVisualizationConfig } from "@/lib/project-engineering-visualization";
 
 export type ServiceSlug = (typeof services)[number]["slug"];
 
@@ -32,15 +34,37 @@ export type CaseStudy = {
   city: string;
   /** e.g. "School district", "General contractor", "Industrial facility". */
   clientType: string;
-  /** ISO date, e.g. "2025-09-01". */
-  completedAt: string;
+  /**
+   * ISO completion date when the project is finished and the date is verified.
+   * Omit for in-progress / nearing-completion projects — do not invent dates.
+   */
+  completedAt?: string;
+  /**
+   * ISO date of the last substantive page content revision.
+   * Used for sitemap lastmod when completion is not applicable.
+   */
+  contentUpdatedAt?: string;
+  /**
+   * When set, replaces the "Completed" fact with this status
+   * (e.g. "Nearing completion").
+   */
+  statusLabel?: string;
   /** One or two sentences a buyer can skim. */
   summary: string;
   metrics: CaseStudyMetric[];
   challenge: string;
   approach: string;
   outcome: string;
+  /** Override the third narrative heading (default "The Outcome"). */
+  outcomeHeading?: string;
   images: CaseStudyImage[];
+  /**
+   * When true, primary photo → visualization → additional photos.
+   * Leave unset for the classic single gallery (Chandler).
+   */
+  splitPhotoLayout?: boolean;
+  /** Optional animated SVG engineering visualization for the case study. */
+  visualization?: ProjectEngineeringVisualizationConfig;
   /** Relevant service guides, separate from the project's location and facts. */
   relatedServices?: {
     href: string;
@@ -57,6 +81,7 @@ export type CaseStudy = {
 };
 
 export const caseStudies: CaseStudy[] = [
+  tuttleFireStationCaseStudy,
   {
     slug: "chandler-county-courthouse-parking-lot",
     title: "Chandler County Courthouse Parking Lot",
@@ -116,5 +141,24 @@ export function getFeaturedCaseStudies() {
 }
 
 export function getPrimaryFeaturedCaseStudy() {
-  return getFeaturedCaseStudies()[0];
+  const featured = getFeaturedCaseStudies();
+  // Chandler remains the homepage / projects spotlight even after Tuttle photos land.
+  const chandler = featured.find(
+    (study) => study.slug === "chandler-county-courthouse-parking-lot",
+  );
+  if (chandler) {
+    return chandler;
+  }
+  return featured.find((study) => study.images.length > 0) ?? featured[0];
+}
+
+/** Truthful lastmod for sitemap: verified completion, else content revision. */
+export function getCaseStudyLastModified(study: CaseStudy): Date {
+  const iso = study.contentUpdatedAt ?? study.completedAt;
+  if (!iso) {
+    throw new Error(
+      `Case study "${study.slug}" needs contentUpdatedAt or completedAt for sitemap lastmod.`,
+    );
+  }
+  return new Date(iso);
 }

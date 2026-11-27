@@ -137,43 +137,50 @@ async function sendViaResend(
   payload: EmailPayload,
   from: string,
 ): Promise<ContactEmailDeliveryResult> {
-  const attachments = payload.attachments?.map((attachment) => ({
-    filename: attachment.filename,
-    content: arrayBufferToBase64(attachment.content),
-  }));
+  try {
+    const attachments = payload.attachments?.map((attachment) => ({
+      filename: attachment.filename,
+      content: arrayBufferToBase64(attachment.content),
+    }));
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: payload.to,
-      subject: payload.subject,
-      text: payload.text,
-      html: textToHtml(payload.text),
-      reply_to: payload.replyTo,
-      attachments,
-    }),
-  });
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: payload.to,
+        subject: payload.subject,
+        text: payload.text,
+        html: textToHtml(payload.text),
+        reply_to: payload.replyTo,
+        attachments,
+      }),
+    });
 
-  if (!response.ok) {
+    if (!response.ok) {
+      return {
+        ok: false,
+        errorCode: `RESEND_HTTP_${response.status}`,
+      };
+    }
+
+    const body = (await response.json().catch(() => null)) as {
+      id?: string;
+    } | null;
+
+    return {
+      ok: true,
+      messageId: typeof body?.id === "string" ? body.id : undefined,
+    };
+  } catch {
     return {
       ok: false,
-      errorCode: `RESEND_HTTP_${response.status}`,
+      errorCode: "RESEND_NETWORK_ERROR",
     };
   }
-
-  const body = (await response.json().catch(() => null)) as {
-    id?: string;
-  } | null;
-
-  return {
-    ok: true,
-    messageId: typeof body?.id === "string" ? body.id : undefined,
-  };
 }
 
 async function sendViaCloudflare(
@@ -214,20 +221,27 @@ async function dispatchEmail(
   fromEmail: string,
   fromName: string,
 ): Promise<ContactEmailDeliveryResult> {
-  const from = `${fromName} <${fromEmail}>`;
+  try {
+    const from = `${fromName} <${fromEmail}>`;
 
-  if (env.EMAIL) {
-    return sendViaCloudflare(env.EMAIL, payload, fromEmail, fromName);
+    if (env.EMAIL) {
+      return await sendViaCloudflare(env.EMAIL, payload, fromEmail, fromName);
+    }
+
+    if (env.RESEND_API_KEY) {
+      return await sendViaResend(env.RESEND_API_KEY, payload, from);
+    }
+
+    return {
+      ok: false,
+      errorCode: "EMAIL_NOT_CONFIGURED",
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      errorCode: sanitizeProviderError(error) || "EMAIL_SEND_FAILED",
+    };
   }
-
-  if (env.RESEND_API_KEY) {
-    return sendViaResend(env.RESEND_API_KEY, payload, from);
-  }
-
-  return {
-    ok: false,
-    errorCode: "EMAIL_NOT_CONFIGURED",
-  };
 }
 
 function confirmationEnabled(env: DeliveryEnv) {
@@ -297,17 +311,27 @@ export async function deliverContactEmails(
     };
   }
 
-  const confirmation = await dispatchEmail(
-    env,
-    {
-      to: data.email,
-      subject: "We received your bid request — H&H Construction",
-      text: deps.buildConfirmationBody(data.name),
-      replyTo: deps.companyReplyTo,
-    },
-    deps.fromEmail,
-    deps.fromName,
-  );
+  let confirmation: ContactEmailDeliveryResult;
+
+  try {
+    confirmation = await dispatchEmail(
+      env,
+      {
+        to: data.email,
+        subject: "We received your bid request — H&H Construction",
+        text: deps.buildConfirmationBody(data.name),
+        replyTo: deps.companyReplyTo,
+      },
+      deps.fromEmail,
+      deps.fromName,
+    );
+  } catch (error) {
+    // Defense in depth: confirmation must never overturn primary acceptance.
+    confirmation = {
+      ok: false,
+      errorCode: sanitizeProviderError(error) || "CONFIRMATION_SEND_FAILED",
+    };
+  }
 
   if (!confirmation.ok) {
     console.error("Contact confirmation email failed:", {

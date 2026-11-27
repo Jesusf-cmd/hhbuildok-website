@@ -7,7 +7,6 @@ import {
   type ContactFormValues,
 } from "@/lib/contact-form";
 import {
-  ContactPrimaryDeliveryError,
   deliverContactEmails,
   type ContactEmailSendSummary,
 } from "@/lib/contact-email-delivery";
